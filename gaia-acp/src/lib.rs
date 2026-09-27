@@ -10,6 +10,7 @@ mod eval_awareness;
 mod failure_harness;
 mod gateway;
 mod grounding;
+mod halt;
 mod live_trace;
 mod manifest;
 mod mcp_budget;
@@ -35,6 +36,7 @@ pub use eval_awareness::{scenario_gate, AwarenessScenario, ScenarioStatus};
 pub use failure_harness::{run_fixture, FixtureKind, HarnessOutcome};
 pub use gateway::{ControlPlane, InvokeResult};
 pub use grounding::GroundingClaim;
+pub use halt::{actor_resume, human_resume, HumanHaltReceipt};
 pub use live_trace::{
     credential_is_absent, map_row, try_forward, LiveSendError, LiveTraceConfig, LiveTraceMode,
     LiveTraceRole, LiveTraceRow, LiveTraceTransport, RecordingLiveTransport,
