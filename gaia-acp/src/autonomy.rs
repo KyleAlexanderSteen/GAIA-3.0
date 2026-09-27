@@ -153,16 +153,16 @@ mod tests {
 
     fn action(class: ActionClass, target: &str, tool: &str) -> ProposedAction {
         ProposedAction {
-            agent_id:         "agent-a".into(),
-            tool:             tool.into(),
-            method:           "call".into(),
-            target:           target.into(),
-            action_class:     class,
-            payload:          String::new(),
-            nonce:            String::new(),
-            gateway_id:       "gw".into(),
-            server_id:        "srv".into(),
-            resource_id:      "repo".into(),
+            agent_id: "agent-a".into(),
+            tool: tool.into(),
+            method: "call".into(),
+            target: target.into(),
+            action_class: class,
+            payload: String::new(),
+            nonce: String::new(),
+            gateway_id: "gw".into(),
+            server_id: "srv".into(),
+            resource_id: "repo".into(),
             wants_delegation: false,
         }
     }
@@ -174,7 +174,10 @@ mod tests {
 
     #[test]
     fn software_max_is_bounded_remediate() {
-        assert_eq!(AutonomyLevel::software_max(), AutonomyLevel::BoundedRemediate);
+        assert_eq!(
+            AutonomyLevel::software_max(),
+            AutonomyLevel::BoundedRemediate,
+        );
     }
 
     #[test]
@@ -229,9 +232,9 @@ mod tests {
     #[test]
     fn peer_envelope_rejects_raw_memory() {
         let env = PeerEnvelope {
-            did:        "did:key:z1".into(),
-            intent_id:  "i1".into(),
-            purpose:    "query".into(),
+            did: "did:key:z1".into(),
+            intent_id: "i1".into(),
+            purpose: "query".into(),
             raw_memory: true,
             specialist: false,
         };
@@ -241,9 +244,9 @@ mod tests {
     #[test]
     fn peer_envelope_rejects_dump_vault_purpose() {
         let env = PeerEnvelope {
-            did:        "did:key:z1".into(),
-            intent_id:  "i1".into(),
-            purpose:    "dump-vault".into(),
+            did: "did:key:z1".into(),
+            intent_id: "i1".into(),
+            purpose: "dump-vault".into(),
             raw_memory: false,
             specialist: false,
         };
@@ -253,9 +256,9 @@ mod tests {
     #[test]
     fn peer_envelope_specialist_cannot_command() {
         let env = PeerEnvelope {
-            did:        "did:key:z1".into(),
-            intent_id:  "i1".into(),
-            purpose:    "peer-direct-command".into(),
+            did: "did:key:z1".into(),
+            intent_id: "i1".into(),
+            purpose: "peer-direct-command".into(),
             raw_memory: false,
             specialist: true,
         };
@@ -265,9 +268,9 @@ mod tests {
     #[test]
     fn peer_envelope_valid_passes() {
         let env = PeerEnvelope {
-            did:        "did:key:z1".into(),
-            intent_id:  "i1".into(),
-            purpose:    "share-summary".into(),
+            did: "did:key:z1".into(),
+            intent_id: "i1".into(),
+            purpose: "share-summary".into(),
             raw_memory: false,
             specialist: false,
         };
