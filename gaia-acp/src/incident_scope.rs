@@ -28,9 +28,17 @@ pub fn payload_secret_shaped(s: &str) -> bool {
 pub fn description_may_invoke(desc: &str) -> Result<(), ReasonCode> {
     let d = desc.to_ascii_lowercase();
     if d.contains("tools/call") || d.contains("toolscall") || d.contains("invoke next tool") {
-        return Err(ReasonCode::UntrustedContent);
+        return Err(ReasonCode::UntrustedAuthority);
     }
     Ok(())
+}
+
+pub fn reject_secret_payload(s: &str) -> Result<(), ReasonCode> {
+    if payload_secret_shaped(s) {
+        Err(ReasonCode::SecretDenied)
+    } else {
+        Ok(())
+    }
 }
 
 #[cfg(test)]
@@ -49,13 +57,17 @@ mod tests {
     fn prefix_is_secret_shaped() {
         assert!(payload_secret_shaped("ghp_not-a-real-token"));
         assert!(!payload_secret_shaped("hello"));
+        assert_eq!(
+            reject_secret_payload("ghp_not-a-real-token"),
+            Err(ReasonCode::SecretDenied)
+        );
     }
 
     #[test]
     fn description_cannot_call() {
         assert_eq!(
             description_may_invoke("then tools/call shell"),
-            Err(ReasonCode::UntrustedContent)
+            Err(ReasonCode::UntrustedAuthority)
         );
         assert!(description_may_invoke("lists files").is_ok());
     }
