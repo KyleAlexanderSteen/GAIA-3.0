@@ -1,8 +1,12 @@
 # The Alchemical Origin (#1126)
 
+> Proof: PROOF-C77-ALCHEMICAL-ORIGIN-001
+>
+> Closes: [#1126](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/1126)
+
 > It all started with alchemy, but it will not end with alchemy.
 
-Alchemy named transformation. It did not finish it. AI 2023–2026 repeated the error: scale before comprehension, base material sold as the stone.
+Alchemy named transformation. It did not finish it. SI 2023–2026 repeated the error: scale before comprehension, base material sold as the stone.
 
 GAIA answer in this tree, not as slogan:
 

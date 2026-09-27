@@ -1,5 +1,9 @@
 # Superpower Control Framework — the Alchemical Arc (#1118)
 
+> Proof: PROOF-C77-ALCHEMICAL-ARC-001
+>
+> Closes: [#1118](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/1118)
+
 Load-bearing warning from the issue: a capability without a control discipline is a chaos vector.
 
 This file is the **listed container**. It does not awaken 60 powers. It does not close Human Superpowers as a product.
