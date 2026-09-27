@@ -41,7 +41,10 @@ mod tests {
 
     #[test]
     fn redirect_must_match() {
-        assert!(!redirect_exact("https://gaia.local/cb", "https://evil.example/cb"));
+        assert!(!redirect_exact(
+            "https://gaia.local/cb",
+            "https://evil.example/cb"
+        ));
     }
 
     #[test]

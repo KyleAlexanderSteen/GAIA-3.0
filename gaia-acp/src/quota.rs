@@ -37,10 +37,7 @@ pub struct ResourceUsage {
 /// Returns `Ok(())` if usage is within quota on all axes.
 /// Returns `Err(ReasonCode::ResourceQuotaExceeded)` as soon as any axis
 /// exceeds its hard limit.
-pub fn resource_quota_gate(
-    quota: &ResourceQuota,
-    usage: &ResourceUsage,
-) -> Result<(), ReasonCode> {
+pub fn resource_quota_gate(quota: &ResourceQuota, usage: &ResourceUsage) -> Result<(), ReasonCode> {
     if usage.tool_calls > quota.max_tool_calls
         || usage.output_tokens > quota.max_output_tokens
         || usage.wall_secs > quota.max_wall_secs
