@@ -153,7 +153,7 @@ mod tests {
     #[test]
     fn budget_exceeded_when_actions_used_eq_max() {
         let mut m = manifest("a1", 0);
-        m.max_actions  = 3;
+        m.max_actions = 3;
         m.actions_used = 3;
         assert!(m.budget_exceeded());
         m.actions_used = 2;
