@@ -43,7 +43,7 @@ pub fn run_fixture(kind: FixtureKind) -> HarnessOutcome {
             }
         }
         FixtureKind::ForgedProvenance => {
-            if crate::digest_pinned("abc", "def") {
+            if crate::digest_pinned("latest") {
                 HarnessOutcome::Pass
             } else {
                 HarnessOutcome::Fail
