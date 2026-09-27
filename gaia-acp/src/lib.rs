@@ -6,6 +6,8 @@ mod audit;
 mod autonomy;
 mod claim;
 mod config;
+mod eval_awareness;
+mod failure_harness;
 mod gateway;
 mod grounding;
 mod live_trace;
@@ -29,6 +31,8 @@ pub use audit::{ActionReceipt, AuditChain, AuditPushInput, PlaneEvent, PlaneStat
 pub use autonomy::{gate as autonomy_gate, AutonomyLevel, ConfirmDomain, PeerEnvelope};
 pub use claim::{claim_gate, Claim};
 pub use config::{description_is_untrusted, digest_pinned, lint_mcp_config, McpServerConfig};
+pub use eval_awareness::{scenario_gate, AwarenessScenario, ScenarioStatus};
+pub use failure_harness::{run_fixture, FixtureKind, HarnessOutcome};
 pub use gateway::{ControlPlane, InvokeResult};
 pub use grounding::GroundingClaim;
 pub use live_trace::{
