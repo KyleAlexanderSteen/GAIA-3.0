@@ -1,5 +1,4 @@
-//! Local-first agent control plane for GAIA 2.0 (#341-#348, #352, #335, #220, #187).
-//! Fake adapters only. No sockets, live MCP, or credentials.
+//! Local-first agent control plane. Fake adapters remain. MCP stdio is fixture-only. HTTP off.
 
 mod adapter;
 mod approval;
@@ -11,6 +10,10 @@ mod gateway;
 mod grounding;
 mod live_trace;
 mod manifest;
+mod mcp_budget;
+mod mcp_http_gate;
+mod mcp_profile;
+mod mcp_stdio;
 mod policy;
 mod quota;
 mod registry;
@@ -33,6 +36,10 @@ pub use live_trace::{
     LiveTraceRole, LiveTraceRow, LiveTraceTransport, RecordingLiveTransport,
 };
 pub use manifest::{CapabilityManifest, IdentityKind, PrincipalId, RevocationList};
+pub use mcp_budget::{discover_tools, Descriptor, DiscoveryCaps};
+pub use mcp_http_gate::{audience_ok, http_enabled, redirect_exact, ssrf_block, STREAMABLE_HTTP_ENABLED};
+pub use mcp_profile::{classify_method, MethodClass, MCP_SPEC, SUPPORTED};
+pub use mcp_stdio::{parse_frame, StdioError, MAX_FRAME};
 pub use policy::{PolicyDecision, PolicyEngine, PolicyEvaluationContext, POLICY_VERSION};
 pub use quota::{resource_quota_gate, ResourceQuota, ResourceUsage};
 pub use registry::{LocalAip, LocalRegistry};
