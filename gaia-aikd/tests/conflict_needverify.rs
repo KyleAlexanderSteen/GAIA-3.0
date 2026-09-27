@@ -1,6 +1,6 @@
 //! #1076 disagreeing chunks stay NeedVerify. No auto-merge.
 
-use gaia_aikd::tier2::{flag_hit_conflicts, RankedHit};
+use gaia_aikd::{flag_hit_conflicts, RankedHit};
 
 fn hit(text: &str, score: f32) -> RankedHit {
     RankedHit {
