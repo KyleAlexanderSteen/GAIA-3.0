@@ -1,0 +1,13 @@
+{
+  "schema_version": "0.1.0",
+  "default": "en",
+  "undetermined": "und",
+  "locales": [
+    {"tag": "en", "name": "English"},
+    {"tag": "es", "name": "Spanish"},
+    {"tag": "fr", "name": "French"},
+    {"tag": "zh", "name": "Chinese"},
+    {"tag": "hi", "name": "Hindi"},
+    {"tag": "ar", "name": "Arabic", "rtl": true}
+  ]
+}
