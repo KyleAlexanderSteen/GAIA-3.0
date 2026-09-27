@@ -1,0 +1,5 @@
+{
+  "spec": "2026-07-28",
+  "supported": ["initialize", "tools/list", "tools/call", "resources/list", "resources/read", "prompts/list", "prompts/get", "ping"],
+  "http_enabled": false
+}

@@ -1,6 +1,6 @@
 //! #1064 discovery budget. Ranking cannot grant authority.
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Descriptor {
     pub server: &'static str,
     pub name: &'static str,
@@ -61,7 +61,14 @@ mod tests {
                 schema_chars: 10,
             },
         ];
-        let got = discover_tools(&all, DiscoveryCaps { max_tools: 1, max_chars: 2048 }).unwrap();
+        let got = discover_tools(
+            &all,
+            DiscoveryCaps {
+                max_tools: 1,
+                max_chars: 2048,
+            },
+        )
+        .unwrap();
         assert_eq!(got.len(), 1);
     }
 
