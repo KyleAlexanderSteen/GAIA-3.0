@@ -128,6 +128,16 @@ Do not treat those commands as a published installer. There is no `curl | sh` UR
 - [#1–#10 honesty](gaia-spec/sos/ISSUES-1-10.md)
 - [#1–#50 rollup](gaia-spec/sos/ISSUES-1-50.md)
 
+## Cite this work
+
+Author: **Kyle Alexander Steen / R0GV3TheAvatar**.  
+Preferred clone: https://github.com/R0GV3TheAvatar/GAIA-2.0.git  
+Machine-readable: [`CITATION.cff`](CITATION.cff)  
+Notices that must travel with copies: [`NOTICE`](NOTICE)  
+SPDX line for new crate roots: [`docs/legal/SPDX-ROOTS.md`](docs/legal/SPDX-ROOTS.md)
+
+Use the work. Keep the name. That is the deal.
+
 ## Governance
 
 - [LICENSE](LICENSE) — layered Apache-2.0 / MIT / CC0 / CC-BY-4.0
@@ -136,7 +146,8 @@ Do not treat those commands as a published installer. There is no `curl | sh` UR
 - [SECURITY](SECURITY.md)
 - [GOVERNANCE](GOVERNANCE.md) — Foundation / TSC / SIG model (entity later)
 - [Listed AI inventory / use / risk / oversight / vendor](docs/governance/) — templates, not a completed filing
+- [NOTICE-strip procedure](docs/legal/NOTICE-STRIP.md)
 
 ## License
 
-See [LICENSE](LICENSE). Protocols in `gaia-spec/` are **CC0**. Implementation crates follow the layer table above.
+See [LICENSE](LICENSE). Protocols in `gaia-spec/` are **CC0**. Implementation crates follow the layer table above. Do not add a fifth license to "void" a thief; enforce the four you have.
