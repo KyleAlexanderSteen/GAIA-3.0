@@ -17,6 +17,7 @@ mod mcp_budget;
 mod mcp_http_gate;
 mod mcp_profile;
 mod mcp_stdio;
+mod oversight;
 mod policy;
 mod quota;
 mod registry;
@@ -48,6 +49,7 @@ pub use mcp_http_gate::{
 };
 pub use mcp_profile::{classify_method, MethodClass, MCP_SPEC, SUPPORTED};
 pub use mcp_stdio::{parse_frame, StdioError, MAX_FRAME};
+pub use oversight::{halt_wash, record_verdict, Verdict};
 pub use policy::{PolicyDecision, PolicyEngine, PolicyEvaluationContext, POLICY_VERSION};
 pub use quota::{resource_quota_gate, ResourceQuota, ResourceUsage};
 pub use registry::{LocalAip, LocalRegistry};
