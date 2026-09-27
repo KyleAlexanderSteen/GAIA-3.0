@@ -5,7 +5,9 @@ use crate::autonomy::{gate, AutonomyLevel};
 use crate::grounding::GroundingClaim;
 use crate::manifest::{CapabilityManifest, RevocationList};
 use crate::policy::{PolicyDecision, PolicyEngine, PolicyEvaluationContext};
-use crate::trace::{from_invoke, ClaimClass, InvokeTraceInput, MemoryTraceSink, TraceKind, TraceSink};
+use crate::trace::{
+    from_invoke, ClaimClass, InvokeTraceInput, MemoryTraceSink, TraceKind, TraceSink,
+};
 use crate::types::{ProposedAction, ReasonCode, SignedIntent, UntrustedContent};
 
 #[derive(Debug)]

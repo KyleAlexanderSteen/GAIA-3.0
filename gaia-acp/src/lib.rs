@@ -1,5 +1,4 @@
-//! Local-first agent control plane for GAIA 2.0 (#341-#348, #352, #335, #220, #187).
-//! Fake adapters only. No sockets, live MCP, or credentials.
+//! Local-first agent control plane. Fake adapters remain. MCP stdio is fixture-only. HTTP off.
 
 mod adapter;
 mod approval;
@@ -11,6 +10,10 @@ mod gateway;
 mod grounding;
 mod live_trace;
 mod manifest;
+mod mcp_budget;
+mod mcp_http_gate;
+mod mcp_profile;
+mod mcp_stdio;
 mod policy;
 mod quota;
 mod registry;
@@ -23,7 +26,9 @@ mod types;
 pub use adapter::{FakeAdapter, RecordingAdapter};
 pub use approval::{ApprovalDecision, HumanApprovalReceipt};
 pub use audit::{ActionReceipt, AuditChain, AuditPushInput, PlaneEvent, PlaneState};
-pub use autonomy::{gate as autonomy_gate, AutonomyLevel, ConfirmDomain, PeerEnvelope};
+pub use autonomy::{
+    gate as autonomy_gate, AutonomyLevel, ConfirmDomain, PeerEnvelope,
+};
 pub use claim::{claim_gate, Claim};
 pub use config::{description_is_untrusted, digest_pinned, lint_mcp_config, McpServerConfig};
 pub use gateway::{ControlPlane, InvokeResult};
@@ -33,6 +38,12 @@ pub use live_trace::{
     LiveTraceRole, LiveTraceRow, LiveTraceTransport, RecordingLiveTransport,
 };
 pub use manifest::{CapabilityManifest, IdentityKind, PrincipalId, RevocationList};
+pub use mcp_budget::{discover_tools, Descriptor, DiscoveryCaps};
+pub use mcp_http_gate::{
+    audience_ok, http_enabled, redirect_exact, ssrf_block, STREAMABLE_HTTP_ENABLED,
+};
+pub use mcp_profile::{classify_method, MethodClass, MCP_SPEC, SUPPORTED};
+pub use mcp_stdio::{parse_frame, StdioError, MAX_FRAME};
 pub use policy::{PolicyDecision, PolicyEngine, PolicyEvaluationContext, POLICY_VERSION};
 pub use quota::{resource_quota_gate, ResourceQuota, ResourceUsage};
 pub use registry::{LocalAip, LocalRegistry};
