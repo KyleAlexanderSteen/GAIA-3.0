@@ -7,23 +7,17 @@
 #   agent-validate.sh <mode> [--attempt N] [--fingerprint <prior-result.json>]
 #
 # Modes:
-#   changed   — fmt + clippy + test (default, fastest)
-#   targeted  — fmt + clippy + test (same as changed; targeted file list TBD)
-#   full      — fmt + clippy + test across the whole workspace
+#   changed   — fmt changed .rs only + clippy + test (default)
+#   targeted  — same as changed
+#   full      — cargo fmt --all + clippy + test
 #
 # Exit codes:
-#   0  passed       — all stages green
-#   1  failed       — one or more stages failed
-#   2  usage error  — bad arguments
-#   3  no_progress  — failure fingerprints identical to prior attempt
-#
-# Output:
-#   Writes agent-validation.json to the workspace root.
-#   Writes agent-validation-N.json when --attempt N is supplied.
+#   0  passed
+#   1  failed
+#   2  usage error
+#   3  no_progress
 
 set -euo pipefail
-
-# ── argument parsing ──────────────────────────────────────────────────────────
 
 MODE="${1:-changed}"
 shift || true
@@ -47,8 +41,6 @@ case "$MODE" in
   *) echo "Unknown mode: $MODE (expected changed, targeted, or full)" >&2; exit 2 ;;
 esac
 
-# ── setup ─────────────────────────────────────────────────────────────────────
-
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")/.." && pwd)"
 cd "$ROOT"
 
@@ -63,14 +55,7 @@ NO_PROGRESS=false
 STAGES_JSON="[]"
 DIAGNOSTICS_JSON="[]"
 
-# ── fallback trap — guarantees agent-validation.json always exists ────────────
-#
-# Registered after ROOT, ATTEMPT, and HEAD_SHA are set so the function
-# can reference them. Fires on ERR (unexpected non-zero command) or on
-# EXIT before the normal write block has run.
-
 write_fallback_result() {
-  # No-op if the normal result block already wrote the file
   [[ -f "$RESULT_FILE" ]] && return 0
   local ts
   ts="$(date -u +%Y-%m-%dT%H:%M:%SZ 2>/dev/null || echo unknown)"
@@ -93,8 +78,6 @@ FALLBACK
 
 trap 'write_fallback_result' ERR EXIT
 
-# ── helpers ───────────────────────────────────────────────────────────────────
-
 stage_result() {
   local name="$1" status="$2" exit_code="$3" duration="$4"
   printf '{"name":"%s","status":"%s","exit_code":%d,"duration_s":%d}' \
@@ -102,7 +85,6 @@ stage_result() {
 }
 
 json_escape() {
-  # minimal escaping sufficient for compiler messages
   printf '%s' "$1" \
     | sed 's/\\/\\\\/g' \
     | sed 's/"/\\"/g' \
@@ -111,13 +93,22 @@ json_escape() {
     | sed 's/\\n$//'
 }
 
-# ── stage: cargo fmt ─────────────────────────────────────────────────────────
-
 STAGE_STAGES=()
 
 FMT_START=$(date +%s)
-cargo fmt --all -- --check > /tmp/gaia-fmt.out 2>&1 || FMT_EXIT=$?
-FMT_EXIT=${FMT_EXIT:-0}
+FMT_EXIT=0
+if [[ "$MODE" == "full" ]]; then
+  cargo fmt --all -- --check > /tmp/gaia-fmt.out 2>&1 || FMT_EXIT=$?
+else
+  BASE_REF="${GITHUB_BASE_REF:-main}"
+  git fetch --depth=1 origin "$BASE_REF" >/tmp/gaia-fmt-fetch.out 2>&1 || true
+  mapfile -t RS < <(git diff --name-only --diff-filter=ACMR "origin/${BASE_REF}...HEAD" -- '*.rs' 2>/dev/null || true)
+  if [[ ${#RS[@]} -eq 0 ]]; then
+    echo "fmt: no changed rust files" > /tmp/gaia-fmt.out
+  else
+    rustfmt --edition 2021 --check "${RS[@]}" > /tmp/gaia-fmt.out 2>&1 || FMT_EXIT=$?
+  fi
+fi
 FMT_DUR=$(( $(date +%s) - FMT_START ))
 
 if [[ $FMT_EXIT -ne 0 ]]; then
@@ -129,8 +120,6 @@ if [[ $FMT_EXIT -ne 0 ]]; then
 fi
 STAGE_STAGES+=("$(stage_result cargo-fmt "$([ $FMT_EXIT -eq 0 ] && echo passed || echo failed)" $FMT_EXIT $FMT_DUR)")
 
-# ── stage: cargo clippy ───────────────────────────────────────────────────────
-
 if [[ "$STATUS" == "passed" ]]; then
   CLIPPY_START=$(date +%s)
   cargo clippy --workspace --exclude gaia-cli --exclude gaia-agents \
@@ -139,7 +128,6 @@ if [[ "$STATUS" == "passed" ]]; then
   CLIPPY_EXIT=${PIPESTATUS[0]:-$?}
   CLIPPY_DUR=$(( $(date +%s) - CLIPPY_START ))
 
-  # Extract error diagnostics from JSON output
   CLIPPY_DIAGS=$(grep '"level":"error"' /tmp/gaia-clippy.json \
     | python3 -c "
 import sys, json
@@ -171,8 +159,6 @@ print(json.dumps(diags))
   STAGE_STAGES+=("$(stage_result cargo-clippy "$([ $CLIPPY_EXIT -eq 0 ] && echo passed || echo failed)" $CLIPPY_EXIT $CLIPPY_DUR)")
 fi
 
-# ── stage: cargo test ─────────────────────────────────────────────────────────
-
 if [[ "$STATUS" == "passed" ]]; then
   TEST_START=$(date +%s)
   cargo test --workspace --exclude gaia-cli --exclude gaia-agents \
@@ -189,8 +175,6 @@ if [[ "$STATUS" == "passed" ]]; then
   fi
   STAGE_STAGES+=("$(stage_result cargo-test "$([ $TEST_EXIT -eq 0 ] && echo passed || echo failed)" $TEST_EXIT $TEST_DUR)")
 fi
-
-# ── no-progress detection ─────────────────────────────────────────────────────
 
 if [[ "$STATUS" == "failed" && -n "$PRIOR_RESULT" && -f "$PRIOR_RESULT" ]]; then
   PRIOR_FPS=$(python3 -c "
@@ -219,14 +203,7 @@ except Exception:
   fi
 fi
 
-# ── assemble stages JSON array ────────────────────────────────────────────────
-
 STAGES_JSON="[$(IFS=,; echo "${STAGE_STAGES[*]}")]"
-
-# ── write result ──────────────────────────────────────────────────────────────
-#
-# Disable the trap before writing so it does not fire on the EXIT
-# that follows the normal successful completion path.
 
 trap - ERR EXIT
 
@@ -249,8 +226,6 @@ cat > "$RESULT_FILE" <<EOF
 EOF
 
 cp "$RESULT_FILE" "$NUMBERED_FILE"
-
-# ── exit ──────────────────────────────────────────────────────────────────────
 
 case "$STATUS" in
   passed)      exit 0 ;;
