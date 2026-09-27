@@ -30,7 +30,30 @@ Language: new living docs use **Super Intelligence (SI)**. See [`docs/canon/SUPE
 
 **Parent tracker:** [#1](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/1)  
 **Phase 0 epic:** [#2](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/2) (closed; foundation only)  
-**Phase 1 epic:** [#3](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/3) (closed; userspace only)
+**Phase 1 epic:** [#3](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/3) (closed; userspace only)  
+**Precision / simulation META:** [#1036](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/1036)
+
+## What this tree actually is
+
+This is the page that should stop a reader from treating vision documents as a running Super OS.
+
+| If you assume… | The tree says… |
+| --- | --- |
+| GAIA is SI | It is not. Language standard uses SI; runtime is local stubs + listed contracts. |
+| Agents have a live MCP plane | `FakeAdapter` is still the execute path. HTTP/OAuth is **off** (`STREAMABLE_HTTP_ENABLED`). Profile pins MCP `2026-07-28`. Parent: [#1059](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/1059). Real stdio child is still [#1061](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/1061). |
+| There is a rogue-SI predictor | There is a **hermetic fixture harness**. Outcomes are Pass / Fail / NeedVerify / Out-of-scope. It does not forecast 2027. Index: [`docs/research/simulation-index.md`](docs/research/simulation-index.md). |
+| The actor can grade or un-halt itself | It cannot. [#1042](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/1042), [#1045](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/1045). |
+| `Documents/` is the product | Research corpus only. Join rule: [`docs/research/corpus-spec-join-1044.md`](docs/research/corpus-spec-join-1044.md). |
+| Trainers, Qdrant Cloud, DestinE, token rails ship here | They do not. [`gaia-spec/security/REFUSE.md`](gaia-spec/security/REFUSE.md) is CI-checked. |
+| Knowledge catalog is live ingest | `docs/knowledge/catalog.json` rows are listed; `runtime_enabled` must stay false. |
+| 1,000 languages | Vision [#651](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/651). v0 is six BCP-47 tags + `und`: [`docs/i18n/`](docs/i18n/). |
+| ML chart algorithms are implemented | Mapped, not trained. [`docs/research/ml-taxonomy-1052.md`](docs/research/ml-taxonomy-1052.md). |
+
+Claim vs compile: [`docs/research/claim-vs-compile-1041.md`](docs/research/claim-vs-compile-1041.md).  
+SI 2026 shelf (Monitor / Adapt / Reject): [`docs/research/si-2026/`](docs/research/si-2026/).  
+Listed AI governance templates: [`docs/governance/`](docs/governance/). Not an AI Act filing.
+
+Canon: tablets live under `docs/tablets/`. **INDEX.md is authoritative** if it disagrees with `docs/color/color-map.json`.
 
 ## Principles
 
@@ -39,6 +62,7 @@ Language: new living docs use **Super Intelligence (SI)**. See [`docs/canon/SUPE
 3. Continuum-native (IoT → HPC)
 4. Zero-trust by default
 5. User sovereignty
+6. Describe capabilities; never let a description grant authority
 
 ## Repository map
 
@@ -50,6 +74,8 @@ Language: new living docs use **Super Intelligence (SI)**. See [`docs/canon/SUPE
 | [`gaia-orchestrator/`](gaia-orchestrator/) | L4 intent / planner / broker | MIT | 2 |
 | [`gaia-agents/`](gaia-agents/) | L5 runtime + registry | MIT | 3 |
 | [`gaia-interface/`](gaia-interface/) | L6 CLI / API / UI | MIT | 4 |
+| [`gaia-acp/`](gaia-acp/) | Local agent control plane | Apache-2.0 | 0–1 |
+| [`gaia-aikd/`](gaia-aikd/) | Knowledge / RAG first cuts | Apache-2.0 | listed + partial |
 | [`gaia-earth/`](gaia-earth/) | Earth Twin first cuts | Apache-2.0 | Twin 0 |
 | [`gaia-gaian/`](gaia-gaian/) | GAIAN consent + local stubs | Apache-2.0 | GAIAN 0 |
 | [`gaia-spec/`](gaia-spec/) | Protocols (normative) | CC0 | 0 |
@@ -97,6 +123,7 @@ Do not treat those commands as a published installer. There is no `curl | sh` UR
 - [MemCube schema](gaia-spec/memcube.md)
 - [AIP Manifest v1.0](gaia-spec/aip-manifest.md)
 - [GAIAN Privacy Constitution](gaia-spec/gaian-constitution.md)
+- [Refuse list (CI)](gaia-spec/security/REFUSE.md)
 - [Open questions → RFCs](gaia-spec/rfcs.md)
 - [#1–#10 honesty](gaia-spec/sos/ISSUES-1-10.md)
 - [#1–#50 rollup](gaia-spec/sos/ISSUES-1-50.md)
@@ -108,6 +135,7 @@ Do not treat those commands as a published installer. There is no `curl | sh` UR
 - [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md)
 - [SECURITY](SECURITY.md)
 - [GOVERNANCE](GOVERNANCE.md) — Foundation / TSC / SIG model (entity later)
+- [Listed AI inventory / use / risk / oversight / vendor](docs/governance/) — templates, not a completed filing
 
 ## License
 
