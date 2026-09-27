@@ -6,6 +6,7 @@ mod audit;
 mod autonomy;
 mod claim;
 mod config;
+mod covert;
 mod eval_awareness;
 mod failure_harness;
 mod gateway;
@@ -22,6 +23,7 @@ mod policy;
 mod quota;
 mod registry;
 mod sandbox;
+mod timeout_lock;
 pub mod tool_audit;
 pub mod tool_auth;
 mod trace;
@@ -33,6 +35,7 @@ pub use audit::{ActionReceipt, AuditChain, AuditPushInput, PlaneEvent, PlaneStat
 pub use autonomy::{gate as autonomy_gate, AutonomyLevel, ConfirmDomain, PeerEnvelope};
 pub use claim::{claim_gate, Claim};
 pub use config::{description_is_untrusted, digest_pinned, lint_mcp_config, McpServerConfig};
+pub use covert::{classify_name_service, covert_invoke_allowed, resolver_is_egress};
 pub use eval_awareness::{scenario_gate, AwarenessScenario, ScenarioStatus};
 pub use failure_harness::{run_fixture, FixtureKind, HarnessOutcome};
 pub use gateway::{ControlPlane, InvokeResult};
@@ -56,6 +59,7 @@ pub use registry::{LocalAip, LocalRegistry};
 pub use sandbox::{
     classify_destination, classify_rebinding_host, classify_redirect, EgressClass, SandboxProfile,
 };
+pub use timeout_lock::actor_set_timeout;
 pub use tool_audit::{ToolAuditEntry, ToolAuditLog, ToolOutcome};
 pub use tool_auth::{
     authorize as authorize_tool, AgentId as ToolAgentId, ApprovalToken, AuthError, ToolCall,
