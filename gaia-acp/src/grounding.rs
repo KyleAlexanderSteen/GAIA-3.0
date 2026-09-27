@@ -69,20 +69,22 @@ mod tests {
     fn required_empty_is_violation() {
         assert_eq!(
             GroundingClaim::required(vec![]).enforce(),
-            Err(ReasonCode::GroundingViolation)
+            Err(ReasonCode::GroundingViolation),
         );
     }
 
     #[test]
     fn required_with_source_ok() {
-        assert!(GroundingClaim::required(vec!["chunk-1".into()]).enforce().is_ok());
+        assert!(GroundingClaim::required(vec!["chunk-1".into()])
+            .enforce()
+            .is_ok());
     }
 
     #[test]
     fn ungrounded_without_opt_in_denied() {
         assert_eq!(
             GroundingClaim::ungrounded(false).enforce(),
-            Err(ReasonCode::UngroundedOptInRequired)
+            Err(ReasonCode::UngroundedOptInRequired),
         );
     }
 

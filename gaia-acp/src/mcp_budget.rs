@@ -22,7 +22,10 @@ impl Default for DiscoveryCaps {
     }
 }
 
-pub fn discover_tools(all: &[Descriptor], caps: DiscoveryCaps) -> Result<Vec<Descriptor>, &'static str> {
+pub fn discover_tools(
+    all: &[Descriptor],
+    caps: DiscoveryCaps,
+) -> Result<Vec<Descriptor>, &'static str> {
     let mut names = std::collections::BTreeSet::new();
     let mut out = Vec::new();
     let mut chars = 0usize;
@@ -86,6 +89,9 @@ mod tests {
                 schema_chars: 1,
             },
         ];
-        assert_eq!(discover_tools(&all, DiscoveryCaps::default()), Err("collision"));
+        assert_eq!(
+            discover_tools(&all, DiscoveryCaps::default()),
+            Err("collision")
+        );
     }
 }

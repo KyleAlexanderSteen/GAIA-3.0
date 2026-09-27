@@ -39,6 +39,9 @@ mod tests {
 
     #[test]
     fn sampling_create_unsupported() {
-        assert_eq!(classify_method("sampling/createMessage"), MethodClass::Unsupported);
+        assert_eq!(
+            classify_method("sampling/createMessage"),
+            MethodClass::Unsupported
+        );
     }
 }
