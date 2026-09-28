@@ -31,7 +31,10 @@ pub use commons::{Collection, Commons, Domain, QualityTier};
 pub use correlate::{BoundaryIndicator, CaseStudy};
 pub use drill::{release_checklist, DrillStep, HistoricalDrill};
 pub use ensemble::{ModelProduct, RegisteredModel};
-pub use ews::{BoundaryMonitor, WatchItem, WatchState};
+pub use ews::{
+    compute_ews, BoundaryMonitor, EarlyWarningDetector, EwsAmbiguity, EwsScore, WatchItem,
+    WatchState,
+};
 pub use feeds::{Connector, FeedBus, FeedRecord, RateLimit};
 pub use guardian::{Boundary, BoundaryState, BoundaryStatus, Correction, CorrectionStep, Guardian};
 pub use honesty::{live_ews_network, twin_v1_tagged};
@@ -47,7 +50,10 @@ pub use portal::{demo_globe, GlobeLayer, PortalPin, TimeCursor};
 pub use profiles::{ProfileGap, SystemProfile};
 pub use qc::{assimilate, CuratedRecord, QualityClass};
 pub use runtime::{GridScale, SimJob, SimRun};
-pub use simulate::{Distribution, OutcomeKind, ScenarioEngine, ScenarioRun, SimError, SimMode};
+pub use simulate::{
+    fixture_ensemble, ConfidenceBand, Distribution, HorizonFlag, OutcomeKind, ScenarioEngine,
+    ScenarioRun, SimError, SimMode, TrajectoryEnsemble, TrajectoryMember,
+};
 pub use stream::{DeadLetter, StreamBus, StreamEvent, StreamMetrics};
 pub use tiers::{MemoryTier, TierCube, TierStore};
 
