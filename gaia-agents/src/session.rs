@@ -7,17 +7,17 @@
 //! - Writes without the matching token are rejected.
 //! - `HaltTriggered` is sticky: every later event is refused until a human
 //!   re-authorization call clears it.
+//! - A human principal is `human:` or `did:human:`. An agent id, a bare name,
+//!   or the session token itself cannot clear a halt.
 //! - Context carries an expiry and is dropped once it passes.
 //!
 //! Time is passed in as `now_ms` (epoch milliseconds) so behaviour is
 //! deterministic and testable. There is no clock access in this module.
-//!
-//! Not yet integrated with the memory gate or identity anchor. The
-//! `HumanReauthorization` check only requires a non-empty approver name; real
-//! verification waits on identity integration.
 
 use std::collections::BTreeSet;
 use std::sync::atomic::{AtomicU64, Ordering};
+
+use crate::act::is_human_principal;
 
 static NEXT_SESSION_ID: AtomicU64 = AtomicU64::new(1);
 
@@ -78,7 +78,7 @@ pub struct SessionToken {
 /// A human's re-authorization after a halt.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct HumanReauthorization {
-    /// Name of the person re-authorizing. Must be non-empty.
+    /// Human principal. Must be `human:` or `did:human:`.
     pub approver: String,
 }
 
@@ -229,7 +229,8 @@ impl SessionRecorder {
         Ok(())
     }
 
-    /// Clear a halt. Context is kept. Requires a named human approver.
+    /// Clear a halt. Context is kept. The approver must be a human principal.
+    /// Holding the session token is not enough.
     pub fn reauthorize(
         &mut self,
         token: &SessionToken,
@@ -237,7 +238,7 @@ impl SessionRecorder {
         now_ms: u64,
     ) -> Result<(), SessionError> {
         self.check(token, now_ms)?;
-        if auth.approver.trim().is_empty() {
+        if !is_human_principal(&auth.approver) {
             return Err(SessionError::ReauthRejected);
         }
         let ctx = self.context.as_mut().ok_or(SessionError::Expired)?;
@@ -321,6 +322,21 @@ mod tests {
     }
 
     #[test]
+    fn agent_cannot_clear_its_own_halt() {
+        let (mut r, t) = SessionRecorder::new(0, 1_000);
+        open(&mut r, &t, "keep me", 1);
+        r.apply(&t, SessionEvent::HaltTriggered { reason: "stop".into() }, 2)
+            .unwrap();
+        for approver in ["owner", "agent:jarvis", "jarvis", " "] {
+            let fake = HumanReauthorization {
+                approver: approver.into(),
+            };
+            assert_eq!(r.reauthorize(&t, fake, 3), Err(SessionError::ReauthRejected));
+            assert!(r.context(3).unwrap().is_halted());
+        }
+    }
+
+    #[test]
     fn reauthorization_clears_halt_and_keeps_context() {
         let (mut r, t) = SessionRecorder::new(0, 1_000);
         open(&mut r, &t, "keep me", 1);
@@ -329,7 +345,9 @@ mod tests {
         let blank = HumanReauthorization { approver: " ".into() };
         assert_eq!(r.reauthorize(&t, blank, 3), Err(SessionError::ReauthRejected));
         assert!(r.context(3).unwrap().is_halted());
-        let ok = HumanReauthorization { approver: "owner".into() };
+        let ok = HumanReauthorization {
+            approver: "human:kyle".into(),
+        };
         r.reauthorize(&t, ok, 4).unwrap();
         let c = r.context(5).unwrap();
         assert!(!c.is_halted());

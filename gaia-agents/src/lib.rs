@@ -2,8 +2,10 @@
 //! #24 Wasmtime guest, #25 pack, #26 A2A handoff and signed install.
 //! #722 Full DISCOVER→ARCHIVE lifecycle state machine.
 //! This is not a marketplace transport or containerd sandbox.
+//! Jarvis act boundary is a gate, not an executor.
 
 mod a2a;
+pub mod act;
 mod host;
 mod lifecycle;
 mod pack;
@@ -16,6 +18,7 @@ mod wasm;
 pub use a2a::{
     registry_layout, ContextBundle, Handoff, MarketError, Package, PackageMarket, PrivacyMode,
 };
+pub use act::{ActDecision, ActError, ActGate, HumanActReceipt, ProposedAct};
 pub use host::{AgentHost, HostError, Review};
 pub use lifecycle::{
     AgentCheckpoint, AgentDid, CapabilityToken, LifecycleError, LifecycleEvent, LifecycleManager,
@@ -82,5 +85,26 @@ mod tests {
         };
         let s = format!("{grant:?}");
         assert!(!s.is_empty());
+    }
+
+    #[test]
+    fn jarvis_deny_does_not_execute() {
+        let mut gate = ActGate::default();
+        let proposal = ProposedAct {
+            tool: "read".into(),
+            target: "session".into(),
+        };
+        let receipt = HumanActReceipt {
+            id: "r-deny".into(),
+            human_id: "human:kyle".into(),
+            decision: ActDecision::Deny,
+            tool: "read".into(),
+            target: "session".into(),
+        };
+        assert_eq!(
+            gate.submit(&proposal, Some(&receipt), false),
+            Err(ActError::Denied)
+        );
+        assert!(gate.executed().is_empty());
     }
 }
