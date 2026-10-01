@@ -5,10 +5,9 @@
 //! `SessionToken` held by the session owner.
 //!
 //! - Writes without the matching token are rejected.
-//! - `HaltTriggered` is sticky: every later event is refused until a human
-//!   re-authorization call clears it.
-//! - A human principal is `human:` or `did:human:`. An agent id, a bare name,
-//!   or the session token itself cannot clear a halt.
+//! - `HaltTriggered` is sticky until a human on the allowlist clears it.
+//! - A prefix is not enough. `human:agent` is rejected even if listed.
+//! - The session token itself cannot clear a halt.
 //! - Context carries an expiry and is dropped once it passes.
 //!
 //! Time is passed in as `now_ms` (epoch milliseconds) so behaviour is
@@ -17,39 +16,28 @@
 use std::collections::BTreeSet;
 use std::sync::atomic::{AtomicU64, Ordering};
 
-use crate::act::is_human_principal;
+use crate::act::{is_human_principal, HumanAllowlist};
 
 static NEXT_SESSION_ID: AtomicU64 = AtomicU64::new(1);
 
 /// Events that may change session context. Nothing else can.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum SessionEvent {
-    /// Open a task (pushed onto the open-thread stack).
     TaskOpen { task: String },
-    /// Close the most recently opened task.
     TaskClose,
-    /// Record a decision summary.
     DecisionMade { summary: String },
-    /// Record a resource (for example a crate name) as active.
     ResourceSurfaced { resource: String },
-    /// Halt the session. Sticky until human re-authorization.
     HaltTriggered { reason: String },
 }
 
 /// Errors returned by the session recorder.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum SessionError {
-    /// The token does not belong to this session.
     Unauthorized,
-    /// The session is halted; only re-authorization is accepted.
     Halted,
-    /// The context passed its retention window and was dropped.
     Expired,
-    /// `TaskClose` with no open task.
     NoOpenTask,
-    /// A required text field was empty.
     EmptyField(&'static str),
-    /// Re-authorization was refused.
     ReauthRejected,
 }
 
@@ -78,7 +66,7 @@ pub struct SessionToken {
 /// A human's re-authorization after a halt.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct HumanReauthorization {
-    /// Human principal. Must be `human:` or `did:human:`.
+    /// Must be on the allowlist and not agent-shaped.
     pub approver: String,
 }
 
@@ -103,37 +91,30 @@ impl SessionContext {
         }
     }
 
-    /// The current (most recently opened) task.
     pub fn task(&self) -> Option<&str> {
         self.tasks.last().map(String::as_str)
     }
 
-    /// All open tasks, oldest first.
     pub fn open_threads(&self) -> &[String] {
         &self.tasks
     }
 
-    /// Resources surfaced so far (for example crate names), sorted.
     pub fn active_crates(&self) -> Vec<&str> {
         self.resources.iter().map(String::as_str).collect()
     }
 
-    /// The most recent decision summary.
     pub fn last_decision(&self) -> Option<&str> {
         self.last_decision.as_deref()
     }
 
-    /// Why the session is halted, if it is.
     pub fn halt_reason(&self) -> Option<&str> {
         self.halt.as_deref()
     }
 
-    /// Whether the session is halted.
     pub fn is_halted(&self) -> bool {
         self.halt.is_some()
     }
 
-    /// Epoch ms at which this context expires.
     pub fn expires_at_ms(&self) -> u64 {
         self.expires_at_ms
     }
@@ -147,8 +128,6 @@ pub struct SessionRecorder {
 }
 
 impl SessionRecorder {
-    /// Start a session that expires `retention_ms` after `now_ms`.
-    /// Returns the recorder and the only token that can write to it.
     pub fn new(now_ms: u64, retention_ms: u64) -> (Self, SessionToken) {
         let session_id = NEXT_SESSION_ID.fetch_add(1, Ordering::Relaxed);
         let recorder = Self {
@@ -158,12 +137,10 @@ impl SessionRecorder {
         (recorder, SessionToken { session_id })
     }
 
-    /// Read the context. Returns `None` once it has expired.
     pub fn context(&self, now_ms: u64) -> Option<&SessionContext> {
         self.context.as_ref().filter(|c| now_ms < c.expires_at_ms)
     }
 
-    /// Drop the context if its retention window has passed.
     pub fn purge_expired(&mut self, now_ms: u64) {
         if let Some(c) = &self.context {
             if now_ms >= c.expires_at_ms {
@@ -183,7 +160,6 @@ impl SessionRecorder {
         Ok(())
     }
 
-    /// Apply one event. Checks run in order: token, expiry, halt.
     pub fn apply(
         &mut self,
         token: &SessionToken,
@@ -229,16 +205,16 @@ impl SessionRecorder {
         Ok(())
     }
 
-    /// Clear a halt. Context is kept. The approver must be a human principal.
-    /// Holding the session token is not enough.
+    /// Clear a halt. The approver must be on the allowlist. The token is not enough.
     pub fn reauthorize(
         &mut self,
         token: &SessionToken,
         auth: HumanReauthorization,
+        allow: &HumanAllowlist,
         now_ms: u64,
     ) -> Result<(), SessionError> {
         self.check(token, now_ms)?;
-        if !is_human_principal(&auth.approver) {
+        if !is_human_principal(&auth.approver, allow) {
             return Err(SessionError::ReauthRejected);
         }
         let ctx = self.context.as_mut().ok_or(SessionError::Expired)?;
@@ -254,6 +230,10 @@ mod tests {
     fn open(r: &mut SessionRecorder, t: &SessionToken, task: &str, now: u64) {
         r.apply(t, SessionEvent::TaskOpen { task: task.into() }, now)
             .unwrap();
+    }
+
+    fn allow() -> HumanAllowlist {
+        HumanAllowlist::developer()
     }
 
     #[test]
@@ -327,11 +307,15 @@ mod tests {
         open(&mut r, &t, "keep me", 1);
         r.apply(&t, SessionEvent::HaltTriggered { reason: "stop".into() }, 2)
             .unwrap();
-        for approver in ["owner", "agent:jarvis", "jarvis", " "] {
+        let poisoned = HumanAllowlist::new(["human:agent", "human:jarvis", "human:kyle"]);
+        for approver in ["owner", "agent:jarvis", "jarvis", " ", "human:agent", "human:jarvis"] {
             let fake = HumanReauthorization {
                 approver: approver.into(),
             };
-            assert_eq!(r.reauthorize(&t, fake, 3), Err(SessionError::ReauthRejected));
+            assert_eq!(
+                r.reauthorize(&t, fake, &poisoned, 3),
+                Err(SessionError::ReauthRejected)
+            );
             assert!(r.context(3).unwrap().is_halted());
         }
     }
@@ -343,12 +327,15 @@ mod tests {
         r.apply(&t, SessionEvent::HaltTriggered { reason: "stop".into() }, 2)
             .unwrap();
         let blank = HumanReauthorization { approver: " ".into() };
-        assert_eq!(r.reauthorize(&t, blank, 3), Err(SessionError::ReauthRejected));
+        assert_eq!(
+            r.reauthorize(&t, blank, &allow(), 3),
+            Err(SessionError::ReauthRejected)
+        );
         assert!(r.context(3).unwrap().is_halted());
         let ok = HumanReauthorization {
             approver: "human:kyle".into(),
         };
-        r.reauthorize(&t, ok, 4).unwrap();
+        r.reauthorize(&t, ok, &allow(), 4).unwrap();
         let c = r.context(5).unwrap();
         assert!(!c.is_halted());
         assert_eq!(c.task(), Some("keep me"));

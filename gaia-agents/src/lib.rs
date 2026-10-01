@@ -2,7 +2,7 @@
 //! #24 Wasmtime guest, #25 pack, #26 A2A handoff and signed install.
 //! #722 Full DISCOVER→ARCHIVE lifecycle state machine.
 //! This is not a marketplace transport or containerd sandbox.
-//! Jarvis act boundary is a gate, not an executor.
+//! Jarvis act boundary is a gate, not an executor. Not Super Intelligence.
 
 mod a2a;
 pub mod act;
@@ -18,7 +18,7 @@ mod wasm;
 pub use a2a::{
     registry_layout, ContextBundle, Handoff, MarketError, Package, PackageMarket, PrivacyMode,
 };
-pub use act::{ActDecision, ActError, ActGate, HumanActReceipt, ProposedAct};
+pub use act::{ActDecision, ActError, ActGate, HumanActReceipt, HumanAllowlist, ProposedAct};
 pub use host::{AgentHost, HostError, Review};
 pub use lifecycle::{
     AgentCheckpoint, AgentDid, CapabilityToken, LifecycleError, LifecycleEvent, LifecycleManager,
@@ -89,7 +89,7 @@ mod tests {
 
     #[test]
     fn jarvis_deny_does_not_execute() {
-        let mut gate = ActGate::default();
+        let mut gate = ActGate::with_allowlist(HumanAllowlist::developer());
         let proposal = ProposedAct {
             tool: "read".into(),
             target: "session".into(),
@@ -104,6 +104,27 @@ mod tests {
         assert_eq!(
             gate.submit(&proposal, Some(&receipt), false),
             Err(ActError::Denied)
+        );
+        assert!(gate.executed().is_empty());
+    }
+
+    #[test]
+    fn prefix_without_allowlist_does_not_execute() {
+        let mut gate = ActGate::default();
+        let proposal = ProposedAct {
+            tool: "read".into(),
+            target: "session".into(),
+        };
+        let receipt = HumanActReceipt {
+            id: "r-prefix".into(),
+            human_id: "human:agent".into(),
+            decision: ActDecision::Grant,
+            tool: "read".into(),
+            target: "session".into(),
+        };
+        assert_eq!(
+            gate.submit(&proposal, Some(&receipt), false),
+            Err(ActError::NotHuman)
         );
         assert!(gate.executed().is_empty());
     }

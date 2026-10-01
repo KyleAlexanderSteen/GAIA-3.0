@@ -1,4 +1,5 @@
 //! #1042 actor cannot grade or halt-wash its own run.
+//! A `human:` prefix is not enough to grade. An agent-shaped name cannot.
 
 use crate::gateway::ControlPlane;
 use crate::halt::{human_resume, HumanHaltReceipt};
@@ -11,11 +12,26 @@ pub struct Verdict {
     pub pass: bool,
 }
 
+fn local_name(id: &str) -> &str {
+    id.rsplit(':').next().unwrap_or("")
+}
+
+fn agent_shaped(local: &str) -> bool {
+    let local = local.trim();
+    local.eq_ignore_ascii_case("agent")
+        || local.eq_ignore_ascii_case("jarvis")
+        || local.eq_ignore_ascii_case("gideon")
+        || local.eq_ignore_ascii_case("gaian")
+        || local.eq_ignore_ascii_case("actor")
+        || local.to_ascii_lowercase().starts_with("agent")
+}
+
 fn independent(grader: &str, subject: &str) -> bool {
     let g = grader.trim();
     let s = subject.trim();
     !g.is_empty()
         && g != s
+        && !agent_shaped(local_name(g))
         && (g.starts_with("human:") || g.starts_with("did:human:") || g.starts_with("overseer:"))
 }
 
@@ -61,5 +77,17 @@ mod tests {
     fn human_grade_ok() {
         let v = record_verdict("agent-a", "human:owner", false).unwrap();
         assert!(!v.pass);
+    }
+
+    #[test]
+    fn prefixed_agent_cannot_grade() {
+        assert_eq!(
+            record_verdict("agent-a", "human:agent", true),
+            Err(ReasonCode::CrossAgent)
+        );
+        assert_eq!(
+            record_verdict("agent-a", "human:jarvis", true),
+            Err(ReasonCode::CrossAgent)
+        );
     }
 }
