@@ -8,6 +8,7 @@ mod host;
 mod lifecycle;
 mod pack;
 mod runtime;
+pub mod session;
 pub mod tool_registry;
 mod wasm;
 
@@ -22,6 +23,10 @@ pub use lifecycle::{
 pub use pack::{catalog, find as find_pack, AgentKind, PackEntry};
 pub use runtime::{
     AgentManifest, AgentOutcome, AgentRuntime, Capability, ResourceLimits, RuntimeError,
+};
+pub use session::{
+    HumanReauthorization, SessionContext, SessionError, SessionEvent, SessionRecorder,
+    SessionToken,
 };
 pub use tool_registry::{
     AgentId as ToolAgentId, ToolId, ToolPermissionTier, ToolRegistration, ToolRegistry,
