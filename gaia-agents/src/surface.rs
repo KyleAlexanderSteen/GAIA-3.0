@@ -2,24 +2,17 @@
 //!
 //! Given the current task and a set of candidate resources, rank which ones
 //! are worth showing to the human. This layer only **surfaces**. `act` always
-//! refuses. The only path into the execute log is `submit_to`, which must
-//! pass the act gate. A suggestion is a proposal, not permission.
+//! refuses. The only path into the execute log is `submit_to`, which reads
+//! the session halt itself. A caller cannot pass a false halt bit.
 //!
-//! Scoring is keyword overlap between the task text and each resource's id
-//! and keywords. There is no model behind it. The confidence band reflects
-//! how much evidence the overlap provides and nothing more: one matched
-//! term gives a wide band, several matched terms give a narrower one.
-//!
-//! Not yet connected to the Predict-5 honesty layer (#1146). `ConfidenceBand`
-//! is a local type until that integration lands.
+//! Scoring is keyword overlap. There is no model behind it.
+//! Not yet connected to the Predict-5 honesty layer (#1146).
 
 use std::collections::BTreeSet;
 
 use crate::act::{ActError, ActGate, HumanActReceipt, ProposedAct};
 use crate::session::SessionContext;
 
-/// Words ignored when scoring. `gaia` is dropped because nearly every crate
-/// and task mentions it, so it carries no signal.
 const STOPWORDS: &[&str] = &[
     "a", "an", "and", "for", "gaia", "in", "into", "of", "on", "or", "the", "to", "with",
 ];
@@ -32,7 +25,6 @@ fn tokens(text: &str) -> BTreeSet<String> {
         .collect()
 }
 
-/// What kind of thing is being surfaced.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum ResourceKind {
     Crate,
@@ -41,7 +33,6 @@ pub enum ResourceKind {
     Decision,
 }
 
-/// Something that could be surfaced.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ResourceCandidate {
     pub id: String,
@@ -50,7 +41,6 @@ pub struct ResourceCandidate {
     pub source: String,
 }
 
-/// A low / point / high estimate, all within 0.0..=1.0.
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct ConfidenceBand {
     low: f64,
@@ -85,7 +75,6 @@ impl ConfidenceBand {
     }
 }
 
-/// Errors from the surface layer.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum SurfaceError {
     SurfaceOnly,
@@ -103,7 +92,6 @@ impl std::fmt::Display for SurfaceError {
 
 impl std::error::Error for SurfaceError {}
 
-/// A ranked suggestion for the human. Fields are private.
 #[derive(Debug, Clone, PartialEq)]
 pub struct SurfaceEvent {
     resource: String,
@@ -134,12 +122,10 @@ impl SurfaceEvent {
         &self.source_trace
     }
 
-    /// Always refuses. Surfacing never acts; a human must act.
     pub fn act(&self) -> Result<(), SurfaceError> {
         Err(SurfaceError::SurfaceOnly)
     }
 
-    /// Turn this suggestion into a proposal. Does not execute.
     pub fn propose(&self) -> ProposedAct {
         ProposedAct {
             tool: "surface".into(),
@@ -147,15 +133,14 @@ impl SurfaceEvent {
         }
     }
 
-    /// The only path from a suggestion into the execute log.
-    /// A missing receipt, a deny, or a halt never appends.
+    /// Reads `ctx`. The caller cannot override the halt bit.
     pub fn submit_to(
         &self,
         gate: &mut ActGate,
+        ctx: &SessionContext,
         receipt: Option<&HumanActReceipt>,
-        halted: bool,
     ) -> Result<(), ActError> {
-        gate.submit(&self.propose(), receipt, halted)
+        gate.submit(&self.propose(), receipt, ctx.is_halted())
     }
 }
 
@@ -246,6 +231,32 @@ mod tests {
         ActGate::with_allowlist(HumanAllowlist::developer())
     }
 
+    fn open_ctx() -> SessionContext {
+        let (mut r, t) = SessionRecorder::new(0, 1_000);
+        r.apply(&t, SessionEvent::TaskOpen { task: "fix flow mode acp".into() }, 1)
+            .unwrap();
+        r.context(2).unwrap().clone()
+    }
+
+    fn halted_ctx() -> SessionContext {
+        let (mut r, t) = SessionRecorder::new(0, 1_000);
+        r.apply(&t, SessionEvent::TaskOpen { task: "fix flow mode acp".into() }, 1)
+            .unwrap();
+        r.apply(&t, SessionEvent::HaltTriggered { reason: "stop".into() }, 2)
+            .unwrap();
+        r.context(3).unwrap().clone()
+    }
+
+    fn grant(id: &str) -> HumanActReceipt {
+        HumanActReceipt {
+            id: id.into(),
+            human_id: "human:kyle".into(),
+            decision: ActDecision::Grant,
+            tool: "surface".into(),
+            target: "gaia-acp".into(),
+        }
+    }
+
     #[test]
     fn surfaces_correct_resource_first() {
         let out = rank_resources("fix flow mode acp", &sample(), 5);
@@ -272,7 +283,7 @@ mod tests {
     fn suggestion_without_receipt_does_not_execute() {
         let out = rank_resources("fix flow mode acp", &sample(), 5);
         let mut gate = ActGate::default();
-        let err = out[0].submit_to(&mut gate, None, false).unwrap_err();
+        let err = out[0].submit_to(&mut gate, &open_ctx(), None).unwrap_err();
         assert_eq!(err, ActError::ApprovalMissing);
         assert!(gate.executed().is_empty());
         assert_eq!(out[0].propose().target, "gaia-acp");
@@ -282,14 +293,11 @@ mod tests {
     fn suggestion_deny_does_not_execute() {
         let out = rank_resources("fix flow mode acp", &sample(), 5);
         let mut gate = gate();
-        let receipt = HumanActReceipt {
-            id: "r-deny".into(),
-            human_id: "human:kyle".into(),
-            decision: ActDecision::Deny,
-            tool: "surface".into(),
-            target: "gaia-acp".into(),
-        };
-        let err = out[0].submit_to(&mut gate, Some(&receipt), false).unwrap_err();
+        let mut receipt = grant("r-deny");
+        receipt.decision = ActDecision::Deny;
+        let err = out[0]
+            .submit_to(&mut gate, &open_ctx(), Some(&receipt))
+            .unwrap_err();
         assert_eq!(err, ActError::Denied);
         assert!(gate.executed().is_empty());
     }
@@ -298,30 +306,35 @@ mod tests {
     fn human_grant_is_the_only_execute_path() {
         let out = rank_resources("fix flow mode acp", &sample(), 5);
         let mut gate = gate();
-        let receipt = HumanActReceipt {
-            id: "r-grant".into(),
-            human_id: "human:kyle".into(),
-            decision: ActDecision::Grant,
-            tool: "surface".into(),
-            target: "gaia-acp".into(),
-        };
-        out[0].submit_to(&mut gate, Some(&receipt), false).unwrap();
+        let receipt = grant("r-grant");
+        out[0]
+            .submit_to(&mut gate, &open_ctx(), Some(&receipt))
+            .unwrap();
         assert_eq!(gate.executed(), ["surface:gaia-acp".to_string()]);
         assert_eq!(out[0].act(), Err(SurfaceError::SurfaceOnly));
+    }
+
+    #[test]
+    fn halted_session_blocks_a_valid_grant() {
+        let out = rank_resources("fix flow mode acp", &sample(), 5);
+        let mut gate = gate();
+        let receipt = grant("r-halt");
+        let err = out[0]
+            .submit_to(&mut gate, &halted_ctx(), Some(&receipt))
+            .unwrap_err();
+        assert_eq!(err, ActError::Halted);
+        assert!(gate.executed().is_empty());
     }
 
     #[test]
     fn prefixed_agent_cannot_use_a_surface_grant() {
         let out = rank_resources("fix flow mode acp", &sample(), 5);
         let mut gate = ActGate::with_allowlist(HumanAllowlist::new(["human:agent"]));
-        let receipt = HumanActReceipt {
-            id: "r-agent".into(),
-            human_id: "human:agent".into(),
-            decision: ActDecision::Grant,
-            tool: "surface".into(),
-            target: "gaia-acp".into(),
-        };
-        let err = out[0].submit_to(&mut gate, Some(&receipt), false).unwrap_err();
+        let mut receipt = grant("r-agent");
+        receipt.human_id = "human:agent".into();
+        let err = out[0]
+            .submit_to(&mut gate, &open_ctx(), Some(&receipt))
+            .unwrap_err();
         assert_eq!(err, ActError::NotHuman);
         assert!(gate.executed().is_empty());
     }
@@ -369,11 +382,8 @@ mod tests {
 
     #[test]
     fn session_task_drives_surfacing() {
-        let (mut r, t) = SessionRecorder::new(0, 1_000);
-        r.apply(&t, SessionEvent::TaskOpen { task: "fix flow mode acp".into() }, 1)
-            .unwrap();
-        let ctx = r.context(2).unwrap();
-        let out = surface_for_session(ctx, &sample(), 5).unwrap();
+        let ctx = open_ctx();
+        let out = surface_for_session(&ctx, &sample(), 5).unwrap();
         assert_eq!(out[0].resource(), "gaia-acp");
     }
 
@@ -386,14 +396,8 @@ mod tests {
 
     #[test]
     fn halted_session_surfaces_nothing() {
-        let (mut r, t) = SessionRecorder::new(0, 1_000);
-        r.apply(&t, SessionEvent::TaskOpen { task: "fix flow mode acp".into() }, 1)
-            .unwrap();
-        r.apply(&t, SessionEvent::HaltTriggered { reason: "stop".into() }, 2)
-            .unwrap();
-        let ctx = r.context(3).unwrap();
         assert_eq!(
-            surface_for_session(ctx, &sample(), 5),
+            surface_for_session(&halted_ctx(), &sample(), 5),
             Err(SurfaceError::SessionHalted)
         );
     }
