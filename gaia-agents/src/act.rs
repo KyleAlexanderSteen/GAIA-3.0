@@ -32,7 +32,7 @@ pub struct HumanActReceipt {
 }
 
 /// Principals allowed to grant or clear a halt. Empty means nobody.
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, Default, PartialEq, Eq)]
 pub struct HumanAllowlist {
     ids: Vec<String>,
 }
@@ -51,12 +51,6 @@ impl HumanAllowlist {
 
     pub fn contains(&self, id: &str) -> bool {
         self.ids.iter().any(|row| row == id.trim())
-    }
-}
-
-impl Default for HumanAllowlist {
-    fn default() -> Self {
-        Self { ids: Vec::new() }
     }
 }
 
@@ -118,21 +112,11 @@ pub fn is_human_principal(id: &str, allow: &HumanAllowlist) -> bool {
 }
 
 /// Records only acts that passed the gate. The vec is the proof.
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, Default, PartialEq, Eq)]
 pub struct ActGate {
     executed: Vec<String>,
     consumed: Vec<String>,
     allow: HumanAllowlist,
-}
-
-impl Default for ActGate {
-    fn default() -> Self {
-        Self {
-            executed: Vec::new(),
-            consumed: Vec::new(),
-            allow: HumanAllowlist::default(),
-        }
-    }
 }
 
 impl ActGate {
@@ -246,8 +230,8 @@ mod tests {
 
     #[test]
     fn prefixed_agent_name_cannot_grant() {
-        let mut poisoned = HumanAllowlist::new(["human:agent", "human:jarvis", "human:kyle"]);
-        let mut gate = ActGate::with_allowlist(poisoned.clone());
+        let poisoned = HumanAllowlist::new(["human:agent", "human:jarvis", "human:kyle"]);
+        let mut gate = ActGate::with_allowlist(poisoned);
         for name in ["human:agent", "human:jarvis", "did:human:gideon"] {
             let mut receipt = grant("r1");
             receipt.human_id = name.into();
@@ -255,8 +239,8 @@ mod tests {
             assert_eq!(err, ActError::NotHuman);
         }
         assert!(gate.executed().is_empty());
-        poisoned = HumanAllowlist::developer();
-        assert!(is_human_principal("human:kyle", &poisoned));
+        let listed = HumanAllowlist::developer();
+        assert!(is_human_principal("human:kyle", &listed));
         assert!(!is_human_principal("human:agent", &HumanAllowlist::new(["human:agent"])));
     }
 
