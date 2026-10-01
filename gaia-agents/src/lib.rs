@@ -9,6 +9,7 @@ mod lifecycle;
 mod pack;
 mod runtime;
 pub mod session;
+pub mod surface;
 pub mod tool_registry;
 mod wasm;
 
@@ -27,6 +28,10 @@ pub use runtime::{
 pub use session::{
     HumanReauthorization, SessionContext, SessionError, SessionEvent, SessionRecorder,
     SessionToken,
+};
+pub use surface::{
+    rank_resources, surface_for_session, ConfidenceBand, ResourceCandidate, ResourceKind,
+    SurfaceError, SurfaceEvent,
 };
 pub use tool_registry::{
     AgentId as ToolAgentId, ToolId, ToolPermissionTier, ToolRegistration, ToolRegistry,
