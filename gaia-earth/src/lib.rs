@@ -21,6 +21,7 @@ mod policy;
 mod portal;
 mod profiles;
 mod qc;
+mod resilience;
 mod runtime;
 mod simulate;
 mod stream;
@@ -49,6 +50,7 @@ pub use policy::{IngestTicket, LicenseClass};
 pub use portal::{demo_globe, GlobeLayer, PortalPin, TimeCursor};
 pub use profiles::{ProfileGap, SystemProfile};
 pub use qc::{assimilate, CuratedRecord, QualityClass};
+pub use resilience::{classify_event, gray_library, shift_of, stress, GraySwan, Resilience, Shift};
 pub use runtime::{GridScale, SimJob, SimRun};
 pub use simulate::{
     fixture_ensemble, ConfidenceBand, Distribution, HorizonFlag, OutcomeKind, ScenarioEngine,

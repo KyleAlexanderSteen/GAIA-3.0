@@ -1,5 +1,11 @@
 //! SQLite episodes + FTS5 + snapshots (open_files JSON).
 //! License: Apache-2.0
+//! Also compiles #1152 ledger and #1120–#1125 layers.
+
+#[path = "consent.rs"]
+pub mod consent_ledger;
+#[path = "layers.rs"]
+pub mod memory_layers;
 
 use rusqlite::{params, Connection, OptionalExtension};
 
