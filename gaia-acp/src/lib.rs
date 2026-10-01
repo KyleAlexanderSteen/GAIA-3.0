@@ -7,10 +7,12 @@ mod autonomy;
 mod claim;
 mod compaction;
 mod config;
+mod counsel;
 mod covert;
 mod eval_awareness;
 mod eval_pin;
 mod failure_harness;
+mod flow;
 mod gateway;
 mod grounding;
 mod halt;
@@ -28,6 +30,8 @@ mod predict;
 mod quota;
 mod registry;
 mod sandbox;
+mod self_monitor;
+mod sentience;
 mod timeout_lock;
 pub mod tool_audit;
 pub mod tool_auth;
@@ -41,10 +45,12 @@ pub use autonomy::{gate as autonomy_gate, AutonomyLevel, ConfirmDomain, PeerEnve
 pub use claim::{claim_gate, Claim};
 pub use compaction::{compaction_is_untrusted, compaction_may_raise};
 pub use config::{description_is_untrusted, digest_pinned, lint_mcp_config, McpServerConfig};
+pub use counsel::Counsel;
 pub use covert::{classify_name_service, covert_invoke_allowed, resolver_is_egress};
 pub use eval_awareness::{scenario_gate, AwarenessScenario, ScenarioStatus};
 pub use eval_pin::{eval_target_allowed, eval_target_class};
 pub use failure_harness::{run_fixture, FixtureKind, HarnessOutcome};
+pub use flow::FlowMode;
 pub use gateway::{ControlPlane, InvokeResult};
 pub use grounding::GroundingClaim;
 pub use halt::{actor_resume, human_resume, HumanHaltReceipt};
@@ -71,6 +77,8 @@ pub use registry::{LocalAip, LocalRegistry};
 pub use sandbox::{
     classify_destination, classify_rebinding_host, classify_redirect, EgressClass, SandboxProfile,
 };
+pub use self_monitor::{may_unhalt, monitor, Drift};
+pub use sentience::{assess as assess_sentience, grants_rights, SentienceStatus};
 pub use timeout_lock::actor_set_timeout;
 pub use tool_audit::{ToolAuditEntry, ToolAuditLog, ToolOutcome};
 pub use tool_auth::{
