@@ -1,8 +1,9 @@
 //! Jarvis Phase 2 — anticipatory surface layer.
 //!
 //! Given the current task and a set of candidate resources, rank which ones
-//! are worth showing to the human. This layer only **surfaces**. It never
-//! acts: `SurfaceEvent::act` always refuses.
+//! are worth showing to the human. This layer only **surfaces**. `act` always
+//! refuses. The only path into the execute log is `submit_to`, which must
+//! pass the act gate. A suggestion is a proposal, not permission.
 //!
 //! Scoring is keyword overlap between the task text and each resource's id
 //! and keywords. There is no model behind it. The confidence band reflects
@@ -14,6 +15,7 @@
 
 use std::collections::BTreeSet;
 
+use crate::act::{ActError, ActGate, HumanActReceipt, ProposedAct};
 use crate::session::SessionContext;
 
 /// Words ignored when scoring. `gaia` is dropped because nearly every crate
@@ -155,6 +157,25 @@ impl SurfaceEvent {
     pub fn act(&self) -> Result<(), SurfaceError> {
         Err(SurfaceError::SurfaceOnly)
     }
+
+    /// Turn this suggestion into a proposal. Does not execute.
+    pub fn propose(&self) -> ProposedAct {
+        ProposedAct {
+            tool: "surface".into(),
+            target: self.resource.clone(),
+        }
+    }
+
+    /// The only path from a suggestion into the execute log.
+    /// A missing receipt, a deny, or a halt never appends.
+    pub fn submit_to(
+        &self,
+        gate: &mut ActGate,
+        receipt: Option<&HumanActReceipt>,
+        halted: bool,
+    ) -> Result<(), ActError> {
+        gate.submit(&self.propose(), receipt, halted)
+    }
 }
 
 /// Rank `resources` against `task`. Resources with no matching term are
@@ -221,6 +242,7 @@ pub fn surface_for_session(
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::act::ActDecision;
     use crate::session::{SessionEvent, SessionRecorder};
 
     fn cand(id: &str, kw: &[&str]) -> ResourceCandidate {
@@ -263,6 +285,48 @@ mod tests {
     #[test]
     fn surface_refuses_to_act() {
         let out = rank_resources("fix flow mode acp", &sample(), 5);
+        assert_eq!(out[0].act(), Err(SurfaceError::SurfaceOnly));
+    }
+
+    #[test]
+    fn suggestion_without_receipt_does_not_execute() {
+        let out = rank_resources("fix flow mode acp", &sample(), 5);
+        let mut gate = ActGate::default();
+        let err = out[0].submit_to(&mut gate, None, false).unwrap_err();
+        assert_eq!(err, ActError::ApprovalMissing);
+        assert!(gate.executed().is_empty());
+        assert_eq!(out[0].propose().target, "gaia-acp");
+    }
+
+    #[test]
+    fn suggestion_deny_does_not_execute() {
+        let out = rank_resources("fix flow mode acp", &sample(), 5);
+        let mut gate = ActGate::default();
+        let receipt = HumanActReceipt {
+            id: "r-deny".into(),
+            human_id: "human:kyle".into(),
+            decision: ActDecision::Deny,
+            tool: "surface".into(),
+            target: "gaia-acp".into(),
+        };
+        let err = out[0].submit_to(&mut gate, Some(&receipt), false).unwrap_err();
+        assert_eq!(err, ActError::Denied);
+        assert!(gate.executed().is_empty());
+    }
+
+    #[test]
+    fn human_grant_is_the_only_execute_path() {
+        let out = rank_resources("fix flow mode acp", &sample(), 5);
+        let mut gate = ActGate::default();
+        let receipt = HumanActReceipt {
+            id: "r-grant".into(),
+            human_id: "human:kyle".into(),
+            decision: ActDecision::Grant,
+            tool: "surface".into(),
+            target: "gaia-acp".into(),
+        };
+        out[0].submit_to(&mut gate, Some(&receipt), false).unwrap();
+        assert_eq!(gate.executed(), ["surface:gaia-acp".to_string()]);
         assert_eq!(out[0].act(), Err(SurfaceError::SurfaceOnly));
     }
 
