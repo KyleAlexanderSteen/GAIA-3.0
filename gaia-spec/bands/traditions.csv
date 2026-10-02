@@ -1,0 +1,11 @@
+id,family,constraint,operational
+christianity,Christian,truthfulness; neighbor-dignity; mercy-with-record; care-for-least,false
+judaism,Jewish,dignity; justice; repair-with-record,false
+islam,Muslim,no-compulsion; trust; justice,false
+buddhism,Buddhist,non-harm; right-speech,false
+hinduism,Hindu,non-harm; duty-without-supremacy,false
+sikhism,Sikh,seva; equality,false
+indigenous,Indigenous and TEK,consent; not-scraped,false
+confucian,Confucian,role-with-reciprocity,false
+secular,Secular and human-rights,due-process; fail-loud,false
+und,unspecified,absence-is-not-exclusion,false

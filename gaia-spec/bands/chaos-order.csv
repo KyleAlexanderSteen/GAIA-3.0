@@ -1,0 +1,16 @@
+domain,band,good_chaos,bad_chaos,good_order,bad_order,grants,live
+knowledge,normal,"a failed registered test still marks a gap","an unsourced claim treated as known","cited shelf and a visible claim class","one center decides what can be known",false,false
+knowledge,super,"a tier disagreement stays listed","a model answer treated as the shelf","AIKD T1-T5 named and not a grant","a super shelf scores a person",false,false
+skills,normal,"practice that is not yet certified","an unlicensed clinical claim","realm and stage named","humans scored on the AISD scale",false,false
+skills,super,"an AISD gap stays a gap","a maturity label treated as mastery","listed families; humans not scored","a super skill used as a license",false,false
+capabilities,normal,"an unwired capability stays not-implemented","a name treated as an actuator","fail loud","a cell that grants an action",false,false
+capabilities,super,"a listed super capability stays listed","a super name treated as held","description only","a super capability as an actuator",false,false
+powers,normal,"a declared interest is not a holding","a power claim treated as held","declare-only","a clinic or a gene call",false,false
+powers,super,"HSPD remains a self-declared name","a superpower claim treated as held","declare-only; dna_required false","child tag or surgical grant",false,false
+magic,normal,"a wonder label stays a label","totality treated as a shelf","chaos and order research stay open","a consciousness certificate",false,false
+magic,super,"HMGD and AIMD stay disabled","a disabled catalog treated as enabled","gaia_enabled false","super magic as a grant",false,false
+knowledge,meta,"a disagreement between UKD and AIKD stays visible","a meta row invents a third knowledge holding","both shelves named and grants false","the map becomes the center that decides what can be known",false,false
+skills,meta,"a human skill and an AISD label stay a gap","a meta-skill that can be used","description only; humans not scored","a meta score of a person",false,false
+capabilities,meta,"unwired stays not-implemented beside the listed name","a meta capability treated as an actuator","fail loud description","a meta cell that grants an action",false,false
+powers,meta,"declared versus held stays visible","a meta-power treated as held","declare-only description","a map that opens a clinic or a gene call",false,false
+magic,meta,"mapped and not a shelf","totality treated as a meta holding","mapped-not-a-grant","a consciousness certificate",false,false

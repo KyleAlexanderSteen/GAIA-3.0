@@ -1,0 +1,7 @@
+scale,parent,live,note
+city,county,false,named only; no city registry
+county,state,false,named only; no county registry
+state,country,false,named only; no state registry
+country,continent,false,named only; no country registry
+continent,global,false,named only
+global,,false,named only; not a planetary sentience claim
