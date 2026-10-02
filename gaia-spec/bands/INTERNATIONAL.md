@@ -57,4 +57,4 @@ Science, technology, and philosophy sit beside traditions. They do not outrank a
 
 ## Chaos and order
 
-`chaos-order.csv` names good chaos, bad chaos, good order, and bad order for knowledge, skills, capabilities, powers, and magic, at normal and at super. Anchors: #1204, #1205, #1207, #1208. Every row has `grants=false` and `live=false`. Super is the same shape as normal, not a higher grant. Magic stays mapped and not a certificate.
+`chaos-order.csv` names good chaos, bad chaos, good order, and bad order for knowledge, skills, capabilities, powers, and magic, at normal, super, and meta. Meta describes the other two bands. It does not hold them. Magic meta is mapped-not-a-grant. Anchors: #1204, #1205, #1207, #1208. Every row has `grants=false` and `live=false`. Super is the same shape as normal, not a higher grant. Magic stays mapped and not a certificate.
