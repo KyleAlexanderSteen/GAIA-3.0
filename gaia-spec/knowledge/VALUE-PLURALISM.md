@@ -48,3 +48,5 @@ This file is a shelf, not a gate. `init`, `echo:`, and the trace header do not r
 Berlin does not hand GAIA a procedure. Pluralism is not relativism: both goods can be real and the loss is real. It is also not "anything goes." Freedom for the wolves has often meant death to the sheep, so liberty is not the master value. Ronald Dworkin's reply, that liberty and equality fit in one web, is the monist move this shelf refuses. The fit is the final harmony.
 
 A witness outside the system can judge a case. This catalog cannot. Eligible for review is not a finding that the path was right.
+
+Gate: `gaia-skills` `collapse` refuses to close two goods. `name_loss` records the good not taken. The catalog still cannot judge the case.
