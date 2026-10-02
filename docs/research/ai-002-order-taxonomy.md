@@ -33,4 +33,25 @@ Scope: understanding and defense. This document does not describe how to constru
 
 Caveat: the sleeper-agent and reward-hacking results use deliberately constructed or induced behaviors. They show that training-time controls can fail to remove such behavior. They do not show how often it arises naturally.
 
-<!-- Sections 2-5 added in following commits. -->
+## 2. Inference-time controls
+
+| Control | Shown to prevent | Documented failure | Evidence |
+|---|---|---|---|
+| Constitutional Classifiers (input/output classifiers) | Universal jailbreaks in human red teaming; 0.38% absolute increase in production-traffic refusals and 23.7% inference overhead reported ([arXiv:2501.18837](https://arxiv.org/abs/2501.18837)) | Developer states it is not perfect and recommends complementary defenses; an earlier prototype had impractically high refusal rates (same paper) | Vendor-reported |
+| Model-level refusal as the only gate in coding agents | Some malicious requests, mostly blocked by the LLM rather than the agent framework | 66.5% of malicious issue requests passed all agent- and LLM-level guardrails in IssueTrojanBench ([arXiv:2607.20759](https://arxiv.org/abs/2607.20759)) | Primary (single benchmark, specific agents) |
+| Safety training that fails to generalize | n/a | Safety training failures from competing objectives and mismatched generalization; new attacks succeeded on every prompt in a red-teaming set against GPT-4 and Claude v1.3 ([arXiv:2307.02483](https://arxiv.org/abs/2307.02483)). Results are from 2023 models. | Primary |
+
+The classifier figures are measured by the developer. They are tagged Vendor-reported and `NeedVerify` for independent replication.
+
+### Over-constraint harms
+
+| Finding | Source | Evidence |
+|---|---|---|
+| 26.1% of safe prompts misclassified as dangerous and refused in one study of open models | [arXiv:2405.05418](https://arxiv.org/abs/2405.05418) | Primary |
+| False refusal rates from 18.5% to 52.4% on OR-Bench-Hard-1K across six closed models; unsafe compliance below 5.2% on toxic prompts | [AIMLR 2025](https://scipublication.com/index.php/AIMLR/article/view/361) | Secondary, `NeedVerify` (journal of uncertain standing; check against the benchmark papers) |
+| Refusal rate is a poor proxy for safety; a model can over-refuse and still comply with harmful prompts; protection unequal across demographic groups | [arXiv:2605.05427](https://arxiv.org/abs/2605.05427) | Primary |
+| Safe completion is rare in dual-use vision-language cases; best model 12.9% | [arXiv:2510.10846](https://arxiv.org/abs/2510.10846) | Primary |
+
+Implication: a control that raises refusals is not automatically safer. It can create a false sense of safety.
+
+<!-- Sections 3-5 added in following commits. -->
