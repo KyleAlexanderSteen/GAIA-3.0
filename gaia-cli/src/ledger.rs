@@ -7,7 +7,7 @@ pub fn ledger_path() -> PathBuf {
 }
 
 pub fn append_recorded(id: &str, detail: &str) -> Result<()> {
-    gaia_kernel::receipts::append_recorded(id, detail).map_err(anyhow::Error::msg)
+    gaia_kernel::receipts::append_from("cli", id, detail).map_err(anyhow::Error::msg)
 }
 
 pub fn read_recent(limit: usize) -> Result<Vec<String>> {
