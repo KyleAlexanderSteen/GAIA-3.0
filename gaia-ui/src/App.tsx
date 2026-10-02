@@ -46,6 +46,7 @@ export default function App() {
         {active === 'console' && <IntentConsole />}
         {active === 'agents'  && <AgentMatrix />}
         {active === 'studio'  && <Studio />}
+        {active === 'planetary' && <Planetary />}
       </main>
     </div>
   );
