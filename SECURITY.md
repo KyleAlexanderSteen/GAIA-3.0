@@ -6,7 +6,7 @@
 
 Until the Foundation mailbox exists, email the repository owner through GitHub's private vulnerability reporting:
 
-1. Open https://github.com/R0GV3TheAlchemist/GAIA-2.0/security/advisories/new
+1. Open https://github.com/R0GV3TheAvatar/GAIA-3.0/security/advisories/new
 2. Include impact, affected tree (`gaia-kernel`, `gaia-sdk`, spec, …), and a reproduction if you have one.
 
 If private advisories are unavailable, open a **minimal** issue titled `[SECURITY] request private channel` with **no exploit details**.

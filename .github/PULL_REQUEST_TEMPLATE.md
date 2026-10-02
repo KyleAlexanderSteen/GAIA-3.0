@@ -44,7 +44,7 @@ Cite the principle(s) this change serves. See `docs/canon/moral-architecture.md`
 ## Agent hygiene
 
 - [ ] I read the files I changed; no invented types
-- [ ] Official repo only (`R0GV3TheAvatar/GAIA-2.0`)
+- [ ] Official repo only (`R0GV3TheAvatar/GAIA-3.0`)
 - [ ] Did not strip NOTICE / license / author
 - [ ] Tests call APIs that exist on this branch
 

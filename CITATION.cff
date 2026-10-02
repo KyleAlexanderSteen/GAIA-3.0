@@ -1,12 +1,12 @@
 cff-version: 1.2.0
-title: "GAIA 2.0"
+title: "GAIA 3.0"
 message: "If you use this software or its specifications, cite it."
 type: software
 authors:
   - family-names: Steen
     given-names: Kyle Alexander
     alias: R0GV3TheAvatar
-repository-code: "https://github.com/R0GV3TheAvatar/GAIA-2.0"
+repository-code: "https://github.com/R0GV3TheAvatar/GAIA-3.0"
 license: "SEE LICENSE FILE"
 keywords:
   - GAIA
@@ -15,6 +15,6 @@ keywords:
   - GAIAN
   - Super Intelligence
 abstract: >
-  Implementation monorepo for GAIA 2.0. Not v1.0. Attribution required
+  Implementation monorepo for GAIA 3.0. Not v1.0. Attribution required
   wherever a license in LICENSE demands it. Training a model on this
   tree does not erase the author or the license.
