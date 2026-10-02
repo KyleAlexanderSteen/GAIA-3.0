@@ -13,11 +13,13 @@
 //! All operations are synchronous and have no network dependency.
 
 pub mod error;
+pub mod ontology_gate;
 pub mod result;
 pub mod history;
 pub mod runner;
 
 pub use error::ValidateError;
+pub use ontology_gate::{admit_consciousness, admit_magic, admit_power, GateError, MagicClaim, PowerClaim};
 pub use result::ValidationResult;
 pub use history::AttemptHistory;
 
