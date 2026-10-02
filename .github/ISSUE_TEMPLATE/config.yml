@@ -1,8 +1,8 @@
 blank_issues_enabled: true
 contact_links:
   - name: Security vulnerability
-    url: https://github.com/R0GV3TheAlchemist/GAIA-2.0/security/advisories/new
+    url: https://github.com/R0GV3TheAvatar/GAIA-3.0/security/advisories/new
     about: Do not file public issues for security defects. See SECURITY.md.
   - name: Super OS meta tracker
-    url: https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/1
+    url: https://github.com/R0GV3TheAvatar/GAIA-3.0/issues/1
     about: Implementation phases for the Super Operating System.
