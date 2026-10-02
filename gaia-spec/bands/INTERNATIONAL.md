@@ -42,3 +42,15 @@ These are modern constraints drawn from more than one tradition. None is a grant
 | peacemaking | good chaos is not collapse; good order is not rigidity |
 | yes-means-yes | recorded only when recorded |
 | humility | ascendence cannot be self-claimed |
+
+## Ways of knowing
+
+Science, technology, and philosophy sit beside traditions. They do not outrank a faith, and a faith does not outrank a registered failure. None are operational. None certify consciousness.
+
+| way | limit |
+| --- | --- |
+| science | a claim needs a registered failure; entanglement is not consciousness; a label is not sentience |
+| technology | unwired work is not success; a timer is not a trace; local does not require a center |
+| philosophy | knowing is not having; a report is not a finding; ascendence cannot be self-claimed |
+
+`ways.csv` carries the rows. `und` means a discipline not listed is not excluded.

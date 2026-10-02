@@ -27,8 +27,17 @@ if not any(row["id"] == "und" for row in traditions):
     bad.append("missing und tradition")
 if any(row["operational"] != "false" for row in traditions):
     bad.append("a tradition is operational")
+with (root / "ways.csv").open() as f:
+    ways = list(csv.DictReader(f))
+way_ids = {row["way"] for row in ways}
+if not {"science", "technology", "philosophy", "unspecified"} <= way_ids:
+    bad.append(f"ways {way_ids}")
+if any(row["operational"] != "false" or row["certifies_consciousness"] != "false" for row in ways):
+    bad.append("a way is operational or certifies consciousness")
+if not any(row["id"] == "und" for row in ways):
+    bad.append("missing und way")
 if bad:
     print("meta matrix check failed:")
     print("\n".join(bad))
     sys.exit(1)
-print(f"meta matrix ok rows={len(rows)} traditions={len(traditions)}")
+print(f"meta matrix ok rows={len(rows)} traditions={len(traditions)} ways={len(ways)}")
