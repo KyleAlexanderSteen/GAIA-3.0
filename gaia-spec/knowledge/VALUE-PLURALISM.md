@@ -40,3 +40,11 @@ Isaiah Berlin, "Two Concepts of Liberty" (1958) and "The Pursuit of the Ideal" (
 - Choosing one good leaves a loss. The loss stays on the record.
 
 These four rows are in `pluralism.csv`. They grant nothing.
+
+## What this does not do
+
+This file is a shelf, not a gate. `init`, `echo:`, and the trace header do not read it. A later change can still collapse two goods into one weight and pass the Rust tests. The checker only fails if a row grants.
+
+Berlin does not hand GAIA a procedure. Pluralism is not relativism: both goods can be real and the loss is real. It is also not "anything goes." Freedom for the wolves has often meant death to the sheep, so liberty is not the master value. Ronald Dworkin's reply, that liberty and equality fit in one web, is the monist move this shelf refuses. The fit is the final harmony.
+
+A witness outside the system can judge a case. This catalog cannot. Eligible for review is not a finding that the path was right.

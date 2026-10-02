@@ -63,3 +63,5 @@ Parent shelf. Does not implement a trainer. Does not open #341 MCP zero-trust.
 ## Value pluralism
 
 More than one good can be real. They do not collapse into one reward. See `VALUE-PLURALISM.md`. A conflict stays visible.
+
+A preference loss fits labeled pairs. It does not discover a rate at which dignity converts into helpfulness. Ethicality stays the human spec. The witness has to stand outside the optimizer. See `VALUE-PLURALISM.md`.
