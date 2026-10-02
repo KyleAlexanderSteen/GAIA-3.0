@@ -206,4 +206,7 @@ fn bands_lists_meta_and_grants_nothing() {
     assert!(!stdout.contains("domain=magic"), "{stdout}");
     assert!(stdout.contains("grants=false"), "{stdout}");
     assert!(!stdout.contains("grants=true"), "{stdout}");
+    assert!(stdout.contains("knowing_is_having=false"), "{stdout}");
+    assert!(stdout.contains("ascendence_eligible=false"), "{stdout}");
+    assert!(stdout.contains("entanglement_is_both=false"), "{stdout}");
 }

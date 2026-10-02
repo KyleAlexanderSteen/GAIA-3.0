@@ -12,7 +12,7 @@ mod schema;
 mod vault;
 
 pub use assess::{hidden_profile_api, Badge, Session};
-pub use bands::{ascendence_self_claim, catalog, grants_anything, magic_is_meta_band, meta_rows, Band, BandRow};
+pub use bands::{ascendence_eligible, ascendence_self_claim, catalog, challenge_is_grant, declare_is_holding, entanglement_is_both, grants_anything, knowing_is_having, magic_is_meta_band, meta_rows, synthesis_into_magic_band, Band, BandRow, Eligibility, Witness};
 pub use develop::{develop, DevPath};
 pub use graph::SkillGraph;
 pub use matching::{global_profile_dump, skills_v1_tagged, tek_skill, SkillCard};

@@ -13,3 +13,15 @@ The five movements already on main are the working frame, not a new alchemy. Alc
 | powers | skill capability nodes | `gaia-hspd` declare-only | `meta:powers` |
 
 Every row has `grants = false`. Prototype: `gaia-cli bands`.
+
+## Witness gate
+
+Code: `gaia-skills` `ascendence_eligible`. Issues: #1231, #1257.
+
+- Knowing a shelf is not having the skill.
+- Declaring a power is not holding it.
+- A challenge is not a grant.
+- Entanglement is not both physics and consciousness.
+- A chaos claim without a registered failure is not eligible.
+- No outside witness means ascendence is refused.
+- `EligibleForReview` is not a consciousness finding.
