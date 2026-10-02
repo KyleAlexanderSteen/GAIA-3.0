@@ -14,12 +14,14 @@
 
 pub mod error;
 pub mod ontology_gate;
+pub mod ontology_boot;
 pub mod result;
 pub mod history;
 pub mod runner;
 
 pub use error::ValidateError;
-pub use ontology_gate::{admit_consciousness, admit_magic, admit_power, GateError, MagicClaim, PowerClaim};
+pub use ontology_gate::{admit_consciousness, admit_magic, admit_power, GateError, MagicClaim, PowerClaim, PowerState};
+pub use ontology_boot::{boot_line, OntologyBoot};
 pub use result::ValidationResult;
 pub use history::AttemptHistory;
 
