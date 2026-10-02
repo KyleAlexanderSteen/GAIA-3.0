@@ -13,3 +13,7 @@ pub fn append_recorded(id: &str, detail: &str) -> Result<()> {
 pub fn read_recent(limit: usize) -> Result<Vec<String>> {
     gaia_kernel::receipts::read_recent(limit).map_err(anyhow::Error::msg)
 }
+
+pub fn read_from(source: Option<&str>, limit: usize) -> Result<Vec<String>> {
+    gaia_kernel::receipts::read_from(source, limit).map_err(anyhow::Error::msg)
+}

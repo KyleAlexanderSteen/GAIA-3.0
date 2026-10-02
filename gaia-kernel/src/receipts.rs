@@ -30,12 +30,21 @@ pub fn append_from(source: &str, id: &str, detail: &str) -> Result<(), String> {
 }
 
 pub fn read_recent(limit: usize) -> Result<Vec<String>, String> {
+    read_from(None, limit)
+}
+
+pub fn read_from(source: Option<&str>, limit: usize) -> Result<Vec<String>, String> {
     let path = ledger_path();
     if !path.exists() {
         return Ok(Vec::new());
     }
     let text = fs::read_to_string(&path).map_err(|e| format!("receipt read: {e}"))?;
-    let mut lines: Vec<String> = text.lines().filter(|l| !l.is_empty()).map(str::to_string).collect();
+    let mut lines: Vec<String> = text
+        .lines()
+        .filter(|line| !line.is_empty())
+        .filter(|line| source.map(|s| line.contains(&format!("\"source\":\"{s}\""))).unwrap_or(true))
+        .map(str::to_string)
+        .collect();
     if lines.len() > limit {
         lines = lines.split_off(lines.len() - limit);
     }
@@ -60,6 +69,9 @@ mod tests {
         append_from("cli", "id-2", "echo: there").unwrap();
         let rows = read_recent(10).unwrap();
         assert!(rows[1].contains("\"source\":\"cli\""));
+        let cli_rows = read_from(Some("cli"), 10).unwrap();
+        assert_eq!(cli_rows.len(), 1);
+        assert!(read_from(Some("gateway"), 10).unwrap().is_empty());
         let _ = fs::remove_dir_all(&dir);
     }
 }

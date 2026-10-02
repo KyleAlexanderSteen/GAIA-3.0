@@ -10,13 +10,17 @@ pub struct AuditArgs {
     /// Maximum number of entries to show
     #[arg(long, default_value_t = 50)]
     pub limit: usize,
+
+    /// Writer to show: cli or gateway. Absent shows every receipt.
+    #[arg(long)]
+    pub source: Option<String>,
 }
 
 pub async fn run(args: AuditArgs) -> Result<()> {
     if args.follow {
         return Err(super::not_implemented("audit --follow", "#1297"));
     }
-    let rows = crate::ledger::read_recent(args.limit)?;
+    let rows = crate::ledger::read_from(args.source.as_deref(), args.limit)?;
     if rows.is_empty() {
         println!("no local receipts");
         return Ok(());
