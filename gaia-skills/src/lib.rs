@@ -7,6 +7,7 @@ mod graph;
 mod matching;
 mod overlay;
 mod path;
+mod pluralism;
 mod profile;
 mod schema;
 mod vault;
@@ -21,6 +22,7 @@ pub use overlay::{
     wef_resolves, wef_top10,
 };
 pub use path::novice_public_speaking;
+pub use pluralism::{collapse, name_loss, Loss};
 pub use profile::SkillProfile;
 pub use schema::{active_listening, SkillNode, REALMS};
 pub use vault::VaultProfile;
