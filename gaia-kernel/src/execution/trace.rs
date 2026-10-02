@@ -1,6 +1,8 @@
 //! Local W3C Trace Context. Not OpenTelemetry. #734.
 //! `traceparent` is formatted here. OTLP export is refused.
 
+use std::sync::atomic::{AtomicU64, Ordering};
+
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct LocalTrace {
     pub trace_id: [u8; 16],
@@ -45,18 +47,16 @@ pub fn status_ok(outcomes_ok: &[bool]) -> bool {
 }
 
 fn fresh_id() -> [u8; 16] {
-    let n = std::time::SystemTime::now()
+    static COUNTER: AtomicU64 = AtomicU64::new(1);
+    let n = COUNTER.fetch_add(1, Ordering::Relaxed);
+    let tick = std::time::SystemTime::now()
         .duration_since(std::time::UNIX_EPOCH)
         .map(|d| d.as_nanos())
         .unwrap_or(1);
     let mut bytes = [0u8; 16];
-    let raw = n.to_be_bytes();
-    bytes[..8].copy_from_slice(&raw[..8]);
-    bytes[8..].copy_from_slice(&raw[8..]);
+    bytes[..8].copy_from_slice(&n.to_be_bytes());
+    bytes[8..].copy_from_slice(&(tick as u64).to_be_bytes());
     bytes[0] |= 0x01;
-    if bytes == [0u8; 16] {
-        bytes[15] = 1;
-    }
     bytes
 }
 

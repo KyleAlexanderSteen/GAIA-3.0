@@ -22,7 +22,7 @@ pub async fn run(args: InitArgs) -> Result<()> {
     }
     let path = crate::ledger::ledger_path()
         .parent()
-        .expect("ledger path has a parent")
+        .ok_or_else(|| anyhow::anyhow!("ledger path has no parent"))?
         .join("profile.toml");
     if let Some(parent) = path.parent() {
         fs::create_dir_all(parent)?;

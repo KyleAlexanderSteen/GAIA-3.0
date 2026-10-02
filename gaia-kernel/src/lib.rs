@@ -11,6 +11,7 @@ pub mod hpc;
 pub mod identity;
 pub mod planner;
 pub mod ports;
+pub mod receipts;
 pub mod scheduler;
 pub mod syscall;
 
