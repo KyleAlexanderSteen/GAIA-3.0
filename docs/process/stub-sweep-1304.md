@@ -4,7 +4,7 @@ Date: 2026-10-02. Scope: `gaia-cli/src` and `gaia-gateway/src` after the local e
 
 | Path | What it does now | Success claim? |
 | --- | --- | --- |
-| `gaia-cli` `init`, `start`, `agent`, `memory`, `revoke` | `not_implemented`, exit non-zero | No |
+| `gaia-cli` `init --profile developer` | Writes `$GAIA_HOME/profile.toml` with `runtime = not-started`. Does not connect. | No runtime claim |\n| `gaia-cli` `init --profile` other than developer, `start`, `agent`, `memory`, `revoke` | `not_implemented`, exit non-zero | No |
 | `gaia-cli` `intent` without gateway | Executor receipt. `echo:` records to `$GAIA_HOME/receipts.jsonl` (default `.gaia`). Plain text is `not-executed`. | Only after record |
 | `gaia-cli` `intent --stream` / `--gateway` | not implemented | No |
 | `gaia-cli` `audit` | Reads the local ledger, or prints `no local receipts` | Empty ledger is an empty read, not a completed remote audit |

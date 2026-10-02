@@ -106,7 +106,7 @@ fn assert_fails_loudly(args: &[&str]) {
 
 #[test]
 fn unbuilt_commands_fail_loudly() {
-    assert_fails_loudly(&["init"]);
+    assert_fails_loudly(&["init", "--profile", "sovereign"]);
     assert_fails_loudly(&["start"]);
     assert_fails_loudly(&["intent", "hello", "--stream"]);
     assert_fails_loudly(&["intent", "hello", "--gateway", "http://127.0.0.1:9"]);
@@ -173,5 +173,24 @@ fn echo_is_written_and_audit_reads_it() {
     assert!(audited.status.success(), "{}", String::from_utf8_lossy(&audited.stderr));
     assert!(stdout.contains("ledger row"), "{stdout}");
     assert!(stdout.contains("recorded"), "{stdout}");
+    let _ = std::fs::remove_dir_all(&dir);
+}
+
+#[test]
+fn init_writes_developer_profile_and_does_not_start() {
+    let dir = std::env::temp_dir().join(format!("gaia-init-{}", std::process::id()));
+    let _ = std::fs::remove_dir_all(&dir);
+    let out = gaia()
+        .env("GAIA_HOME", &dir)
+        .args(["init", "--profile", "developer"])
+        .output()
+        .expect("init");
+    let stdout = String::from_utf8_lossy(&out.stdout);
+    assert!(out.status.success(), "{}", String::from_utf8_lossy(&out.stderr));
+    assert!(stdout.contains("runtime=not-started"), "{stdout}");
+    assert!(!stdout.contains("Runtime started"), "{stdout}");
+    let profile = std::fs::read_to_string(dir.join("profile.toml")).expect("profile");
+    assert!(profile.contains("gateway_connected = false"), "{profile}");
+    assert!(profile.contains("runtime = \"not-started\""), "{profile}");
     let _ = std::fs::remove_dir_all(&dir);
 }

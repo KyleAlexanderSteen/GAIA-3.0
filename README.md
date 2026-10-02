@@ -106,16 +106,16 @@ cargo run -p gaia-kernel --bin gaia-executor
 cd gaia-sdk/typescript && npm install && npm test
 ```
 
-Future on-device profile (not live; tracked in later phases):
+Local profile that exists today (`gaia-cli`, not an installer):
 
-```text
-gaia init --profile=developer
-gaia start
-gaia agent create …
-gaia intent "…"
+```bash
+export GAIA_HOME=.gaia
+cargo run -p gaia-cli -- init --profile developer
+cargo run -p gaia-cli -- intent "echo: hello"
+cargo run -p gaia-cli -- audit
 ```
 
-Do not treat those commands as a published installer. There is no `curl | sh` URL yet. There is no `v1.0.0` tag.
+`init` writes `profile.toml` with `runtime = "not-started"`. It does not connect to the gateway. `echo:` is the only admitted intent. `start`, `agent`, `memory`, and `revoke` still exit not-implemented. There is no `curl | sh` URL yet. There is no `v1.0.0` tag.
 
 ## Specification
 
