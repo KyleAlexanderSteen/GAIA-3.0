@@ -139,7 +139,8 @@ fn plain_intent_is_not_executed() {
         .expect("run gaia-cli");
     let stderr = String::from_utf8_lossy(&out.stderr);
     assert!(!out.status.success(), "{stderr}");
-    assert!(stderr.contains("not-executed"), "{stderr}");
+    assert!(stderr.contains("nothing was done"), "{stderr}");
+    assert!(stderr.contains("not a tool call"), "{stderr}");
 }
 
 #[test]
@@ -150,7 +151,8 @@ fn power_claim_is_refused() {
         .expect("run gaia-cli");
     let stderr = String::from_utf8_lossy(&out.stderr);
     assert!(!out.status.success(), "{stderr}");
-    assert!(stderr.contains("refused"), "{stderr}");
+    assert!(stderr.contains("nothing was done"), "{stderr}");
+    assert!(stderr.contains("not a tool call"), "{stderr}");
 }
 
 #[test]
