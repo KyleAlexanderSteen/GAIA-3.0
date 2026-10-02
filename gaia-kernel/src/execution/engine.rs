@@ -122,6 +122,9 @@ pub struct ExecutionResult {
     /// W3C `traceparent`. Flags are `00`. Not exported.
     #[serde(default)]
     pub traceparent: String,
+    /// Why export did not happen. Never "ok".
+    #[serde(default)]
+    pub export_status: String,
 }
 
 struct PreparedTask {
@@ -208,12 +211,16 @@ impl ExecutionEngine {
         let status_ok = crate::execution::trace::status_ok(&outcomes);
         let total_ms = span.finish(status_ok);
         let trace = crate::execution::trace::LocalTrace::new(status_ok);
-        let _ = trace.export_otlp();
+        let export_status = match trace.export_otlp() {
+            Ok(()) => "export-refused-ok-is-a-bug".into(),
+            Err(reason) => reason.to_string(),
+        };
         Ok(ExecutionResult {
             intent_id: intent.id,
             task_results,
             total_ms,
             traceparent: trace.traceparent(),
+            export_status,
         })
     }
 
