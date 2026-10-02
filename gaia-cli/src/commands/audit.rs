@@ -13,7 +13,16 @@ pub struct AuditArgs {
 }
 
 pub async fn run(args: AuditArgs) -> Result<()> {
-    // TODO: GET /audit?limit=N  or WS /audit/stream when --follow
-    let _ = args;
-    Err(super::not_implemented("audit", "#1297"))
+    if args.follow {
+        return Err(super::not_implemented("audit --follow", "#1297"));
+    }
+    let rows = crate::ledger::read_recent(args.limit)?;
+    if rows.is_empty() {
+        println!("no local receipts");
+        return Ok(());
+    }
+    for row in rows {
+        println!("{row}");
+    }
+    Ok(())
 }

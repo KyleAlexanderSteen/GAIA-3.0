@@ -14,6 +14,7 @@ name = "gaia_gateway"
 path = "src/lib.rs"
 
 [dependencies]
+gaia-kernel = { path = "../gaia-kernel" }
 axum       = { version = "0.8", features = ["ws", "macros"] }
 tokio      = { version = "1", features = ["full"] }
 tower      = "0.5"

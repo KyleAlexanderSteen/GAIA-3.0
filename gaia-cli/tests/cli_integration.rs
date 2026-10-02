@@ -114,7 +114,7 @@ fn unbuilt_commands_fail_loudly() {
     assert_fails_loudly(&["agent", "deploy", "--name", "a"]);
     assert_fails_loudly(&["memory", "list"]);
     assert_fails_loudly(&["memory", "search", "q"]);
-    assert_fails_loudly(&["audit"]);
+    assert_fails_loudly(&["audit", "--follow"]);
 }
 
 #[test]
@@ -151,4 +151,27 @@ fn power_claim_is_refused() {
     let stderr = String::from_utf8_lossy(&out.stderr);
     assert!(!out.status.success(), "{stderr}");
     assert!(stderr.contains("refused"), "{stderr}");
+}
+
+#[test]
+fn echo_is_written_and_audit_reads_it() {
+    let dir = std::env::temp_dir().join(format!("gaia-ledger-{}", std::process::id()));
+    let _ = std::fs::remove_dir_all(&dir);
+    std::fs::create_dir_all(&dir).expect("home");
+    let recorded = gaia()
+        .env("GAIA_HOME", &dir)
+        .args(["intent", "echo: ledger row"])
+        .output()
+        .expect("echo");
+    assert!(recorded.status.success(), "{}", String::from_utf8_lossy(&recorded.stderr));
+    let audited = gaia()
+        .env("GAIA_HOME", &dir)
+        .arg("audit")
+        .output()
+        .expect("audit");
+    let stdout = String::from_utf8_lossy(&audited.stdout);
+    assert!(audited.status.success(), "{}", String::from_utf8_lossy(&audited.stderr));
+    assert!(stdout.contains("ledger row"), "{stdout}");
+    assert!(stdout.contains("recorded"), "{stdout}");
+    let _ = std::fs::remove_dir_all(&dir);
 }

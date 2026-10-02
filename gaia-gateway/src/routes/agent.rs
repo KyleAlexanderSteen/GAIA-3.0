@@ -4,7 +4,7 @@ use axum::{
     http::StatusCode,
     response::IntoResponse,
 };
-use serde::{Deserialize, Serialize};
+use serde::Deserialize;
 use crate::state::AppState;
 
 #[derive(Deserialize)]
@@ -13,33 +13,35 @@ pub struct CreateAgentRequest {
     pub manifest: Option<serde_json::Value>,
 }
 
-#[derive(Serialize)]
-pub struct AgentResponse {
-    pub id: String,
-    pub name: String,
-    pub status: String,
-}
 
 pub async fn create_agent(
     State(_state): State<AppState>,
     Json(req): Json<CreateAgentRequest>,
 ) -> impl IntoResponse {
-    let id = uuid::Uuid::new_v4().to_string();
-    tracing::info!(agent = %req.name, %id, "agent created");
-    // TODO: register with orchestrator
-    (StatusCode::CREATED, Json(AgentResponse { id, name: req.name, status: "created".into() }))
+    let _ = req.manifest;
+    (
+        StatusCode::NOT_IMPLEMENTED,
+        Json(serde_json::json!({
+            "status": "not-implemented",
+            "detail": format!("agent create is not wired: {}", req.name)
+        })),
+    )
 }
 
 pub async fn deploy_agent(
     State(_state): State<AppState>,
     Path(id): Path<String>,
 ) -> impl IntoResponse {
-    tracing::info!(%id, "agent deploy requested");
-    // TODO: instruct orchestrator to start agent
-    (StatusCode::ACCEPTED, Json(AgentResponse { id: id.clone(), name: id, status: "deploying".into() }))
+    (
+        StatusCode::NOT_IMPLEMENTED,
+        Json(serde_json::json!({
+            "status": "not-implemented",
+            "detail": format!("agent deploy is not wired: {id}")
+        })),
+    )
 }
 
-/// DELETE /agents/{id}/revoke — immediately cancels the agent.
+/// DELETE /agents/{id}/revoke — cancels a handle this process actually holds.
 pub async fn revoke_agent(
     State(state): State<AppState>,
     Path(id): Path<String>,
@@ -48,9 +50,15 @@ pub async fn revoke_agent(
     if let Some(handle) = inner.active_agents.remove(&id) {
         handle.abort();
         tracing::info!(%id, "agent revoked");
-        StatusCode::NO_CONTENT
+        StatusCode::NO_CONTENT.into_response()
     } else {
-        tracing::warn!(%id, "revoke: agent not found");
-        StatusCode::NOT_FOUND
+        (
+            StatusCode::NOT_FOUND,
+            Json(serde_json::json!({
+                "status": "not-found",
+                "detail": format!("no active agent: {id}")
+            })),
+        )
+            .into_response()
     }
 }
