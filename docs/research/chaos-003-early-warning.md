@@ -1,20 +1,19 @@
 # CHAOS-003: Early warning indicators of destructive chaos
 
 Issue: #1200 (parent #1175). Related, not duplicated: #1143, #1146, #1127. Evidence standard: #1171.
-Status: DRAFT v0.3. Research and specification only; no runtime code; cannot raise autonomy or bypass a human gate.
+Status: DRAFT v0.4. Research and specification only; no runtime code; cannot raise autonomy or bypass a human gate.
 Scope note: this catalog recommends NO indicator for operational use. Any use needs its own issue, calibration (#1146) and the existing human gates.
 
 ## Stage reached
 
-- Read in full text: Jager and Fullsack, PLoS ONE 14(2) e0211072 (2019), PMC6364907 (whole paper).
-- Read in part: Dakos et al., PLoS ONE 7(7) e41010 (2012), PMC3398887. The fetch returned the abstract, introduction, full methods and the start of the datasets section; it was cut off before the results and limitations sections. Statements about that paper below are limited to what was returned.
-- Abstract page only: Boettiger and Hastings, arXiv 1210.1204 (Proc. R. Soc. B 2012). Full text not read.
+- Read in full text: Jager and Fullsack, PLoS ONE 14(2) e0211072 (2019), PMC6364907; Boettiger and Hastings, 'Early Warning Signals and the Prosecutor's Fallacy' (arXiv 1210.1204, 2012).
+- Read in part: Dakos et al., PLoS ONE 7(7) e41010 (2012), PMC3398887. The fetch returned the abstract, introduction, full methods and the start of the datasets section; it was cut off before the results and limitations sections. A second attempt via the PLoS printable-PDF link returned no content. Statements about that paper below are limited to what was returned.
 - Fetch failed, not read: Carpenter et al. Science 2011 (PDF fetch returned no content); Diks et al. finance paper (HAL host showed a bot check); power-system paper (ScienceDirect bot check).
 - Everything else in the catalog is from search-result abstracts and excerpts.
 - Domains with sources collected: ecosystems (lake field experiment), generic statistics and false positives, epidemics, deep-learning detection, agent-based social simulation, finance (two different indicator families), power systems (abstract only), global temperature (as a false-positive test case).
 - NOT covered, no sources collected (NeedVerify): conflict escalation, climate tipping elements (AMOC, ice sheets). Flickering is covered only as a method description (Dakos 2012), not with empirical cases. A search for conflict-escalation early-warning work returned only financial and power-system results, so that gap is open.
 - Lead times below are what the abstracts state; exact figures were not extracted.
-- Author names are omitted where the search output did not show them.
+- Author names are omitted where the search output did not show them, except for papers read in full.
 
 ## Evidence labels
 
@@ -40,6 +39,7 @@ Scope note: this catalog recommends NO indicator for operational use. Any use ne
 | W10 | Slower recovery from perturbations, rising variance, rising autocorrelation | Power systems approaching critical transitions | ABSTRACT-ONLY | Not extracted | Error rates, thresholds and real-grid validation not extracted | Electric Power Systems Research, 'Early warning signals for critical transitions in power systems' (2015) |
 | W11 | Credit and debt-based indicators (debt-service ratios, credit-to-GDP gaps, household and cross-border debt) | Banking distress, cross-country | RETROSPECTIVE | Alert counts as correct if issued at least once in the 12 quarters before a crisis | A different indicator family from critical slowing down; the criterion rewards any alert in a long window, so it can hide false alarms; exact false-alarm rates not extracted | BIS Quarterly Review (March 2018) |
 | W12 | Standard deviation and AC(1) on raw (undetrended) data | Global surface temperature change (GISTEMP) | FULL-TEXT, real data, FALSE POSITIVE | n/a | Both rose on raw data, resembling a quadratic-growth system; both increases vanished after moving-average detrending, so the rise was not a valid warning | Jager and Fullsack, PLoS ONE 14(2) e0211072 (2019) |
+| W13 | Variance and autocorrelation (Kendall's tau of rolling-window trend) | Simulated stable birth-death (Allee) and predator-prey systems, selected because they collapsed by chance | FULL-TEXT, MODEL/SIM, FALSE POSITIVE | n/a | Chance collapses showed higher tau than non-collapsed replicates, so a historical 'successful detection' can be a false positive | Boettiger and Hastings, arXiv 1210.1204 (2012) |
 
 ## Full-text findings (read)
 
@@ -52,6 +52,18 @@ Scope note: this catalog recommends NO indicator for operational use. Any use ne
 - Authors' stated limits: results rely on model-generated data; not all real systems resemble the 12 abstract systems; fluctuations that are neither absolute nor relative are out of scope. They also note it is unknown how detrending affects TRUE positives, and that publication bias hides failed detections.
 - Implication for GAIA: any rolling variance plus autocorrelation monitor run on trending telemetry will raise false alarms unless the trend is removed first, and detrending's effect on real warnings is untested here.
 
+### Boettiger and Hastings 2012 (read in full, arXiv preprint v1)
+
+- Question: does testing warning signals only on systems known to have transitioned bias the result? This is the prosecutor's fallacy: a low probability of the evidence given an innocent system does not mean a low probability that the system is innocent given the evidence.
+- Method: a stochastic individual-based birth-death model with an Allee threshold, with all parameters held constant so no bifurcation occurs and no true warning should exist. Runs of 50,000 time units sampled every 50 units. Replicates that collapsed by chance were selected, a window ending just before collapse (still above the threshold) was cut out, and variance and autocorrelation were computed in a moving window of half the series length, with Kendall's tau as the trend measure. A second model (a logistic growth with saturating predation, after May 1977) was used to show the effect is not specific to Allee models.
+- Result: chance-collapsed replicates showed higher tau for both indicators than otherwise identical replicates that did not collapse. In a model with no underlying change, selecting collapsed cases made the indicators look like they had detected one.
+- Mechanism given: to cross the threshold by chance, the system must move away from the stable state through a fast string of steps. That excursion looks like high autocorrelation and high variance within the window, but it is a chance trajectory, not the slowing return to equilibrium that critical slowing down is supposed to capture.
+- Model-based comparison: a model-based estimate (an approximate saddle-node bifurcation model) found no difference from zero in any of the 266 collapsed replicates, so it showed no bias here. The authors say this should not be read as immunity to the prosecutor's fallacy.
+- Why truncation does not fix it: the equilibrium location is unknown and may itself be moving in a system nearing a transition, so any rule for cutting off the collapse branch is arbitrary without a model of the process.
+- Remedy named: replicated experiments, which generate a complete sample instead of a selected one.
+- Limits and inconsistencies noticed: the text says 20,000 replicates were simulated and also says 266 of 1,000 collapsed in the window; I did not resolve which is meant. Only simulations are used; no field data are re-analysed. The preprint's figures were not inspected visually.
+- Implication for GAIA: a detector validated only on past incidents that GAIA already knows were failures will look better than it is. A validation set must include stable periods and chance excursions that did not become failures.
+
 ### Dakos et al. 2012 (read through methods; results and limitations not returned)
 
 - Provides a toolbox of metric-based indicators (AC(1), return rate, spectral density and ratio, DFA, standard deviation, coefficient of variation, skewness, kurtosis, conditional heteroskedasticity, BDS test) and model-based ones (time-varying AR(p), threshold AR(p), drift-diffusion-jump, potential analysis).
@@ -61,10 +73,6 @@ Scope note: this catalog recommends NO indicator for operational use. Any use ne
 - Threshold AR(p) and potential analysis detect flickering, which the authors say is not strictly an early warning because the system has already switched repeatedly.
 - The BDS test is not a leading indicator; it is a diagnostic that lowers the chance of a false detection when another strong indicator is also present.
 - NOT read: the paper's own sensitivity and limitation findings for each indicator.
-
-### Boettiger and Hastings 2012 (abstract page only)
-
-- Selecting systems because they were observed to transition, then testing signals on them, biases results (prosecutor's fallacy). Simulated systems that transitioned purely by chance showed elevated false-positive rates in common warning statistics. A model-based approach was less subject to the bias, and replicated experiments avoid it. Details of how much the rates rose were not read.
 
 ## Finance notes
 
@@ -80,20 +88,23 @@ Scope note: this catalog recommends NO indicator for operational use. Any use ne
 
 ## General failure modes
 
-- Not all critical transitions can be detected (false negatives), and signals do not prove a transition is imminent (false positives). In the real-data and simulated cases of Jager and Fullsack 2019, whole classes of systems always show warning signals without featuring critical transitions (FULL-TEXT).
+- Not all critical transitions can be detected (false negatives), and signals do not prove a transition is imminent (false positives). In the simulated cases of Jager and Fullsack 2019, whole classes of systems always show warning signals without featuring critical transitions (FULL-TEXT).
 - Systematic false positives from trends: 11 of 22 trend-only cases raised both variance and AC(1). Detrending removed them in that study; scaling did not (FULL-TEXT).
-- Prosecutor's fallacy: selecting systems because a transition occurred inflates false-positive rates; experiments with replicates avoid this (Proc. R. Soc. B 2012; abstract page).
+- Prosecutor's fallacy: selecting systems because a transition occurred inflates the false-positive rate, because a chance excursion toward a threshold itself looks like rising variance and autocorrelation (Boettiger and Hastings 2012, FULL-TEXT).
+- Truncating the series before the collapse does not cleanly solve it, because the equilibrium is unknown and can move (Boettiger and Hastings 2012, FULL-TEXT).
+- Model-based estimation resisted the bias in that test but is not shown to be immune (Boettiger and Hastings 2012, FULL-TEXT).
 - Data requirements: indicators need high-frequency sampling and enough autocorrelation in the data; DFA needs more than 100 points (Dakos 2012, FULL-TEXT for these statements).
 - Non-stationarity in the mean can cause spurious signals, especially for rolling-window metrics. A systematic rise in external noise can raise variance indicators but not memory indicators (PLoS ONE 7(7) e41010, 2012; excerpt level).
 - Publication bias: studies that fail to find signals are rarely published, so the literature likely overstates success (Jager and Fullsack 2019, FULL-TEXT).
 - Threshold choice trades sensitivity for specificity: a higher cut-off gives fewer and later warnings. Complex cases can give AUC below 0.5 (Nonlinear Dynamics, 2024; excerpt).
 - The generic indicators do not say what lies beyond the tipping point (PNAS 2021).
 - Inconsistent replication across events: W9 worked before one crash and not reliably before others.
-- Link to CHAOS-002 M7: warning indicators may fail to announce a true transition, noise-induced transitions are unlikely to be announced, and in most cases indicators are detected only in retrospect (Scheffer and Carpenter 2003, excerpt level; NeedVerify).
+- Link to CHAOS-002 M7: warning indicators may fail to announce a true transition, noise-induced transitions are unlikely to be announced, and in most cases indicators are detected only in retrospect (Scheffer and Carpenter 2003, excerpt level; NeedVerify). Boettiger and Hastings 2012 now gives a full-text, simulation-level account of why noise-driven transitions mislead retrospective tests.
 
 ## Retrospective vs prospective summary
 
 - Prospective tests found so far: the lake experiments (W1-W4). All are induced transitions in one lake pair, so they test whether indicators respond, not whether a natural collapse can be forecast.
+- Boettiger and Hastings 2012 explains why retrospective tests alone are unreliable and names replicated experiments as the clean remedy.
 - No prospective, in-advance, pre-registered forecast of an unforced natural transition has been collected yet. NeedVerify.
 - Dakos 2012 itself uses only simulated data with known transitions, so it tests methods, not field forecasting.
 - Epidemic, finance and power-system evidence collected is retrospective, model-based or abstract-only (W5, W6, W9, W10, W11).
@@ -118,6 +129,7 @@ Review so far: the doc cites no literature for H1-H3. The weights in H3 and the 
 - Gap: #1143 lists infrastructure cascades as a domain; the only infrastructure source collected (W10) is abstract-only, with no error rates.
 - Addition: finance is not a #1143 deployment domain. If market stability is in scope, W9's mixed results and the W9/W11 family distinction should be recorded there.
 - Addition (from W12): any #1143 variance-plus-autocorrelation monitor on trending data needs a documented detrending step and a test that detrending does not remove true warnings; Jager and Fullsack show 11 of 22 trend-only cases raised false alarms without it.
+- Addition (from W13): validate any detector on a set that includes stable periods and chance excursions that did not become failures, not only on past incidents. Boettiger and Hastings show that selecting by outcome inflates apparent detection.
 - Consistent: #1143 'Honest Limits' (false positives in noisy systems, ambiguity flag, no autonomous action) match the failure modes above.
 
 ## Fit with #1146 fields
@@ -127,12 +139,14 @@ Each catalog row maps to #1146 fields: lead time (horizon), evidence label (regi
 ## Open items
 
 - [x] Read Jager and Fullsack 2019 in full.
-- [~] Read Dakos 2012: methods read; results and limitations still to get (try the PLoS ONE PDF or the remaining pages).
-- [ ] Read in full: Scheffer 2009; Carpenter 2011 (PDF fetch failed); Boettiger and Hastings 2012 (try arxiv.org/pdf/1210.1204); PNAS 2021; the 2018 finance paper (HAL blocked); the 2015 power-system paper (ScienceDirect blocked, try another host).
+- [x] Read Boettiger and Hastings 2012 (prosecutor's fallacy) in full.
+- [~] Read Dakos 2012: methods read; results and limitations still to get (PLoS printable-PDF fetch failed; try a different host).
+- [ ] Read in full: Scheffer 2009; Carpenter 2011 (PDF fetch failed); PNAS 2021; the 2018 finance paper (HAL blocked); the 2015 power-system paper (ScienceDirect blocked, try another host); Boettiger and Hastings 2012 Interface paper on limits to detection.
 - [ ] Extract exact lead times and false-positive/false-negative rates where reported.
 - [ ] Collect sources for conflict escalation, climate tipping elements, and empirical flickering cases.
 - [ ] Find prospective forecasts of unforced natural transitions, or confirm none exist.
 - [ ] Test whether detrending removes TRUE warnings (open question raised by Jager and Fullsack).
+- [ ] Resolve the 20,000 vs 1,000 replicate count in the Boettiger and Hastings text.
 - [ ] Find literature on criticality targets (e.g. self-organized criticality, branching ratio) for H1-H3.
 - [ ] Cross-check with #1143 and #1146; post proposed comments only after human approval.
 - [ ] Human review.
