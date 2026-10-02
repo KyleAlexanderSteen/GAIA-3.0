@@ -28,3 +28,15 @@ Ethical alignment does not reduce to one loss. More than one good can be real, a
 | mercy-with-record | forgiveness is not deletion of the audit | a wipe of the receipt |
 
 `pluralism.csv` is the machine-readable list. `grants=false` on every row.
+
+## Berlin
+
+Isaiah Berlin, "Two Concepts of Liberty" (1958) and "The Pursuit of the Ideal" (1988). Listed, not adopted as a constitution.
+
+- The collision is in the goods. It is not unfinished measurement.
+- No common currency. A preference loss is not that currency.
+- No final harmony. A perfect whole of all goods is the pretext for a center.
+- Liberty is room to choose, not the master value. Freedom for the wolves is not the sheep's good.
+- Choosing one good leaves a loss. The loss stays on the record.
+
+These four rows are in `pluralism.csv`. They grant nothing.

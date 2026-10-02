@@ -16,10 +16,14 @@ required = {
     "stewardship",
     "registered-failure",
     "mercy-with-record",
+    "collision-is-real",
+    "no-final-harmony",
+    "liberty-not-master",
+    "loss-stays-loss",
 }
 bad = []
 if {row["id"] for row in rows} != required:
-    bad.append("missing or extra values")
+    bad.append(f"missing or extra values: { {row['id'] for row in rows} ^ required }")
 if any(row["grants"] != "false" for row in rows):
     bad.append("a value grants")
 if any(not row["does_not_collapse_into"] for row in rows):
