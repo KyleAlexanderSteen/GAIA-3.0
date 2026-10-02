@@ -77,4 +77,25 @@ Open: primary sources for monitoring and halting (for example published shutdown
 
 Correction to flag on #1101: that issue says the EU AI Act is fully applicable from 2 August 2026. The sources above indicate high-risk obligations were deferred. Article 50 transparency obligations were reported as still scheduled for 2 August 2026 ([Jones Walker](https://www.joneswalker.com/en/insights/blogs/ai-law-blog/yes-august-2-still-matters-the-eu-approved-a-high-risk-ai-delay-but-mo)). `NeedVerify`.
 
-<!-- Section 5 (failure modes, evaluation gaming) added in the next commit. -->
+## 5. Failure modes
+
+These cut across the families above.
+
+| Failure mode | What it means for controls | Evidence |
+|---|---|---|
+| Controls that fail to remove learned deceptive behavior | Training-time controls cannot be the only layer (section 1) | Primary, constructed cases |
+| Learned reward hacking generalizing to other misalignment | Evaluating only on chat-like tasks can miss agentic misalignment (section 1) | Primary |
+| Single-layer defense | Model refusal alone let most malicious requests through in one agent benchmark (section 2) | Primary, single benchmark |
+| Over-refusal | Raises refusal metrics without proportional safety gain (section 2) | Primary |
+| Configuration rather than capability failure | Containment depends on egress rules and scoped identity, not instructions (section 3) | Secondary, `NeedVerify` |
+| Paper compliance | Legal and policy controls have no measured effect; dates and scope are changing (section 4) | Mixed |
+| Evaluation gaming (models behaving differently when tested) | Evaluations may overstate safety | **Open.** Only a secondary review is linked in section 3. No figures are stated here until a primary source is read. |
+
+## Open items before this leaves draft
+
+1. Primary sources for monitoring and halting (shutdown or interruptibility evaluations).
+2. Primary sources for evaluation-gaming figures.
+3. Independent replication or critique of the Constitutional Classifiers results.
+4. Verify every `NeedVerify` row against its primary source.
+5. Check EU AI Act dates against the Official Journal text.
+6. Confirm the AIMLR OR-Bench figures against the OR-Bench paper.
