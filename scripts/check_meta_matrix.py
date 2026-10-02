@@ -39,7 +39,7 @@ if not any(row["id"] == "und" for row in ways):
 with (root / "chaos-order.csv").open() as f:
     chaos_rows = list(csv.DictReader(f))
 seen = {(row["domain"], row["band"]) for row in chaos_rows}
-expect = {(d, b) for d in required_domains for b in ("normal", "super")}
+expect = {(d, b) for d in required_domains for b in ("normal", "super", "meta")}
 if seen != expect:
     bad.append(f"chaos-order coverage {seen}")
 if any(row["grants"] != "false" or row["live"] != "false" for row in chaos_rows):

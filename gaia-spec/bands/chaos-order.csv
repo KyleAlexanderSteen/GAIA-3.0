@@ -9,3 +9,8 @@ powers,normal,"a declared interest is not a holding","a power claim treated as h
 powers,super,"HSPD remains a self-declared name","a superpower claim treated as held","declare-only; dna_required false","child tag or surgical grant",false,false
 magic,normal,"a wonder label stays a label","totality treated as a shelf","chaos and order research stay open","a consciousness certificate",false,false
 magic,super,"HMGD and AIMD stay disabled","a disabled catalog treated as enabled","gaia_enabled false","super magic as a grant",false,false
+knowledge,meta,"a disagreement between UKD and AIKD stays visible","a meta row invents a third knowledge holding","both shelves named and grants false","the map becomes the center that decides what can be known",false,false
+skills,meta,"a human skill and an AISD label stay a gap","a meta-skill that can be used","description only; humans not scored","a meta score of a person",false,false
+capabilities,meta,"unwired stays not-implemented beside the listed name","a meta capability treated as an actuator","fail loud description","a meta cell that grants an action",false,false
+powers,meta,"declared versus held stays visible","a meta-power treated as held","declare-only description","a map that opens a clinic or a gene call",false,false
+magic,meta,"mapped and not a shelf","totality treated as a meta holding","mapped-not-a-grant","a consciousness certificate",false,false
