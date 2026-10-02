@@ -2,11 +2,15 @@
 
 ## Issue
 
-Closes #
+Refs #
+
+Use `Refs #` by default. Use `Closes #` only if OPERATIONAL is checked below. Do not use `Fixes`/`Resolves`: GitHub closes issues on those too, and the checker does not yet catch them.
 
 ## Stage reached (definition of done, #1319)
 
-Pick the highest stage this PR actually reaches and link the evidence. A PR that only adds or changes documents reaches SPECIFICATION and nothing higher.
+Pick the highest stage this PR actually reaches and link the evidence. A PR that only adds or changes documents reaches SPECIFICATION and nothing higher. Full guide: `docs/process/definition-of-done.md`.
+
+Format matters: keep the heading starting `## Stage reached`, and mark stages as `- [x] NAME` with the name in capitals. Bold text or `*` bullets are not recognized by the checker.
 
 - [ ] SPECIFICATION: the behavior is written down (link the file)
 - [ ] IMPLEMENTATION: code exists on this branch (link the file)
