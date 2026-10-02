@@ -1,4 +1,5 @@
 pub mod bands;
+pub mod corpus;
 pub mod init;
 pub mod start;
 pub mod agent;
