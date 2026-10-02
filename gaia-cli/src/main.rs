@@ -34,6 +34,8 @@ enum Commands {
     Revoke(commands::revoke::RevokeArgs),
     /// Print the listed knowledge/skill/power/magic bands. Grants nothing.
     Bands(commands::bands::BandsArgs),
+    /// List local Documents and Documents-2 files. No network.
+    Corpus(commands::corpus::CorpusArgs),
 }
 
 #[tokio::main]
@@ -49,5 +51,6 @@ async fn main() -> Result<()> {
         Commands::Audit(args)  => commands::audit::run(args).await,
         Commands::Revoke(args) => commands::revoke::run(args).await,
         Commands::Bands(args)  => commands::bands::run(args).await,
+        Commands::Corpus(args) => commands::corpus::run(args).await,
     }
 }
