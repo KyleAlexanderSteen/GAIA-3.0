@@ -5,6 +5,7 @@ pub mod engine;
 pub mod error;
 pub mod fanout;
 pub mod metrics;
+pub mod trace;
 
 pub use engine::{ExecutionEngine, ExecutionResult, Intent, IntentSignature, Outcome, TaskResult};
 pub use dag::{Task, TaskDAG};
