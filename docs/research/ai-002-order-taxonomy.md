@@ -99,3 +99,8 @@ These cut across the families above.
 4. Verify every `NeedVerify` row against its primary source.
 5. Check EU AI Act dates against the Official Journal text.
 6. Confirm the AIMLR OR-Bench figures against the OR-Bench paper.
+
+
+## Registered failure
+
+A good-order claim is not eligible until a control can fail in public. For this draft the condition is: a guardrail that cannot be paused by a person outside the loop counts as bad order, not protection. No outside witness has run that condition here. This does not close #1207 or #1221.
