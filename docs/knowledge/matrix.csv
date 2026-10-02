@@ -12,7 +12,7 @@ USCO,docs/knowledge/usco,listed
 USPO,docs/knowledge/usco,listed
 USPCO,docs/knowledge/uspco,listed
 UMO,docs/knowledge/umo,listed
-constraints,gaia-spec/security/REFUSE.md,partial
+constraints,docs/governance/REFUSE.md,partial
 earth,gaia-earth,partial
 gaian,gaia-gaian,partial
 memory,gaia-memos,partial

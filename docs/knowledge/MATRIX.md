@@ -15,7 +15,7 @@ Status words: `partial` means a crate or check exists and does not fulfill the o
 | UCPO capabilities | `docs/knowledge/ucpo`, `gaia-agents` act gate, `gaia-acp` halt | partial | Act gate refuses. Capability is not possessed. |
 | USCO / USPO | `docs/knowledge/usco`, `docs/knowledge/uspco` | listed | Conceptual until five properties and evidence. |
 | UMO magic | `docs/knowledge/umo`, crystal catalog in docs | listed | Representation is not proof. |
-| Constraints | `gaia-spec/security/REFUSE.md`, `gaia-acp` halt, human allowlist | partial | A description does not grant authority. |
+| Constraints | `docs/governance/REFUSE.md`, `gaia-acp` halt, human allowlist | partial | A description does not grant authority. |
 | Earth | `gaia-earth` fixture ensemble, mineral row check | partial | Not a planetary twin. Not DestinE. |
 | GAIAN | `gaia-gaian` consent stubs | partial | Not a human digital twin. |
 | Memory | `gaia-memos` | partial | Not provenance-linked super memory. |
