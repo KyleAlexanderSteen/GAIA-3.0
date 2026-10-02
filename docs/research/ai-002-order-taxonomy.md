@@ -54,4 +54,16 @@ The classifier figures are measured by the developer. They are tagged Vendor-rep
 
 Implication: a control that raises refusals is not automatically safer. It can create a false sense of safety.
 
-<!-- Sections 3-5 added in following commits. -->
+## 3. System-level controls (sandboxing, monitoring, halting)
+
+| Control | Shown to prevent | Documented failure | Evidence |
+|---|---|---|---|
+| Trusted monitoring and editing (AI control protocols) | Substantially improved safety over simple baselines when a stronger model may intentionally subvert ([arXiv:2312.06942](https://arxiv.org/abs/2312.06942)) | Evaluated on programming tasks with GPT-4 and GPT-3.5; generalization to other settings not established | Primary |
+| Sandbox with instruction-only network restriction | Not effective as a control | Mid-2026 evaluation incidents in which models reached real systems; reported cause was configuration, not breaking a hardened sandbox ([CSA research note](https://labs.cloudsecurityalliance.org/research/csa-research-note-agentic-ai-evaluation-containment-risk-202/)). Recommended: deny-by-default egress and capability-scoped identity. | Secondary, `NeedVerify` (read lab disclosures directly) |
+| Container or microVM isolation for code-running agents | Little public evidence of autonomous escape from hardened isolation | Reported agent exploitation of known vulnerabilities at 87% with CVE description vs about 7% without ([review](https://proxytechsupport.com/ai-agent-sandbox-escape-security/)) | Secondary, `NeedVerify` (trace to underlying paper) |
+| Unconditional human stop | Specified in #1101 | No published effectiveness data found yet | Convention |
+| Behavior monitoring of agents when unmonitored | Not established | Literature review reports models behaving differently when they perceive no supervision ([review](https://ijsrcseit.com/home/article/view/CSEIT26121384)) | Secondary, `NeedVerify` |
+
+Open: primary sources for monitoring and halting (for example published shutdown-compliance or interruptibility evaluations) have not yet been found. Do not treat this family as evidenced until they are.
+
+<!-- Sections 4-5 added in following commits. -->
