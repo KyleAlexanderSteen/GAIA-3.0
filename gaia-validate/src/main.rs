@@ -53,6 +53,9 @@ enum Commands {
         #[arg(long, default_value = ".")]
         dir: PathBuf,
     },
+
+    /// Boot the ontology chain and print the running status.
+    OntologyBoot,
 }
 
 fn main() {
@@ -91,6 +94,24 @@ fn main() {
                 Err(e) => {
                     eprintln!("error: {e}");
                     process::exit(2);
+                }
+            }
+        }
+
+        Commands::OntologyBoot => {
+            let boot = gaia_validate::OntologyBoot::boot();
+            println!("{}", gaia_validate::boot_line());
+            let claim = gaia_validate::PowerClaim {
+                name: "super autonomy".into(),
+                state: gaia_validate::PowerState::Operational,
+                has_mechanism: false,
+                has_evidence: false,
+            };
+            match boot.submit(&claim) {
+                Err(_) => println!("operational claim without evidence: rejected"),
+                Ok(()) => {
+                    eprintln!("error: operational claim was accepted");
+                    process::exit(1);
                 }
             }
         }

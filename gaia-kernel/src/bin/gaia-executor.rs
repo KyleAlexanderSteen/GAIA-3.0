@@ -17,7 +17,21 @@ async fn main() {
         "caps cpu={} gpu={} cuda={} rocm={} opencl={}",
         exec.caps.cpu_cores, exec.caps.gpu, exec.caps.cuda, exec.caps.rocm, exec.caps.opencl
     );
-    if let Some(task) = exec.pull_one() {
+    if let Some(goal) = std::env::args().nth(1) {
+        let dir = std::env::temp_dir().join("gaia-os-boot");
+        std::fs::create_dir_all(&dir).expect("boot dir");
+        let mut host = gaia_kernel::KernelHost::new(dir).expect("kernel host");
+        let receipt = host.executor.run_intent("cli", &goal);
+        if receipt.status == "refused" {
+            println!("refused {}", receipt.detail);
+            std::process::exit(1);
+        }
+        let handle = host.intent(&goal).expect("intent");
+        println!(
+            "admitted intent={} state={} receipt={}",
+            handle.intent_id, handle.state, receipt.status
+        );
+    } else if let Some(task) = exec.pull_one() {
         println!("{}", exec.run_task(&task));
     } else {
         println!("idle");
