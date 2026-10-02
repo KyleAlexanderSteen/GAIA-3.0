@@ -24,6 +24,9 @@ pub async fn run(args: IntentArgs) -> Result<()> {
     if args.stream || args.gateway.is_some() {
         return Err(super::not_implemented("intent --stream/--gateway", "#1299"));
     }
+    if let gaia_kernel::gate::Verdict::Deny(reason) = gaia_kernel::gate::tool_call(&args.text) {
+        return Err(anyhow!("{reason}; nothing was done"));
+    }
     let broker = Arc::new(Broker::new());
     let principal = Principal::generate(PrincipalKind::Node);
     let exec = Executor::new(&principal, Capabilities::default(), broker);
