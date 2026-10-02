@@ -96,7 +96,7 @@ Monorepo deviation from the future `github.com/gaia-os/*` org split is intention
 ```bash
 # Python SDK (Phase 0 stub client)
 python -m pip install -e gaia-sdk/python
-python -c "from gaia_sdk import GaiaClient; print(GaiaClient().intent('hello gaia'))"
+python -c "from gaia_sdk import GaiaClient; GaiaClient().intent('hello gaia')"  # raises NotImplementedCapability
 
 # Rust SDK + workspace
 cargo test --workspace

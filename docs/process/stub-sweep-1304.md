@@ -20,3 +20,18 @@ Date: 2026-10-02. Scope: `gaia-cli/src` and `gaia-gateway/src` after the local e
 | `gaia-kernel` `run_intent` | `recorded` / `refused` / `not-executed`. Never `done`. | `done` still means a syscall |
 
 CI: `python scripts/check_stub_success.py` fails if a TODO in these two trees sits next to `queued`, `Runtime started`, `"created"`, `"deploying"`, or `status: "done"`.
+
+
+## Sweep outside CLI and gateway (2026-10-02)
+
+| Path | Result |
+| --- | --- |
+| `gaia-sdk` Rust `intent`, `context`, `invoke`, `observe`, `declare` | `GaiaError::NotImplemented`. Sign and verify still perform Ed25519. |
+| `gaia-sdk` Python same methods | `NotImplementedCapability`. Sign and verify already raised. |
+| `gaia-orchestrator` `dispatch_tool` | Returns `mcp-not-executed:` with `provenance=local-stub`. Not `mcp-ok`. |
+| `gaia-orchestrator` `gaia intent` without `--accept` | Prints `execution=not-started`. |
+| `gaia-kernel` `invoke` / `observe` | `KernelError::NotImplemented` (landed in #1351). |
+| `gaia-agents` pack descriptions | Labeled stub text. `act()` still refuses. |
+| Metrics `TODO(#734)` | Comment only. No success counter is emitted. |
+
+CI scans every `gaia-*/src` for a TODO next to `queued`, `Runtime started`, `"created"`, `"deploying"`, `status: "done"`, `mcp-ok:`, or `admitted`.
