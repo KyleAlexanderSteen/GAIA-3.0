@@ -45,6 +45,7 @@ pub struct IntentReceipt {
 
 impl Executor {
     /// One job. A super-power claim without evidence is refused.
+    /// `echo:` is the only admitted local act: the text is recorded.
     /// A plain string is not executed. Admission is not `done`.
     pub fn run_intent(&self, id: &str, payload: &str) -> IntentReceipt {
         let trimmed = payload.trim();
@@ -63,6 +64,21 @@ impl Executor {
                 id: id.into(),
                 status: "refused",
                 detail: "power claim has no evidence".into(),
+            };
+        }
+        if let Some(body) = trimmed.strip_prefix("echo:") {
+            let body = body.trim();
+            if body.is_empty() {
+                return IntentReceipt {
+                    id: id.into(),
+                    status: "refused",
+                    detail: "empty echo".into(),
+                };
+            }
+            return IntentReceipt {
+                id: id.into(),
+                status: "recorded",
+                detail: body.to_string(),
             };
         }
         IntentReceipt {
@@ -102,6 +118,20 @@ mod intent_tests {
     #[test]
     fn power_claim_without_evidence_is_refused() {
         let receipt = executor().run_intent("job-2", "grant super power");
+        assert_eq!(receipt.status, "refused");
+    }
+
+    #[test]
+    fn echo_intent_is_recorded() {
+        let receipt = executor().run_intent("job-3", "echo: mineral row 4");
+        assert_eq!(receipt.status, "recorded");
+        assert_eq!(receipt.detail, "mineral row 4");
+        assert_ne!(receipt.status, "done");
+    }
+
+    #[test]
+    fn empty_echo_is_refused() {
+        let receipt = executor().run_intent("job-4", "echo:   ");
         assert_eq!(receipt.status, "refused");
     }
 
