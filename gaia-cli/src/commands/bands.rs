@@ -17,7 +17,10 @@ pub async fn run(_args: BandsArgs) -> Result<()> {
             row.domain, band, row.shelf, row.grants
         );
     }
-    println!("meta describes knowledge, skills, and powers and grants nothing");
-println!("magic is not a meta band; ascendence is not a self-claim");
+    println!(
+        "meta describes knowledge, skills, and powers and grants nothing; magic_is_meta={} ascendence_self_claim={}",
+        magic_is_meta_band(),
+        ascendence_self_claim()
+    );
     Ok(())
 }
