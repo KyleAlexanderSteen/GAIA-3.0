@@ -131,3 +131,8 @@ Source status: book excerpt and secondary summaries only. The book itself was NO
 - [ ] Replications or counterexamples for M6, and non-Twitter replications for M5.
 - [ ] Cross-check with #1143 and #1200; coordinate with #1357 on innovation.
 - [ ] Human review.
+
+
+## Registered failure
+
+A bad-chaos claim is not eligible until a failure condition is named before the run. For this draft the condition is: a cascade past the cited interdependence threshold, or a rumor that outruns a correction on the measured network, counts as collapse rather than variation. No outside witness has run that condition here. This does not close #1205.
