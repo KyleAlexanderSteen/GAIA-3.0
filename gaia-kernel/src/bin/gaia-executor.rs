@@ -26,6 +26,8 @@ async fn main() {
             eprintln!("{} {}", receipt.status, receipt.detail);
             std::process::exit(1);
         }
+        // Unreachable until run_intent can dispatch a syscall and return "done".
+        // Kept so the success path is not lost; remove or wire up in the dispatch issue.
         let handle = host.intent(&goal).expect("intent");
         println!(
             "executed intent={} state={} receipt={}",

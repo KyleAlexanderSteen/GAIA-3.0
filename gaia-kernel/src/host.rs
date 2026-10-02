@@ -120,6 +120,7 @@ impl KernelHost {
         if agent_id.is_empty() {
             return Err(KernelError::InvalidArgument("agent_id required".into()));
         }
+        self.audit.append(&self.principal, "invoke", agent_id);
         Err(KernelError::NotImplemented(format!(
             "invoke has no registered agent: {agent_id}"
         )))
@@ -129,6 +130,7 @@ impl KernelHost {
         if sensor.is_empty() {
             return Err(KernelError::InvalidArgument("sensor required".into()));
         }
+        self.audit.append(&self.principal, "observe", sensor);
         Err(KernelError::NotImplemented(format!(
             "observe has no sensor feed: {sensor}"
         )))
