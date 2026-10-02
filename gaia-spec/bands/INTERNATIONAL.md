@@ -54,3 +54,7 @@ Science, technology, and philosophy sit beside traditions. They do not outrank a
 | philosophy | knowing is not having; a report is not a finding; ascendence cannot be self-claimed |
 
 `ways.csv` carries the rows. `und` means a discipline not listed is not excluded.
+
+## Chaos and order
+
+`chaos-order.csv` names good chaos, bad chaos, good order, and bad order for knowledge, skills, capabilities, powers, and magic, at normal and at super. Anchors: #1204, #1205, #1207, #1208. Every row has `grants=false` and `live=false`. Super is the same shape as normal, not a higher grant. Magic stays mapped and not a certificate.

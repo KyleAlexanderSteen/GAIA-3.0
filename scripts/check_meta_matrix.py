@@ -36,6 +36,14 @@ if any(row["operational"] != "false" or row["certifies_consciousness"] != "false
     bad.append("a way is operational or certifies consciousness")
 if not any(row["id"] == "und" for row in ways):
     bad.append("missing und way")
+with (root / "chaos-order.csv").open() as f:
+    chaos_rows = list(csv.DictReader(f))
+seen = {(row["domain"], row["band"]) for row in chaos_rows}
+expect = {(d, b) for d in required_domains for b in ("normal", "super")}
+if seen != expect:
+    bad.append(f"chaos-order coverage {seen}")
+if any(row["grants"] != "false" or row["live"] != "false" for row in chaos_rows):
+    bad.append("chaos-order grants or is live")
 if bad:
     print("meta matrix check failed:")
     print("\n".join(bad))
