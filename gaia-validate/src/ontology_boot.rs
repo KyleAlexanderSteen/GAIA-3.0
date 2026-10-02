@@ -1,7 +1,7 @@
 //! In-memory boot of the GAIA 3.0 ontology chain.
 //! This process starts. It does not claim a Super OS.
 
-use crate::ontology_gate::{admit_power, GateError, PowerClaim, PowerState};
+use crate::ontology_gate::{admit_power, GateError, PowerClaim};
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct BootReport {
@@ -65,6 +65,7 @@ pub fn boot_line() -> String {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::ontology_gate::PowerState;
 
     #[test]
     fn boot_starts_with_thirteen_domains_and_act_off() {
