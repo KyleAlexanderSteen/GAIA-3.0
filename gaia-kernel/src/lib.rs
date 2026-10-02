@@ -16,6 +16,7 @@ pub mod planetary;
 pub mod providers;
 pub mod receipts;
 pub mod scheduler;
+pub mod si_layer;
 pub mod syscall;
 
 pub use capability::{CapabilityRegistration, redundancy_gate};
