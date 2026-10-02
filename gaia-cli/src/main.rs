@@ -2,6 +2,7 @@ use anyhow::Result;
 use clap::{Parser, Subcommand};
 
 mod commands;
+mod ledger;
 
 #[derive(Parser)]
 #[command(
@@ -31,6 +32,8 @@ enum Commands {
     Audit(commands::audit::AuditArgs),
     /// Revoke (stop) a running agent
     Revoke(commands::revoke::RevokeArgs),
+    /// Print the listed knowledge/skill/power/magic bands. Grants nothing.
+    Bands(commands::bands::BandsArgs),
 }
 
 #[tokio::main]
@@ -45,5 +48,6 @@ async fn main() -> Result<()> {
         Commands::Memory(args) => commands::memory::run(args).await,
         Commands::Audit(args)  => commands::audit::run(args).await,
         Commands::Revoke(args) => commands::revoke::run(args).await,
+        Commands::Bands(args)  => commands::bands::run(args).await,
     }
 }

@@ -1,6 +1,5 @@
 use ed25519_dalek::{Keypair, PublicKey, Signature as DalekSig, Signer, Verifier};
 use rand::rngs::OsRng;
-use uuid::Uuid;
 
 use crate::error::{GaiaError, Result};
 use crate::types::*;
@@ -34,35 +33,37 @@ impl GaiaClient {
         if goal.trim().is_empty() {
             return Err(GaiaError::InvalidArgument("goal must not be empty".into()));
         }
-        Ok(TaskHandle {
-            intent_id: Uuid::new_v4(),
-            state: "admitted".into(),
-        })
+        Err(GaiaError::NotImplemented(
+            "intent has no kernel transport; nothing was admitted".into(),
+        ))
     }
 
     pub fn context(&self, query: SemanticQuery) -> Result<MemCube> {
         if query.text.trim().is_empty() {
             return Err(GaiaError::InvalidArgument("query must not be empty".into()));
         }
-        Ok(MemCube {
-            id: Uuid::new_v4(),
-            cube_type: "plaintext".into(),
-            lifecycle: "active".into(),
-        })
+        Err(GaiaError::NotImplemented(
+            "context has no MemOS transport; nothing was stored".into(),
+        ))
     }
 
     pub fn invoke(&self, agent: AgentSpec) -> Result<String> {
         if agent.agent_id.is_empty() {
             return Err(GaiaError::InvalidArgument("agent_id required".into()));
         }
-        Ok(format!("invoked:{}", agent.name))
+        Err(GaiaError::NotImplemented(format!(
+            "invoke has no registered agent: {}",
+            agent.name
+        )))
     }
 
     pub fn observe(&self, sensor: &str) -> Result<String> {
         if sensor.is_empty() {
             return Err(GaiaError::InvalidArgument("sensor required".into()));
         }
-        Ok(format!("observe:{sensor}"))
+        Err(GaiaError::NotImplemented(format!(
+            "observe has no sensor bus: {sensor}"
+        )))
     }
 
     pub fn sign(&self, payload: &[u8]) -> Result<Signature> {
@@ -98,10 +99,10 @@ impl GaiaClient {
         if resource.name.is_empty() {
             return Err(GaiaError::InvalidArgument("resource name required".into()));
         }
-        Ok(ResourceHandle {
-            id: Uuid::new_v4(),
-            name: resource.name,
-        })
+        Err(GaiaError::NotImplemented(format!(
+            "declare has no resource registry: {}",
+            resource.name
+        )))
     }
 }
 
@@ -110,9 +111,9 @@ mod tests {
     use super::*;
 
     #[test]
-    fn intent_admits() {
-        let h = GaiaClient::new().intent("hello").unwrap();
-        assert_eq!(h.state, "admitted");
+    fn intent_is_not_implemented() {
+        let err = GaiaClient::new().intent("hello").unwrap_err();
+        assert!(matches!(err, GaiaError::NotImplemented(_)));
     }
 
     #[test]

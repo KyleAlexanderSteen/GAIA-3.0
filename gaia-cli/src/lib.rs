@@ -6,7 +6,7 @@ pub fn bin_name() -> &'static str {
 }
 
 pub fn listed_commands() -> &'static [&'static str] {
-    &["init", "start", "agent", "intent", "memory", "audit", "revoke"]
+    &["init", "start", "agent", "intent", "memory", "audit", "revoke", "bands"]
 }
 
 #[cfg(test)]
@@ -19,10 +19,11 @@ mod tests {
     }
 
     #[test]
-    fn seven_listed_commands() {
-        assert_eq!(listed_commands().len(), 7);
+    fn eight_listed_commands() {
+        assert_eq!(listed_commands().len(), 8);
         assert!(listed_commands().contains(&"init"));
         assert!(listed_commands().contains(&"revoke"));
+        assert!(listed_commands().contains(&"bands"));
     }
 
     #[test]

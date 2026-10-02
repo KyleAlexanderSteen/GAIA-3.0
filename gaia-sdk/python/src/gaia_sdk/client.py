@@ -10,22 +10,22 @@ class GaiaClient:
     def intent(self, goal: str) -> TaskHandle:
         if not goal or not goal.strip():
             raise InvalidArgument("goal must not be empty")
-        return TaskHandle(intent_id=new_id(), state="admitted")
+        raise NotImplementedCapability("intent has no kernel transport; nothing was admitted")
 
     def context(self, query: str) -> MemCube:
         if not query or not str(query).strip():
             raise InvalidArgument("query must not be empty")
-        return MemCube(id=new_id(), type="plaintext", lifecycle="active", content=str(query))
+        raise NotImplementedCapability("context has no MemOS transport; nothing was stored")
 
     def invoke(self, agent: AgentSpec) -> str:
         if not agent.agent_id:
             raise InvalidArgument("agent_id required")
-        return f"invoked:{agent.name}"
+        raise NotImplementedCapability(f"invoke has no registered agent: {agent.name}")
 
     def observe(self, sensor: str) -> str:
         if not sensor:
             raise InvalidArgument("sensor required")
-        return f"observe:{sensor}"
+        raise NotImplementedCapability(f"observe has no sensor bus: {sensor}")
 
     def sign(self, payload: bytes) -> bytes:
         if not payload:
@@ -40,4 +40,4 @@ class GaiaClient:
     def declare(self, resource: ResourceSpec) -> str:
         if not resource.name:
             raise InvalidArgument("resource name required")
-        return str(new_id())
+        raise NotImplementedCapability(f"declare has no resource registry: {resource.name}")

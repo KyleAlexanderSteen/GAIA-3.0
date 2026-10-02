@@ -265,7 +265,7 @@ impl McpRegistry {
         let audit_id = format!("mcp-audit-{}", self.handler_invocations);
         self.audit.push(format!("ADMIT {name} {audit_id}"));
         Ok(format!(
-            "mcp-ok:{name};intent={intent_id};resource=gaia://agent/agent.researcher;provenance=local-stub;quality=fixture;freshness=static;audit={audit_id}"
+            "mcp-not-executed:{name};intent={intent_id};resource=gaia://agent/agent.researcher;provenance=local-stub;quality=fixture;freshness=static;audit={audit_id}"
         ))
     }
 

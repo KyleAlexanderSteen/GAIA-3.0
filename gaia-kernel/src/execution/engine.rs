@@ -119,6 +119,9 @@ pub struct ExecutionResult {
     pub intent_id: Uuid,
     pub task_results: Vec<TaskResult>,
     pub total_ms: u64,
+    /// W3C `traceparent`. Flags are `00`. Not exported.
+    #[serde(default)]
+    pub traceparent: String,
 }
 
 struct PreparedTask {
@@ -198,11 +201,19 @@ impl ExecutionEngine {
             }
         }
 
-        let total_ms = span.finish(true);
+        let outcomes: Vec<bool> = task_results
+            .iter()
+            .map(|task| matches!(task.outcome, Outcome::Success { .. }))
+            .collect();
+        let status_ok = crate::execution::trace::status_ok(&outcomes);
+        let total_ms = span.finish(status_ok);
+        let trace = crate::execution::trace::LocalTrace::new(status_ok);
+        let _ = trace.export_otlp();
         Ok(ExecutionResult {
             intent_id: intent.id,
             task_results,
             total_ms,
+            traceparent: trace.traceparent(),
         })
     }
 

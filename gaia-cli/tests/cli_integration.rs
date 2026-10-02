@@ -106,7 +106,7 @@ fn assert_fails_loudly(args: &[&str]) {
 
 #[test]
 fn unbuilt_commands_fail_loudly() {
-    assert_fails_loudly(&["init"]);
+    assert_fails_loudly(&["init", "--profile", "sovereign"]);
     assert_fails_loudly(&["start"]);
     assert_fails_loudly(&["intent", "hello", "--stream"]);
     assert_fails_loudly(&["intent", "hello", "--gateway", "http://127.0.0.1:9"]);
@@ -114,7 +114,7 @@ fn unbuilt_commands_fail_loudly() {
     assert_fails_loudly(&["agent", "deploy", "--name", "a"]);
     assert_fails_loudly(&["memory", "list"]);
     assert_fails_loudly(&["memory", "search", "q"]);
-    assert_fails_loudly(&["audit"]);
+    assert_fails_loudly(&["audit", "--follow"]);
 }
 
 #[test]
@@ -151,4 +151,62 @@ fn power_claim_is_refused() {
     let stderr = String::from_utf8_lossy(&out.stderr);
     assert!(!out.status.success(), "{stderr}");
     assert!(stderr.contains("refused"), "{stderr}");
+}
+
+#[test]
+fn echo_is_written_and_audit_reads_it() {
+    let dir = std::env::temp_dir().join(format!("gaia-ledger-{}", std::process::id()));
+    let _ = std::fs::remove_dir_all(&dir);
+    std::fs::create_dir_all(&dir).expect("home");
+    let recorded = gaia()
+        .env("GAIA_HOME", &dir)
+        .args(["intent", "echo: ledger row"])
+        .output()
+        .expect("echo");
+    assert!(recorded.status.success(), "{}", String::from_utf8_lossy(&recorded.stderr));
+    let audited = gaia()
+        .env("GAIA_HOME", &dir)
+        .arg("audit")
+        .output()
+        .expect("audit");
+    let stdout = String::from_utf8_lossy(&audited.stdout);
+    assert!(audited.status.success(), "{}", String::from_utf8_lossy(&audited.stderr));
+    assert!(stdout.contains("ledger row"), "{stdout}");
+    assert!(stdout.contains("recorded"), "{stdout}");
+    let _ = std::fs::remove_dir_all(&dir);
+}
+
+#[test]
+fn init_writes_developer_profile_and_does_not_start() {
+    let dir = std::env::temp_dir().join(format!("gaia-init-{}", std::process::id()));
+    let _ = std::fs::remove_dir_all(&dir);
+    let out = gaia()
+        .env("GAIA_HOME", &dir)
+        .args(["init", "--profile", "developer"])
+        .output()
+        .expect("init");
+    let stdout = String::from_utf8_lossy(&out.stdout);
+    assert!(out.status.success(), "{}", String::from_utf8_lossy(&out.stderr));
+    assert!(stdout.contains("runtime=not-started"), "{stdout}");
+    assert!(!stdout.contains("Runtime started"), "{stdout}");
+    let profile = std::fs::read_to_string(dir.join("profile.toml")).expect("profile");
+    assert!(profile.contains("gateway_connected = false"), "{profile}");
+    assert!(profile.contains("runtime = \"not-started\""), "{profile}");
+    let _ = std::fs::remove_dir_all(&dir);
+}
+
+#[test]
+fn bands_lists_meta_and_grants_nothing() {
+    let out = gaia().arg("bands").output().expect("bands");
+    let stdout = String::from_utf8_lossy(&out.stdout);
+    assert!(out.status.success(), "{}", String::from_utf8_lossy(&out.stderr));
+    assert!(stdout.contains("domain=knowledge band=meta"), "{stdout}");
+    assert!(stdout.contains("domain=skills band=meta"), "{stdout}");
+    assert!(stdout.contains("domain=powers band=meta"), "{stdout}");
+    assert!(!stdout.contains("domain=magic"), "{stdout}");
+    assert!(stdout.contains("grants=false"), "{stdout}");
+    assert!(!stdout.contains("grants=true"), "{stdout}");
+    assert!(stdout.contains("knowing_is_having=false"), "{stdout}");
+    assert!(stdout.contains("ascendence_eligible=false"), "{stdout}");
+    assert!(stdout.contains("entanglement_is_both=false"), "{stdout}");
 }

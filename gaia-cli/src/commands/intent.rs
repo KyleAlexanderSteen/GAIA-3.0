@@ -35,6 +35,7 @@ pub async fn run(args: IntentArgs) -> Result<()> {
     let receipt = exec.run_intent(&id, &args.text);
     match receipt.status {
         "recorded" => {
+            crate::ledger::append_recorded(&receipt.id, &receipt.detail)?;
             println!(
                 "recorded id={} detail={}",
                 receipt.id, receipt.detail

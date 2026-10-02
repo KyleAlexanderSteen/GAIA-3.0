@@ -1,7 +1,7 @@
 //! OTel metric stubs for the 12-stage execution pipeline.
 //!
-//! These types are intentionally no-ops until the `opentelemetry` crate is
-//! wired in as part of issue #734 (Audit & Observability).  All call-sites
+//! These types record durations only. They are not OpenTelemetry.
+//! Trace context lives in `trace.rs` and refuses OTLP export. #734.  All call-sites
 //! in `engine.rs` compile and behave correctly today; swapping the bodies
 //! for real OTel calls later requires no API changes.
 //!

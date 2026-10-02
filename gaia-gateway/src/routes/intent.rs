@@ -2,14 +2,15 @@ use axum::{
     Json,
     extract::State,
     http::StatusCode,
-    response::{
-        IntoResponse,
-        sse::{Event, Sse},
-    },
+    response::IntoResponse,
 };
-use futures::stream;
 use serde::{Deserialize, Serialize};
+use std::sync::Arc;
+
 use crate::state::AppState;
+use gaia_kernel::broker::{Broker, Capabilities};
+use gaia_kernel::executor::Executor;
+use gaia_kernel::{Principal, PrincipalKind};
 
 #[derive(Deserialize)]
 pub struct IntentRequest {
@@ -21,26 +22,40 @@ pub struct IntentRequest {
 pub struct IntentResponse {
     pub id: String,
     pub status: String,
+    pub detail: String,
 }
 
-/// POST /intent — fire-and-forget, returns an intent ID.
+/// POST /intent — admits `echo:` only. Does not queue.
 pub async fn submit_intent(
     State(_state): State<AppState>,
     Json(req): Json<IntentRequest>,
 ) -> impl IntoResponse {
+    let _ = req.profile;
     let id = uuid::Uuid::new_v4().to_string();
-    tracing::info!(intent = %req.text, %id, "intent received");
-    // TODO: forward to gaia-orchestrator
-    (StatusCode::ACCEPTED, Json(IntentResponse { id, status: "queued".into() }))
+    let broker = Arc::new(Broker::new());
+    let principal = Principal::generate(PrincipalKind::Node);
+    let exec = Executor::new(&principal, Capabilities::default(), broker);
+    let receipt = exec.run_intent(&id, &req.text);
+    let body = Json(IntentResponse {
+        id: receipt.id,
+        status: receipt.status.to_string(),
+        detail: receipt.detail,
+    });
+    let code = match receipt.status {
+        "recorded" => StatusCode::OK,
+        "refused" => StatusCode::FORBIDDEN,
+        _ => StatusCode::NOT_IMPLEMENTED,
+    };
+    (code, body)
 }
 
-/// GET /intent/stream?text=… — streams result chunks as SSE.
-pub async fn stream_intent(
-    State(_state): State<AppState>,
-) -> Sse<impl futures::Stream<Item = Result<Event, std::convert::Infallible>>> {
-    // TODO: connect to orchestrator stream; placeholder emits one stub event.
-    let s = stream::once(async {
-        Ok(Event::default().data("[stub] intent stream not yet wired to orchestrator"))
-    });
-    Sse::new(s)
+/// GET /intent/stream — not wired. Must not emit a stub success event.
+pub async fn stream_intent(State(_state): State<AppState>) -> impl IntoResponse {
+    (
+        StatusCode::NOT_IMPLEMENTED,
+        Json(serde_json::json!({
+            "status": "not-implemented",
+            "detail": "intent stream is not wired"
+        })),
+    )
 }

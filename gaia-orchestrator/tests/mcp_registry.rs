@@ -30,7 +30,7 @@ fn signed_tool_invokes_from_intent() {
     let out = McpRegistry::local()
         .invoke_from_intent(&g, &IntentSigner::generate())
         .unwrap();
-    assert!(out.starts_with("mcp-ok:research.summarize"));
+    assert!(out.starts_with("mcp-not-executed:research.summarize"));
     assert!(out.contains(&format!("intent={}", g.id)));
     assert!(out.contains("audit="));
 }
@@ -80,5 +80,5 @@ fn jsonrpc_tools_call_requires_signature() {
         "tools/call",
         "research.summarize",
     ));
-    assert!(ok.result.unwrap().starts_with("mcp-ok:research.summarize"));
+    assert!(ok.result.unwrap().starts_with("mcp-not-executed:research.summarize"));
 }
