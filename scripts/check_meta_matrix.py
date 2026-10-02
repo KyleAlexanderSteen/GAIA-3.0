@@ -34,6 +34,8 @@ if not {"science", "technology", "philosophy", "unspecified"} <= way_ids:
     bad.append(f"ways {way_ids}")
 if any(row["operational"] != "false" or row["certifies_consciousness"] != "false" for row in ways):
     bad.append("a way is operational or certifies consciousness")
+if any(not row.get("failure") for row in ways):
+    bad.append("a way has no failure")
 if not any(row["id"] == "und" for row in ways):
     bad.append("missing und way")
 with (root / "chaos-order.csv").open() as f:
