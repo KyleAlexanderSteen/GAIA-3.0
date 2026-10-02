@@ -8,6 +8,3 @@ skills,meta,meta:skills,false
 powers,normal,skill-capability,false
 powers,super,gaia-hspd,false
 powers,meta,meta:powers,false
-magic,normal,wonder-label,false
-magic,super,gaia-hmgd+gaia-aimd,false
-magic,meta,meta:magic,false

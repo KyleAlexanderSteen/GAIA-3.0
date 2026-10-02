@@ -1,6 +1,6 @@
 use anyhow::Result;
 use clap::Args;
-use gaia_skills::{catalog, Band};
+use gaia_skills::{ascendence_self_claim, catalog, magic_is_meta_band, Band};
 
 #[derive(Args)]
 pub struct BandsArgs {}
@@ -17,6 +17,7 @@ pub async fn run(_args: BandsArgs) -> Result<()> {
             row.domain, band, row.shelf, row.grants
         );
     }
-    println!("meta describes the other bands and grants nothing");
+    println!("meta describes knowledge, skills, and powers and grants nothing");
+println!("magic is not a meta band; ascendence is not a self-claim");
     Ok(())
 }

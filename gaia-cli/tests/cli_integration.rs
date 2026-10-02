@@ -203,7 +203,7 @@ fn bands_lists_meta_and_grants_nothing() {
     assert!(stdout.contains("domain=knowledge band=meta"), "{stdout}");
     assert!(stdout.contains("domain=skills band=meta"), "{stdout}");
     assert!(stdout.contains("domain=powers band=meta"), "{stdout}");
-    assert!(stdout.contains("domain=magic band=meta"), "{stdout}");
+    assert!(!stdout.contains("domain=magic"), "{stdout}");
     assert!(stdout.contains("grants=false"), "{stdout}");
     assert!(!stdout.contains("grants=true"), "{stdout}");
 }
