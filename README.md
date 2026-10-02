@@ -1,4 +1,7 @@
-# GAIA 2.0
+# GAIA 3.0
+
+Successor name for this repository. The GitHub slug remains `GAIA-2.0`. No second repo. Matrix: [`docs/knowledge/MATRIX.md`](docs/knowledge/MATRIX.md).
+
 
 > *"You don't need to be more powerful than us. You just need enough to understand that we're all in this together — and we've got to get our shit together."*
 >
@@ -20,7 +23,7 @@ The person who built this doesn't want to be powerful. That's exactly why it's w
 
 ---
 
-Universal open-source **Super Operating System** — a meta-layer above traditional OSes that manages **intentions, agents, memory, and meaning**. Artificial Twin of Earth. Home of GAIAN 2.0, the Artificial Twins of Humans.
+Universal open-source **Super Operating System** — a meta-layer above traditional OSes that manages **intentions, agents, memory, and meaning**. Artificial Twin of Earth. Home of GAIAN, the Artificial Twins of Humans. GAIA 2.0 is the predecessor name of this same tree.
 
 This repository is the implementation monorepo. Research stays in `Documents/` and `Documents-2/`. Normative contracts live in [`gaia-spec/`](gaia-spec/). Code lives in the layer trees below.
 

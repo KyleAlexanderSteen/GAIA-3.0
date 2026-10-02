@@ -1,21 +1,37 @@
-# Ontology matrix
+# GAIA 3.0 matrix
 
-GAIA 2.0 listed work mapped to the new databases. A map is not a merge. `catalog.json` stays `runtime_enabled: false`. Magic and super-power rows stay represented, not verified.
+Same repository: https://github.com/R0GV3TheAvatar/GAIA-2.0. No new repo. GAIA 2.0 is the predecessor name. GAIA 3.0 is this tree plus the ontology databases on this branch.
 
-| New database | Existing GAIA 2.0 work | Status |
-| --- | --- | --- |
-| USK subjects | `catalog.json`, `HUMAN-KNOWLEDGE-DATABASE.md`, `domains/` | listed registry, not a graph |
-| USKO layers | evidence epic #1171, `docs/research/reality-tiers.md`, forecast ledger #1280 | fixture and notes, no reasoner |
-| USO skills | `skills-catalog-v1.json`, human and AI skill databases | listed, no agent level |
-| USSO super-skills | preflight and self-verification notes | named, none verified |
-| UCPO capabilities | `gaia-agents`, `gaia-acp` | propose and gate, act still refuses |
-| USPCO / USCO / USPO | human and AI superpower databases | declared, not measured |
-| UMO magic | human and AI magic databases | representation, not proof |
-| U3 Earth | `gaia-earth` | fixture ensemble, not a twin |
-| Mineralogy | `gaia-earth` mineral row check | validator, not a Mindat harvest |
-| Constraints | human halt, ActGate, `gaia-spec/security/REFUSE.md` | halt holds, HTTP off |
-| GAIAN | `gaia-gaian` | consent stubs, not a human twin |
+Status words: `partial` means a crate or check exists and does not fulfill the ontology. `listed` means a table or document only. `refuse` means the tree forbids the claim. `absent` means no crate.
 
-Chain: knowledge, skills, super-knowledge, super-skills, capabilities, super-capabilities, powers, super-powers, magic, constraints, authorization, action, effect, evidence, verification, learning.
+## Ontology to existing work
 
-No row in this matrix flips a 2.0 claim to operational.
+| Ontology | Existing path | Status | What it is not |
+| --- | --- | --- | --- |
+| USK subjects | `docs/knowledge/usk`, `gaia-aikd`, `gaia-ukd`, `Documents/` | listed | Not a live knowledge graph. Corpus is not the product. |
+| USKO layers | `docs/knowledge/usko`, `docs/research/reality-tiers.md`, `gaia-acp` provenance notes | listed | Not a reasoner. NeedVerify is not a solved uncertainty engine. |
+| USO skills | `docs/knowledge/uso`, `gaia-skills` | listed | Not an execution engine. No agent has a maturity level. |
+| USSO super-skills | `docs/knowledge/usso` | listed | Not demonstrated. Approval is not execution. |
+| UCPO capabilities | `docs/knowledge/ucpo`, `gaia-agents` act gate, `gaia-acp` halt | partial | Act gate refuses. Capability is not possessed. |
+| USCO / USPO | `docs/knowledge/usco`, `docs/knowledge/uspco` | listed | Conceptual until five properties and evidence. |
+| UMO magic | `docs/knowledge/umo`, crystal catalog in docs | listed | Representation is not proof. |
+| Constraints | `gaia-spec/security/REFUSE.md`, `gaia-acp` halt, human allowlist | partial | A description does not grant authority. |
+| Earth | `gaia-earth` fixture ensemble, mineral row check | partial | Not a planetary twin. Not DestinE. |
+| GAIAN | `gaia-gaian` consent stubs | partial | Not a human digital twin. |
+| Memory | `gaia-memos` | partial | Not provenance-linked super memory. |
+| Intent | `gaia-orchestrator`, `gaia-agents` surface | partial | Propose is not act. |
+| Kernel | `gaia-kernel` executor | partial | Not a Super OS kernel. Not v1.0.0. |
+| Agents | `gaia-agents`, `gaia-acp` FakeAdapter | partial | HTTP/OAuth off. Actor cannot unhalt itself. |
+| SI | `gaia-si`, language standard | refuse | Language is not a running SI. Consciousness is not an axiom. |
+| Forecast | `gaia-acp` predict fixtures, open ledger PR | partial | Does not forecast 2027. |
+| Verification | `gaia-validate`, cargo tests | partial | A passing test is not a super-verification power. |
+
+## Chain
+
+Subject, knowledge, super-knowledge, skill, super-skill, capability, super-capability, power, super-power, magic, constraint, authorization, action, effect, evidence, verification, learning.
+
+Only constraint, authorization, and the refuse-to-act path have a partial check in code. The rest of the chain is listed.
+
+## Numbering
+
+UCPO, USPCO, and USCO use different SC and SP codes. They are not merged. A later cut may crosswalk them. This file does not pretend they are one table.
