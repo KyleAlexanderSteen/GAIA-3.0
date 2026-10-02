@@ -108,8 +108,8 @@ mod intent_tests {
     #[test]
     fn unsupported_task_is_not_ok() {
         let exec = executor();
-        let task = crate::broker::Task {
-            id: "t-9".into(),
+        let task = Task {
+            id: uuid::Uuid::new_v4(),
             kind: "forecast-earth".into(),
             payload: "{}".into(),
         };
