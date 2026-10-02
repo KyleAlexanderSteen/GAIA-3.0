@@ -2,13 +2,15 @@ import { useState } from 'react';
 import IntentConsole from './components/IntentConsole';
 import AgentMatrix from './components/AgentMatrix';
 import Studio from './components/Studio';
+import Planetary from './components/Planetary';
 
-type Tab = 'console' | 'agents' | 'studio';
+type Tab = 'console' | 'agents' | 'studio' | 'planetary';
 
 const TABS: { id: Tab; label: string }[] = [
   { id: 'console', label: 'Intent Console' },
   { id: 'agents',  label: 'Agents' },
   { id: 'studio',  label: 'Studio' },
+  { id: 'planetary', label: 'Planetary' },
 ];
 
 export default function App() {
