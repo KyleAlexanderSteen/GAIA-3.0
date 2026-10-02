@@ -92,3 +92,26 @@ fn revoke_help_succeeds() {
 fn revoke_missing_agent_id_fails() {
     gaia().arg("revoke").assert().failure();
 }
+
+// #1304: stubs must fail loudly. Each unbuilt command exits non-zero, says it
+// is not implemented on stderr, and never prints a success mark on stdout.
+fn assert_fails_loudly(args: &[&str]) {
+    let out = gaia().args(args).output().expect("run gaia-cli");
+    assert!(!out.status.success(), "{args:?} must exit non-zero");
+    let stderr = String::from_utf8_lossy(&out.stderr);
+    let stdout = String::from_utf8_lossy(&out.stdout);
+    assert!(stderr.contains("not implemented"), "{args:?} stderr: {stderr}");
+    assert!(!stdout.contains('\u{2713}'), "{args:?} printed a success mark: {stdout}");
+}
+
+#[test]
+fn unbuilt_commands_fail_loudly() {
+    assert_fails_loudly(&["init"]);
+    assert_fails_loudly(&["start"]);
+    assert_fails_loudly(&["intent", "hello"]);
+    assert_fails_loudly(&["agent", "create", "--name", "a"]);
+    assert_fails_loudly(&["agent", "deploy", "--name", "a"]);
+    assert_fails_loudly(&["memory", "list"]);
+    assert_fails_loudly(&["memory", "search", "q"]);
+    assert_fails_loudly(&["audit"]);
+}

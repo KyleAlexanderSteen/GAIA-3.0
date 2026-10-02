@@ -28,14 +28,13 @@ pub enum AgentAction {
 
 pub async fn run(args: AgentArgs) -> Result<()> {
     match args.action {
-        AgentAction::Create { name, manifest } => {
-            println!("Creating agent '{name}' (manifest: {manifest:?})");
+        AgentAction::Create { .. } => {
             // TODO: POST /agents
+            Err(super::not_implemented("agent create", "#1297"))
         }
-        AgentAction::Deploy { name } => {
-            println!("Deploying agent '{name}'");
+        AgentAction::Deploy { .. } => {
             // TODO: POST /agents/{name}/deploy
+            Err(super::not_implemented("agent deploy", "#1297"))
         }
     }
-    Ok(())
 }

@@ -21,13 +21,12 @@ pub enum MemoryAction {
 pub async fn run(args: MemoryArgs) -> Result<()> {
     match args.action {
         MemoryAction::List => {
-            println!("Listing memory cubes...");
             // TODO: GET /memory
+            Err(super::not_implemented("memory list", "#1297"))
         }
-        MemoryAction::Search { query } => {
-            println!("Searching memory: {query:?}");
+        MemoryAction::Search { .. } => {
             // TODO: GET /memory/search?q=...
+            Err(super::not_implemented("memory search", "#1297"))
         }
     }
-    Ok(())
 }

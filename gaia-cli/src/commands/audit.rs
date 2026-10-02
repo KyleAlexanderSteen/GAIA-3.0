@@ -13,7 +13,7 @@ pub struct AuditArgs {
 }
 
 pub async fn run(args: AuditArgs) -> Result<()> {
-    println!("Audit log (limit={}, follow={})", args.limit, args.follow);
     // TODO: GET /audit?limit=N  or WS /audit/stream when --follow
-    Ok(())
+    let _ = args;
+    Err(super::not_implemented("audit", "#1297"))
 }
