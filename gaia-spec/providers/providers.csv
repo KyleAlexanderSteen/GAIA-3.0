@@ -1,0 +1,9 @@
+id,kind,connected,unify
+local,process,false,false
+ollama,local-server,false,false
+llamacpp,local-server,false,false
+openai,remote,false,false
+anthropic,remote,false,false
+google,remote,false,false
+aws,remote,false,false
+open-weights,file,false,false
