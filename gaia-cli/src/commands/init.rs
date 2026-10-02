@@ -13,8 +13,7 @@ pub struct InitArgs {
 }
 
 pub async fn run(args: InitArgs) -> Result<()> {
-    println!("Initialising GAIA profile: {}", args.profile);
     // TODO: write ~/.gaia/config.toml with profile + gateway URL
-    println!("✓ Profile '{}' ready. Run `gaia start` to launch.", args.profile);
-    Ok(())
+    let _ = args;
+    Err(super::not_implemented("init", "#1297"))
 }

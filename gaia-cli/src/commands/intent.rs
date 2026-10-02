@@ -16,9 +16,8 @@ pub struct IntentArgs {
 }
 
 pub async fn run(args: IntentArgs) -> Result<()> {
-    let gateway = args.gateway.as_deref().unwrap_or("http://localhost:7700");
-    println!("Submitting intent to {gateway}: {:?}", args.text);
     // TODO: POST /intent  with Accept: text/event-stream when args.stream
     //       pipe each SSE chunk to stdout
-    Ok(())
+    let _ = args;
+    Err(super::not_implemented("intent", "#1299"))
 }
