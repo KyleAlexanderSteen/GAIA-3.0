@@ -5,6 +5,7 @@ pub mod start;
 pub mod agent;
 pub mod intent;
 pub mod memory;
+pub mod model;
 pub mod audit;
 pub mod revoke;
 
