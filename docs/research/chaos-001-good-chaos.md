@@ -64,3 +64,8 @@ Partially. In supported cases (T1-T4) randomness is paired with a selection or c
 - [ ] Add a primary antifragility critique and an empirical test.
 - [ ] Second independent source per taxon.
 - [ ] Human review of the 'disorder' conclusion.
+
+
+## Registered failure
+
+A good-chaos claim is not eligible until a failure condition is named before the run. For this draft the condition is: variation past the cited optimum, or noise that impairs the measured task, counts as hurt, not help. No outside witness has run that condition here. This does not close #1204.
