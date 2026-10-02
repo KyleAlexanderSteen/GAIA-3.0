@@ -137,6 +137,32 @@ jobs:
       - name: Run gaia-cli integration tests
         run: cargo test -p gaia-cli
 
+  # #1294: lint test code too. --all-targets includes #[cfg(test)] modules,
+  # integration tests, examples, and benches, which plain `cargo clippy` skips.
+  # No -D warnings yet: this job fails only on error-level lints, so it cannot
+  # turn CI red over existing style warnings. Tightening is a separate step.
+  rust-clippy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+      - name: Cache Cargo registry and build artifacts
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-cargo-clippy-${{ hashFiles('**/Cargo.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-clippy-
+      - name: Generate Cargo.lock if absent
+        run: cargo generate-lockfile
+      - name: Clippy (all targets, whole workspace)
+        run: cargo clippy --workspace --all-targets
+
   markdown:
     runs-on: ubuntu-latest
     steps:
