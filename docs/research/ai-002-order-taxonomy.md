@@ -66,4 +66,15 @@ Implication: a control that raises refusals is not automatically safer. It can c
 
 Open: primary sources for monitoring and halting (for example published shutdown-compliance or interruptibility evaluations) have not yet been found. Do not treat this family as evidenced until they are.
 
-<!-- Sections 4-5 added in following commits. -->
+## 4. Organizational and legal controls
+
+| Control | Shown to prevent | Documented failure or limit | Evidence |
+|---|---|---|---|
+| NIST AI RMF 1.0 | Not measured | NIST states that measuring the framework's effectiveness is future work ([NIST AI 100-1](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf)). Voluntary use. | Primary (for the limit); effectiveness is Convention |
+| EU AI Act Article 14 human oversight | Legal requirement that high-risk systems can be effectively overseen by natural persons | Application dates changed: high-risk Annex III obligations deferred to 2 December 2027 and Annex I to 2 August 2028 ([Article 14 page](https://artificialintelligenceact.eu/article/14/), [EC AI Act page](https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai)). Critics question how oversight works in practice ([Laux 2023](https://www.tandfonline.com/doi/pdf/10.1080/17579961.2023.2245683), [Dubois et al.](https://www.tandfonline.com/doi/full/10.1080/13600834.2022.2116354)). | Secondary for dates (`NeedVerify` against the Official Journal text); Primary for the commentary papers |
+| Load-bearing refuse list in CI (#1043) | Shipping of refused items, by test | No published effectiveness data; covers only named symbols | Convention |
+| AI Use Policy, risk assessment, vendor due diligence, oversight log (#1048-#1051) | Planned; none finished | No effectiveness data | Convention |
+
+Correction to flag on #1101: that issue says the EU AI Act is fully applicable from 2 August 2026. The sources above indicate high-risk obligations were deferred. Article 50 transparency obligations were reported as still scheduled for 2 August 2026 ([Jones Walker](https://www.joneswalker.com/en/insights/blogs/ai-law-blog/yes-august-2-still-matters-the-eu-approved-a-high-risk-ai-delay-but-mo)). `NeedVerify`.
+
+<!-- Section 5 (failure modes, evaluation gaming) added in the next commit. -->
