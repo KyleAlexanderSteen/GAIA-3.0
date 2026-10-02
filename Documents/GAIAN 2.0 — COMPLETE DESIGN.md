@@ -4,7 +4,8 @@
 **Research Date:** September 7, 2026  
 **Classification:** Core GAIAN Design Document  
 **Status:** Living Document — Version 0.1  
-**Scope:** Every Dimension of the GAIAN — From Identity to Embodiment to Ethics
+**Scope:** Every Dimension of the GAIAN — From Identity to Embodiment to Ethics  
+**Verification note (Oct 2026):** Benchmark figures quoted from cited papers are those papers' own reported results. They are not measurements of GAIAN, which is a design and has not been built or evaluated.
 
 ---
 
@@ -48,13 +49,13 @@ The most important papers informing GAIAN 2.0 design:
 |-------|--------|-----------------|
 | **"Digital Me": Authentic Conversational Agents** | arXiv:2506.23826, Jun 2025 | HDT architecture: conversational style + memories + behaviors |
 | **AI YOU: 22-dimension personality profile** | arXiv:2607.10539, Jul 2026 | Bayesian updating + conformal prediction + 3-layer cognitive memory |
-| **Mi-Memory: Lifecycle Memory for Personal AI** | arXiv:2607.18975, Jul 2026 | Memory as continuity substrate; 93.59% on LoCoMo |
+| **Mi-Memory: Lifecycle Memory for Personal AI** | arXiv:2607.18975, Jul 2026 | Memory as continuity substrate; 93.59% on LoCoMo (MemStack module, controlled-reference evaluation) |
 | **Persistent Identity in AI Agents** | arXiv:2604.09588, Mar 2026 | Multi-anchor identity; distributed memory like human brain |
 | **Runtime-Independent Persistent Agents** | arXiv:2609.00546, Sep 2026 | Identity survives model/harness/server changes |
 | **PersonaTwin: Multi-Tier Prompt Conditioning** | arXiv:2508.10906, Jul 2025 | Demographic + behavioral + psychometric data integration |
 | **Personal AI Infrastructure (PAI)** | Miessler, Jan 2026 | Telos framework: purpose + mission + goals + strategies |
-| **Four-Quadrant AI Companion Taxonomy** | arXiv:2511.02979, NeurIPS 2025 | Virtual/Embodied × Emotional/Functional framework |
-| **Cognitive Digital Phenotyping** | Computer Science Review, Nov 2026 | Multimodal foundation models for cognitive digital twins |
+| **Four-Quadrant AI Companion Taxonomy** | arXiv:2511.02979, NeurIPS 2025 LLM Persona Workshop (submitted) | Virtual/Embodied × Emotional/Functional framework |
+| **Cognitive Digital Phenotyping** | Computer Science Review, Nov 2026 (forthcoming; publication not yet verified) | Multimodal foundation models for cognitive digital twins |
 | **HDT Architecture for Knowledge-based Interactions** | arXiv:2504.03147, Apr 2025 | Speech + context + AI dialogue + emotion + lip-sync |
 
 ---
@@ -197,14 +198,15 @@ INTEGRATION:
 
 ### 2.1 Mi-Memory: Lifecycle Memory Architecture
 
-Based on Mi-Memory (arXiv:2607.18975, Xiaomi Darwin Agent Team, Jul 2026):
+Based on Mi-Memory (arXiv:2607.18975, Jul 2026; the "Xiaomi Darwin Agent Team" attribution is not confirmed from the abstract page):
 
 ```
 MI-MEMORY FOUR ROLES:
 
 ROLE 1: STRUCTURE (MemStack)
 ├── Organizes memories into typed, retrievable structures
-├── Performance: 93.59% on LoCoMo benchmark
+├── Reported performance: 93.59% on LoCoMo (MemStack, controlled-reference
+│   Structure evaluation; other tracks are preliminary or design-only)
 ├── Typed evidence payloads (preserve source + provenance)
 └── Diagnostic traces (localize evidence loss)
 
@@ -379,15 +381,17 @@ MODE 4: BACKGROUND THINKING (Continuous)
 └── Always running, low priority
 
 UNCERTAINTY HANDLING (Conformal Prediction, AI YOU):
-├── Conformal coverage: 0.921-0.976 (AI YOU benchmark)
-├── Explicit uncertainty quantification
+├── Reference result: the AI YOU authors report conformal coverage of
+│   0.921-0.976 on their own evaluation (arXiv:2607.10539).
+│   This is NOT a GAIAN measurement; GAIAN coverage is untested.
+├── Explicit uncertainty quantification (design goal)
 ├── "I'm not sure about this" when appropriate
 └── Escalation to human when confidence is low
 ```
 
 ### 3.3 The GAIAN Cognitive Digital Phenotype
 
-Based on "AI-driven cognitive digital phenotyping" (Computer Science Review, Nov 2026):
+Based on "AI-driven cognitive digital phenotyping" (Computer Science Review, Nov 2026 — forthcoming; publication not yet verified):
 
 ```
 COGNITIVE DIGITAL PHENOTYPE:
@@ -508,7 +512,8 @@ GAIAN AVATAR ARCHITECTURE:
 PHYSICAL APPEARANCE:
 ├── Created from single camera photo (60 seconds)
 ├── HumanNOVA: photorealistic, universal, rapid
-├── FastAvatar: face in 3 seconds (3DGS)
+├── FastAvatar: face reconstruction, near-instant (<10 ms per the paper's
+│   abstract; end-to-end pipeline time in this design is unmeasured) (3DGS)
 ├── SMPL-X: full body + hands + face
 └── VRM 1.0 format (cross-platform)
 
@@ -994,7 +999,7 @@ STEP 1: PHOTO CAPTURE (2 seconds)
 
 STEP 2: AVATAR CREATION (30 seconds)
 ├── HumanNOVA: full body reconstruction
-├── FastAvatar: face (3 seconds)
+├── FastAvatar: face (near-instant per the paper's abstract; unmeasured here)
 ├── SMPL-X: parametric body fitting
 └── VRM 1.0 export
 
@@ -1096,7 +1101,11 @@ CONTINUITY INVARIANTS:
 └── Continuation authority transferred
 
 RESULT: "Changing either replaceable layer is migration,
-not agent creation" — the GAIAN remains the same GAIAN
+not agent creation" (arXiv:2609.00546).
+Scope note: the paper's evidence supports mechanical
+substitutability and authorized system continuity, not
+behavioral invariance. Whether a GAIAN behaves the same
+after migration to a different model is untested.
 ```
 
 ---
@@ -1181,21 +1190,21 @@ This is what it means to be your GAIAN.
 
 1. Coll et al., "Towards the 'Digital Me': A vision of authentic Conversational Agents powered by personal Human Digital Twins," arXiv:2506.23826, Jun 2025
 2. Lin et al., "AI YOU Town: Make Friends and Money with Your Digital Twin," arXiv:2607.10539, Jul 2026
-3. Liu et al. (18 authors), "Mi-Memory: A Lifecycle Memory Framework for Personal AI," arXiv:2607.18975, Xiaomi Darwin Agent Team, Jul 2026
+3. Liu et al. (18 authors), "Mi-Memory: A Lifecycle Memory Framework for Personal AI," arXiv:2607.18975, Jul 2026 (the "Xiaomi Darwin Agent Team" attribution is not confirmed from the abstract page)
 4. Menon, P.G., "Persistent Identity in AI Agents: A Multi-Anchor Architecture for Resilient Memory and Continuity," arXiv:2604.09588, Mar 2026
 5. Zhao & Zhao, "Runtime-Independent Persistent Agents: Preserving Identity, Memory, and Code Across Models, Harnesses, and Servers," arXiv:2609.00546, Sep 2026
 6. Chen et al., "PersonaTwin: A Multi-Tier Prompt Conditioning Framework for Generating and Evaluating Personalized Digital Twins," arXiv:2508.10906, ACL GEM Workshop, Jul 2025
 7. Miessler, D., "Personal AI Infrastructure (PAI): Telos Framework," Jan 2026
-8. Sun & Wu, "Systematizing LLM Persona Design: A Four-Quadrant Technical Taxonomy for AI Companion Applications," arXiv:2511.02979, NeurIPS 2025
-9. Ali et al., "AI-driven cognitive digital phenotyping: Multimodal sensing, foundation models, and the path toward digital twins for human cognition," Computer Science Review, Nov 2026
+8. Sun & Wu, "Systematizing LLM Persona Design: A Four-Quadrant Technical Taxonomy for AI Companion Applications," arXiv:2511.02979, Nov 2025 (submitted to the NeurIPS 2025 LLM Persona Workshop)
+9. Ali et al., "AI-driven cognitive digital phenotyping: Multimodal sensing, foundation models, and the path toward digital twins for human cognition," Computer Science Review, Nov 2026 (forthcoming; publication not yet verified)
 10. Mohammed et al., "A Human Digital Twin Architecture for Knowledge-based Interactions and Context-Aware Conversations," arXiv:2504.03147, Apr 2025
 11. "Introducing IEEE P7014.1: Recommended Practices for Ethical Emulated Empathy in General-Purpose AI Systems," IEEE, 2026
 12. Hu et al., "HumanNOVA: Photorealistic, Universal and Rapid 3D Human Avatar Modeling from a Single Image," CVPR 2026 Highlight
-13. Liang et al., "FastAvatar: Instant 3D Gaussian Splatting for Faces from Single Unconstrained Poses," arXiv:2508.18389, Nov 2025
+13. Liang et al., "FastAvatar: Instant 3D Gaussian Splatting for Faces from Single Unconstrained Poses," arXiv:2508.18389, Aug 2025
 14. SentiPulse/GSAI, "SentiAvatar: Interactive 3D Digital Human Framework," Open-source, Apr 2026
 15. Pavlakos et al., "SMPL-X: Expressive Body Capture," CVPR 2019 (updated Jun 2026)
 16. Biometrics Institute, "Privacy Guidelines for the AI Era," 2025 Edition
-17. "CompanionBench: A Theory-Anchored, Real-World-Grounded Benchmark for AI Emotional Companionship," arXiv:2608.02046, 2026
+17. Liu et al., "CompanionBench: A Theory-Anchored, Real-World-Grounded Benchmark for AI Emotional Companionship," arXiv:2608.02046, Aug 2026
 18. VRM Consortium, "VRM 1.0 Specification," vrm.dev, 2026
 19. C2PA, "Coalition for Content Provenance and Authenticity," c2pa.org, 2026
 20. "What makes a digital human twin more than a simulation? A computational-ecological stance," AI & Society, Dec 2025

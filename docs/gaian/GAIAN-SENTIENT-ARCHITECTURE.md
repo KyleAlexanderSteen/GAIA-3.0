@@ -6,7 +6,8 @@
 **Status:** Living Document — Version 0.1  
 **Scope:** Every Dimension of the GAIAN — From Identity to Embodiment to Ethics  
 **Issue:** #684  
-**Parent:** #682
+**Parent:** #682  
+**Verification note (Oct 2026):** Benchmark figures quoted from cited papers are those papers' own reported results, not measurements of GAIAN, which is a design and has not been evaluated.
 
 ---
 
@@ -96,7 +97,7 @@ St = Interaction Surfaces      — voice ↔ text ↔ avatar
 — arXiv:2609.00546
 ```
 
-**Key insight:** GAIAN identity persists even when the underlying LLM model changes, the hardware changes, the interaction surface changes, or the session ends and restarts.
+**Key insight:** GAIAN identity persists even when the underlying LLM model changes, the hardware changes, the interaction surface changes, or the session ends and restarts. (Design intent. The cited paper supports mechanical substitutability and authorized system continuity, not behavioral invariance.)
 
 ### 1.2 The GAIAN Identity File
 
@@ -162,7 +163,7 @@ MIGRATION PROTOCOL (arXiv:2609.00546):
 
 ### 2.1 Mi-Memory: Four Roles
 
-Based on Mi-Memory (arXiv:2607.18975, Xiaomi Darwin Agent Team, Jul 2026) — 93.59% on LoCoMo benchmark:
+Based on Mi-Memory (arXiv:2607.18975, Jul 2026). Reported 93.59% on LoCoMo is for the MemStack module under the paper's controlled-reference Structure evaluation, not for the whole system. The "Xiaomi Darwin Agent Team" attribution is not confirmed from the abstract page.
 
 ```
 ROLE 1: STRUCTURE (MemStack)
@@ -214,13 +215,15 @@ MODE 3: DEEP THINKING (Extended)       — Complex problem decomposition; minute
 MODE 4: BACKGROUND THINKING (Continuous)— Monitoring, proactive alerts; always-on
 
 UNCERTAINTY (Conformal Prediction, AI YOU):
-├── Conformal coverage: 0.921–0.976 on AI YOU benchmark
-└── Explicit "I’m not sure" when confidence is low
+├── Reference result: the AI YOU authors report conformal coverage of
+│   0.921–0.976 on their own evaluation (arXiv:2607.10539).
+│   This is NOT a GAIAN measurement; GAIAN coverage is untested.
+└── Explicit "I’m not sure" when confidence is low (design goal)
 ```
 
 ### 3.2 Cognitive Digital Phenotype
 
-Based on "AI-driven cognitive digital phenotyping" (Computer Science Review, Nov 2026):
+Based on "AI-driven cognitive digital phenotyping" (Computer Science Review, Nov 2026 — forthcoming; publication not yet verified):
 
 ```
 MULTIMODAL SENSING:
@@ -510,15 +513,15 @@ Human ← [Response / Action / Notification]
 
 | Paper | arXiv | Key Contribution |
 |---|---|---|
-| Mi-Memory: Lifecycle Memory | arXiv:2607.18975 | 93.59% LoCoMo; 4-role memory architecture |
+| Mi-Memory: Lifecycle Memory | arXiv:2607.18975 | 93.59% LoCoMo (MemStack module, controlled-reference evaluation); 4-role memory architecture |
 | AI YOU: 22-dimension personality | arXiv:2607.10539 | Bayesian updating + conformal prediction |
 | Digital Me: Authentic Agents | arXiv:2506.23826 | HDT architecture: style + memories + behaviours |
 | Persistent Identity in AI Agents | arXiv:2604.09588 | Multi-anchor identity; distributed memory |
-| Runtime-Independent Persistent Agents | arXiv:2609.00546 | Identity survives model/hardware changes |
+| Runtime-Independent Persistent Agents | arXiv:2609.00546 | Identity survives model/hardware changes (mechanical substitutability; behavioral invariance not claimed) |
 | PersonaTwin: Multi-Tier Conditioning | arXiv:2508.10906 | Demographic + behavioural + psychometric integration |
 | HumanNOVA | CVPR 2026 Highlight | Photorealistic 3D human from single image |
 | SentiAvatar | Apr 2026 | Plan-Then-Infill; 6-second motion in 0.3s |
-| Cognitive Digital Phenotyping | CS Review Nov 2026 | Multimodal cognitive twin foundations |
+| Cognitive Digital Phenotyping | CS Review Nov 2026 (forthcoming; not yet verified) | Multimodal cognitive twin foundations |
 | Simulating Life Paths | ACM AH 2026 | Future self avatars measurably improve decisions |
 
 ## Cross-References
