@@ -10,11 +10,16 @@ pub fn ledger_path() -> PathBuf {
 }
 
 pub fn append_recorded(id: &str, detail: &str) -> Result<(), String> {
+    append_from("unspecified", id, detail)
+}
+
+pub fn append_from(source: &str, id: &str, detail: &str) -> Result<(), String> {
+    let source = if source.is_empty() { "unspecified" } else { source };
     let path = ledger_path();
     if let Some(parent) = path.parent() {
         fs::create_dir_all(parent).map_err(|e| format!("receipt dir: {e}"))?;
     }
-    let line = format!(r#"{{"id":{id:?},"status":"recorded","detail":{detail:?}}}"#);
+    let line = format!(r#"{{"id":{id:?},"status":"recorded","source":{source:?},"detail":{detail:?}}}"#);
     let mut file = OpenOptions::new()
         .create(true)
         .append(true)
@@ -51,6 +56,10 @@ mod tests {
         assert_eq!(rows.len(), 1);
         assert!(rows[0].contains("recorded"));
         assert!(rows[0].contains("echo: hi"));
+        assert!(rows[0].contains("unspecified"));
+        append_from("cli", "id-2", "echo: there").unwrap();
+        let rows = read_recent(10).unwrap();
+        assert!(rows[1].contains("\"source\":\"cli\""));
         let _ = fs::remove_dir_all(&dir);
     }
 }

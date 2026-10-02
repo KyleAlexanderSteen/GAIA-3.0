@@ -38,7 +38,7 @@ pub async fn submit_intent(
     let receipt = exec.run_intent(&id, &req.text);
     let mut detail = receipt.detail;
     if receipt.status == "recorded" {
-        if let Err(err) = gaia_kernel::receipts::append_recorded(&receipt.id, &detail) {
+        if let Err(err) = gaia_kernel::receipts::append_from("gateway", &receipt.id, &detail) {
             detail = format!("{detail}; receipt-not-written: {err}");
         }
     }
