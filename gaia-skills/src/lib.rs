@@ -1,6 +1,7 @@
 //! Skills first cuts (#107–#120). Local-default. No child EI. No v1.0.
 
 mod assess;
+mod bands;
 mod develop;
 mod graph;
 mod matching;
@@ -11,6 +12,7 @@ mod schema;
 mod vault;
 
 pub use assess::{hidden_profile_api, Badge, Session};
+pub use bands::{catalog, grants_anything, meta_rows, Band, BandRow};
 pub use develop::{develop, DevPath};
 pub use graph::SkillGraph;
 pub use matching::{global_profile_dump, skills_v1_tagged, tek_skill, SkillCard};

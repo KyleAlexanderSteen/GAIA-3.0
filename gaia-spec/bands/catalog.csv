@@ -1,0 +1,13 @@
+domain,band,shelf,grants
+knowledge,normal,gaia-ukd,false
+knowledge,super,gaia-aikd,false
+knowledge,meta,meta:knowledge,false
+skills,normal,gaia-skills,false
+skills,super,gaia-aisd,false
+skills,meta,meta:skills,false
+powers,normal,skill-capability,false
+powers,super,gaia-hspd,false
+powers,meta,meta:powers,false
+magic,normal,wonder-label,false
+magic,super,gaia-hmgd+gaia-aimd,false
+magic,meta,meta:magic,false

@@ -194,3 +194,16 @@ fn init_writes_developer_profile_and_does_not_start() {
     assert!(profile.contains("runtime = \"not-started\""), "{profile}");
     let _ = std::fs::remove_dir_all(&dir);
 }
+
+#[test]
+fn bands_lists_meta_and_grants_nothing() {
+    let out = gaia().arg("bands").output().expect("bands");
+    let stdout = String::from_utf8_lossy(&out.stdout);
+    assert!(out.status.success(), "{}", String::from_utf8_lossy(&out.stderr));
+    assert!(stdout.contains("domain=knowledge band=meta"), "{stdout}");
+    assert!(stdout.contains("domain=skills band=meta"), "{stdout}");
+    assert!(stdout.contains("domain=powers band=meta"), "{stdout}");
+    assert!(stdout.contains("domain=magic band=meta"), "{stdout}");
+    assert!(stdout.contains("grants=false"), "{stdout}");
+    assert!(!stdout.contains("grants=true"), "{stdout}");
+}
