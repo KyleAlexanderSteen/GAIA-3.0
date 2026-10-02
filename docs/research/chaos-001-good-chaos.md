@@ -1,68 +1,66 @@
 # CHAOS-001: Good chaos — when unpredictability helps
 
 Issue: #1204 (parent #1175). Evidence standard: #1171.
-Status: DRAFT v0.1. Research and specification only; no runtime code; cannot raise autonomy or bypass a human gate.
+Status: DRAFT v0.2. Research and specification only; no runtime code; cannot raise autonomy or bypass a human gate.
 Scope note: this covers system-level variation. Nothing here implies that variation benefits human suffering or harm.
 
 ## Stage reached
 
-- Read: search-result abstracts and excerpts for the sources below. Full papers were NOT read.
-- Therefore every quantitative claim is tagged by what the excerpt supports, and anything beyond it is NeedVerify.
-- NOT covered yet: creativity research, innovation science, adaptive experimentation, antifragility (all NeedVerify, no sources collected).
+- Read: search-result abstracts and excerpts. Full papers were NOT read.
+- v0.2 adds T5 (creativity) and T6 (antifragility). Both are weaker than T1-T4; see their evidence grades.
+- NOT covered yet: innovation science and adaptive experimentation (NeedVerify, no sources collected).
 
 ## Taxonomy of beneficial chaos
 
-Each taxon states where the benefit appears and where it disappears.
-
-| # | Taxon | Benefit appears when | Benefit disappears when | Source |
-|---|-------|----------------------|-------------------------|--------|
-| T1 | Noise-assisted detection (stochastic resonance) | Bistable or threshold system with a weak periodic signal; noise at an intermediate intensity | Noise too low or too high; monostable systems do not show it | Bistable-system simulation study, IEEE 2025 (excerpt); sensory review, Clin. Neurophysiol. (excerpt) |
-| T2 | Random uphill moves in optimization (simulated annealing) | Temperature falls on a suitable schedule | Cooling too fast loses the guarantee; the guaranteed schedule is too slow to use in practice | Hajek, Cooling Schedules for Optimal Annealing; Liang lecture notes (excerpt) |
-| T3 | Deliberate exploration (bandits) | Exploration is budgeted so regret grows only logarithmically in time T | Exploration costs are high or the horizon is short; results are per-setting | AdaUCB paper, arXiv 1709.04004 (excerpt); CExp2, PMLR v237 (excerpt) |
-| T4 | Mutation / variation in evolution | Mutation supplies variants while selection removes harmful ones | Mutation rate exceeds the error threshold; mutational meltdown | Error catastrophe (Eigen); Lynch-based review, PMC7993354 (excerpt) |
+| # | Taxon | Benefit appears when | Benefit disappears when | Evidence grade | Source |
+|---|-------|----------------------|-------------------------|----------------|--------|
+| T1 | Noise-assisted detection (stochastic resonance) | Bistable or threshold system, weak periodic signal, intermediate noise | Noise too low or too high; monostable systems | Simulation + applied | Bistable-system SR study, IEEE 2025 (excerpt) |
+| T2 | Random uphill moves (simulated annealing) | Cooling schedule controlled | Cooling too fast loses the guarantee; guaranteed schedule too slow to use | Theorem | Hajek, Cooling Schedules for Optimal Annealing |
+| T3 | Deliberate exploration (bandits) | Exploration budgeted; regret grows only logarithmically | Costly exploration, short horizon | Theorem, per setting | AdaUCB arXiv 1709.04004; CExp2 PMLR v237 |
+| T4 | Mutation / variation | Selection removes harmful variants | Rate above error threshold; meltdown | Theory + review | Eigen error catastrophe; PMC7993354 |
+| T5 | Environmental noise and creativity | Unclear. Possibly moderate noise for some individuals | Unpredictable, intelligible noise impaired performance in one study | WEAK, mixed | SCIRP 2021 study (excerpt) |
+| T6 | Antifragility (gain from volatility) | Payoff is convex in dispersion; system can adapt ('tinker') | Highly dynamic conditions; no adaptation mechanism | Mixed: definition formal, empirical support thin | Taleb et al. arXiv 1208.1189; arXiv 2405.11397; Syst. Res. 2020 |
 
 ## Evidence per taxon
 
-### T1 Stochastic resonance
+### T1-T4 (unchanged from v0.1)
 
-- Mechanism: in bistable systems, an optimal noise intensity maximizes output signal-to-noise ratio. In a simulation study, each of Gaussian white, pink and impulse noise had its own optimal intensity, and bistability was essential for the effect.
-- Boundary (too much noise): the same study shows SNR is maximized at an intermediate intensity, so other intensities perform worse. Exact curves are simulation results, not field data.
-- Related: a 2014 Physical Review E paper on forbidden-interval theorems for threshold detectors indicates that some noise-benefit conditions are provably excluded (title only; NeedVerify).
-- Applied claims (neural prosthetics, bearing-fault detection) are in the sources' own abstracts; clinical effectiveness is NeedVerify.
+- T1: an intermediate noise intensity maximizes output SNR in bistable systems; Gaussian, pink and impulse noise each have their own optimum; bistability is essential. Simulation results, not field data.
+- T2: with T_t = c / log(1 + t), convergence in probability to global minima holds iff c is at least the depth of the deepest non-global local minimum. Logarithmic cooling is described as too slow for practice.
+- T3: AdaUCB gets O(log T) regret (O(1) with zero exploration cost in the opportunistic setting). CExp2 gets order-optimal O(c* log T) in collaborative bandits. These are not a universal exploration rate.
+- T4: Eigen error threshold: L*q < -log(S) (summary; primary NeedVerify). High deleterious-mutation rates can overwhelm selection even in large populations.
 
-### T2 Simulated annealing
+### T5 Creativity and noise (WEAK evidence)
 
-- Hajek's necessary and sufficient condition: with cooling schedule T_t = c / log(1 + t), convergence in probability to global minima holds iff c is at least the depth of the deepest non-global local minimum.
-- Boundary: logarithmic cooling is described as so slow that nobody can afford the running time; faster schedules (for example square-root) need a different algorithm (stochastic approximation annealing) for guarantees.
-- Lesson: random moves help only while the level of randomness is controlled and reduced. The 'optimal' schedule is problem-specific (depth of the landscape).
+- The one source collected is a 2021 study of young people, and its own excerpt is mixed. It reports that creative performance was impaired by noise, especially unpredictable and intelligible noise, but also that no significant effects on divergent-creativity tasks were found in any group compared with no noise.
+- The same source notes some evidence that for highly original individuals a moderate noise level may raise creative performance (a claim about prior work; NeedVerify).
+- Boundary: this is environmental noise acting on people. It is NOT evidence that random variation in idea generation produces creative output. The latter is untested here.
+- No 'optimal' noise level is given by any source, so none is stated.
+- Verdict: creativity remains a hypothesis, not a supported taxon. It is listed so the gap is visible. The taxon must not be used to justify injecting randomness into human work.
 
-### T3 Exploration vs exploitation
+### T6 Antifragility (mixed; mostly conceptual)
 
-- Result: AdaUCB achieves O(log T) regret, and O(1) regret if exploration cost is zero below a load threshold (opportunistic bandits). CExp2 achieves order-optimal O(c* log T) regret in collaborative bandits.
-- Conditions: these bounds hold for the stated bandit variants (stochastic rewards, specific load and communication models). They are NOT a universal optimal exploration rate.
-- No single 'optimal randomness percentage' is given by these sources, and none is claimed here.
-
-### T4 Mutation and error threshold
-
-- Eigen's error threshold: a genome survives unchanged only if L*q < -log(S) (Wikipedia summary of the model; primary paper NeedVerify).
-- Boundary: mutational meltdown. Excerpt: deleterious mutation rates on the order of 1 per individual per generation mark the transition between drift-driven and mutation-driven loss, and high rates can overwhelm selection even in large populations.
-- Lesson: variation is a resource only below a threshold set by selection strength.
+- Formal definition: Taleb and Douady define fragility and antifragility as negative or positive sensitivity to a semi-measure of dispersion and volatility (a variant of vega), linked to nonlinear effects, with model error integrated.
+- Machine-learning extension: arXiv 2405.11397 defines antifragility in online decision making as dynamic regret's strictly concave response to environmental variability, and argues that approaches focused on resisting shifts are limited.
+- Boundary, simulation critique: a system-dynamics study of supply chains concluded that antifragility can lose its unambiguous advantage in highly dynamic situations (Systems Research, 2020).
+- Biology: an MDPI 2011 paper links antifragility to 'tinkering', i.e. creative response to change, and uses evolution as the example (conceptual).
+- Software: a 2014 arXiv paper on antifragile software reaches a hypothesis (antifragile development processes may produce antifragile systems), not a measured result.
+- Secondary critique (low grade, blog review): antifragile ignores research on posttraumatic growth and the role of social support. This is a book review, not a primary source. NeedVerify against primary resilience literature.
+- Verdict: antifragility has a clear formal definition (positive response to dispersion) but little tested evidence in the sources collected. It does not license 'chaos is good'; it names a property that some systems have and others lack.
 
 ## Is 'breakthroughs emerge from disorder' supported?
 
-Partially, and only with a qualifier. In every supported case above, randomness is paired with a selection or control mechanism: a signal and a threshold (T1), a cooling schedule and acceptance rule (T2), a reward signal (T3), natural selection (T4). The sources support 'bounded randomness plus selection helps'. They do not support 'disorder alone produces breakthroughs'. Claims about human creativity and innovation remain NeedVerify (not researched).
+Partially. In supported cases (T1-T4) randomness is paired with a selection or control mechanism. T5 gives no support. T6 gives a definition of when variation pays (convex response), not evidence that it usually does. Disorder as a minor input beside selection and structure is the better-supported reading.
 
 ## Cases where more randomness hurt
 
-- Too much noise past the stochastic-resonance optimum (T1).
-- Too-fast cooling or no cooling control in annealing (T2).
-- Mutation rate above the error threshold; extinction by meltdown (T4).
-- Costly exploration in finite horizons (T3), per the opportunistic-bandit setting.
+- Past the SR optimum (T1); too-fast cooling (T2); mutation above threshold (T4); costly exploration in finite horizons (T3); unpredictable noise impaired creative performance in one study (T5); antifragility advantage lost in highly dynamic supply-chain simulations (T6).
 
-## Open items before this issue can close
+## Open items
 
-- [ ] Read primary papers in full (Hajek 1988; Kirkpatrick et al. 1983; Eigen 1971; Lynch et al.; a stochastic-resonance review).
-- [ ] Add creativity, innovation science and adaptive experimentation sources.
-- [ ] Add antifragility with a critical source (NeedVerify).
-- [ ] Add a second independent source per taxon.
-- [ ] Human review of the wording of the 'disorder' conclusion.
+- [ ] Read primary papers in full (Hajek 1988; Kirkpatrick 1983; Eigen 1971; Lynch; Taleb and Douady).
+- [ ] Add a primary creativity study of variation in idea generation (not only environmental noise).
+- [ ] Add innovation science and adaptive experimentation.
+- [ ] Add a primary antifragility critique and an empirical test.
+- [ ] Second independent source per taxon.
+- [ ] Human review of the 'disorder' conclusion.
