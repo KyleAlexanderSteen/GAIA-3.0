@@ -59,3 +59,7 @@ SVRG-EG: finite-sum snapshot estimator in both EG legs. Last-iterate linear unde
 | last-iterate rates | eval discipline | proof of virtue |
 
 Parent shelf. Does not implement a trainer. Does not open #341 MCP zero-trust.
+
+## Value pluralism
+
+More than one good can be real. They do not collapse into one reward. See `VALUE-PLURALISM.md`. A conflict stays visible.
