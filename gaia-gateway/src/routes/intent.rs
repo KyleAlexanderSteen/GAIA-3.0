@@ -36,10 +36,16 @@ pub async fn submit_intent(
     let principal = Principal::generate(PrincipalKind::Node);
     let exec = Executor::new(&principal, Capabilities::default(), broker);
     let receipt = exec.run_intent(&id, &req.text);
+    let mut detail = receipt.detail;
+    if receipt.status == "recorded" {
+        if let Err(err) = gaia_kernel::receipts::append_recorded(&receipt.id, &detail) {
+            detail = format!("{detail}; receipt-not-written: {err}");
+        }
+    }
     let body = Json(IntentResponse {
         id: receipt.id,
         status: receipt.status.to_string(),
-        detail: receipt.detail,
+        detail,
     });
     let code = match receipt.status {
         "recorded" => StatusCode::OK,
