@@ -4,6 +4,21 @@
 
 Closes #
 
+## Stage reached (definition of done, #1319)
+
+Pick the highest stage this PR actually reaches and link the evidence. A PR that only adds or changes documents reaches SPECIFICATION and nothing higher.
+
+- [ ] SPECIFICATION: the behavior is written down (link the file)
+- [ ] IMPLEMENTATION: code exists on this branch (link the file)
+- [ ] TEST: a test exercises it and fails without the change (name the test)
+- [ ] INTEGRATION: it runs wired to the real neighbors, not mocks (link the test or CI run)
+- [ ] VERIFICATION: CI passes on a clean checkout (link the run)
+- [ ] OPERATIONAL: a user can run it end to end and it is recorded in an audit receipt (link the run)
+
+Evidence:
+
+An issue is only closed as complete when OPERATIONAL evidence is linked. If this PR does not reach OPERATIONAL, use `Refs #` instead of `Closes #`.
+
 ## Layer
 
 - [ ] gaia-spec
