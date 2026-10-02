@@ -12,6 +12,7 @@ pub mod identity;
 pub mod planner;
 pub mod ports;
 pub mod gate;
+pub mod planetary;
 pub mod providers;
 pub mod receipts;
 pub mod scheduler;
