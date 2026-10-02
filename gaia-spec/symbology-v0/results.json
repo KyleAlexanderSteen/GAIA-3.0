@@ -1,0 +1,28 @@
+{
+ "glyph_count": 107,
+ "frame_bytes": 83,
+ "parity_glyphs": 24,
+ "roundtrip_bytes": "verified",
+ "roundtrip_image": "verified",
+ "rotations": {"0": "verified", "90": "verified", "180": "verified", "270": "verified"},
+ "max_damage_fully_recovered": {"scattered": 12, "burst": 12},
+ "accepted_wrong_total": 0,
+ "damage_trials_total": 18600,
+ "image_noise_and_blotch_<=12glyphs_plus_1pct_pixel_noise": {"verified": 60},
+ "damaged_png_decodes": "verified",
+ "forgery_2000_each": {
+  "tamper_field_reencoded_with_valid_parity_rejected_signature": 2000,
+  "wrong_key_claiming_victim_id_rejected_signature": 2000,
+  "attacker_own_key_unknown_to_verifier_rejected_unknown_key": 2000,
+  "random_signature_forgery_rejected_signature": 2000
+ },
+ "replay_of_old_valid_glyph": "verified (replay is NOT prevented by v0; needs nonce/expiry policy)",
+ "otp_any_same_length_plaintext_consistent": true,
+ "otp_key_bytes_per_message_byte": 1,
+ "substitution_cipher_(wakandan_style)_frequency_attack": [
+  {"ciphertext_letters": 300, "letters_recovered_pct": 100.0},
+  {"ciphertext_letters": 600, "letters_recovered_pct": 100.0},
+  {"ciphertext_letters": 1200, "letters_recovered_pct": 100.0}
+ ],
+ "runtime_seconds": 25.4
+}
