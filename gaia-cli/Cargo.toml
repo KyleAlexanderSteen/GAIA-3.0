@@ -17,6 +17,7 @@ name = "gaia_cli"
 path = "src/lib.rs"
 
 [dependencies]
+gaia-kernel = { path = "../gaia-kernel" }
 clap       = { version = "4", features = ["derive"] }
 tokio      = { version = "1", features = ["full"] }
 reqwest    = { version = "0.12", default-features = false, features = ["stream", "json", "rustls-tls"] }

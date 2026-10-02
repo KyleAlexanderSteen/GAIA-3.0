@@ -22,16 +22,14 @@ async fn main() {
         std::fs::create_dir_all(&dir).expect("boot dir");
         let mut host = gaia_kernel::KernelHost::new(dir).expect("kernel host");
         let receipt = host.executor.run_intent("cli", &goal);
-        if receipt.status != "done" {
+        // `recorded` is the only admitted local act (echo:). `done` would mean a syscall.
+        if receipt.status != "recorded" {
             eprintln!("{} {}", receipt.status, receipt.detail);
             std::process::exit(1);
         }
-        // Unreachable until run_intent can dispatch a syscall and return "done".
-        // Kept so the success path is not lost; remove or wire up in the dispatch issue.
-        let handle = host.intent(&goal).expect("intent");
         println!(
-            "executed intent={} state={} receipt={}",
-            handle.intent_id, handle.state, receipt.status
+            "recorded id={} detail={}",
+            receipt.id, receipt.detail
         );
     } else if let Some(task) = exec.pull_one() {
         let out = exec.run_task(&task);
