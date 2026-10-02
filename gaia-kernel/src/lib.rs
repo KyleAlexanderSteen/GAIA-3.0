@@ -77,7 +77,7 @@ mod tests {
         }
     }
 
-    // ── Legacy tests (must stay green) ──────────────────────────────────────────────
+    // ── Legacy tests (must stay green) ──────────────────────────────────────────
 
     #[test]
     fn executor_registers_and_pulls_noop() {
@@ -129,8 +129,10 @@ mod tests {
         let err = host.reject_unsigned(None, b"x").unwrap_err();
         assert!(matches!(err, KernelError::Denied(_)));
 
-        assert!(host.invoke("analyst", "{}").unwrap().contains("analyst"));
-        assert!(host.observe("imu").unwrap().contains("imu"));
+        let invoke_err = host.invoke("analyst", "{}").unwrap_err();
+        assert!(matches!(invoke_err, KernelError::NotImplemented(_)));
+        let observe_err = host.observe("imu").unwrap_err();
+        assert!(matches!(observe_err, KernelError::NotImplemented(_)));
         assert_eq!(host.declare("gpu0", "device").unwrap().name, "gpu0");
 
         let stranger = Principal::generate(PrincipalKind::Agent);
@@ -143,7 +145,7 @@ mod tests {
         assert!(matches!(err, KernelError::Denied(_)));
     }
 
-    // ── Execution Engine tests ──────────────────────────────────────────────────────
+    // ── Execution Engine tests ───────────────────────────────────────────────
 
     #[tokio::test]
     async fn stage1_rejects_unsigned_intent() {

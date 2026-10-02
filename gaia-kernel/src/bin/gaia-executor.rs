@@ -22,17 +22,24 @@ async fn main() {
         std::fs::create_dir_all(&dir).expect("boot dir");
         let mut host = gaia_kernel::KernelHost::new(dir).expect("kernel host");
         let receipt = host.executor.run_intent("cli", &goal);
-        if receipt.status == "refused" {
-            println!("refused {}", receipt.detail);
+        if receipt.status != "done" {
+            eprintln!("{} {}", receipt.status, receipt.detail);
             std::process::exit(1);
         }
+        // Unreachable until run_intent can dispatch a syscall and return "done".
+        // Kept so the success path is not lost; remove or wire up in the dispatch issue.
         let handle = host.intent(&goal).expect("intent");
         println!(
-            "admitted intent={} state={} receipt={}",
+            "executed intent={} state={} receipt={}",
             handle.intent_id, handle.state, receipt.status
         );
     } else if let Some(task) = exec.pull_one() {
-        println!("{}", exec.run_task(&task));
+        let out = exec.run_task(&task);
+        if out.starts_with("unsupported:") {
+            eprintln!("{out}");
+            std::process::exit(1);
+        }
+        println!("{out}");
     } else {
         println!("idle");
     }

@@ -19,6 +19,8 @@ pub enum KernelError {
     InvalidArgument(String),
     #[error("denied: {0}")]
     Denied(String),
+    #[error("not implemented: {0}")]
+    NotImplemented(String),
     #[error("sfs: {0}")]
     Sfs(String),
     #[error("memos: {0}")]
@@ -114,13 +116,14 @@ impl KernelHost {
         Ok(cube)
     }
 
-    pub fn invoke(&mut self, agent_id: &str, params: &str) -> Result<String> {
+    pub fn invoke(&mut self, agent_id: &str, _params: &str) -> Result<String> {
         if agent_id.is_empty() {
             return Err(KernelError::InvalidArgument("agent_id required".into()));
         }
-        let out = format!("invoked:{agent_id}:{params}");
         self.audit.append(&self.principal, "invoke", agent_id);
-        Ok(out)
+        Err(KernelError::NotImplemented(format!(
+            "invoke has no registered agent: {agent_id}"
+        )))
     }
 
     pub fn observe(&mut self, sensor: &str) -> Result<String> {
@@ -128,7 +131,9 @@ impl KernelHost {
             return Err(KernelError::InvalidArgument("sensor required".into()));
         }
         self.audit.append(&self.principal, "observe", sensor);
-        Ok(format!("observe:{sensor}:stub"))
+        Err(KernelError::NotImplemented(format!(
+            "observe has no sensor feed: {sensor}"
+        )))
     }
 
     pub fn sign(&mut self, payload: &[u8]) -> Result<SignedBlob> {
