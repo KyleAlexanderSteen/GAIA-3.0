@@ -88,6 +88,8 @@ enum Commands {
     Find(commands::find::FindArgs),
     /// Record a governed run.
     Govern(commands::govern::GovernArgs),
+    /// Make a companion.
+    Gaian(commands::gaian::GaianArgs),
     /// Hash a local file. Rejects a URL.
     Hash(commands::hashfile::HashArgs),
     /// Name two goods and call the pluralism gate.
@@ -139,6 +141,7 @@ async fn main() -> Result<()> {
         Commands::Federate(args) => commands::federate::run(args).await,
         Commands::Find(args)   => commands::find::run(args).await,
         Commands::Govern(args) => commands::govern::run(args).await,
+        Commands::Gaian(args)  => commands::gaian::run(args).await,
         Commands::Hash(args)   => commands::hashfile::run(args).await,
         Commands::Loss(args)   => commands::loss::run(args).await,
         Commands::Map(args)    => commands::map::run(args).await,

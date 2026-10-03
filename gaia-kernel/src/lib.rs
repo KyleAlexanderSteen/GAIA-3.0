@@ -15,6 +15,7 @@ pub mod federation;
 pub mod node_pair;
 pub mod home;
 pub mod govern;
+pub mod gaian;
 pub mod host;
 pub mod honest;
 pub mod mcp_stdio;
