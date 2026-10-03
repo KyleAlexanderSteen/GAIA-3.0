@@ -2,6 +2,7 @@
 
 pub mod audit;
 pub mod broker;
+pub mod boot;
 pub mod capability;
 pub mod execution;
 pub mod executor;
