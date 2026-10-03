@@ -6,6 +6,7 @@ pub mod capability;
 pub mod execution;
 pub mod executor;
 pub mod federation;
+pub mod node_pair;
 pub mod home;
 pub mod host;
 pub mod hpc;

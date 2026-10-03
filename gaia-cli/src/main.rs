@@ -47,6 +47,7 @@ enum Commands {
     /// Start a host process and print its pid.
     Proc(commands::proc::ProcArgs),
     /// Find a title in the local corpus.
+    Federate(commands::federate::FederateArgs),
     Find(commands::find::FindArgs),
     /// Hash a local file. Rejects a URL.
     Hash(commands::hashfile::HashArgs),
@@ -77,6 +78,7 @@ async fn main() -> Result<()> {
         Commands::Corpus(args) => commands::corpus::run(args).await,
         Commands::Model(args)  => commands::model::run(args).await,
         Commands::Proc(args)   => commands::proc::run(args).await,
+        Commands::Federate(args) => commands::federate::run(args).await,
         Commands::Find(args)   => commands::find::run(args).await,
         Commands::Hash(args)   => commands::hashfile::run(args).await,
         Commands::Loss(args)   => commands::loss::run(args).await,

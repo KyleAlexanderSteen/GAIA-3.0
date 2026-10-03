@@ -1,6 +1,7 @@
 pub mod bands;
 pub mod chaos;
 pub mod corpus;
+pub mod federate;
 pub mod find;
 pub mod loss;
 pub mod systems;
