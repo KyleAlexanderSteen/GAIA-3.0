@@ -25,6 +25,7 @@ members = [
   "gaia-acp",
   "gaia-runtime",
   "gaia-ingest",
+  "gaia-inference",
   "gaia-cli",
   "gaia-gateway",
   "gaia-hal",
