@@ -6,6 +6,8 @@
 //! the recorded provenance receipt before the epistemic evidence is accepted
 //! as grounded metadata.
 
+use sha2::Digest;
+
 use gaia_ingest::{
     DataSource, EpistemicStateBuilder, EvidenceKind, ProvenanceBuilder,
 };
