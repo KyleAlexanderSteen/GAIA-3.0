@@ -9,12 +9,36 @@ pub struct Stage {
 
 pub fn boot() -> Vec<Stage> {
     vec![
-        Stage { name: "firmware", done: false, note: "not written" },
-        Stage { name: "kernel", done: true, note: "this process" },
-        Stage { name: "driver", done: true, note: "console probed" },
-        Stage { name: "filesystem", done: true, note: "memory volume" },
-        Stage { name: "scheduler", done: true, note: "two tasks ordered" },
-        Stage { name: "guest", done: true, note: "image halted" },
+        Stage {
+            name: "firmware",
+            done: false,
+            note: "not written",
+        },
+        Stage {
+            name: "kernel",
+            done: true,
+            note: "this process",
+        },
+        Stage {
+            name: "driver",
+            done: true,
+            note: "console probed",
+        },
+        Stage {
+            name: "filesystem",
+            done: true,
+            note: "memory volume",
+        },
+        Stage {
+            name: "scheduler",
+            done: true,
+            note: "two tasks ordered",
+        },
+        Stage {
+            name: "guest",
+            done: true,
+            note: "image halted",
+        },
     ]
 }
 
@@ -38,7 +62,10 @@ pub fn volume_write(volume: &mut Vec<(String, String)>, path: &str, body: &str) 
 }
 
 pub fn volume_read<'a>(volume: &'a [(String, String)], path: &str) -> Option<&'a str> {
-    volume.iter().find(|entry| entry.0 == path).map(|entry| entry.1.as_str())
+    volume
+        .iter()
+        .find(|entry| entry.0 == path)
+        .map(|entry| entry.1.as_str())
 }
 
 /// Guest image: push 20, push 22, add, halt.
@@ -50,7 +77,7 @@ pub fn run_guest() -> Result<i32, &'static str> {
         match image[pc] {
             0x01 => {
                 pc += 1;
-                stack.push(i32::from(image.get(pc).copied().ok_or("truncated push")?));
+                stack.push(image.get(pc).copied().ok_or("truncated push")?);
                 pc += 1;
             }
             0x02 => {
