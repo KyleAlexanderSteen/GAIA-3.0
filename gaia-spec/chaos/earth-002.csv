@@ -1,0 +1,7 @@
+id,system,task,measure,result,limit,maps_to
+group-factor,human group,battery of tasks,collective factor c,Woolley et al Science 2010 found a group factor,replication is mixed NeedVerify,#1224
+crowd-herd,human crowd,estimate,error after social influence,Lorenz et al PNAS 2011 social influence reduced diversity,one setting not all crowds,#1224
+cascade,network,adoption,people follow the prior choice,information cascade is observed,rate is task-specific NeedVerify,#1220
+slime-mold,Physarum,shortest path,tube network,Nakagaki Nature 2000 solved a maze,a maze is not a mind,#1224
+colony,ants,foraging,trail and recruitment,colonies allocate foragers,not collective consciousness,#1224
+network-flow,global comms,messages,volume and latency,flow is measured,coordination is not a consciousness claim,#1224
