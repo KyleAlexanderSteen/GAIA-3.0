@@ -1,6 +1,6 @@
-id,kind,says,bound
-hedonic,value,felt state matters,a feeling is not a law
-preference,value,a stated want matters,a want is not a duty for others
-need,value,food water care,a need is not a grant of rule
-flourishing,value,a life can grow,GAIA does not pick the higher good
-stewardship,bound,care for life and experience,stewardship is not sovereignty
+id,kind,source,bound
+hedonic,felt state,utilitarian measure,a feeling is not a law
+preference,a stated want,preference satisfaction,a want is not a duty for others
+capability,what a person can do and be,Sen; Nussbaum Women and Human Development 2000,a list is not sovereignty
+need,food water care,Doyal and Gough A Theory of Human Need,a need is not a grant of rule
+stewardship,care for life and experience,owner bound #1267,stewardship is not sovereignty
