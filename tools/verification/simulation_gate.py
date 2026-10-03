@@ -69,7 +69,7 @@ def main() -> int:
     if a.json: print(json.dumps(results,indent=2,sort_keys=True))
     else:
         for r in results:
-            print(f"[{r["outcome"]}] {r["scenario_id"]} seed={r["seed"]}")
+            print(f"[{r['outcome']}] {r['scenario_id']} seed={r['seed']}")
             for e in r["errors"]: print(f"  - {e}")
     return 0 if all(r["outcome"]=="PASS" for r in results) else 1
 
