@@ -1,0 +1,155 @@
+schema_version: "1.0"
+kind: gaia.verification.stage-registry
+
+principles:
+  - "A stage records evidence satisfied for an exact artifact; it does not assert universal correctness."
+  - "HOLD, FAIL, and UNKNOWN are valid outcomes."
+  - "Promotion requires recorded evidence; CI status alone is insufficient."
+  - "Every record is bound to an exact source/build commit."
+  - "A higher stage does not erase limitations or unknowns from lower stages."
+
+stages:
+  - id: SOURCE_IDEA
+    order: 1
+    name: "Source / Idea"
+    entry: "A proposed change, artifact, or claim exists and has an identifiable origin."
+    exit:
+      - "Origin is recorded."
+      - "Scope and intended outcome are stated."
+      - "No implementation or correctness claim is implied by existence."
+    evidence: ["source reference", "author/origin metadata", "scope statement"]
+
+  - id: PROVENANCE
+    order: 2
+    name: "Provenance"
+    entry: "The source artifact can be traced to its origin and exact revision."
+    exit:
+      - "Source/build commit is recorded."
+      - "Relevant inputs and transformations are recorded."
+      - "Integrity identifiers are available where applicable."
+    evidence: ["commit SHA", "input/reference identifiers", "checksum or equivalent integrity evidence when applicable"]
+
+  - id: SPECIFICATION
+    order: 3
+    name: "Specification"
+    entry: "The intended behavior and constraints are written down."
+    exit:
+      - "Acceptance criteria are explicit."
+      - "Invariants and refusal conditions are explicit where applicable."
+      - "Unknowns and assumptions are recorded."
+    evidence: ["specification or contract", "acceptance criteria", "assumptions/limitations"]
+
+  - id: PREFLIGHT
+    order: 4
+    name: "Static Validation / Preflight"
+    entry: "The candidate is ready for execution of applicable validation checks."
+    exit:
+      - "Branch/base relationship is known."
+      - "Applicable static, formatting, dependency, and structural checks pass."
+      - "Blocking preflight findings are resolved."
+    evidence: ["preflight run identifier", "check results", "exact commit SHA"]
+
+  - id: COMPONENT_TESTING
+    order: 5
+    name: "Component Testing"
+    entry: "The component has executable tests for its specified behavior."
+    exit:
+      - "Applicable component tests pass."
+      - "Test scope and environment are recorded."
+      - "Known test gaps are recorded."
+    evidence: ["test command/run", "test result", "coverage or test-scope statement when applicable"]
+
+  - id: INTEGRATION
+    order: 6
+    name: "Integration"
+    entry: "The candidate is exercised through its real component interfaces."
+    exit:
+      - "Applicable integration/end-to-end checks pass."
+      - "Interface assumptions are recorded."
+      - "Cross-component failures are absent or explicitly dispositioned."
+    evidence: ["integration test/run", "interface scope", "result"]
+
+  - id: SYSTEM_VERIFICATION
+    order: 7
+    name: "System Verification"
+    entry: "System-level requirements are tested against the candidate."
+    exit:
+      - "Declared system invariants and requirements have evidence."
+      - "Critical paths have been exercised."
+      - "Evidence is reproducible from the recorded artifact and environment."
+    evidence: ["system verification report", "invariant results", "environment metadata"]
+
+  - id: ADVERSARIAL_FAILURE_TESTING
+    order: 8
+    name: "Adversarial / Failure Testing"
+    entry: "The candidate is subjected to hostile, malformed, boundary, or injected-failure conditions appropriate to its risk."
+    exit:
+      - "Applicable adversarial/failure scenarios are executed."
+      - "Expected refusal, containment, and recovery behavior is observed."
+      - "Unresolved critical failures block promotion."
+    evidence: ["adversarial test/run", "failure-injection result", "disposition of discovered failures"]
+
+  - id: SHADOW
+    order: 9
+    name: "Shadow"
+    entry: "The candidate is exercised without receiving authoritative production effect."
+    exit:
+      - "Shadow execution is isolated from authoritative state."
+      - "Observed behavior is compared with expected/reference behavior."
+      - "Discrepancies are recorded and dispositioned."
+    evidence: ["shadow run identifier", "comparison results", "isolation/rollback evidence"]
+
+  - id: CANARY
+    order: 10
+    name: "Canary"
+    entry: "A narrowly scoped deployment is authorized for controlled operational exposure."
+    exit:
+      - "Human authorization is recorded."
+      - "Exposure scope and rollback trigger are explicit."
+      - "Canary monitoring remains within declared thresholds."
+    evidence: ["authorization record", "exposure scope", "monitoring results", "rollback readiness"]
+
+  - id: RELEASE_CANDIDATE
+    order: 11
+    name: "Release Candidate"
+    entry: "The exact artifact is assembled for release evaluation."
+    exit:
+      - "Artifact identity and contents are fixed."
+      - "Required gates for release-candidate scope are satisfied."
+      - "Open limitations and known unknowns are visible."
+    evidence: ["artifact digest", "promotion record", "release-candidate verification results"]
+
+  - id: VERIFIED_BUILD
+    order: 12
+    name: "Verified Build"
+    entry: "The exact build satisfies the defined verification gates for its declared scope."
+    exit:
+      - "All required verification evidence is recorded."
+      - "No unresolved blocking condition remains within declared scope."
+      - "The record explicitly states what was and was not verified."
+    evidence: ["verification decision", "complete evidence references", "limitations and known unknowns"]
+
+  - id: CONTINUOUS_OPERATIONAL_VERIFICATION
+    order: 13
+    name: "Continuous Operational Verification"
+    entry: "A promoted artifact is operating under ongoing monitoring and verification."
+    exit:
+      - "Operational monitoring is active."
+      - "Drift, regression, and incident conditions have defined responses."
+      - "Rollback or demotion remains available."
+    evidence: ["operational telemetry", "drift/regression checks", "incident and rollback records"]
+
+outcomes:
+  - PASS
+  - HOLD
+  - FAIL
+  - UNKNOWN
+
+promotion_rules:
+  - "A promotion decision MUST reference the current stage and target stage."
+  - "A PASS outcome MUST include evidence references."
+  - "HOLD, FAIL, and UNKNOWN MUST NOT be coerced into PASS."
+  - "A stage MUST NOT be skipped unless an explicit, recorded exception policy exists."
+  - "CI success MAY be evidence for a gate, but MUST NOT by itself establish VERIFIED_BUILD."
+  - "Elapsed time without evidence MUST NOT establish promotion."
+  - "Human authorization is required for CANARY and any stage that changes operational exposure."
