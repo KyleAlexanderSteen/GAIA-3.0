@@ -109,6 +109,14 @@
 | Recovery | Containment/restoration architecture | IMPLEMENTED / TRACEABLE | Cross-domain recovery test |
 | Posterity | Constitutional research requirement | RESEARCH | Operational representation |
 | Love / stewardship | #1631 / #1649 lineage | RESEARCH / HYPOTHESIS | Preserve as bounded ethical orientation |
+| Chaos | #1153 / #1172 / #1175 / #1204–#1206 / historical lineage | RESEARCH / HYPOTHESIS | Reconcile multiple historical meanings; do not equate with evil |
+| Order | #1172 / #1176 / #1207–#1210 / historical lineage | RESEARCH / HYPOTHESIS | Reconcile stability, structure, rigidity, and adaptive-order meanings |
+| Chaos ↔ Order | #1172 / #1181 / historical balance lineage | RESEARCH | Determine whether this is one relation, multiple mechanisms, or truth-layer-specific |
+| Chaos as consumption/transformation | New reconciliation research | HYPOTHESIS | Test against historical evidence; do not canonize without evidence |
+| Good Chaos / Bad Chaos | #1204 / #1205 | RESEARCH | Preserve ethical/systemic classification without making Chaos itself moral |
+| Good Order / Bad Order | #1207 / #1208 | RESEARCH | Preserve beneficial structure vs harmful rigidity/capture distinction |
+| Chaos containment | #1206 | RESEARCH / TRACEABILITY | Map containment to capability, policy, transition, and recovery controls |
+| Rigidity / Adaptive Order | #1209 / #1210 | RESEARCH | Determine relationship to Balance, Transition, and Recovery |
 | Recognition | #1649 | RESEARCH / HYPOTHESIS | Determine architectural role |
 | Polarity | #1649 + historical register | RESEARCH / HYPOTHESIS | Do not promote without irreducibility evidence |
 | Duality | #1649 + historical canon | RESEARCH / HYPOTHESIS | Prefer relation unless proven otherwise |
@@ -193,6 +201,8 @@
 18. Complete direct verification of historical GAIA 2.x repository lineage.
 19. Automated synchronization between this matrix and issue/code/test evidence.
 20. Independent adversarial validation of the oversight layer itself.
+21. Complete reconciliation of historical Chaos/Order/Balance lineage and its relationship to Duality, Polarity, Transformation, and the Universal semantic kernel.
+22. Determine whether the Chaos-as-consumption/transformation hypothesis is supported, refuted, or remains UNKNOWN.
 
 ## 10. Contradiction watchlist
 
@@ -207,6 +217,9 @@ Continue testing for:
 - aspirational deployment targets presented as measured capability;
 - governance values becoming execution authority;
 - moral labels becoming scalar optimization objectives.
+- Chaos being treated as synonymous with evil or Order as synonymous with good.
+- Historical Chaos/Order terminology being collapsed across physical, computational, ethical, governance, or symbolic truth layers.
+- Consumption/transformation hypotheses being promoted to physical or metaphysical fact without evidence.
 
 ## 11. Adversarial validation register
 
@@ -299,6 +312,8 @@ No row may be promoted beyond the strongest evidence actually available.
 - `gaia-spec/sos/identity-capabilities.md`
 - `docs/knowledge/MATRIX.md`
 - #1631–#1650 relevant architecture/governance/research issues
+- Historical Chaos/Order/Balance issues #1153, #1172, #1175–#1176, #1180–#1181, #1204–#1210, #1365–#1370
+- Dedicated Chaos/Order reconciliation research issue
 
 ## Audit state
 
