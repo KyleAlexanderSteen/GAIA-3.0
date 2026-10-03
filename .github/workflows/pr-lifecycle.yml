@@ -49,8 +49,9 @@ jobs:
         run: |
           printf '%s' "$PR_BODY" > pr-body.md
           python - <<'PY'
-          import json, os, subprocess
-          from tools.agent_skills.pr_lifecycle_postmerge_check import relationships
+          import json, os, subprocess, sys
+          sys.path.insert(0, "tools/agent-skills")
+          from pr_lifecycle_postmerge_check import relationships
 
           body = os.environ.get("PR_BODY", "")
           refs = sorted({n for _, numbers in relationships(body) for n in numbers})
