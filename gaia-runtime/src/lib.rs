@@ -9,6 +9,7 @@ pub mod circuit_breaker;
 pub mod dormancy;
 pub mod faithfulness;
 pub mod grounding;
+pub mod guest;
 pub mod quotas;
 pub mod sandbox;
 

@@ -1,0 +1,5 @@
+id,mechanism,does,limit
+feedback,output returns as input,stabilizes or runs away,sign of the loop matters
+hierarchy,a layer above a layer,limits what a part can see,a top that cannot hear is rigidity
+network,links between parts,a path for a signal,a missing link is isolation
+control,a measured error changes the next act,keeps a setpoint,a setpoint can be wrong

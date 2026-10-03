@@ -1,0 +1,6 @@
+id,indicator,what_it_shows,status
+rule-count,rules added faster than retired,accumulation,NeedVerify
+dissent-drop,fewer objections recorded,feedback loss,NeedVerify
+exception-spike,more waivers than rule changes,the rule no longer fits,NeedVerify
+cycle-time,decisions take longer on the same class,adaptation slowing,NeedVerify
+single-path,one office can block,no redundancy,observed as a risk
