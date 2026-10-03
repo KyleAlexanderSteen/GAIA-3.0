@@ -1,0 +1,6 @@
+id,property,measure,counts_against,status,frozen
+integration,information shared across subsystems,a measured coupling with a cited dataset,no coupling above the stated baseline,criteria-frozen,2026-10-02
+broadcast,one signal available to many subsystems,a named channel and its reach,no channel that more than one subsystem reads,criteria-frozen,2026-10-02
+self-model,a representation of the system used by the system,a cited model that changes a later action,no such model,criteria-frozen,2026-10-02
+prediction,a forecast that updates from error,a cited error signal and an update,no update from error,criteria-frozen,2026-10-02
+stop-rule,end the line,all four measures fail their against-test,inquiry ends if all four fail,criteria-frozen,2026-10-02
