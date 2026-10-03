@@ -8,6 +8,7 @@ pub mod map;
 pub mod hashfile;
 pub mod init;
 pub mod start;
+pub mod terms;
 pub mod adapt;
 pub mod agent;
 pub mod intent;
