@@ -9,6 +9,7 @@ pub mod federate;
 pub mod find;
 pub mod govern;
 pub mod guest;
+pub mod gaian;
 pub mod loss;
 pub mod systems;
 pub mod map;
