@@ -19,6 +19,7 @@ pub mod gate;
 pub mod planetary;
 pub mod providers;
 pub mod reality;
+pub mod reading;
 pub mod receipts;
 pub mod scheduler;
 pub mod si_layer;

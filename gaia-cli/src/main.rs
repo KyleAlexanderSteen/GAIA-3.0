@@ -43,6 +43,7 @@ enum Commands {
     /// Print the Earth interaction map.
     Earth(commands::earth::EarthArgs),
     /// Revoke (stop) a running agent
+    Reading(commands::reading::ReadingArgs),
     Revoke(commands::revoke::RevokeArgs),
     /// Print the listed knowledge/skill/power/magic bands. Grants nothing.
     Bands(commands::bands::BandsArgs),
@@ -97,6 +98,7 @@ async fn main() -> Result<()> {
         Commands::OrderBand(args) => commands::orderband::run(args).await,
         Commands::Audit(args)  => commands::audit::run(args).await,
         Commands::Earth(args)  => commands::earth::run(args).await,
+        Commands::Reading(args) => commands::reading::run(args).await,
         Commands::Revoke(args) => commands::revoke::run(args).await,
         Commands::Bands(args)  => commands::bands::run(args).await,
         Commands::Claims(args) => commands::claims::run(args).await,
