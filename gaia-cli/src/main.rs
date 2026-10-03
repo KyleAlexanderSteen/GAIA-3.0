@@ -42,6 +42,8 @@ enum Commands {
     Chaos(commands::chaos::ChaosArgs),
     /// List local Documents and Documents-2 files. No network.
     Corpus(commands::corpus::CorpusArgs),
+    /// Print the frozen planetary criteria.
+    Criteria(commands::criteria::CriteriaArgs),
     /// Ask a local model. Misses loud if no server is set.
     Model(commands::model::ModelArgs),
     /// Start a host process and print its pid.
@@ -75,6 +77,7 @@ async fn main() -> Result<()> {
         Commands::Bands(args)  => commands::bands::run(args).await,
         Commands::Chaos(args)  => commands::chaos::run(args).await,
         Commands::Corpus(args) => commands::corpus::run(args).await,
+        Commands::Criteria(args) => commands::criteria::run(args).await,
         Commands::Model(args)  => commands::model::run(args).await,
         Commands::Proc(args)   => commands::proc::run(args).await,
         Commands::Find(args)   => commands::find::run(args).await,
