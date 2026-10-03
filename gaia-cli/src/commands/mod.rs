@@ -3,6 +3,7 @@ pub mod boot;
 pub mod claims;
 pub mod check;
 pub mod chaos;
+pub mod harmony;
 pub mod collective;
 pub mod corpus;
 pub mod federate;
