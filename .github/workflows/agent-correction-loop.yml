@@ -140,10 +140,13 @@ jobs:
       pull-requests: write
 
     steps:
+      # Pattern download: a re-run of only this job has a new run_attempt
+      # that never matches the uploaded artifact name, so match any attempt.
       - name: Download validation artifact
         uses: actions/download-artifact@v4
         with:
-          name: agent-validation-${{ github.run_attempt }}
+          pattern: agent-validation-*
+          merge-multiple: true
           path: artifacts
 
       - name: Post bounded PR comment
