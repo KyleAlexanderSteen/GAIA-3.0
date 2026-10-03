@@ -12,6 +12,7 @@ pub mod adapt;
 pub mod agent;
 pub mod intent;
 pub mod memory;
+pub mod order;
 pub mod proc;
 pub mod model;
 pub mod audit;
