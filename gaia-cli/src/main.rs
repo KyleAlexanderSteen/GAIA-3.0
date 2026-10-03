@@ -22,6 +22,8 @@ enum Commands {
     Init(commands::init::InitArgs),
     /// Print required OS and AI components.
     Inventory(commands::inventory::InventoryArgs),
+    /// Complete a prompt on the local model.
+    Infer(commands::infer::InferArgs),
     /// Start the GAIA runtime
     Start(commands::start::StartArgs),
     /// Print reality or good terms.
@@ -97,6 +99,7 @@ async fn main() -> Result<()> {
     match cli.command {
         Commands::Init(args)   => commands::init::run(args).await,
         Commands::Inventory(args) => commands::inventory::run(args).await,
+        Commands::Infer(args)  => commands::infer::run(args).await,
         Commands::Start(args)  => commands::start::run(args).await,
         Commands::Terms(args)  => commands::terms::run(args).await,
         Commands::Tool(args)   => commands::tool::run(args).await,
