@@ -20,6 +20,7 @@ pub mod layers;
 pub mod memory;
 pub mod order;
 pub mod proc;
+pub mod orderband;
 pub mod model;
 pub mod audit;
 pub mod earth;
