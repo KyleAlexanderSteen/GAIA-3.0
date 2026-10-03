@@ -42,6 +42,10 @@ enum Commands {
     Proc(commands::proc::ProcArgs),
     /// Find a title in the local corpus.
     Find(commands::find::FindArgs),
+    /// Hash a local file. Rejects a URL.
+    Hash(commands::hashfile::HashArgs),
+    /// Name two goods and call the pluralism gate.
+    Loss(commands::loss::LossArgs),
 }
 
 #[tokio::main]
@@ -61,5 +65,7 @@ async fn main() -> Result<()> {
         Commands::Model(args)  => commands::model::run(args).await,
         Commands::Proc(args)   => commands::proc::run(args).await,
         Commands::Find(args)   => commands::find::run(args).await,
+        Commands::Hash(args)   => commands::hashfile::run(args).await,
+        Commands::Loss(args)   => commands::loss::run(args).await,
     }
 }

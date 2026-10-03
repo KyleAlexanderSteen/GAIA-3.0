@@ -1,6 +1,8 @@
 pub mod bands;
 pub mod corpus;
 pub mod find;
+pub mod loss;
+pub mod hashfile;
 pub mod init;
 pub mod start;
 pub mod agent;
