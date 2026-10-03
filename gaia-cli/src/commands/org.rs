@@ -7,7 +7,7 @@ use std::path::Path;
 
 #[derive(Args)]
 pub struct OrgArgs {
-    /// feedback, governance, ecology, or agents.
+    /// feedback, governance, economy, ecology, or agents.
     pub band: String,
     /// Votes as 1 or 0, for the agents band.
     #[arg(long)]
@@ -25,9 +25,10 @@ pub async fn run(args: OrgArgs) -> Result<()> {
     let file = match args.band.as_str() {
         "feedback" => "gaia-spec/chaos/org-001.csv",
         "governance" => "gaia-spec/chaos/org-002.csv",
+        "economy" => "gaia-spec/chaos/org-003.csv",
         "ecology" => "gaia-spec/chaos/org-004.csv",
         "agents" => "gaia-spec/chaos/org-005.csv",
-        _ => return Err(anyhow!("band must be feedback, governance, ecology, or agents")),
+        _ => return Err(anyhow!("band must be feedback, governance, economy, ecology, or agents")),
     };
     let text = fs::read_to_string(Path::new(file))?;
     let rows = text.lines().skip(1).filter(|line| !line.is_empty()).count();
