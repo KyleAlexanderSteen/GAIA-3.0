@@ -18,6 +18,7 @@ pub mod govern;
 pub mod gaian;
 pub mod host;
 pub mod honest;
+pub mod tip;
 pub mod mcp_stdio;
 pub mod hpc;
 pub mod identity;

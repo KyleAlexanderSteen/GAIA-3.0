@@ -26,6 +26,7 @@ pub mod inventory;
 pub mod start;
 pub mod terms;
 pub mod tool;
+pub mod tip;
 pub mod adapt;
 pub mod agent;
 pub mod intent;
