@@ -1,0 +1,6 @@
+id,side,mechanism,evidence,limit
+mutation,helps,variation before selection,evolution is observed,unguided mutation also kills
+epsilon-greedy,helps,a small random try finds a better arm,bandit literature,too much explore wastes trials NeedVerify
+annealing,helps,noise early then less,optimization practice,a schedule is not a universal rate
+stochastic-resonance,helps,a little noise lifts a weak signal,physics cases,more noise hides the signal
+too-much,hurts,variance past the task,random policy underperforms a measured one,boundary is task-specific NeedVerify

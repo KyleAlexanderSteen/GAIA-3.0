@@ -63,6 +63,8 @@ enum Commands {
     Chaos(commands::chaos::ChaosArgs),
     /// Return matrix rows for one domain.
     Lookup(commands::lookup::LookupArgs),
+    /// Print a chaos band: good, bad, or contain.
+    ChaosBand(commands::chaosband::ChaosBandArgs),
     /// Print a harmony scale.
     Harmony(commands::harmony::HarmonyArgs),
     /// Print the collective intelligence review.
@@ -120,6 +122,7 @@ async fn main() -> Result<()> {
         Commands::Check(args)  => commands::check::run(args).await,
         Commands::Chaos(args)  => commands::chaos::run(args).await,
         Commands::Lookup(args) => commands::lookup::run(args).await,
+        Commands::ChaosBand(args) => commands::chaosband::run(args).await,
         Commands::Harmony(args) => commands::harmony::run(args).await,
         Commands::Collective(args) => commands::collective::run(args).await,
         Commands::Corpus(args) => commands::corpus::run(args).await,
