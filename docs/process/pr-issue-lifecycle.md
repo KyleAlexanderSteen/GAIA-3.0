@@ -38,6 +38,17 @@ GitHub interprets `Closes`, `Fixes`, and `Resolves` as closing keywords when a p
 
 The lifecycle workflow checks every merged PR relationship against the observed GitHub issue state: `Closes`/`Fixes`/`Resolves` must produce a closed issue, while `Refs` must leave the issue open. A deterministic verifier is unit-tested and also exercised by a manual end-to-end workflow self-test. If the observed state does not match the declared relationship, CI fails instead of silently treating the work as complete.
 
+## Automated work-governance reports
+
+The lifecycle workflow now emits two machine-readable artifacts for active pull requests:
+
+- **Readiness report** — explicit DoD stages, supplied validation evidence, blockers, and a promotion result. The result can be **BLOCKED**, **INCOMPLETE**, or **READY FOR HUMAN APPROVAL**; it never grants authority.
+- **Overlap report** — shared issue references and changed-file overlap with other active PRs. Candidates are surfaced for human review; the automation never declares an unrelated issue a duplicate.
+
+Historical work can be classified with `tools/agent-skills/work_history_audit.py`. It is intentionally mutation-free: unfinished historical work produces a recovery recommendation instead of reopening an old PR.
+
+The reports are commit-bound where an evaluated SHA is supplied and are suitable as inputs to the broader verification/promotion contracts in #1539 and #1542.
+
 ## Scope boundary
 
 This governance layer prevents bookkeeping and duplicate-work failures; it does not decide whether an issue's technical acceptance criteria are actually satisfied. Definition of Done remains the source of truth for stage evidence.
