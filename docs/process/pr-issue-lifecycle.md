@@ -36,7 +36,7 @@ GitHub interprets `Closes`, `Fixes`, and `Resolves` as closing keywords when a p
 
 ## After merge
 
-The lifecycle workflow checks merged PRs that contain a closing keyword. If GitHub did not close a promised issue, CI reports the mismatch instead of silently treating the work as complete.
+The lifecycle workflow checks every merged PR relationship against the observed GitHub issue state: `Closes`/`Fixes`/`Resolves` must produce a closed issue, while `Refs` must leave the issue open. A deterministic verifier is unit-tested and also exercised by a manual end-to-end workflow self-test. If the observed state does not match the declared relationship, CI fails instead of silently treating the work as complete.
 
 ## Scope boundary
 
