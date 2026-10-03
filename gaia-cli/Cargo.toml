@@ -20,6 +20,7 @@ path = "src/lib.rs"
 sha2 = "0.10"
 gaia-kernel = { path = "../gaia-kernel" }
 gaia-skills = { path = "../gaia-skills" }
+gaia-runtime = { path = "../gaia-runtime" }
 clap       = { version = "4", features = ["derive"] }
 tokio      = { version = "1", features = ["full"] }
 reqwest    = { version = "0.12", default-features = false, features = ["stream", "json", "rustls-tls"] }

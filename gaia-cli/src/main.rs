@@ -54,6 +54,8 @@ enum Commands {
     Corpus(commands::corpus::CorpusArgs),
     /// Print the frozen planetary criteria.
     Criteria(commands::criteria::CriteriaArgs),
+    /// Run the wasm guest add.
+    Guest(commands::guest::GuestArgs),
     /// Ask a local model. Misses loud if no server is set.
     Model(commands::model::ModelArgs),
     /// Start a host process and print its pid.
@@ -95,6 +97,7 @@ async fn main() -> Result<()> {
         Commands::Lookup(args) => commands::lookup::run(args).await,
         Commands::Corpus(args) => commands::corpus::run(args).await,
         Commands::Criteria(args) => commands::criteria::run(args).await,
+        Commands::Guest(args)  => commands::guest::run(args).await,
         Commands::Model(args)  => commands::model::run(args).await,
         Commands::Proc(args)   => commands::proc::run(args).await,
         Commands::Find(args)   => commands::find::run(args).await,
