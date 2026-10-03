@@ -77,6 +77,8 @@ enum Commands {
     Determine(commands::determine::DetermineArgs),
     /// Ask a local model. Misses loud if no server is set.
     Model(commands::model::ModelArgs),
+    /// Print perspectives or decide the area lists.
+    Decide(commands::decide::DecideArgs),
     /// Start a host process and print its pid.
     Proc(commands::proc::ProcArgs),
     /// Find a title in the local corpus.
@@ -129,6 +131,7 @@ async fn main() -> Result<()> {
         Commands::Determine(args) => commands::determine::run(args).await,
         Commands::Guest(args)  => commands::guest::run(args).await,
         Commands::Model(args)  => commands::model::run(args).await,
+        Commands::Decide(args) => commands::decide::run(args).await,
         Commands::Proc(args)   => commands::proc::run(args).await,
         Commands::Federate(args) => commands::federate::run(args).await,
         Commands::Find(args)   => commands::find::run(args).await,
