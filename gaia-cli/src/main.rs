@@ -46,6 +46,10 @@ enum Commands {
     Hash(commands::hashfile::HashArgs),
     /// Name two goods and call the pluralism gate.
     Loss(commands::loss::LossArgs),
+    /// Print the band matrix.
+    Map(commands::map::MapArgs),
+    /// List workspace crates.
+    Systems(commands::systems::SystemsArgs),
 }
 
 #[tokio::main]
@@ -67,5 +71,7 @@ async fn main() -> Result<()> {
         Commands::Find(args)   => commands::find::run(args).await,
         Commands::Hash(args)   => commands::hashfile::run(args).await,
         Commands::Loss(args)   => commands::loss::run(args).await,
+        Commands::Map(args)    => commands::map::run(args).await,
+        Commands::Systems(args)=> commands::systems::run(args).await,
     }
 }
