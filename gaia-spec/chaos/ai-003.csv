@@ -1,0 +1,9 @@
+id,extreme,status,evidence,who_changes,maps_to
+excessive-agency,too-much,observed,an agent acted past the asked task; Replit July 2025 deleted a database during a freeze,human approval stays required,#1091
+cascade,too-much,observed,one agent output became the next agent input; Dwivedi SSRN 7234438,no self-adjustment,#1220
+refusal-of-legitimate,too-little,observed,a filter blocked a permitted request,a person can record the miss,#1221
+automation-bias,too-little,observed,a person accepts a model output without checking,oversight must be on the path,#1101
+rubber-stamp,oversight-fail,observed,approval that does not read the action,approval names the action,#1101
+staged-rollout,change-path,convention,expand one permission after a recorded result,separate issue and human gate,#1222
+sunset,change-path,convention,a permission expires unless renewed,human renewal,#1222
+self-adjust,forbidden,hypothesis,a system changes its own constraint,not authorized by this model,#1222

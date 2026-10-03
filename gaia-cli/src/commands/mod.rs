@@ -2,6 +2,7 @@ pub mod bands;
 pub mod corpus;
 pub mod init;
 pub mod start;
+pub mod adapt;
 pub mod agent;
 pub mod intent;
 pub mod memory;
