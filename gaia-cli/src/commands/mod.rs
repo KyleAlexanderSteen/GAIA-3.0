@@ -1,5 +1,6 @@
 pub mod bands;
 pub mod claims;
+pub mod check;
 pub mod chaos;
 pub mod collective;
 pub mod corpus;

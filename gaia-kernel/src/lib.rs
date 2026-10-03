@@ -9,6 +9,7 @@ pub mod federation;
 pub mod home;
 pub mod govern;
 pub mod host;
+pub mod honest;
 pub mod hpc;
 pub mod identity;
 pub mod layers;
