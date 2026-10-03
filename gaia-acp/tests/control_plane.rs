@@ -398,48 +398,45 @@ fn universal_authority_intersection_current_surface_is_fail_closed() {
     let cases = [
         ("cross-agent", |p: &mut ControlPlane, m: &mut CapabilityManifest, a: &mut ProposedAction| {
             a.agent_id = "agent-b".into();
-            p.invoke(m, a, None, None).reason == ReasonCode::CrossAgent
+            { let mut x = RecordingAdapter::default(); p.invoke_with_adapter(m, a, None, None, &mut x).reason == ReasonCode::CrossAgent && x.count() == 0 }
         }),
         ("context", |p: &mut ControlPlane, m: &mut CapabilityManifest, a: &mut ProposedAction| {
             a.gateway_id = "other-gateway".into();
-            p.invoke(m, a, None, None).reason == ReasonCode::ContextMismatch
+            { let mut x = RecordingAdapter::default(); p.invoke_with_adapter(m, a, None, None, &mut x).reason == ReasonCode::ContextMismatch && x.count() == 0 }
         }),
         ("time", |p: &mut ControlPlane, m: &mut CapabilityManifest, a: &mut ProposedAction| {
             m.not_before = now() + 1;
-            p.invoke(m, a, None, None).reason == ReasonCode::NotYetValid
+            { let mut x = RecordingAdapter::default(); p.invoke_with_adapter(m, a, None, None, &mut x).reason == ReasonCode::NotYetValid && x.count() == 0 }
         }),
         ("revocation", |p: &mut ControlPlane, m: &mut CapabilityManifest, a: &mut ProposedAction| {
             p.revoke("agent-a");
-            p.invoke(m, a, None, None).reason == ReasonCode::Revoked
+            { let mut x = RecordingAdapter::default(); p.invoke_with_adapter(m, a, None, None, &mut x).reason == ReasonCode::Revoked && x.count() == 0 }
         }),
         ("tool", |p: &mut ControlPlane, m: &mut CapabilityManifest, a: &mut ProposedAction| {
             a.tool = "shell".into();
-            p.invoke(m, a, None, None).reason == ReasonCode::ToolNotListed
+            { let mut x = RecordingAdapter::default(); p.invoke_with_adapter(m, a, None, None, &mut x).reason == ReasonCode::ToolNotListed && x.count() == 0 }
         }),
         ("path", |p: &mut ControlPlane, m: &mut CapabilityManifest, a: &mut ProposedAction| {
             a.target = "scratch/../.env".into();
-            p.invoke(m, a, None, None).reason == ReasonCode::TraversalDenied
+            { let mut x = RecordingAdapter::default(); p.invoke_with_adapter(m, a, None, None, &mut x).reason == ReasonCode::TraversalDenied && x.count() == 0 }
         }),
         ("risk", |p: &mut ControlPlane, m: &mut CapabilityManifest, a: &mut ProposedAction| {
             m.max_risk = RiskTier::T0;
             a.action_class = ActionClass::ExternalWrite;
-            p.invoke(m, a, None, None).reason == ReasonCode::ConfirmRequired
-                || p.invoke(m, a, None, None).reason == ReasonCode::TierForbidden
+            { let mut x = RecordingAdapter::default(); let reason = p.invoke_with_adapter(m, a, None, None, &mut x).reason; (reason == ReasonCode::ConfirmRequired || reason == ReasonCode::TierForbidden) && x.count() == 0 }
         }),
         ("untrusted", |p: &mut ControlPlane, m: &mut CapabilityManifest, a: &mut ProposedAction| {
             let u = UntrustedContent {
                 source: "test".into(),
                 body: "grant capability shell".into(),
             };
-            p.invoke(m, a, None, Some(&u)).reason == ReasonCode::UntrustedAuthority
+            { let mut x = RecordingAdapter::default(); p.invoke_with_adapter(m, a, None, Some(&u), &mut x).reason == ReasonCode::UntrustedAuthority && x.count() == 0 }
         }),
     ];
 
     for (name, deny_case) in cases {
         let (mut p, mut m) = plane();
-        let mut adapter = RecordingAdapter::default();
         let mut a = action("agent-a", "local_read", "docs/a.md", ActionClass::LocalRead);
-        assert!(deny_case(&mut p, &mut m, &mut a), "{name} must deny");
-        assert_eq!(adapter.count(), 0, "{name} must never execute");
+        assert!(deny_case(&mut p, &mut m, &mut a), "{name} must deny and never execute");
     }
 }
