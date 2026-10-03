@@ -3,6 +3,7 @@ name: PR lifecycle governance
 on:
   pull_request:
     types: [opened, edited, synchronize, reopened, closed]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -11,7 +12,7 @@ permissions:
 
 jobs:
   lifecycle:
-    if: github.event.action != 'closed'
+    if: github.event_name == 'pull_request' && github.event.action != 'closed'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -28,37 +29,70 @@ jobs:
           python tools/agent-skills/pr_lifecycle_check.py --body pr-body.md --active-prs active-prs.json --current-pr "${{ github.event.pull_request.number }}"
         env:
           PR_BODY: ${{ github.event.pull_request.body }}
-
       - name: Validate definition of done
         run: printf '%s' "$PR_BODY" | python tools/agent-skills/dod_check.py
         env:
           PR_BODY: ${{ github.event.pull_request.body }}
 
   post-merge:
-    if: github.event.action == 'closed' && github.event.pull_request.merged == true
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-      - name: Verify closing issue state
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Collect linked issue states
         env:
           GH_TOKEN: ${{ github.token }}
           PR_BODY: ${{ github.event.pull_request.body }}
         run: |
+          printf '%s' "$PR_BODY" > pr-body.md
           python - <<'PY'
-          import json, os, re, subprocess, sys
+          import json, os, subprocess
+          from tools.agent_skills.pr_lifecycle_postmerge_check import relationships
+
           body = os.environ.get("PR_BODY", "")
-          closing = re.compile(r"(?i)(?:^|\\s)(?:close|closes|closed|fix|fixes|fixed|resolve|resolves|resolved)\\s*:??\\s*(?:[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+)?#(\\d+)\\b")
-          refs = sorted({int(n) for n in closing.findall(body)})
-          if not refs:
-              print("No closing keyword found; no issue closure was promised.")
-              raise SystemExit(0)
-          failed = False
+          refs = sorted({n for _, numbers in relationships(body) for n in numbers})
+          states = {}
           for number in refs:
-              raw = subprocess.check_output(["gh", "api", f"repos/{os.environ['GITHUB_REPOSITORY']}/issues/{number}"], text=True)
-              state = json.loads(raw)["state"]
-              print(f"#{number}: {state}")
-              if state != "closed": failed = True
-          if failed:
-              print("FAIL: a merged PR promised issue closure but the issue remains open.")
-              sys.exit(1)
-          print("ok: every promised closing issue is closed.")
+              raw = subprocess.check_output(
+                  ["gh", "api", f"repos/{os.environ['GITHUB_REPOSITORY']}/issues/{number}"],
+                  text=True,
+              )
+              states[str(number)] = json.loads(raw)["state"]
+          json.dump(states, open("issue-states.json", "w", encoding="utf-8"), sort_keys=True)
+          print(json.dumps(states, sort_keys=True))
           PY
+      - name: Verify post-merge issue state
+        run: python tools/agent-skills/pr_lifecycle_postmerge_check.py --body pr-body.md --states issue-states.json
+
+  self-test:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run lifecycle unit tests
+        run: |
+          python -m unittest tools/agent-skills/test_pr_lifecycle_check.py
+          python -m unittest tools/agent-skills/test_pr_lifecycle_postmerge_check.py
+      - name: Run end-to-end relationship simulation
+        run: |
+          cat > pr-body.md <<'EOF'
+          Closes #1624
+
+          ## Stage reached
+          - [x] SPECIFICATION
+          - [x] IMPLEMENTATION
+          - [x] TEST
+          - [x] INTEGRATION
+          - [x] VERIFICATION
+          - [x] OPERATIONAL
+          EOF
+          printf '%s' '{"1624":"closed"}' > issue-states.json
+          python tools/agent-skills/pr_lifecycle_check.py --body pr-body.md
+          python tools/agent-skills/pr_lifecycle_postmerge_check.py --body pr-body.md --states issue-states.json
+          echo "GAIA PR lifecycle self-test: PASS"
