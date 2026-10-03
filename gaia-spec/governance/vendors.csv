@@ -1,0 +1,7 @@
+vendor,kind,data_leaves_machine,verified
+local-file,storage,no,true
+ollama-localhost,model,no,false
+huggingface,model,yes,false
+supabase,storage,yes,false
+vercel,host,yes,false
+copernicus,earth,yes,false
