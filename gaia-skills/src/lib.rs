@@ -7,7 +7,7 @@ mod graph;
 mod matching;
 mod overlay;
 mod path;
-mod pluralism;
+pub mod pluralism;
 mod profile;
 mod schema;
 mod vault;
