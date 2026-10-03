@@ -24,6 +24,7 @@ pub mod adapt;
 pub mod agent;
 pub mod intent;
 pub mod layers;
+pub mod mcp;
 pub mod memory;
 pub mod order;
 pub mod org;
