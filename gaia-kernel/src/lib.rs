@@ -3,6 +3,7 @@
 pub mod audit;
 pub mod broker;
 pub mod capability;
+pub mod components;
 pub mod execution;
 pub mod executor;
 pub mod federation;
@@ -13,6 +14,7 @@ pub mod honest;
 pub mod hpc;
 pub mod identity;
 pub mod layers;
+pub mod inventory;
 pub mod planner;
 pub mod ports;
 pub mod gate;

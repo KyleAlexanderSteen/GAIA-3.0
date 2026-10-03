@@ -14,6 +14,7 @@ pub mod hashfile;
 pub mod criteria;
 pub mod init;
 pub mod lookup;
+pub mod inventory;
 pub mod start;
 pub mod terms;
 pub mod adapt;
