@@ -20,6 +20,8 @@ struct Cli {
 enum Commands {
     /// Initialise a GAIA profile
     Init(commands::init::InitArgs),
+    /// Print required OS and AI components.
+    Inventory(commands::inventory::InventoryArgs),
     /// Start the GAIA runtime
     Start(commands::start::StartArgs),
     /// Print reality or good terms.
@@ -38,24 +40,33 @@ enum Commands {
     Order(commands::order::OrderArgs),
     /// Print an organization band.
     Org(commands::org::OrgArgs),
+    /// Print an order band: good, bad, rigid, or adapt.
+    OrderBand(commands::orderband::OrderBandArgs),
     /// View the audit log
     Audit(commands::audit::AuditArgs),
     /// Print the Earth interaction map.
     Earth(commands::earth::EarthArgs),
     /// Revoke (stop) a running agent
+    Reading(commands::reading::ReadingArgs),
     Revoke(commands::revoke::RevokeArgs),
     /// Print the listed knowledge/skill/power/magic bands. Grants nothing.
     Bands(commands::bands::BandsArgs),
     /// Print claim tiers.
     Claims(commands::claims::ClaimsArgs),
+    /// Check a claim.
+    Check(commands::check::CheckArgs),
     /// Print the AI chaos taxonomy.
     Chaos(commands::chaos::ChaosArgs),
     /// Return matrix rows for one domain.
     Lookup(commands::lookup::LookupArgs),
+    /// Print the collective intelligence review.
+    Collective(commands::collective::CollectiveArgs),
     /// List local Documents and Documents-2 files. No network.
     Corpus(commands::corpus::CorpusArgs),
     /// Print the frozen planetary criteria.
     Criteria(commands::criteria::CriteriaArgs),
+    /// Run the wasm guest add.
+    Guest(commands::guest::GuestArgs),
     /// Ask a local model. Misses loud if no server is set.
     Model(commands::model::ModelArgs),
     /// Start a host process and print its pid.
@@ -80,6 +91,7 @@ async fn main() -> Result<()> {
     let cli = Cli::parse();
     match cli.command {
         Commands::Init(args)   => commands::init::run(args).await,
+        Commands::Inventory(args) => commands::inventory::run(args).await,
         Commands::Start(args)  => commands::start::run(args).await,
         Commands::Terms(args)  => commands::terms::run(args).await,
         Commands::Agent(args)  => commands::agent::run(args).await,
@@ -89,15 +101,20 @@ async fn main() -> Result<()> {
         Commands::Memory(args) => commands::memory::run(args).await,
         Commands::Order(args)  => commands::order::run(args).await,
         Commands::Org(args)    => commands::org::run(args).await,
+        Commands::OrderBand(args) => commands::orderband::run(args).await,
         Commands::Audit(args)  => commands::audit::run(args).await,
         Commands::Earth(args)  => commands::earth::run(args).await,
+        Commands::Reading(args) => commands::reading::run(args).await,
         Commands::Revoke(args) => commands::revoke::run(args).await,
         Commands::Bands(args)  => commands::bands::run(args).await,
         Commands::Claims(args) => commands::claims::run(args).await,
+        Commands::Check(args)  => commands::check::run(args).await,
         Commands::Chaos(args)  => commands::chaos::run(args).await,
         Commands::Lookup(args) => commands::lookup::run(args).await,
+        Commands::Collective(args) => commands::collective::run(args).await,
         Commands::Corpus(args) => commands::corpus::run(args).await,
         Commands::Criteria(args) => commands::criteria::run(args).await,
+        Commands::Guest(args)  => commands::guest::run(args).await,
         Commands::Model(args)  => commands::model::run(args).await,
         Commands::Proc(args)   => commands::proc::run(args).await,
         Commands::Find(args)   => commands::find::run(args).await,

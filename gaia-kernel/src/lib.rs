@@ -4,21 +4,25 @@ pub mod audit;
 pub mod broker;
 pub mod capability;
 pub mod consensus;
+pub mod components;
 pub mod execution;
 pub mod executor;
 pub mod federation;
 pub mod home;
 pub mod govern;
 pub mod host;
+pub mod honest;
 pub mod hpc;
 pub mod identity;
 pub mod layers;
+pub mod inventory;
 pub mod planner;
 pub mod ports;
 pub mod gate;
 pub mod planetary;
 pub mod providers;
 pub mod reality;
+pub mod reading;
 pub mod receipts;
 pub mod scheduler;
 pub mod si_layer;
@@ -217,7 +221,8 @@ mod tests {
         let outcome = &result.task_results[0].outcome;
         assert!(
             matches!(outcome, Outcome::Failed { reason } if reason.contains(GAIA_NO_CAPABLE_AGENT)),
-            "expected GAIA_NO_CAPABLE_AGENT in outcome: {:?}", outcome
+            "expected GAIA_NO_CAPABLE_AGENT in outcome: {:?}",
+            outcome
         );
     }
 
