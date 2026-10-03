@@ -12,6 +12,7 @@ pub mod host;
 pub mod hpc;
 pub mod identity;
 pub mod layers;
+pub mod inventory;
 pub mod planner;
 pub mod ports;
 pub mod gate;

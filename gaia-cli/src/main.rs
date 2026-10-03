@@ -20,6 +20,8 @@ struct Cli {
 enum Commands {
     /// Initialise a GAIA profile
     Init(commands::init::InitArgs),
+    /// Print required OS and AI components.
+    Inventory(commands::inventory::InventoryArgs),
     /// Start the GAIA runtime
     Start(commands::start::StartArgs),
     /// Print reality or good terms.
@@ -78,6 +80,7 @@ async fn main() -> Result<()> {
     let cli = Cli::parse();
     match cli.command {
         Commands::Init(args)   => commands::init::run(args).await,
+        Commands::Inventory(args) => commands::inventory::run(args).await,
         Commands::Start(args)  => commands::start::run(args).await,
         Commands::Terms(args)  => commands::terms::run(args).await,
         Commands::Agent(args)  => commands::agent::run(args).await,
