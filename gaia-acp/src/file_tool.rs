@@ -18,7 +18,7 @@ pub fn network(_url: &str) -> Result<(), &'static str> {
 }
 
 pub fn receipt(body: &str) -> String {
-    format!("sha256={}", simple_hash(body))
+    format!("hash={}", simple_hash(body))
 }
 
 fn simple_hash(body: &str) -> u64 {
