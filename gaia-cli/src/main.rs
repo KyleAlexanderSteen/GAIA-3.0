@@ -26,6 +26,8 @@ enum Commands {
     Start(commands::start::StartArgs),
     /// Print reality or good terms.
     Terms(commands::terms::TermsArgs),
+    /// Run a file tool. Network is refused.
+    Tool(commands::tool::ToolArgs),
     /// Manage agents
     Agent(commands::agent::AgentArgs),
     /// Print the adaptive alignment model.
@@ -94,6 +96,7 @@ async fn main() -> Result<()> {
         Commands::Inventory(args) => commands::inventory::run(args).await,
         Commands::Start(args)  => commands::start::run(args).await,
         Commands::Terms(args)  => commands::terms::run(args).await,
+        Commands::Tool(args)   => commands::tool::run(args).await,
         Commands::Agent(args)  => commands::agent::run(args).await,
         Commands::Adapt(args)  => commands::adapt::run(args).await,
         Commands::Intent(args) => commands::intent::run(args).await,

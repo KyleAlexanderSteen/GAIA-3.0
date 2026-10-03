@@ -5,8 +5,8 @@ edition.workspace = true
 license.workspace = true
 description = "GAIA developer CLI — command-line interface for the GAIA runtime"
 
-# Workspace already ships `gaia` from gaia-orchestrator (intent stub).
-# This crate uses `gaia-cli` so cargo test --workspace does not overwrite
+# Workspace already ships gaia from gaia-orchestrator (intent stub).
+# This crate uses gaia-cli so cargo test --workspace does not overwrite
 # target/debug/gaia and assert_cmd hits the wrong binary.
 [[bin]]
 name = "gaia-cli"
@@ -21,6 +21,7 @@ sha2 = "0.10"
 gaia-kernel = { path = "../gaia-kernel" }
 gaia-skills = { path = "../gaia-skills" }
 gaia-runtime = { path = "../gaia-runtime" }
+gaia-acp = { path = "../gaia-acp" }
 clap       = { version = "4", features = ["derive"] }
 tokio      = { version = "1", features = ["full"] }
 reqwest    = { version = "0.12", default-features = false, features = ["stream", "json", "rustls-tls"] }

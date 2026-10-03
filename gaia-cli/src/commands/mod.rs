@@ -17,6 +17,7 @@ pub mod lookup;
 pub mod inventory;
 pub mod start;
 pub mod terms;
+pub mod tool;
 pub mod adapt;
 pub mod agent;
 pub mod intent;
@@ -36,7 +37,7 @@ pub mod revoke;
 /// It prints nothing to stdout, writes a clear message to stderr, and exits
 /// non-zero. It must never print a success line.
 pub fn not_implemented(command: &str, issue: &str) -> anyhow::Error {
-    anyhow::anyhow!("`gaia {command}` is not implemented yet (tracked in {issue}); nothing was done")
+    anyhow::anyhow!("gaia {command} is not implemented yet (tracked in {issue}); nothing was done")
 }
 
 #[cfg(test)]

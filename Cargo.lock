@@ -1322,6 +1322,7 @@ dependencies = [
  "anyhow",
  "assert_cmd",
  "clap",
+ "gaia-acp",
  "gaia-kernel",
  "gaia-runtime",
  "gaia-skills",

@@ -1,6 +1,7 @@
 //! Local-first agent control plane. Fake adapters remain. MCP stdio is fixture-only. HTTP off.
 
 mod adapter;
+pub mod file_tool;
 mod approval;
 mod audit;
 mod autonomy;
