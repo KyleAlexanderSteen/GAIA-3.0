@@ -7,6 +7,7 @@ pub mod intent;
 pub mod memory;
 pub mod model;
 pub mod audit;
+pub mod earth;
 pub mod revoke;
 
 /// Rule (#1304): a command whose real behavior is not built must fail loudly.

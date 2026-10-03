@@ -1,0 +1,9 @@
+id,link,evidence,uncertainty,source,maps_to
+climate-biosphere,climate changes ecosystems,observed,threshold timing is uncertain,Richardson et al Science Advances 2023,#1143
+biosphere-climate,ecosystems change carbon,modeled,feedback size is model output,NeedVerify,#1169
+climate-ocean,warming and acidification,observed,acidification near a boundary not past it in the 2023 update,Richardson et al 2023,#1169
+boundaries-six,six of nine transgressed,modeled,framework has critiques,Richardson et al Science Advances 13 Sep 2023,#1223
+safe-just,seven of eight safe-and-just exceeded,modeled,justice tightens climate more than safety,Rockstrom et al Nature 2023,#1223
+tipping,small push can self-reinforce,modeled,likelihood rises above 1.5 C,Rockstrom et al Nature 2023,#1143
+economy-tech,human systems drive the pressures,observed,a description not a GAIA forecast,NeedVerify,#1169
+gaia-ensemble,local fixture,fixture,not a planetary model,issue #1169,#1169

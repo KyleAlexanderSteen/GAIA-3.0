@@ -30,6 +30,8 @@ enum Commands {
     Memory(commands::memory::MemoryArgs),
     /// View the audit log
     Audit(commands::audit::AuditArgs),
+    /// Print the Earth interaction map.
+    Earth(commands::earth::EarthArgs),
     /// Revoke (stop) a running agent
     Revoke(commands::revoke::RevokeArgs),
     /// Print the listed knowledge/skill/power/magic bands. Grants nothing.
@@ -51,6 +53,7 @@ async fn main() -> Result<()> {
         Commands::Intent(args) => commands::intent::run(args).await,
         Commands::Memory(args) => commands::memory::run(args).await,
         Commands::Audit(args)  => commands::audit::run(args).await,
+        Commands::Earth(args)  => commands::earth::run(args).await,
         Commands::Revoke(args) => commands::revoke::run(args).await,
         Commands::Bands(args)  => commands::bands::run(args).await,
         Commands::Corpus(args) => commands::corpus::run(args).await,
