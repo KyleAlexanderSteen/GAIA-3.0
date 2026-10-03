@@ -1,0 +1,5 @@
+id,mechanism,coordinates,fails
+majority,more than half agree,a local decision,a tie is not a decision
+quorum,enough present to decide,stops a lone actor,too small a quorum is capture
+cascade,one failure becomes the next input,spreads on a link,a bulkhead stops it
+partition,two groups cannot see each other,no consensus across the cut,a heal is a later message

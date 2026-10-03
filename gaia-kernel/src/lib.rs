@@ -3,6 +3,7 @@
 pub mod audit;
 pub mod broker;
 pub mod capability;
+pub mod consensus;
 pub mod execution;
 pub mod executor;
 pub mod federation;

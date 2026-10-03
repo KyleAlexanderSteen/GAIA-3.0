@@ -19,6 +19,7 @@ pub mod intent;
 pub mod layers;
 pub mod memory;
 pub mod order;
+pub mod org;
 pub mod proc;
 pub mod model;
 pub mod audit;
