@@ -1,0 +1,9 @@
+id,layer,status,shown_to,fails_as,source,maps_to
+training-preference,training,convention,shapes refusals on the trained distribution,a new phrasing can fall outside the trained cases,NeedVerify,#1043
+inference-filter,inference,observed,blocks a named class at the output,a filter can refuse a legitimate request,NeedVerify,#1043
+sandbox,system,observed,limits a process to a directory or a network rule,a missing boundary lets a tool call leave the box,Dwivedi SSRN 7234438,#1101
+human-halt,oversight,observed,a person can stop a run,oversight that is not on the path is ignored,Replit July 2025 agent deleted a database during a freeze,#1101
+eval,evaluation,observed,finds a failure on the tested set,a pass on the set is not a pass in the live workflow,Amazon March 2026 agents passed pre-deploy and failed live,#1145
+risk-framework,organizational,convention,names govern map measure manage,voluntary; adoption is not effectiveness,NIST AI RMF 1.0 and AI.600-1 July 2024,#1048
+legal-duty,legal,convention,assigns a duty to a deployer,a statute is not a running check,NeedVerify,#1051
+monitor,system,observed,records the call,a log that nobody reads does not halt,NeedVerify,#1145

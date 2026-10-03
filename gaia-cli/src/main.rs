@@ -30,6 +30,8 @@ enum Commands {
     Intent(commands::intent::IntentArgs),
     /// Inspect or query memory
     Memory(commands::memory::MemoryArgs),
+    /// Print the AI order taxonomy.
+    Order(commands::order::OrderArgs),
     /// View the audit log
     Audit(commands::audit::AuditArgs),
     /// Print the Earth interaction map.
@@ -71,6 +73,7 @@ async fn main() -> Result<()> {
         Commands::Adapt(args)  => commands::adapt::run(args).await,
         Commands::Intent(args) => commands::intent::run(args).await,
         Commands::Memory(args) => commands::memory::run(args).await,
+        Commands::Order(args)  => commands::order::run(args).await,
         Commands::Audit(args)  => commands::audit::run(args).await,
         Commands::Earth(args)  => commands::earth::run(args).await,
         Commands::Revoke(args) => commands::revoke::run(args).await,
