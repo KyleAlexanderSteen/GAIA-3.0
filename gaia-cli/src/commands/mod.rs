@@ -11,6 +11,7 @@ pub mod criteria;
 pub mod init;
 pub mod lookup;
 pub mod start;
+pub mod terms;
 pub mod adapt;
 pub mod agent;
 pub mod intent;

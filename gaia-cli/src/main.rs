@@ -22,6 +22,8 @@ enum Commands {
     Init(commands::init::InitArgs),
     /// Start the GAIA runtime
     Start(commands::start::StartArgs),
+    /// Print reality or good terms.
+    Terms(commands::terms::TermsArgs),
     /// Manage agents
     Agent(commands::agent::AgentArgs),
     /// Print the adaptive alignment model.
@@ -75,6 +77,7 @@ async fn main() -> Result<()> {
     match cli.command {
         Commands::Init(args)   => commands::init::run(args).await,
         Commands::Start(args)  => commands::start::run(args).await,
+        Commands::Terms(args)  => commands::terms::run(args).await,
         Commands::Agent(args)  => commands::agent::run(args).await,
         Commands::Adapt(args)  => commands::adapt::run(args).await,
         Commands::Intent(args) => commands::intent::run(args).await,
