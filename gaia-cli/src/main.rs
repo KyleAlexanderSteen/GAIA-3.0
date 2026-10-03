@@ -44,6 +44,8 @@ enum Commands {
     Org(commands::org::OrgArgs),
     /// Print an order band: good, bad, rigid, or adapt.
     OrderBand(commands::orderband::OrderBandArgs),
+    /// Accept a local MCP frame.
+    Mcp(commands::mcp::McpArgs),
     /// View the audit log
     Audit(commands::audit::AuditArgs),
     /// Print the Earth interaction map.
@@ -108,6 +110,7 @@ async fn main() -> Result<()> {
         Commands::Order(args)  => commands::order::run(args).await,
         Commands::Org(args)    => commands::org::run(args).await,
         Commands::OrderBand(args) => commands::orderband::run(args).await,
+        Commands::Mcp(args)    => commands::mcp::run(args).await,
         Commands::Audit(args)  => commands::audit::run(args).await,
         Commands::Earth(args)  => commands::earth::run(args).await,
         Commands::Reading(args) => commands::reading::run(args).await,

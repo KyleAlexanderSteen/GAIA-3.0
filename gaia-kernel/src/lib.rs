@@ -14,6 +14,7 @@ pub mod home;
 pub mod govern;
 pub mod host;
 pub mod honest;
+pub mod mcp_stdio;
 pub mod hpc;
 pub mod identity;
 pub mod layers;
