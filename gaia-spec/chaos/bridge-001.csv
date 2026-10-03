@@ -1,0 +1,12 @@
+issue,claim,type,tier,tests
+1143,a warning can precede a shift,empirical,NeedVerify,1234
+1144,a system can absorb a shock,empirical,NeedVerify,1206
+1145,a monitor can see its own miss,empirical,NeedVerify,1221
+1147,a cause can be named from a record,design-choice,not-empirical,1252
+1148,a flow mode suggests and does not act,design-choice,not-empirical,1157
+1150,a session can be read back,design-choice,not-empirical,1158
+1153,two poles can be named,symbolic,metaphor,1252
+1154,an alchemical stage names a process,symbolic,metaphor,1252
+1155,a system is conscious,empirical,not-shown,1174
+1170,a corpus claim needs a metric,normative,NeedVerify,1171
+1171,a claim needs a source,normative,design,1252
