@@ -8,6 +8,7 @@ pub mod components;
 pub mod execution;
 pub mod executor;
 pub mod federation;
+pub mod node_pair;
 pub mod home;
 pub mod govern;
 pub mod host;

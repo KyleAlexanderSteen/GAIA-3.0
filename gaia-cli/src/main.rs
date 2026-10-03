@@ -74,6 +74,7 @@ enum Commands {
     /// Start a host process and print its pid.
     Proc(commands::proc::ProcArgs),
     /// Find a title in the local corpus.
+    Federate(commands::federate::FederateArgs),
     Find(commands::find::FindArgs),
     /// Record a governed run.
     Govern(commands::govern::GovernArgs),
@@ -120,6 +121,7 @@ async fn main() -> Result<()> {
         Commands::Guest(args)  => commands::guest::run(args).await,
         Commands::Model(args)  => commands::model::run(args).await,
         Commands::Proc(args)   => commands::proc::run(args).await,
+        Commands::Federate(args) => commands::federate::run(args).await,
         Commands::Find(args)   => commands::find::run(args).await,
         Commands::Govern(args) => commands::govern::run(args).await,
         Commands::Hash(args)   => commands::hashfile::run(args).await,

@@ -4,6 +4,7 @@ pub mod check;
 pub mod chaos;
 pub mod collective;
 pub mod corpus;
+pub mod federate;
 pub mod find;
 pub mod govern;
 pub mod guest;
