@@ -1,10 +1,12 @@
 pub mod bands;
 pub mod corpus;
+pub mod find;
 pub mod init;
 pub mod start;
 pub mod agent;
 pub mod intent;
 pub mod memory;
+pub mod proc;
 pub mod model;
 pub mod audit;
 pub mod revoke;

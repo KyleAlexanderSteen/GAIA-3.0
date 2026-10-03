@@ -38,6 +38,10 @@ enum Commands {
     Corpus(commands::corpus::CorpusArgs),
     /// Ask a local model. Misses loud if no server is set.
     Model(commands::model::ModelArgs),
+    /// Start a host process and print its pid.
+    Proc(commands::proc::ProcArgs),
+    /// Find a title in the local corpus.
+    Find(commands::find::FindArgs),
 }
 
 #[tokio::main]
@@ -55,5 +59,7 @@ async fn main() -> Result<()> {
         Commands::Bands(args)  => commands::bands::run(args).await,
         Commands::Corpus(args) => commands::corpus::run(args).await,
         Commands::Model(args)  => commands::model::run(args).await,
+        Commands::Proc(args)   => commands::proc::run(args).await,
+        Commands::Find(args)   => commands::find::run(args).await,
     }
 }
