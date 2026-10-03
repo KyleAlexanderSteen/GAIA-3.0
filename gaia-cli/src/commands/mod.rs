@@ -1,4 +1,5 @@
 pub mod bands;
+pub mod boot;
 pub mod claims;
 pub mod check;
 pub mod chaos;
