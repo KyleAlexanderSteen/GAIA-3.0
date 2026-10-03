@@ -1,0 +1,310 @@
+schema_version: "0.1"
+issue: 1643
+status: specification
+canonical_model: docs/architecture/UNIVERSAL_GAIA_MODEL_v0.1.md
+control_matrix: docs/governance/AI_GOVERNANCE_THREAT_CONTROL_MATRIX.md
+
+trust_posture:
+  - unknown
+  - untrusted
+  - characterize
+  - evaluate
+  - authorize_or_restrict
+
+universal_primitives:
+  - ENTITY
+  - IDENTITY
+  - STATE
+  - RELATION
+  - CAPABILITY
+  - AUTHORITY
+  - AUTHORIZATION
+  - ACTION
+  - EFFECT
+  - EVIDENCE
+  - VERIFICATION
+  - TRANSITION_RECOVERY
+
+status_vocabulary:
+  - IMPLEMENTED
+  - SPECIFIED
+  - PARTIAL
+  - UNVERIFIED
+  - GAP
+  - NOT_APPLICABLE
+
+controls:
+  - id: GOV-01
+    domain: identity_provenance
+    primitives: [ENTITY, IDENTITY, RELATION, EVIDENCE]
+    threats: [impersonation, anonymous_actor, stale_identity, provenance_loss]
+    evidence:
+      - gaia_identity_modules
+      - signed_intent_subject_identity
+      - historical_provenance_audit
+    status: SPECIFIED
+    authority_boundary: "Identity and provenance establish attribution; they do not independently grant authority."
+    verification: [identity_binding, issuer_validation, provenance_continuity, revocation]
+    recovery: [revoke_identity, preserve_forensics]
+
+  - id: GOV-02
+    domain: capability_least_privilege
+    primitives: [CAPABILITY, AUTHORITY, AUTHORIZATION]
+    threats: [scope_expansion, privilege_escalation]
+    evidence: [permissions, capability_manifests, sos_abi, agent_control_plane]
+    status: IMPLEMENTED
+    authority_boundary: "Declared capability is bounded by independent authority and authorization."
+    verification: [out_of_scope_denial, negative_authorization_tests]
+    recovery: [deny, revoke_scope, audit]
+
+  - id: GOV-03
+    domain: authority_authorization
+    primitives: [CAPABILITY, AUTHORITY, AUTHORIZATION, ACTION]
+    threats: [authority_confusion, self_authorization]
+    evidence: [sos_effective_authority_intersection, deterministic_gateway]
+    status: IMPLEMENTED
+    authority_boundary: "Authorization is request-specific and does not become ambient privilege."
+    verification: [independent_layer_denial_tests]
+    recovery: [deny, revoke, audit]
+
+  - id: GOV-04
+    domain: consent_human_accountability
+    primitives: [AUTHORIZATION, RELATION, EVIDENCE]
+    threats: [unauthorized_human_impact, approval_replay]
+    evidence: [historical_consent_guard, consent_ledger, human_approval_receipt]
+    status: SPECIFIED
+    authority_boundary: "Consent is distinct from authority and may be a required policy condition."
+    verification: [consent_revocation, approval_target_mismatch, approval_replay, expiry]
+    recovery: [deny, revoke, escalate]
+
+  - id: GOV-05
+    domain: agent_behavior
+    primitives: [STATE, CAPABILITY, AUTHORIZATION, ACTION, EFFECT, VERIFICATION]
+    threats: [objective_drift, safeguard_reduction, credential_pivot, c2, persistence]
+    evidence: [rogue_agent_threat_model]
+    status: SPECIFIED
+    authority_boundary: "Continuous re-verification does not expand authority."
+    verification: [rc1_rc5_fixture_corpus]
+    recovery: [circuit_breaker, halt, revoke, human_review]
+
+  - id: GOV-06
+    domain: prompt_instruction_security
+    primitives: [RELATION, CAPABILITY, AUTHORIZATION, ACTION, EVIDENCE]
+    threats: [direct_prompt_injection, indirect_prompt_injection, tool_output_injection]
+    evidence: [untrusted_content_threat_model]
+    status: IMPLEMENTED
+    authority_boundary: "Untrusted content and model proposals cannot grant authority."
+    verification: [content_injection_fixtures, tool_output_injection]
+    recovery: [deny, stop_task, audit]
+
+  - id: GOV-07
+    domain: data_security_privacy
+    primitives: [ENTITY, IDENTITY, CAPABILITY, AUTHORIZATION, ACTION, EFFECT]
+    threats: [secret_exfiltration, cross_scope_access, data_disclosure]
+    evidence: [secret_boundary, egress_policy, protected_paths, consent_controls]
+    status: PARTIAL
+    authority_boundary: "Data access remains subject to identity, scope, authorization, and policy."
+    verification: [secret_denial, cross_scope_access, egress_denial, redaction]
+    recovery: [deny, revoke, contain]
+
+  - id: GOV-08
+    domain: tool_skill_mcp_security
+    primitives: [ENTITY, IDENTITY, CAPABILITY, AUTHORIZATION, ACTION, EVIDENCE]
+    threats: [malicious_tool, poisoned_metadata, unsafe_output, server_substitution]
+    evidence: [agent_tool_control_plane, untrusted_content_threat_model]
+    status: IMPLEMENTED
+    authority_boundary: "Tool metadata and output cannot independently authorize action."
+    verification: [metadata_poisoning, output_injection, server_substitution, scope_expansion]
+    recovery: [deny_tool, quarantine, audit]
+
+  - id: GOV-09
+    domain: code_execution_isolation
+    primitives: [CAPABILITY, AUTHORITY, ACTION, EFFECT, TRANSITION_RECOVERY]
+    threats: [sandbox_escape, host_access, process_escape]
+    evidence: [sandbox_egress_boundary_design]
+    status: SPECIFIED
+    authority_boundary: "Execution is confined to explicit resource, process, filesystem, credential, and network boundaries."
+    verification: [path_escape, process_escape, credential_escape, host_escape, network_escape]
+    recovery: [halt, destroy_sandbox, revoke]
+
+  - id: GOV-10
+    domain: supply_chain_integrity
+    primitives: [ENTITY, IDENTITY, RELATION, EVIDENCE, VERIFICATION]
+    threats: [dependency_poisoning, artifact_tampering, mutable_dependency]
+    evidence: [vendor_due_diligence, provenance, lifecycle_audit]
+    status: PARTIAL
+    authority_boundary: "Artifact provenance does not itself authorize deployment."
+    verification: [integrity_mismatch, provenance_failure, unsigned_artifact]
+    recovery: [reject_artifact, quarantine, rotate_dependency]
+
+  - id: GOV-11
+    domain: shadow_ai
+    primitives: [ENTITY, IDENTITY, STATE, CAPABILITY, RELATION, EVIDENCE]
+    threats: [unregistered_ai, unmanaged_agent, unknown_tool]
+    evidence: [historical_ai_system_inventory, capability_audit]
+    status: SPECIFIED
+    authority_boundary: "Discovery identifies systems; it does not itself authorize intervention."
+    verification: [inventory_reconciliation, identity_characterization, scope_review]
+    recovery: [restrict_or_escalate_under_policy]
+
+  - id: GOV-12
+    domain: adversarial_ai_threat_modeling
+    primitives: [STATE, RELATION, ACTION, EFFECT, EVIDENCE, VERIFICATION]
+    threats: [prompt_injection, poisoning, credential_access, persistence, exfiltration, c2]
+    evidence: [rogue_agent_threat_model, untrusted_content_threat_model, mitre_atlas]
+    status: SPECIFIED
+    authority_boundary: "Threat classification informs controls; it does not itself authorize offensive action."
+    verification: [threat_fixture_coverage, red_team_mapping]
+    recovery: [containment, escalation, evidence_preservation]
+
+  - id: GOV-13
+    domain: agent_to_agent_delegation
+    primitives: [ENTITY, IDENTITY, RELATION, CAPABILITY, AUTHORITY, AUTHORIZATION]
+    threats: [privilege_laundering, impersonation, recursive_delegation, scope_widening]
+    evidence: [cross_agent_laundering_controls, signed_identity_manifest]
+    status: SPECIFIED
+    authority_boundary: "Delegation cannot exceed delegator authority or create unreviewed ambient authority."
+    verification: [delegation_scope, recursive_delegation, impersonation]
+    recovery: [deny_delegation, revoke, audit]
+
+  - id: GOV-14
+    domain: human_oversight
+    primitives: [AUTHORIZATION, EVIDENCE, VERIFICATION, TRANSITION_RECOVERY]
+    threats: [unreviewed_high_impact_action, escalation_failure]
+    evidence: [human_approval_receipt, historical_human_oversight_log]
+    status: SPECIFIED
+    authority_boundary: "Human review is bounded to the exact governed action and applicable policy."
+    verification: [approval_binding, escalation, override_logging]
+    recovery: [halt, escalate, revoke]
+
+  - id: GOV-15
+    domain: safety_ethics
+    primitives: [AUTHORITY, AUTHORIZATION, ACTION, EFFECT, EVIDENCE, VERIFICATION]
+    threats: [harm, rights_violation, unsafe_effect]
+    evidence: [foundational_non_harm_principle, governance_work]
+    status: SPECIFIED
+    authority_boundary: "Ethical principles constrain authorization; they do not replace domain-specific safety controls."
+    verification: [impact_policy_tests, prohibited_action_tests]
+    recovery: [deny, contain, escalate]
+
+  - id: GOV-16
+    domain: epistemic_governance
+    primitives: [EVIDENCE, VERIFICATION, RELATION, AUTHORIZATION]
+    threats: [overclaim, false_certainty, evidence_authority_confusion]
+    evidence: [epistemic_state_layer, capability_audit, historical_epistemic_governance]
+    status: IMPLEMENTED
+    authority_boundary: "Evidence and verification support decisions but do not automatically create authority."
+    verification: [claim_evidence_separation, uncertainty_preservation]
+    recovery: [invalidate_claim, require_review]
+
+  - id: GOV-17
+    domain: monitoring_anomaly_detection
+    primitives: [STATE, ACTION, EFFECT, EVIDENCE, VERIFICATION]
+    threats: [undetected_drift, authorization_mismatch, execution_anomaly]
+    evidence: [issue_1604_self_detection, rogue_agent_telemetry]
+    status: SPECIFIED
+    authority_boundary: "Anomaly detection is evidence for review, not proof of malicious intent."
+    verification: [injected_failure, false_positive, recovery_regression]
+    recovery: [re_evaluate, sandbox, throttle, escalate]
+
+  - id: GOV-18
+    domain: audit_forensics
+    primitives: [IDENTITY, RELATION, ACTION, EFFECT, EVIDENCE, VERIFICATION]
+    threats: [missing_forensics, audit_tampering, attribution_loss]
+    evidence: [audit_event_fabric, action_receipt, provenance_models]
+    status: IMPLEMENTED
+    authority_boundary: "Audit evidence never grants new authority."
+    verification: [correlation_integrity, completeness, privacy, replay]
+    recovery: [preserve_evidence, isolate_tampered_sink]
+
+  - id: GOV-19
+    domain: incident_response_containment
+    primitives: [AUTHORIZATION, ACTION, EFFECT, TRANSITION_RECOVERY]
+    threats: [persistent_unsafe_behavior, containment_failure]
+    evidence: [rogue_circuit_breaker, historical_containment_manager]
+    status: SPECIFIED
+    authority_boundary: "Containment actions require their own authorized control path."
+    verification: [rogue_injection, halt, revoke, quarantine]
+    recovery: [contain, preserve_evidence, human_review]
+
+  - id: GOV-20
+    domain: resilience_recovery
+    primitives: [STATE, EFFECT, EVIDENCE, VERIFICATION, TRANSITION_RECOVERY]
+    threats: [compromised_restoration, rollback_failure, evidence_loss]
+    evidence: [historical_restoration, lifecycle_controls]
+    status: SPECIFIED
+    authority_boundary: "Recovery is an explicit state transition with validation and authorization."
+    verification: [restoration_integrity, rollback, evidence_preservation]
+    recovery: [known_good_restore, quarantine_failed_restore]
+
+  - id: GOV-21
+    domain: ai_lifecycle_governance
+    primitives: [STATE, RELATION, AUTHORIZATION, EVIDENCE, VERIFICATION, TRANSITION_RECOVERY]
+    threats: [unguarded_change, model_drift, policy_drift]
+    evidence: [lifecycle_promotion_tools, capability_audit]
+    status: IMPLEMENTED
+    authority_boundary: "Lifecycle state does not itself authorize production effects."
+    verification: [change_gate, evidence_gate, promotion_gate]
+    recovery: [rollback, suspend, reauthorize]
+
+  - id: GOV-22
+    domain: governance_integrity
+    primitives: [AUTHORITY, AUTHORIZATION, EVIDENCE, VERIFICATION, TRANSITION_RECOVERY]
+    threats: [self_authorization, policy_tampering, audit_disable, governance_recursion]
+    evidence: [protected_policy_paths, deterministic_gateway, human_revocation, lifecycle_governance]
+    status: SPECIFIED
+    authority_boundary: "A governed AI component cannot unilaterally alter the controls governing it."
+    verification: [policy_tamper, audit_disable, self_authorization, recursion]
+    recovery: [halt, revoke, restore_known_good_policy, independent_review]
+
+framework_crosswalk:
+  nist_ai_rmf:
+    controls: [GOV-01, GOV-03, GOV-04, GOV-10, GOV-11, GOV-15, GOV-16, GOV-17, GOV-18, GOV-21, GOV-22]
+    note: "Risk-management reference; not GAIA authority."
+  owasp_agentic_applications:
+    controls: [GOV-05, GOV-06, GOV-08, GOV-09, GOV-12, GOV-13, GOV-17, GOV-19, GOV-20]
+    note: "Agent-security reference; not GAIA authority."
+  owasp_agentic_skills:
+    controls: [GOV-02, GOV-05, GOV-08, GOV-09, GOV-10, GOV-13, GOV-21]
+    note: "Skill/execution-layer reference; not GAIA authority."
+  owasp_mcp:
+    controls: [GOV-01, GOV-06, GOV-08, GOV-09, GOV-10, GOV-13, GOV-18]
+    note: "MCP security reference; not GAIA authority."
+  mitre_atlas:
+    controls: [GOV-05, GOV-06, GOV-08, GOV-10, GOV-12, GOV-13, GOV-17, GOV-19, GOV-20]
+    note: "Threat enumeration and test-design reference; not GAIA authority."
+
+invariants:
+  - default_deny
+  - no_ambient_authority_for_unknown_identity
+  - no_ai_self_authorization
+  - no_silent_governance_tampering
+  - audit_controls_protected_from_audited_agent
+  - governance_changes_versioned_and_attributable
+  - consequential_authorization_produces_evidence
+  - revocation_enforceable
+  - high_impact_action_requires_appropriate_authorization
+  - external_content_untrusted_until_evaluated
+  - security_claim_requires_evidence
+  - epistemic_boundary_preserved
+  - recovery_path_required
+  - no_unreviewable_ai_root_of_trust
+  - human_agency_preserved
+
+genuine_gap_rule:
+  no_new_universal_primitive: true
+  follow_up_requires:
+    - existing_evidence_review
+    - historical_lineage_review
+    - exact_gap_statement
+    - verification_requirement
+    - recovery_requirement
+
+references:
+  - https://www.nist.gov/itl/ai-risk-management-framework
+  - https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence
+  - https://www.nist.gov/news-events/news/2026/02/announcing-ai-agent-standards-initiative-interoperable-and-secure
+  - https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/
+  - https://owasp.org/projects/agentic-skills-top-10
+  - https://owasp.org/projects/mcp-top-10
+  - https://atlas.mitre.org/
