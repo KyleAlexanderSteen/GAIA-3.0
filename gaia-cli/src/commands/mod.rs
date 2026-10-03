@@ -19,6 +19,7 @@ pub mod systems;
 pub mod map;
 pub mod hashfile;
 pub mod criteria;
+pub mod infer;
 pub mod init;
 pub mod lookup;
 pub mod inventory;
