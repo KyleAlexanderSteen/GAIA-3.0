@@ -96,7 +96,7 @@ def check(body: str, active_prs: list[dict[str, Any]] | None = None) -> list[str
             number = pr.get("number")
             if not isinstance(number, int):
                 continue
-            if pr.get("current"):
+            if pr.get("current") or (args.current_pr is not None and pr.get("number") == args.current_pr):
                 continue
             other = set(n for _, refs in relationships(pr.get("body", "")) for n in refs)
             overlap = sorted(mine & other)
@@ -115,6 +115,7 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--body", help="PR body file; otherwise stdin")
     parser.add_argument("--active-prs", help="JSON array of open PR metadata")
+    parser.add_argument("--current-pr", type=int, help="PR number being checked")
     args = parser.parse_args()
 
     body = open(args.body, encoding="utf-8").read() if args.body else sys.stdin.read()
