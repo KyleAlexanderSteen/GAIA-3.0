@@ -7,6 +7,15 @@ pub struct Verdict {
     pub reason: &'static str,
 }
 
+pub fn research_open() -> &'static [&'static str] {
+    &[
+        "Hempel dilemma is not solved",
+        "Mary argument is not decided",
+        "Doyal and Gough indicators are not loaded",
+        "planetary-boundary dispute is not settled",
+    ]
+}
+
 pub fn check(kind: &str, has_instrument: bool, makes_a_rule: bool) -> Verdict {
     match kind {
         "physical" if has_instrument => Verdict { kind: "physical", accepted: true, reason: "instrument recorded" },
@@ -28,5 +37,6 @@ mod tests {
         assert!(check("physical", true, false).accepted);
         assert!(!check("value", false, true).accepted);
         assert!(!check("metaphor", true, false).accepted);
+        assert_eq!(research_open().len(), 4);
     }
 }
