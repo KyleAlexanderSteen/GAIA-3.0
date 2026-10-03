@@ -38,6 +38,8 @@ enum Commands {
     Memory(commands::memory::MemoryArgs),
     /// Print the AI order taxonomy.
     Order(commands::order::OrderArgs),
+    /// Print an organization band.
+    Org(commands::org::OrgArgs),
     /// Print an order band: good, bad, rigid, or adapt.
     OrderBand(commands::orderband::OrderBandArgs),
     /// View the audit log
@@ -98,6 +100,7 @@ async fn main() -> Result<()> {
         Commands::Layers(args) => commands::layers::run(args).await,
         Commands::Memory(args) => commands::memory::run(args).await,
         Commands::Order(args)  => commands::order::run(args).await,
+        Commands::Org(args)    => commands::org::run(args).await,
         Commands::OrderBand(args) => commands::orderband::run(args).await,
         Commands::Audit(args)  => commands::audit::run(args).await,
         Commands::Earth(args)  => commands::earth::run(args).await,
