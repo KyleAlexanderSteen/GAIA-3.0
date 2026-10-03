@@ -40,6 +40,7 @@ pub mod audit;
 pub mod earth;
 pub mod reading;
 pub mod revoke;
+pub mod harmony;
 
 /// Rule (#1304): a command whose real behavior is not built must fail loudly.
 /// It prints nothing to stdout, writes a clear message to stderr, and exits
