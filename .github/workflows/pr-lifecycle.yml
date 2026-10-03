@@ -34,52 +34,6 @@ jobs:
         env:
           PR_BODY: ${{ github.event.pull_request.body }}
 
-  readiness:
-    if: github.event_name == 'pull_request' && github.event.action != 'closed'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - name: Collect changed files and active PR overlap data
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh api "repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files?per_page=100" --paginate --jq '.[].filename' | python -c 'import json,sys; print(json.dumps([x.strip() for x in sys.stdin if x.strip()]))' > changed-files.json
-          python - <<'PY'
-          import json, os, subprocess
-          prs = json.loads(subprocess.check_output([
-              "gh", "api", f"repos/{os.environ['GITHUB_REPOSITORY']}/pulls?state=open&per_page=100"
-          ], text=True))
-          out=[]
-          for pr in prs:
-              files=json.loads(subprocess.check_output([
-                  "gh","api",f"repos/{os.environ['GITHUB_REPOSITORY']}/pulls/{pr['number']}/files?per_page=100"
-              ], text=True))
-              out.append({"number":pr["number"],"title":pr["title"],"body":pr.get("body") or "",
-                          "changed_files":[f["filename"] for f in files]})
-          json.dump(out,open("active-prs.json","w",encoding="utf-8"))
-          PY
-      - name: Surface overlap candidates
-        run: |
-          printf '%s' "$PR_BODY" > pr-body.md
-          python tools/agent-skills/work_overlap_check.py --current-pr "${{ github.event.pull_request.number }}" --body pr-body.md --files changed-files.json --active-prs active-prs.json --output overlap-report.json
-      - name: Build machine-readable readiness report
-        env:
-          PR_BODY: ${{ github.event.pull_request.body }}
-        run: |
-          printf '%s' "$PR_BODY" > pr-body.md
-          printf '%s' '{"checks":{"lifecycle":"success","definition_of_done":"success"}}' > evidence.json
-          python tools/agent-skills/promotion_readiness.py --body pr-body.md --evidence evidence.json --commit "${{ github.event.pull_request.head.sha }}" --output gaia-readiness.json
-      - name: Publish governance reports
-        uses: actions/upload-artifact@v4
-        with:
-          name: gaia-work-governance-${{ github.event.pull_request.number }}
-          path: |
-            gaia-readiness.json
-            overlap-report.json
-
   post-merge:
     if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
     runs-on: ubuntu-latest
