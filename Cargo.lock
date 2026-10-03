@@ -1339,11 +1339,8 @@ dependencies = [
  "anyhow",
  "assert_cmd",
  "clap",
-<<<<<<< HEAD
  "gaia-acp",
-=======
  "gaia-inference",
->>>>>>> bf05669 (feat(inference): add a local completion crate)
  "gaia-kernel",
  "gaia-runtime",
  "gaia-skills",
