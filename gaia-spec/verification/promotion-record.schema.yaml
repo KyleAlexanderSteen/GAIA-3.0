@@ -1,5 +1,5 @@
 $schema: "https://json-schema.org/draft/2020-12/schema"
-$id: "https://gaia-os.org/schema/verification/promotion-record.schema.yaml"
+$id: "https://github.com/KyleAlexanderSteen/GAIA-3.0/blob/main/gaia-spec/verification/promotion-record.schema.yaml"
 title: "GAIA Verification Promotion Record"
 description: "Machine-readable evidence record for a GAIA verification-stage transition."
 type: object
