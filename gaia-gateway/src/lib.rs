@@ -24,12 +24,14 @@ pub fn router(state: AppState) -> Router {
         .route("/audit/stream", get(routes::audit::stream_audit))
         // Health
         .route("/health", get(routes::health::health))
+        .route("/v1/earth", get(routes::earth::earth))
+        .route("/v1/intents", post(routes::earth::submit_v1))
         .with_state(state)
 }
 
 /// Listed routes. Tests assert this table; no socket bind.
 pub fn listed_paths() -> &'static [&'static str] {
-    &["/intent", "/agents", "/memory", "/audit", "/health"]
+    &["/intent", "/agents", "/memory", "/audit", "/health", "/v1/earth", "/v1/intents"]
 }
 
 #[cfg(test)]
@@ -44,7 +46,7 @@ mod tests {
     #[test]
     fn listed_paths_cover_health() {
         assert!(listed_paths().contains(&"/health"));
-        assert_eq!(listed_paths().len(), 5);
+        assert_eq!(listed_paths().len(), 7);
     }
 
     #[test]
