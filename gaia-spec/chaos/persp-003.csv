@@ -1,0 +1,5 @@
+criterion,list24,tree21
+names the areas,1,0
+fits the existing tree,0,1
+can be audited later,1,1
+does not drop a named area,1,0
