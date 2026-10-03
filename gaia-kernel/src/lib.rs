@@ -18,6 +18,7 @@ pub mod govern;
 pub mod gaian;
 pub mod host;
 pub mod honest;
+pub mod tip;
 pub mod mcp_stdio;
 pub mod hpc;
 pub mod identity;
@@ -228,7 +229,8 @@ mod tests {
         let outcome = &result.task_results[0].outcome;
         assert!(
             matches!(outcome, Outcome::Failed { reason } if reason.contains(GAIA_NO_CAPABLE_AGENT)),
-            "expected GAIA_NO_CAPABLE_AGENT in outcome: {:?}", outcome
+            "expected GAIA_NO_CAPABLE_AGENT in outcome: {:?}",
+            outcome
         );
     }
 
