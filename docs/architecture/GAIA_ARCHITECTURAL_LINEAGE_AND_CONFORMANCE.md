@@ -248,3 +248,75 @@ The next audit pass should:
 3. identify exact semantic mismatches;
 4. establish machine-readable conformance records;
 5. only then decide whether any implementation issue represents a genuine gap.
+
+
+## 13. Pass 2 executable conformance findings
+
+Pass 2 checked the current GAIA-3.0 tree against the five targeted semantic tracks using implementation files and executable tests rather than documentation alone.
+
+| Track | Current evidence | Result |
+|---|---|---|
+| Identity | `gaia-spec/sos/identity-capabilities.md`, SOS capability contract tests, signed-intent identity fields | **CONFORMING at contract level** |
+| Capability → Authority → Authorization | `gaia-spec/sos/abi.md`, `gaia-sos/tests/capability_contracts.rs`, `gaia-security/src/capability.rs`, `gaia-acp/src/policy.rs` | **CONFORMING for tested subset** |
+| Provenance → Evidence → Verification | `gaia-acp/src/trace.rs`, audit/trace contracts, promotion evidence model, historical provenance artifacts | **SPECIFIED + partially executable; cross-generation interchange remains unverified** |
+| Event → Audit → Correlation | `gaia-acp/src/gateway.rs`, `gaia-acp/src/trace.rs`, orchestrator trace model, audit correlation fields | **SPECIFIED / implementation evidence present; cross-generation equivalence remains unverified** |
+| Containment → Transition → Recovery | current control-plane lifecycle plus historical NEXUS containment/restoration | **CONFORMANCE TARGET; semantic equivalence still requires targeted recovery tests** |
+
+### 13.1 Concrete security evidence
+
+The current tree contains executable controls that directly exercise Universal GAIA distinctions:
+
+- Capability authorization checks subject, resource, operation, time, revocation, and delegation ancestry.
+- Parent revocation invalidates delegated capability authorization.
+- Trust-boundary tests reject authority supplied by untrusted content, tool output, model proposals, and action receipts.
+- Policy evaluation binds action identity and execution context to the capability manifest.
+- Protected paths, identity creation, secret access, egress, traversal, expiry, budget, and emergency-stop conditions have explicit denial paths.
+- Control-plane execution gates fail closed on active gap locks and, in deployed mode, control-plane unavailability.
+- Trace events preserve actor, intent, correlation, request hash, outcome, reason, and claim classification.
+- Consent and continuity subsystems have executable grant/access/delete, capture-consent, snapshot, restore, and forget behavior.
+
+These are implementation/test evidence. They do not establish universal conformance across every historical generation or every possible domain.
+
+### 13.2 Remaining conformance tests
+
+The remaining work is semantic rather than the invention of new primitives:
+
+1. Test the full effective-authority intersection across requested scope, subject grant, target manifest, host policy, resource policy, consent, and jurisdiction.
+2. Define and test a common provenance/evidence interchange vector across historical and current records.
+3. Define and test event/audit correlation equivalence across ACP, orchestrator, SOS, and historical event-fabric records.
+4. Test explicit expected-effect versus observed-effect records, including failed and partially completed actions.
+5. Test containment → transition → recovery equivalence, including revocation, quarantine, restoration, verification, and resumed execution.
+6. Complete path-level historical inventory where evidence is still documentary or access-limited.
+
+A missing current implementation is not itself a genuine Universal Model gap. A gap issue is justified only when a Universal invariant is shown to lack an adequate specification or implementation after these conformance tests.
+
+## 14. Pass 2 disposition
+
+**No new Universal GAIA primitive is justified.**
+
+The current evidence supports treating GAIA-3.0 as a normalization/conformance effort over a substantial existing lineage. The immediate priority is to make semantic equivalence testable and machine-readable, not to create another parallel subsystem.
+
+The canonical security oracle remains:
+
+```
+requested scope
+      ∩
+subject grant
+      ∩
+target manifest
+      ∩
+host policy
+      ∩
+resource policy
+      ∩
+consent
+      ∩
+jurisdiction
+      ↓
+effective authority
+      ↓
+ALLOW / DENY
+```
+
+For every denial, the system must preserve the applicable reason/evidence and must not invoke the denied target handler.
+
