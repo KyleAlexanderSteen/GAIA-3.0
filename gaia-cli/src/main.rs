@@ -46,6 +46,8 @@ enum Commands {
     Bands(commands::bands::BandsArgs),
     /// Print claim tiers.
     Claims(commands::claims::ClaimsArgs),
+    /// Check a claim.
+    Check(commands::check::CheckArgs),
     /// Print the AI chaos taxonomy.
     Chaos(commands::chaos::ChaosArgs),
     /// Return matrix rows for one domain.
@@ -91,6 +93,7 @@ async fn main() -> Result<()> {
         Commands::Revoke(args) => commands::revoke::run(args).await,
         Commands::Bands(args)  => commands::bands::run(args).await,
         Commands::Claims(args) => commands::claims::run(args).await,
+        Commands::Check(args)  => commands::check::run(args).await,
         Commands::Chaos(args)  => commands::chaos::run(args).await,
         Commands::Lookup(args) => commands::lookup::run(args).await,
         Commands::Corpus(args) => commands::corpus::run(args).await,
