@@ -13,6 +13,7 @@ pub mod init;
 pub mod lookup;
 pub mod start;
 pub mod terms;
+pub mod tool;
 pub mod adapt;
 pub mod agent;
 pub mod intent;
