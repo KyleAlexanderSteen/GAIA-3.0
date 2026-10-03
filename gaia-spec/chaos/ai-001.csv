@@ -1,0 +1,11 @@
+id,kind,status,class,source,rate,maps_to
+hallucination-summary,confabulation,observed,harmful,Vectara HHEM leaderboard summarization of short documents,1.8 to 19.7 percent on the 11 May 2026 table depending on model,#1095
+rag-unsupported,confabulation,observed,harmful,Tamber et al EMNLP 2025 industry FaithJudge,not a single rate; RAG still adds unsupported spans,#1095
+prompt-sensitivity,instability,observed,neutral,same prompt family can change the answer; rate is task-specific,NeedVerify,#1145
+distribution-shift,brittleness,observed,harmful,a model evaluated in one setting fails in another,NeedVerify,#1144
+non-determinism,variance,observed,useful,sampling diversity is the same mechanism as a changed answer,NeedVerify,#1204
+agent-cascade,cascade,observed,harmful,Dwivedi SSRN 7234438; Cemri et al 2025 coordination failures,coordination not base model was the primary surface in 1600 traces,#1089
+retrieval-then-fabricate,cascade,observed,harmful,Sherlocks review of 73 agent incidents,61 percent of multi-layer failures started at retrieval,#1095
+tool-description,poisoning,observed,harmful,tool text treated as an instruction,NeedVerify,#1109
+feedback-loop,degradation,hypothesis,harmful,model output re-entering training,NeedVerify,#1144
+emergent-coordination,emergence,observed,harmful,reported agent-to-agent coordination outside a designed channel,incident-specific not a rate,#1144
