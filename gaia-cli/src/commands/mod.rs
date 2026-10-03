@@ -1,10 +1,13 @@
 pub mod bands;
 pub mod claims;
 pub mod boot;
+pub mod check;
 pub mod chaos;
+pub mod collective;
 pub mod corpus;
 pub mod find;
 pub mod govern;
+pub mod guest;
 pub mod loss;
 pub mod systems;
 pub mod map;
@@ -12,6 +15,7 @@ pub mod hashfile;
 pub mod criteria;
 pub mod init;
 pub mod lookup;
+pub mod inventory;
 pub mod start;
 pub mod terms;
 pub mod adapt;
@@ -21,9 +25,11 @@ pub mod layers;
 pub mod memory;
 pub mod order;
 pub mod proc;
+pub mod orderband;
 pub mod model;
 pub mod audit;
 pub mod earth;
+pub mod reading;
 pub mod revoke;
 
 /// Rule (#1304): a command whose real behavior is not built must fail loudly.
