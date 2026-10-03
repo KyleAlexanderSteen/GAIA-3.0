@@ -34,6 +34,8 @@ enum Commands {
     Revoke(commands::revoke::RevokeArgs),
     /// Print the listed knowledge/skill/power/magic bands. Grants nothing.
     Bands(commands::bands::BandsArgs),
+    /// Print the AI chaos taxonomy.
+    Chaos(commands::chaos::ChaosArgs),
     /// List local Documents and Documents-2 files. No network.
     Corpus(commands::corpus::CorpusArgs),
     /// Ask a local model. Misses loud if no server is set.
@@ -53,6 +55,7 @@ async fn main() -> Result<()> {
         Commands::Audit(args)  => commands::audit::run(args).await,
         Commands::Revoke(args) => commands::revoke::run(args).await,
         Commands::Bands(args)  => commands::bands::run(args).await,
+        Commands::Chaos(args)  => commands::chaos::run(args).await,
         Commands::Corpus(args) => commands::corpus::run(args).await,
         Commands::Model(args)  => commands::model::run(args).await,
     }
