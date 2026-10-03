@@ -1,0 +1,6 @@
+id,mechanism,case,generalizes,limit
+positive-feedback,output increases the next input,bank run and rumor cascade,pattern observed settings differ,threshold is not universal
+tight-coupling,no buffer between steps,Perrow normal accidents,complex tightly coupled systems,not every system
+contagion,failure moves on a network,ecological and financial cases,topology matters,rate is network-specific NeedVerify
+threshold,small push past a point,regime shift literature,modeled more than measured,do not treat a model as an observation
+redundancy-loss,one path left,single supplier failure,observed,a second path is containment not chaos
