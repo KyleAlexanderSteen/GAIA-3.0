@@ -33,3 +33,45 @@ primitives:
 classification:
   no_new_universal_primitive_justified: true
   implementation_gaps_require_conformance_testing: true
+
+  
+pass_2:
+  status: targeted-conformance
+  no_new_universal_primitive_justified: true
+  tracks:
+    identity:
+      status: conforming_contract_level
+      evidence:
+        - gaia-spec/sos/identity-capabilities.md
+        - gaia-sos/tests/capability_contracts.rs
+    capability_authority_authorization:
+      status: conforming_tested_subset
+      evidence:
+        - gaia-spec/sos/abi.md
+        - gaia-sos/tests/capability_contracts.rs
+        - gaia-security/src/capability.rs
+        - gaia-acp/src/policy.rs
+    provenance_evidence_verification:
+      status: specified_partially_executable
+      evidence:
+        - gaia-acp/src/trace.rs
+        - docs/architecture/capability-audit/README.md
+    event_audit_correlation:
+      status: specified_with_implementation_evidence
+      evidence:
+        - gaia-acp/src/gateway.rs
+        - gaia-acp/src/trace.rs
+        - gaia-orchestrator/src/trace.rs
+    containment_transition_recovery:
+      status: conformance_target
+      evidence:
+        - gaia-acp/src/gateway.rs
+        - gaia-memos/src/continuity.rs
+        - historical NEXUS containment manager
+  remaining_tests:
+    - full_effective_authority_intersection
+    - cross_generation_provenance_evidence_interchange
+    - cross_generation_event_audit_correlation
+    - expected_vs_observed_effect_semantics
+    - containment_transition_recovery_equivalence
+    - path_level_historical_inventory
