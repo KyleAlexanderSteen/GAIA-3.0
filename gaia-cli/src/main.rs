@@ -28,6 +28,8 @@ enum Commands {
     Adapt(commands::adapt::AdaptArgs),
     /// Send an intent to the orchestrator
     Intent(commands::intent::IntentArgs),
+    /// Run the nine local layers.
+    Layers(commands::layers::LayersArgs),
     /// Inspect or query memory
     Memory(commands::memory::MemoryArgs),
     /// Print the AI order taxonomy.
@@ -74,6 +76,7 @@ async fn main() -> Result<()> {
         Commands::Agent(args)  => commands::agent::run(args).await,
         Commands::Adapt(args)  => commands::adapt::run(args).await,
         Commands::Intent(args) => commands::intent::run(args).await,
+        Commands::Layers(args) => commands::layers::run(args).await,
         Commands::Memory(args) => commands::memory::run(args).await,
         Commands::Order(args)  => commands::order::run(args).await,
         Commands::Audit(args)  => commands::audit::run(args).await,
