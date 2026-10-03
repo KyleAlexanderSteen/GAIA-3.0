@@ -11,6 +11,7 @@ pub mod start;
 pub mod adapt;
 pub mod agent;
 pub mod intent;
+pub mod layers;
 pub mod memory;
 pub mod proc;
 pub mod model;
