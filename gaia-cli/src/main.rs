@@ -40,6 +40,8 @@ enum Commands {
     Bands(commands::bands::BandsArgs),
     /// Print the AI chaos taxonomy.
     Chaos(commands::chaos::ChaosArgs),
+    /// Return matrix rows for one domain.
+    Lookup(commands::lookup::LookupArgs),
     /// List local Documents and Documents-2 files. No network.
     Corpus(commands::corpus::CorpusArgs),
     /// Ask a local model. Misses loud if no server is set.
@@ -74,6 +76,7 @@ async fn main() -> Result<()> {
         Commands::Revoke(args) => commands::revoke::run(args).await,
         Commands::Bands(args)  => commands::bands::run(args).await,
         Commands::Chaos(args)  => commands::chaos::run(args).await,
+        Commands::Lookup(args) => commands::lookup::run(args).await,
         Commands::Corpus(args) => commands::corpus::run(args).await,
         Commands::Model(args)  => commands::model::run(args).await,
         Commands::Proc(args)   => commands::proc::run(args).await,

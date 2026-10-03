@@ -7,6 +7,7 @@ pub mod systems;
 pub mod map;
 pub mod hashfile;
 pub mod init;
+pub mod lookup;
 pub mod start;
 pub mod adapt;
 pub mod agent;
