@@ -1,0 +1,7 @@
+id,mechanism,tradeoff,kind,source
+bulkhead,failure stays in one compartment,unused capacity,engineering,practice
+circuit-breaker,open the path after errors,false trip stops good traffic,engineering,practice
+redundancy,a second path,cost,engineering,practice
+diversity,different implementations,harder to operate,engineering,NeedVerify
+buffer,slack absorbs a spike,idle resource,engineering,practice
+ecological,persist through a regime shift,not a return to the old state,ecological,Holling distinction NeedVerify

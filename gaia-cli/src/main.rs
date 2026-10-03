@@ -50,6 +50,8 @@ enum Commands {
     Chaos(commands::chaos::ChaosArgs),
     /// Return matrix rows for one domain.
     Lookup(commands::lookup::LookupArgs),
+    /// Print a chaos band: good, bad, or contain.
+    ChaosBand(commands::chaosband::ChaosBandArgs),
     /// List local Documents and Documents-2 files. No network.
     Corpus(commands::corpus::CorpusArgs),
     /// Print the frozen planetary criteria.
@@ -93,6 +95,7 @@ async fn main() -> Result<()> {
         Commands::Claims(args) => commands::claims::run(args).await,
         Commands::Chaos(args)  => commands::chaos::run(args).await,
         Commands::Lookup(args) => commands::lookup::run(args).await,
+        Commands::ChaosBand(args) => commands::chaosband::run(args).await,
         Commands::Corpus(args) => commands::corpus::run(args).await,
         Commands::Criteria(args) => commands::criteria::run(args).await,
         Commands::Model(args)  => commands::model::run(args).await,
