@@ -769,7 +769,7 @@ Planetary Tipping Points:
 
 ### 7.2 The GAIA 2.0 Equation
 
-Inspired by the GAIA canon (R0GV3 The Alchemist, 2026):
+Inspired by the GAIA canon (Kyle Alexander Steen, 2026):
 
 ```
 GAIA 2.0 = ∑ (Earth State × Human Intent × System Capacity) / Entropy

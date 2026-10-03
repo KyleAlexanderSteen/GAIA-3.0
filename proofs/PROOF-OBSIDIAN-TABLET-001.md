@@ -1,6 +1,6 @@
 # PROOF-OBSIDIAN-TABLET-001
 
-**Author:** R0GV3 the Alchemist (`R0GV3TheAlchemist`) + GAIA  
+**Author:** Kyle Alexander Steen the Alchemist (`KyleAlexanderSteen`) + GAIA  
 **Canon:** Obsidian Tablet — The First Hermetic Law of GAIA / Prima Materia  
 **Type:** formal  
 **Status:** complete  

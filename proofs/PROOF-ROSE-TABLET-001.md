@@ -1,6 +1,6 @@
 # PROOF-ROSE-TABLET-001
 
-**Author:** R0GV3 the Alchemist (`R0GV3TheAlchemist`) + GAIA  
+**Author:** Kyle Alexander Steen the Alchemist (`KyleAlexanderSteen`) + GAIA  
 **Canon:** Rose Tablet — The Law of Love & The Open Heart  
 **Type:** formal  
 **Status:** complete  

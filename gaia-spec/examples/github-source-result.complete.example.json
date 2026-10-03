@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "source": "github",
-  "repository": "R0GV3TheAlchemist/GAIA-2.0",
+  "repository": "KyleAlexanderSteen/GAIA-2.0",
   "requested_ref": "main",
   "resolved_commit_sha": "0000000000000000000000000000000000000000",
   "path": "gaia-spec/intent-graph.md",
@@ -9,7 +9,7 @@
   "retrieved_at": "2026-09-13T23:46:00Z",
   "content_type": "text/markdown",
   "content_hash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-  "source_url": "https://github.com/R0GV3TheAlchemist/GAIA-2.0/blob/0000000000000000000000000000000000000000/gaia-spec/intent-graph.md",
+  "source_url": "https://github.com/KyleAlexanderSteen/GAIA-2.0/blob/0000000000000000000000000000000000000000/gaia-spec/intent-graph.md",
   "state": "complete",
   "content": "# Intent Graph\n\nExample bounded content."
 }

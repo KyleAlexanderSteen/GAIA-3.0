@@ -1,6 +1,6 @@
 # PROOF-SILVER-TABLET-001
 
-**Author:** R0GV3 the Alchemist (`R0GV3TheAlchemist`) + GAIA  
+**Author:** Kyle Alexander Steen the Alchemist (`KyleAlexanderSteen`) + GAIA  
 **Canon:** Silver Tablet — The Third Hermetic Law of GAIA / The Law of the Mirror  
 **Type:** formal  
 **Status:** complete  

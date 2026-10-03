@@ -2,9 +2,9 @@
 ## Blueprint 59: The Continuity Substrate
 ### September 9, 2026 — Version 0.6 (canonical)
 
-**Write target:** [R0GV3TheAlchemist/GAIA-2.0](https://github.com/R0GV3TheAlchemist/GAIA-2.0)
+**Write target:** [KyleAlexanderSteen/GAIA-2.0](https://github.com/KyleAlexanderSteen/GAIA-2.0)
 **License:** Apache-2.0
-**Issues:** [#215](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/215) (epic), [#219](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/219) (spec)
+**Issues:** [#215](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/215) (epic), [#219](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/219) (spec)
 
 ---
 

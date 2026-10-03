@@ -1,7 +1,7 @@
 # Free, Prior, and Informed Consent (FPIC) Protocol — GAIA 2.0
 
 > **Parent:** [CARE-PRINCIPLES.md](./CARE-PRINCIPLES.md)  
-> **Issue:** [#676](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/676)  
+> **Issue:** [#676](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/676)  
 > **Status:** Protocol v1.0  
 > **Last Updated:** 2026-09-21
 
@@ -90,7 +90,7 @@ Any GAIA 2.0 contributor, operator, or GAIAN twin deployment that collects, uses
 
 ## First Three Community Partnerships (Acceptance Criteria)
 
-The first three community partnerships must complete the full FPIC process before the CARE Principles acceptance criteria are considered met. GAIA 2.0 will prioritise communities in regions with high ecological knowledge relevance to the Biological Layer ([Issue #661](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/661)):
+The first three community partnerships must complete the full FPIC process before the CARE Principles acceptance criteria are considered met. GAIA 2.0 will prioritise communities in regions with high ecological knowledge relevance to the Biological Layer ([Issue #661](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/661)):
 
 1. **Amazon basin** — via Amazon Sacred Headwaters Alliance
 2. **Pacific Islands** — via Pacific Community (SPC)

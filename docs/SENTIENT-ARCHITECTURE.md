@@ -1,7 +1,7 @@
 # Sentient Architecture — listed review
 
 **Status:** listed design review. Not a runtime.  
-**Source:** `R0GV3TheAlchemist/GAIA` `docs/SENTIENT-ARCHITECTURE.md` (v1.1, 12,894 bytes, `main@49d7a7ff`)  
+**Source:** `KyleAlexanderSteen/GAIA` `docs/SENTIENT-ARCHITECTURE.md` (v1.1, 12,894 bytes, `main@49d7a7ff`)  
 **Issue:** #691  
 **Parent constraint:** `AGENTS.md` hard refuse — do not open sentient twins or live planetary actuators.
 

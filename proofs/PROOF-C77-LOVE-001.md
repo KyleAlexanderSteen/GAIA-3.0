@@ -1,6 +1,6 @@
 # PROOF-C77-LOVE-001
 
-**Author:** Kyle Steen (`R0GV3TheAlchemist`)
+**Author:** Kyle Steen (`KyleAlexanderSteen`)
 **Canon:** C77 Love-Led Stewardship
 **Requires:** C01 Sovereignty, C30 No silent failures, C34 Presence
 **Type:** formal
@@ -19,7 +19,7 @@ Applied migration `gaia20_c77_love_stewardship` to Supabase project `gaia-2-0` (
 - RLS enabled on all three tables; policies key off `auth.uid()`.
 - Function `study_is_allowed(subject_id, scope)` returns false without an unrevoked consent.
 - Trigger `trg_flourishing_requires_consent` blocks flourishing-score inserts unless study consent is granted.
-- No Hugging Face repositories exist yet under `R0GV3TheAlchemist`; dataset card remains in `huggingface/gaia-stewardship/` until Hub publish.
+- No Hugging Face repositories exist yet under `KyleAlexanderSteen`; dataset card remains in `huggingface/gaia-stewardship/` until Hub publish.
 
 ## Law encoded
 

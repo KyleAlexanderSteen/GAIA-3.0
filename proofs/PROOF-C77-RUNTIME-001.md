@@ -1,6 +1,6 @@
 # PROOF-C77-RUNTIME-001
 
-**Author:** Kyle Steen (`R0GV3TheAlchemist`)
+**Author:** Kyle Steen (`KyleAlexanderSteen`)
 **Canon:** C77 Love-Led Stewardship
 **Requires:** C01, C30, C34
 **Type:** empirical

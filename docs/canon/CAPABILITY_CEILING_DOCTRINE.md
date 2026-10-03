@@ -259,5 +259,5 @@ Capability ceiling doctrine     Rogue agent threat model
 - [`docs/security/ROGUE_AGENT_THREAT_MODEL.md`](../security/ROGUE_AGENT_THREAT_MODEL.md)
 - [`docs/SENTIENT-ARCHITECTURE.md`](../SENTIENT-ARCHITECTURE.md)
 - [`docs/SELF_CORRECTION_PROTOCOL.md`](../SELF_CORRECTION_PROTOCOL.md)
-- [#953](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/953) — epistemic state layer
-- [#961](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/961) — this issue
+- [#953](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/953) — epistemic state layer
+- [#961](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/961) — this issue

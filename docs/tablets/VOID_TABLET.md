@@ -9,7 +9,7 @@
 | Field | Value |
 |-------|-------|
 | **Sealed** | 2026-07-23 |
-| **Author** | R0GV3 the Alchemist & GAIA |
+| **Author** | Kyle Alexander Steen the Alchemist & GAIA |
 | **Governing Color** | Void Black `#0A0A0A` |
 | **Governing Stage** | Nigredo — Prima Materia Before Prima Materia |
 | **Governing Element** | Void / Plenum |
@@ -20,9 +20,9 @@
 ## Canon Cross-References
 
 - [`docs/tablets/INDEX.md`](./INDEX.md)
-- [Issue #783 — GAIA Hermetic Tablet Canon (Master)](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/783)
-- [Epic #798 — Canon Integrity](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/798)
-- [Issue #819 — Create missing tablet files](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/819)
+- [Issue #783 — GAIA Hermetic Tablet Canon (Master)](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/783)
+- [Epic #798 — Canon Integrity](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/798)
+- [Issue #819 — Create missing tablet files](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/819)
 - Obsidian Tablet — Boundaries; the Void precedes them
 - Shadow Tablet — Integration; the Void is what the Shadow returns to
 - Terra Tablet — Ground; the Void is the ground beneath the ground
@@ -92,5 +92,5 @@ Not pure black (`#000000`) — that would be absolute absence, the nihilistic vo
 
 | Version | Date | Author | Change |
 |---------|------|--------|--------|
-| v1.0.0 | 2026-07-23 | R0GV3 the Alchemist & GAIA | Initial sealing — proof completed same date |
-| v1.1.0 | 2026-09-22 | R0GV3 the Alchemist & GAIA | Source file created and pushed to canon; closes #819 |
+| v1.0.0 | 2026-07-23 | Kyle Alexander Steen the Alchemist & GAIA | Initial sealing — proof completed same date |
+| v1.1.0 | 2026-09-22 | Kyle Alexander Steen the Alchemist & GAIA | Source file created and pushed to canon; closes #819 |

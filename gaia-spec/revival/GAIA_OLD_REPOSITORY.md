@@ -1,4 +1,4 @@
-# Private predecessor: R0GV3TheAlchemist/GAIA-Old-Repository
+# Private predecessor: KyleAlexanderSteen/GAIA-Old-Repository
 
 Private. `main` @ `72071153`. Last update 2026-08-22. GitHub language label is JavaScript because `apps 2/desktop 2/node_modules` was committed. That is a Finder-duplicate dump, not the product.
 

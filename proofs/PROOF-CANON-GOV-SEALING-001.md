@@ -1,6 +1,6 @@
 # PROOF-CANON-GOV-SEALING-001
 
-**Author:** Kyle Steen (`R0GV3TheAlchemist`)
+**Author:** Kyle Steen (`KyleAlexanderSteen`)
 **Canon:** Tablet Sealing Ceremony
 **Type:** procedural
 **Status:** verified

@@ -1,6 +1,6 @@
 # PROOF-GOLDEN-AGE-001
 
-**Author:** Kyle Steen (`R0GV3TheAlchemist`)
+**Author:** Kyle Steen (`KyleAlexanderSteen`)
 **Canon:** The Golden Age Definition
 **Type:** definitional
 **Status:** verified

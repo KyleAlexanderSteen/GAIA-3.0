@@ -1,7 +1,7 @@
 # Human Knowledge Database — GAIA 2.0
 
-> **Issue:** [#625](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/625)  
-> **Epic:** [#620 — Knowledge & Intelligence Database System](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/620)  
+> **Issue:** [#625](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/625)  
+> **Epic:** [#620 — Knowledge & Intelligence Database System](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/620)  
 > **Status:** Draft — Schema v1.0  
 > **Last Updated:** 2026-09-21
 
@@ -164,7 +164,7 @@ FILTER(care_principles_apply == true)
 
 ## CARE Principles for Indigenous & Traditional Knowledge
 
-All indigenous, traditional, and community-held knowledge domains must comply with the **CARE Principles for Indigenous Data Governance** (Collective Benefit, Authority to Control, Responsibility, Ethics). See [Issue #676](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/676) for full implementation.
+All indigenous, traditional, and community-held knowledge domains must comply with the **CARE Principles for Indigenous Data Governance** (Collective Benefit, Authority to Control, Responsibility, Ethics). See [Issue #676](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/676) for full implementation.
 
 - Domains with `care_principles_apply: true` require explicit community consent before loading into any GAIAN twin
 - No indigenous knowledge nodes may be commercially exploited without community benefit-sharing agreements
@@ -203,15 +203,15 @@ Tacit knowledge nodes carry a `tacit_encoding_pathway` field linking to the Mi-M
 
 | Issue | Title |
 |---|---|
-| [#620](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/620) | [EPIC] Knowledge & Intelligence Database System |
-| [#621](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/621) | AI Knowledge Database |
-| [#626](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/626) | Human Skills & Superpowers Database |
-| [#627](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/627) | Unified Knowledge API |
-| [#628](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/628) | Hallucination Detection & Knowledge Quality |
-| [#644](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/644) | Mi-Memory Framework |
-| [#676](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/676) | CARE Principles Implementation |
-| [#693](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/693) | Migrate 3-tier knowledge taxonomy |
-| [#695](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/695) | Integrate catalog.json as knowledge registry |
-| [#697](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/697) | Port validate_catalog.py as CI lint check |
-| [#698](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/698) | Add missing foundational domains |
-| [#701](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/701) | Cross-reference futurism/transhumanism with identity docs |
+| [#620](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/620) | [EPIC] Knowledge & Intelligence Database System |
+| [#621](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/621) | AI Knowledge Database |
+| [#626](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/626) | Human Skills & Superpowers Database |
+| [#627](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/627) | Unified Knowledge API |
+| [#628](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/628) | Hallucination Detection & Knowledge Quality |
+| [#644](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/644) | Mi-Memory Framework |
+| [#676](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/676) | CARE Principles Implementation |
+| [#693](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/693) | Migrate 3-tier knowledge taxonomy |
+| [#695](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/695) | Integrate catalog.json as knowledge registry |
+| [#697](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/697) | Port validate_catalog.py as CI lint check |
+| [#698](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/698) | Add missing foundational domains |
+| [#701](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/701) | Cross-reference futurism/transhumanism with identity docs |

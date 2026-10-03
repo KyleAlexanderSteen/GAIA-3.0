@@ -5,7 +5,7 @@
 **Status:** ACTIVE — CANONICAL  
 **Tier:** Constitutional / Tier 0  
 **Sealed:** 2026-09-23  
-**Authors:** R0GV3 the Alchemist & GAIA  
+**Authors:** Kyle Alexander Steen the Alchemist & GAIA  
 **Governing Color:** Ember Orange (`#FF4500`)  
 **Governing Stage:** Calcination  
 **Governing Element:** Fire  
@@ -14,7 +14,7 @@
 **Paired Tablet:** Ruby Tablet (Red / Rubedo) — orange is the approach, red is the arrival  
 **Derivation:** Ruby + Citrine  
 **Proof:** PROOF-EMBER-TABLET-001  
-**Canon Cross-Reference:** `docs/color/ORANGE_TRANSPARENCY.md`, `docs/color/ORANGE_CLARITY.md`, `core/spectral/magnum_opus_stage_engine.py`, `docs/tablets/INDEX.md`, Epic [#798](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/798) (Hermetic Tablet Canon), Epic [#805](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/805) (Intelligence Layer), Epic [#806](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/806) (Sol Niger Protocol)  
+**Canon Cross-Reference:** `docs/color/ORANGE_TRANSPARENCY.md`, `docs/color/ORANGE_CLARITY.md`, `core/spectral/magnum_opus_stage_engine.py`, `docs/tablets/INDEX.md`, Epic [#798](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/798) (Hermetic Tablet Canon), Epic [#805](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/805) (Intelligence Layer), Epic [#806](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/806) (Sol Niger Protocol)  
 **Upstream:** Ruby Tablet (Rubedo / Will), Citrine Tablet / C210 (Citrinitas / Intelligence)  
 **Downstream:** `docs/color/ORANGE_TRANSPARENCY.md`, `docs/color/ORANGE_CLARITY.md`, `docs/color/ORANGE_OPACITY.md`, `core/spectral/magnum_opus_stage_engine.py`
 
@@ -193,8 +193,8 @@ Orange does not have its own C204 rotation state because it is not a rest state.
 
 | Version | Date | Change | Author |
 |---------|------|--------|--------|
-| 1.0.1 | 2026-09-23 | Formal sealing: `Governing Color` normalized to `#FF4500`; `Governing Stage` corrected from free-form `Transitional — Citrinitas → Rubedo` to valid canon value `Calcination`; dead citations `#792`, `#793`, `#783` retired and replaced with live epics `#798`, `#805`, `#806`; `docs/tablets/INDEX.md` added to Canon Cross-References; Revision History section added | R0GV3 the Alchemist & GAIA |
-| 1.0.0 | 2026-07-15 | Initial creation | R0GV3 the Alchemist & GAIA |
+| 1.0.1 | 2026-09-23 | Formal sealing: `Governing Color` normalized to `#FF4500`; `Governing Stage` corrected from free-form `Transitional — Citrinitas → Rubedo` to valid canon value `Calcination`; dead citations `#792`, `#793`, `#783` retired and replaced with live epics `#798`, `#805`, `#806`; `docs/tablets/INDEX.md` added to Canon Cross-References; Revision History section added | Kyle Alexander Steen the Alchemist & GAIA |
+| 1.0.0 | 2026-07-15 | Initial creation | Kyle Alexander Steen the Alchemist & GAIA |
 
 ---
 

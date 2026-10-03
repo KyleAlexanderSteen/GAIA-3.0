@@ -5,7 +5,7 @@ Usage: python tools/rename_to_gaia3.py [--apply] [--keep-filenames]
 Default is a dry run that prints what would change. Run from the repo root.
 
 Rules, applied in order:
-  R0GV3TheAlchemist/GAIA-2.0 and R0GV3TheAvatar/GAIA-2.0 -> R0GV3TheAvatar/GAIA-3.0
+  KyleAlexanderSteen/GAIA-2.0 and KyleAlexanderSteen/GAIA-2.0 -> KyleAlexanderSteen/GAIA-3.0
   GAIA-2.0 -> GAIA-3.0, GAIAN 2.0 -> GAIAN 3.0, GAIA 2.0 -> GAIA 3.0
 
 Left alone on purpose:
@@ -17,7 +17,7 @@ File names containing the old name are renamed with git mv so links stay consist
 import re, subprocess, sys, pathlib
 
 RULES = [
-    (re.compile(r'R0GV3The(?:Alchemist|Avatar)/GAIA-2\.0'), 'R0GV3TheAvatar/GAIA-3.0'),
+    (re.compile(r'Kyle Alexander SteenThe(?:Alchemist|Avatar)/GAIA-2\.0'), 'KyleAlexanderSteen/GAIA-3.0'),
     (re.compile(r'GAIA-2\.0'), 'GAIA-3.0'),
     (re.compile(r'GAIAN 2\.0'), 'GAIAN 3.0'),
     (re.compile(r'GAIA 2\.0'), 'GAIA 3.0'),

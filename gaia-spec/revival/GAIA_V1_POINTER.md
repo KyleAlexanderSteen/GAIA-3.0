@@ -1,4 +1,4 @@
-# Private predecessor: R0GV3TheAlchemist/GAIA
+# Private predecessor: KyleAlexanderSteen/GAIA
 
 Private. Default `main` @ `49d7a7ff`. Language label: Python (catalog scripts only).
 Last update 2026-09-07. Eight open issues (#15–#22) are all knowledge-plane process/docs/CI.

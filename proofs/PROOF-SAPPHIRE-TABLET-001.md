@@ -1,6 +1,6 @@
 # PROOF-SAPPHIRE-TABLET-001
 
-**Author:** R0GV3 the Alchemist (`R0GV3TheAlchemist`) + GAIA  
+**Author:** Kyle Alexander Steen the Alchemist (`KyleAlexanderSteen`) + GAIA  
 **Canon:** Sapphire Tablet — The Law of Caerulitas / Depth, Seeing, and the Sovereignty of True Vision  
 **Type:** formal  
 **Status:** complete  

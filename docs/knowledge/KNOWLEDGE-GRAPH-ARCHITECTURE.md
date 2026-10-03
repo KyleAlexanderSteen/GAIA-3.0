@@ -1,7 +1,7 @@
 # Knowledge Graph Architecture — GAIA 2.0
 
 > **Parent Doc:** [HUMAN-KNOWLEDGE-DATABASE.md](./HUMAN-KNOWLEDGE-DATABASE.md)  
-> **Issue:** [#625](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/625)  
+> **Issue:** [#625](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/625)  
 > **Status:** Draft v1.0  
 > **Last Updated:** 2026-09-21
 
@@ -174,7 +174,7 @@ The HKD knowledge graph connects to the AI Knowledge Database (Issue #621) via s
 - *"Which human knowledge domains does GAIA's NLP system have superhuman performance in?"*
 - *"What is the human knowledge foundation required to understand GAIA's own architecture?"*
 
-See [Issue #627 — Unified Knowledge API](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/627) for the cross-database query interface.
+See [Issue #627 — Unified Knowledge API](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/627) for the cross-database query interface.
 
 ---
 
@@ -182,8 +182,8 @@ See [Issue #627 — Unified Knowledge API](https://github.com/R0GV3TheAlchemist/
 
 - [HUMAN-KNOWLEDGE-DATABASE.md](./HUMAN-KNOWLEDGE-DATABASE.md) — Parent schema and overview
 - [catalog-v2.json](./catalog-v2.json) — Machine-readable domain registry
-- [Issue #625](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/625) — Human Knowledge Database
-- [Issue #620](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/620) — Knowledge & Intelligence Database Epic
-- [Issue #627](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/627) — Unified Knowledge API
-- [Issue #644](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/644) — Mi-Memory Framework
-- [Issue #662](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/662) — MemOS Memory Operating System
+- [Issue #625](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/625) — Human Knowledge Database
+- [Issue #620](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/620) — Knowledge & Intelligence Database Epic
+- [Issue #627](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/627) — Unified Knowledge API
+- [Issue #644](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/644) — Mi-Memory Framework
+- [Issue #662](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/662) — MemOS Memory Operating System

@@ -1,6 +1,6 @@
 # Proof — Issue 64 Privacy Constitution
 
-**Author:** Kyle Steen / R0GV3 the Alchemist  
+**Author:** Kyle Steen / Kyle Alexander Steen the Alchemist  
 **Type:** formal + empirical (unit tests)  
 **Status:** in_progress  
 **Method:** constitution doc + `gaia-sdk/consent_scopes.json` + cargo test `issue_64`  

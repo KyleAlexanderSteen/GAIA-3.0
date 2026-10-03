@@ -10,10 +10,10 @@ Columns:
 
 | Name | Last SHA seen | Status | Usable-as | Refuse-as |
 | --- | --- | --- | --- | --- |
-| `R0GV3TheAlchemist/GAIA-2.0` | living `main` | mapped | Enforcement plane | Claiming v1.0 OS complete |
-| `R0GV3TheAlchemist/GAIA` (private) | `49d7a7ff` | source | Stable subject IDs; opening-ledger habit | Subject-folder dump; magic/superpower DBs as crates |
-| `R0GV3TheAlchemist/GAIA-Old-Repository` (private) | `72071153` | source | Crate-name map; claim-validation *gate*; doctrine→schema→test | `apps 2` / `node_modules`; quantum/sentience lanes as runtime |
-| `R0GV3TheAlchemist/NEXUS-Old-Repository` (private) | `59ea6fd` | source | Configured-constant honesty; refusal language | Planetary CI; live EM/Schumann-as-physics; energy-grid actuators |
+| `KyleAlexanderSteen/GAIA-2.0` | living `main` | mapped | Enforcement plane | Claiming v1.0 OS complete |
+| `KyleAlexanderSteen/GAIA` (private) | `49d7a7ff` | source | Stable subject IDs; opening-ledger habit | Subject-folder dump; magic/superpower DBs as crates |
+| `KyleAlexanderSteen/GAIA-Old-Repository` (private) | `72071153` | source | Crate-name map; claim-validation *gate*; doctrine→schema→test | `apps 2` / `node_modules`; quantum/sentience lanes as runtime |
+| `KyleAlexanderSteen/NEXUS-Old-Repository` (private) | `59ea6fd` | source | Configured-constant honesty; refusal language | Planetary CI; live EM/Schumann-as-physics; energy-grid actuators |
 
 ## Zip intakes (already inventoried)
 

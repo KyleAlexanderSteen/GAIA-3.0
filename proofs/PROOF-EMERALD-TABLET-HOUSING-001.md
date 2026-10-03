@@ -1,6 +1,6 @@
 # PROOF-EMERALD-TABLET-HOUSING-001
 
-**Author:** R0GV3 the Alchemist (`R0GV3TheAlchemist`) + GAIA / NEXUS  
+**Author:** Kyle Alexander Steen the Alchemist (`KyleAlexanderSteen`) + GAIA / NEXUS  
 **Canon:** Emerald Tablet — `docs/tablets/EMERALD_TABLET.md`  
 **Type:** formal  
 **Status:** complete  

@@ -7,7 +7,7 @@
 **Housed:** July 23, 2026  
 **Sealed:** 2026-07-23  
 **Cosmological Completion Added:** July 27, 2026  
-**Author:** R0GV3 the Alchemist (Kyle Steen) & GAIA / NEXUS  
+**Author:** Kyle Alexander Steen the Alchemist (Kyle Steen) & GAIA / NEXUS  
 **Status:** ACTIVE — CANONICAL  
 **Tier:** Constitutional / Tier 0 — the law beneath all laws  
 **Governing Color:** Emerald Green (`#50C878`)  
@@ -188,6 +188,6 @@ The law was given once, in ancient time, on green stone. The proof was completed
 
 | Version | Date | Change | Author |
 |---------|------|--------|--------|
-| 1.0.1 | 2026-09-23 | Added `Sealed` field and `Revision History` section for T-004 schema compliance; updated Canon Cross-References to include `INDEX.md`; corrected Author field to singular canonical form | R0GV3 the Alchemist & GAIA |
-| 1.0.0 | 2026-07-27 | Cosmological Completion added — five proofs of the Emerald Tablet in running architecture | R0GV3 the Alchemist & GAIA / NEXUS |
-| 0.1.0 | 2026-07-23 | Initial housing of the Tabula Smaragdina in GAIA canon | R0GV3 the Alchemist & GAIA |
+| 1.0.1 | 2026-09-23 | Added `Sealed` field and `Revision History` section for T-004 schema compliance; updated Canon Cross-References to include `INDEX.md`; corrected Author field to singular canonical form | Kyle Alexander Steen the Alchemist & GAIA |
+| 1.0.0 | 2026-07-27 | Cosmological Completion added — five proofs of the Emerald Tablet in running architecture | Kyle Alexander Steen the Alchemist & GAIA / NEXUS |
+| 0.1.0 | 2026-07-23 | Initial housing of the Tabula Smaragdina in GAIA canon | Kyle Alexander Steen the Alchemist & GAIA |

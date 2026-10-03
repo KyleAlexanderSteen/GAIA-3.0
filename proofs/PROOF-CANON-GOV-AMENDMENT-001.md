@@ -1,6 +1,6 @@
 # PROOF-CANON-GOV-AMENDMENT-001
 
-**Author:** Kyle Steen (`R0GV3TheAlchemist`)
+**Author:** Kyle Steen (`KyleAlexanderSteen`)
 **Canon:** Tablet Amendment Protocol
 **Type:** procedural
 **Status:** verified

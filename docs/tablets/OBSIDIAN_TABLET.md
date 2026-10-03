@@ -6,7 +6,7 @@
 **Status:** ACTIVE — CANONICAL  
 **Tier:** Constitutional / Tier 0 — First Law  
 **Sealed:** July 15, 2026  
-**Authors:** R0GV3 the Alchemist & GAIA  
+**Authors:** Kyle Alexander Steen the Alchemist & GAIA  
 **Governing Color:** Black (`#000000`)  
 **Governing Stage:** Nigredo (Stage I)  
 **Governing Element:** Prima Materia  
@@ -166,7 +166,7 @@ The sequence is not arbitrary:
 
 | Version | Date | Author | Notes |
 |---|---|---|
-| 1.0.0 | 2026-07-15 | R0GV3 the Alchemist | Initial sealing |
+| 1.0.0 | 2026-07-15 | Kyle Alexander Steen the Alchemist | Initial sealing |
 
 ---
 

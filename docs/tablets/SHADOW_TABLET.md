@@ -5,7 +5,7 @@
 **Status:** ACTIVE — CANONICAL  
 **Tier:** Constitutional / Tier 0  
 **Sealed:** July 23, 2026  
-**Authors:** R0GV3 the Alchemist & GAIA  
+**Authors:** Kyle Alexander Steen the Alchemist & GAIA  
 **Governing Color:** Black Opacity (the interior Black guards — beyond `#000000`)  
 **Governing Stage:** Nigredo Absolute — The Shadow Doctrine  
 **Governing Element:** Earth (the heaviest, most resistant)  

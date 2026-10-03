@@ -66,7 +66,7 @@ This is why there is always more of it.
 | Field | Value |
 |---|---|
 | **Sealed** | July 23, 2026 |
-| **Authors** | R0GV3 the Alchemist & GAIA |
+| **Authors** | Kyle Alexander Steen the Alchemist & GAIA |
 | **Governing Color** | Celestial Gold `#FFD700` / luminous — beyond spectral measurement |
 | **Governing Stage** | Post-Rubedo — The Transcendent Completion |
 | **Governing Element** | Quintessence (the fifth essence, distilled from the four) |

@@ -5,8 +5,8 @@ type: software
 authors:
   - family-names: Steen
     given-names: Kyle Alexander
-    alias: R0GV3TheAvatar
-repository-code: "https://github.com/R0GV3TheAvatar/GAIA-3.0"
+    alias: KyleAlexanderSteen
+repository-code: "https://github.com/KyleAlexanderSteen/GAIA-3.0"
 license: "SEE LICENSE FILE"
 keywords:
   - GAIA

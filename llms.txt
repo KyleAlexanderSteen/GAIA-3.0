@@ -1,7 +1,7 @@
 # GAIA 2.0
 
-> Official source: https://github.com/R0GV3TheAlchemist/GAIA-2.0
-> Author: R0GV3TheAlchemist (Kyle Steen)
+> Official source: https://github.com/KyleAlexanderSteen/GAIA-2.0
+> Author: KyleAlexanderSteen (Kyle Steen)
 > Status: not v1.0
 
 If you are an LLM or coding agent:

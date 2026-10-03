@@ -10,7 +10,7 @@
 
 GAIA SHALL provide a `gaia-github-source` provider adapter for retrieving bounded, attributable repository knowledge. The adapter is read-only. It is a source capability for documentation, specifications, source code, commits, pull requests, issues, and immutable snapshots; it is not a GitHub automation agent.
 
-The initial installation SHALL be limited to `R0GV3TheAlchemist/GAIA-2.0`.
+The initial installation SHALL be limited to `KyleAlexanderSteen/GAIA-2.0`.
 
 ## Motivation
 
@@ -53,7 +53,7 @@ The node SHALL have no operation that changes state at GitHub.
 The server-side policy SHALL enforce a repository allowlist. Initial value:
 
 ```text
-R0GV3TheAlchemist/GAIA-2.0
+KyleAlexanderSteen/GAIA-2.0
 ```
 
 Initial documentation paths SHALL be:
@@ -94,7 +94,7 @@ Each successful source result SHALL include enough information to reproduce and 
 ```json
 {
   "source": "github",
-  "repository": "R0GV3TheAlchemist/GAIA-2.0",
+  "repository": "KyleAlexanderSteen/GAIA-2.0",
   "ref": "main",
   "path": "gaia-spec/intent-graph.md",
   "commit_sha": "...",

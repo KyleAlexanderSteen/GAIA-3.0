@@ -1,5 +1,5 @@
 //! Prompt-injection firewall for GAIA 2.0 (userspace stub).
-//! Author: Kyle Steen (R0GV3TheAlchemist)
+//! Author: Kyle Steen (KyleAlexanderSteen)
 
 use std::collections::HashSet;
 

@@ -31,10 +31,10 @@ Language: new living docs use **Super Intelligence (SI)**. See [`docs/canon/SUPE
 
 **Status:** Phase 0 foundation plus Phase 1 userspace runtime (executor, syscall host, SFS v0.1, MemOS, Ed25519 audit), plus honest first cuts through the original #1–#221 board. **Not `v1.0.0`.** See [RFC 0001](rfcs/0001-kernel-path.md), [issues #1–#10 honesty](gaia-spec/sos/ISSUES-1-10.md), and the [#1–#50 rollup](gaia-spec/sos/ISSUES-1-50.md).
 
-**Parent tracker:** [#1](https://github.com/R0GV3TheAvatar/GAIA-3.0/issues/1)  
-**Phase 0 epic:** [#2](https://github.com/R0GV3TheAvatar/GAIA-3.0/issues/2) (closed; foundation only)  
-**Phase 1 epic:** [#3](https://github.com/R0GV3TheAvatar/GAIA-3.0/issues/3) (closed; userspace only)  
-**Precision / simulation META:** [#1036](https://github.com/R0GV3TheAvatar/GAIA-3.0/issues/1036)
+**Parent tracker:** [#1](https://github.com/KyleAlexanderSteen/GAIA-3.0/issues/1)  
+**Phase 0 epic:** [#2](https://github.com/KyleAlexanderSteen/GAIA-3.0/issues/2) (closed; foundation only)  
+**Phase 1 epic:** [#3](https://github.com/KyleAlexanderSteen/GAIA-3.0/issues/3) (closed; userspace only)  
+**Precision / simulation META:** [#1036](https://github.com/KyleAlexanderSteen/GAIA-3.0/issues/1036)
 
 ## What this tree actually is
 
@@ -43,13 +43,13 @@ This is the page that should stop a reader from treating vision documents as a r
 | If you assume… | The tree says… |
 | --- | --- |
 | GAIA is SI | It is not. Language standard uses SI; runtime is local stubs + listed contracts. |
-| Agents have a live MCP plane | `FakeAdapter` is still the execute path. HTTP/OAuth is **off** (`STREAMABLE_HTTP_ENABLED`). Profile pins MCP `2026-07-28`. Parent: [#1059](https://github.com/R0GV3TheAvatar/GAIA-3.0/issues/1059). Real stdio child is still [#1061](https://github.com/R0GV3TheAvatar/GAIA-3.0/issues/1061). |
+| Agents have a live MCP plane | `FakeAdapter` is still the execute path. HTTP/OAuth is **off** (`STREAMABLE_HTTP_ENABLED`). Profile pins MCP `2026-07-28`. Parent: [#1059](https://github.com/KyleAlexanderSteen/GAIA-3.0/issues/1059). Real stdio child is still [#1061](https://github.com/KyleAlexanderSteen/GAIA-3.0/issues/1061). |
 | There is a rogue-SI predictor | There is a **hermetic fixture harness**. Outcomes are Pass / Fail / NeedVerify / Out-of-scope. It does not forecast 2027. Index: [`docs/research/simulation-index.md`](docs/research/simulation-index.md). |
-| The actor can grade or un-halt itself | It cannot. [#1042](https://github.com/R0GV3TheAvatar/GAIA-3.0/issues/1042), [#1045](https://github.com/R0GV3TheAvatar/GAIA-3.0/issues/1045). |
+| The actor can grade or un-halt itself | It cannot. [#1042](https://github.com/KyleAlexanderSteen/GAIA-3.0/issues/1042), [#1045](https://github.com/KyleAlexanderSteen/GAIA-3.0/issues/1045). |
 | `Documents/` is the product | Research corpus only. Join rule: [`docs/research/corpus-spec-join-1044.md`](docs/research/corpus-spec-join-1044.md). |
 | Trainers, Qdrant Cloud, DestinE, token rails ship here | They do not. [`gaia-spec/security/REFUSE.md`](gaia-spec/security/REFUSE.md) is CI-checked. |
 | Knowledge catalog is live ingest | `docs/knowledge/catalog.json` rows are listed; `runtime_enabled` must stay false. |
-| 1,000 languages | Vision [#651](https://github.com/R0GV3TheAvatar/GAIA-3.0/issues/651). v0 is six BCP-47 tags + `und`: [`docs/i18n/`](docs/i18n/). |
+| 1,000 languages | Vision [#651](https://github.com/KyleAlexanderSteen/GAIA-3.0/issues/651). v0 is six BCP-47 tags + `und`: [`docs/i18n/`](docs/i18n/). |
 | ML chart algorithms are implemented | Mapped, not trained. [`docs/research/ml-taxonomy-1052.md`](docs/research/ml-taxonomy-1052.md). |
 
 Claim vs compile: [`docs/research/claim-vs-compile-1041.md`](docs/research/claim-vs-compile-1041.md).  
@@ -133,8 +133,8 @@ cargo run -p gaia-cli -- audit
 
 ## Cite this work
 
-Author: **Kyle Alexander Steen / R0GV3TheAvatar**.  
-Preferred clone: https://github.com/R0GV3TheAvatar/GAIA-3.0.git  
+Author: **Kyle Alexander Steen / KyleAlexanderSteen**.  
+Preferred clone: https://github.com/KyleAlexanderSteen/GAIA-3.0.git  
 Machine-readable: [`CITATION.cff`](CITATION.cff)  
 Notices that must travel with copies: [`NOTICE`](NOTICE)  
 SPDX line for new crate roots: [`docs/legal/SPDX-ROOTS.md`](docs/legal/SPDX-ROOTS.md)

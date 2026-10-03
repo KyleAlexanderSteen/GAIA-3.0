@@ -1,7 +1,7 @@
 # Security pillars — listed (#868)
 
 **Points at:** `gaia-security`, `gaia-acp`, `gaia-runtime`, `gaia-gateway`.
-**Implementation epic stays open:** [#905](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/905).
+**Implementation epic stays open:** [#905](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/905).
 
 | Pillar | Existing surface | Status |
 | --- | --- | --- |

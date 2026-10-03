@@ -2,9 +2,9 @@
 
 Machine-readable **listed** layer over the Hermetic Tablet Canon.
 
-Parent epic: [#836](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/836).
+Parent epic: [#836](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/836).
 Registry source of truth: [`docs/tablets/INDEX.md`](../docs/tablets/INDEX.md).
-Canon hygiene epic: [#798](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/798).
+Canon hygiene epic: [#798](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/798).
 
 This directory is data + a read-only lookup. It is not a crate.
 
@@ -17,7 +17,7 @@ Presence of a tablet in `manifest.json` is **not**:
 - a honesty flip
 - sentience, planetary agency, or a second constitution
 
-Neutral systems language for a future consumer map lives on [#817](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/817). This tree does not do #817's work.
+Neutral systems language for a future consumer map lives on [#817](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/817). This tree does not do #817's work.
 
 ## Regenerate the manifest
 

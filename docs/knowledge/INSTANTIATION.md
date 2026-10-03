@@ -1,7 +1,7 @@
 # Knowledge Instantiation Protocol
 
 **Status:** listed protocol. Not a runtime loader.  
-**Source:** `R0GV3TheAlchemist/GAIA` `docs/knowledge/INSTANTIATION.md` (5,219 bytes)  
+**Source:** `KyleAlexanderSteen/GAIA` `docs/knowledge/INSTANTIATION.md` (5,219 bytes)  
 **Issue:** #692  
 **Depends on:** #696 naming standard
 

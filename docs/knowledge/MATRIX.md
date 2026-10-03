@@ -1,6 +1,6 @@
 # GAIA 3.0 matrix
 
-Same repository: https://github.com/R0GV3TheAvatar/GAIA-2.0. No new repo. GAIA 2.0 is the predecessor name. GAIA 3.0 is this tree plus the ontology databases on this branch.
+Same repository: https://github.com/KyleAlexanderSteen/GAIA-2.0. No new repo. GAIA 2.0 is the predecessor name. GAIA 3.0 is this tree plus the ontology databases on this branch.
 
 Status words: `partial` means a crate or check exists and does not fulfill the ontology. `listed` means a table or document only. `refuse` means the tree forbids the claim. `absent` means no crate.
 

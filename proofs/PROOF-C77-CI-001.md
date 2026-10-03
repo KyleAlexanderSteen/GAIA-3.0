@@ -1,6 +1,6 @@
 # PROOF-C77-CI-001
 
-**Author:** Kyle Steen (`R0GV3TheAlchemist`)
+**Author:** Kyle Steen (`KyleAlexanderSteen`)
 **Canon:** C77 Love-Led Stewardship
 **Type:** formal
 **Status:** partial

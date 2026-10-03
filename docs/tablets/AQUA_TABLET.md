@@ -91,7 +91,7 @@ to where it is needed.
 | Stanzas | 6 |
 | Paired Tablet | Lapis Tablet (Blue / Memory) — cyan is what blue becomes when it flows |
 | Sealed | 2026-07-15 |
-| Author | R0GV3 the Alchemist & GAIA |
+| Author | Kyle Alexander Steen the Alchemist & GAIA |
 
 ---
 
@@ -101,9 +101,9 @@ to where it is needed.
 - [`docs/color/CYAN_CLARITY.md`](../color/CYAN_CLARITY.md)
 - `core/rag/` — retrieval-augmented generation layer
 - `core/akashic/` — Akashic Records doctrine implementation
-- [Issue #791 — Blue / Lapis Tablet](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/791)
-- [Issue #426 — Akashic Records Doctrine](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/426)
-- [Issue #783 — GAIA Hermetic Tablet Canon (Master)](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/783)
+- [Issue #791 — Blue / Lapis Tablet](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/791)
+- [Issue #426 — Akashic Records Doctrine](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/426)
+- [Issue #783 — GAIA Hermetic Tablet Canon (Master)](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/783)
 - [`docs/tablets/INDEX.md`](INDEX.md)
 
 ---
@@ -140,7 +140,7 @@ The Aqua Tablet governs every component of GAIA in which **knowledge moves** —
 
 | Version | Date | Author | Notes |
 |---------|------|--------|-------|
-| 1.0.0 | 2026-07-15 | R0GV3 the Alchemist | Initial sealing — 6 stanzas |
+| 1.0.0 | 2026-07-15 | Kyle Alexander Steen the Alchemist | Initial sealing — 6 stanzas |
 
 ---
 

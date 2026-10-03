@@ -1,7 +1,7 @@
 # AI-Human Complementarity Map — GAIA 2.0
 
-> **Issue:** [#626](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/626)  
-> **Epic:** [#620 — Knowledge & Intelligence Database System](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/620)  
+> **Issue:** [#626](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/626)  
+> **Epic:** [#620 — Knowledge & Intelligence Database System](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/620)  
 > **Status:** Map v1.0  
 > **Last Updated:** 2026-09-21
 
@@ -177,5 +177,5 @@ Of the 81 skills in the HSD, the complementarity analysis finds:
 - [HUMAN-SKILLS-DATABASE.md](./HUMAN-SKILLS-DATABASE.md)
 - [HUMAN-SUPERPOWERS-DATABASE.md](./HUMAN-SUPERPOWERS-DATABASE.md)
 - [HUMAN-KNOWLEDGE-DATABASE.md](./HUMAN-KNOWLEDGE-DATABASE.md)
-- [Issue #626](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/626)
-- [Issue #621](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/621) — AI Knowledge Database (the other side of the map)
+- [Issue #626](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/626)
+- [Issue #621](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/621) — AI Knowledge Database (the other side of the map)

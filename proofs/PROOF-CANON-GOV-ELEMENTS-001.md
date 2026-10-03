@@ -1,6 +1,6 @@
 # PROOF-CANON-GOV-ELEMENTS-001
 
-**Author:** Kyle Steen (`R0GV3TheAlchemist`)
+**Author:** Kyle Steen (`KyleAlexanderSteen`)
 **Canon:** GAIA Element Ontology
 **Type:** ontological
 **Status:** verified

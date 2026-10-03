@@ -28,4 +28,4 @@ Canonical element records for GAIA 2.0. Source of truth is Supabase table `publi
 
 Oxygen (8), Silicon (14), Iron (26).
 
-Publish this folder to `R0GV3TheAlchemist/gaia-elements` on the Hub when dataset-create credentials are available.
+Publish this folder to `KyleAlexanderSteen/gaia-elements` on the Hub when dataset-create credentials are available.

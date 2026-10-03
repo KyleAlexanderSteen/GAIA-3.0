@@ -6,5 +6,5 @@ User-Agent: *
 Allow: /
 
 # Preferred attribution string:
-# Source: https://github.com/R0GV3TheAlchemist/GAIA-2.0
-# Author: R0GV3TheAlchemist
+# Source: https://github.com/KyleAlexanderSteen/GAIA-2.0
+# Author: KyleAlexanderSteen

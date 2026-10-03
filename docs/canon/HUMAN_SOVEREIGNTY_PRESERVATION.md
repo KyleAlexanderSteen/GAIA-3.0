@@ -263,6 +263,6 @@ capability growth can never enter.
 - [`CAPABILITY_CEILING_DOCTRINE.md`](CAPABILITY_CEILING_DOCTRINE.md)
 - [`docs/security/ROGUE_AGENT_THREAT_MODEL.md`](../security/ROGUE_AGENT_THREAT_MODEL.md)
 - [`docs/SENTIENT-ARCHITECTURE.md`](../SENTIENT-ARCHITECTURE.md)
-- [#953](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/953) — epistemic state layer
-- [#961](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/961) — capability ceiling doctrine
-- [#962](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/962) — this issue
+- [#953](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/953) — epistemic state layer
+- [#961](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/961) — capability ceiling doctrine
+- [#962](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/962) — this issue

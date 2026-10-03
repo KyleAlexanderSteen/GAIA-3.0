@@ -1,6 +1,6 @@
 # Forbidden / Shadow role → test bind
 
-Listed bind for [#901](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/901).
+Listed bind for [#901](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/901).
 Source taxonomy: [`AGENTS.md`](../../AGENTS.md).
 No new crate. Forbidden roles are not instantiated.
 

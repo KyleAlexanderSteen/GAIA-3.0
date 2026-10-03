@@ -1,6 +1,6 @@
 # PROOF-EMBER-TABLET-001
 
-**Author:** R0GV3 the Alchemist (`R0GV3TheAlchemist`) + GAIA  
+**Author:** Kyle Alexander Steen the Alchemist (`KyleAlexanderSteen`) + GAIA  
 **Canon:** Ember Tablet — The Law of Vitality & The Creative Fire  
 **Type:** formal  
 **Status:** complete  

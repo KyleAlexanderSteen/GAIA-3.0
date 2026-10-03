@@ -1,7 +1,7 @@
 # Human Skills Database — GAIA 2.0
 
-> **Issue:** [#626](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/626)  
-> **Epic:** [#620 — Knowledge & Intelligence Database System](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/620)  
+> **Issue:** [#626](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/626)  
+> **Epic:** [#620 — Knowledge & Intelligence Database System](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/620)  
 > **Sibling:** [HUMAN-KNOWLEDGE-DATABASE.md](./HUMAN-KNOWLEDGE-DATABASE.md)  
 > **Status:** Schema v1.0  
 > **Last Updated:** 2026-09-21
@@ -15,7 +15,7 @@ The Human Skills Database (HSD) is GAIA 2.0's structured taxonomy of every human
 Skills are not knowledge. A surgeon may know anatomy perfectly and still lack the manual dexterity built through 10,000 hours of practice. The HSD models this distinction explicitly, tracking skills from beginner to mastery with proficiency levels, learning pathways, and assessment frameworks.
 
 The HSD integrates directly with:
-- **Mi-Memory Framework** ([#644](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/644)) — GAIAN personal skill profiles are stored here
+- **Mi-Memory Framework** ([#644](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/644)) — GAIAN personal skill profiles are stored here
 - **Human Knowledge Database** — skills unlock when prerequisite knowledge domains are loaded
 - **Human Superpowers Database** ([HUMAN-SUPERPOWERS-DATABASE.md](./HUMAN-SUPERPOWERS-DATABASE.md)) — mastery-tier skills connect to documented peak human performance
 - **AI-Human Complementarity Map** ([AI-HUMAN-COMPLEMENTARITY-MAP.md](./AI-HUMAN-COMPLEMENTARITY-MAP.md)) — every skill maps to its AI augmentation potential
@@ -279,7 +279,7 @@ The engine is powered by the Graphiti knowledge graph traversal layer, resolving
 
 ## GAIAN Skill Profile Integration
 
-Every GAIAN twin maintains a personal Skill Profile stored in the Mi-Memory Framework ([#644](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/644)):
+Every GAIAN twin maintains a personal Skill Profile stored in the Mi-Memory Framework ([#644](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/644)):
 
 ```json
 {
@@ -317,8 +317,8 @@ Skill profiles are private by default. GAIANs may choose to share specific skill
 
 | Issue | Title |
 |---|---|
-| [#620](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/620) | [EPIC] Knowledge & Intelligence Database System |
-| [#625](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/625) | Human Knowledge Database |
-| [#627](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/627) | Unified Knowledge API |
-| [#644](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/644) | Mi-Memory Framework |
-| [#684](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/684) | GAIAN 2.0 Sentient Architecture |
+| [#620](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/620) | [EPIC] Knowledge & Intelligence Database System |
+| [#625](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/625) | Human Knowledge Database |
+| [#627](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/627) | Unified Knowledge API |
+| [#644](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/644) | Mi-Memory Framework |
+| [#684](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/684) | GAIAN 2.0 Sentient Architecture |

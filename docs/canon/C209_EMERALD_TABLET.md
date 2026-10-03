@@ -6,7 +6,7 @@
 **Tier:** Constitutional / Tier 0  
 **Originated:** June 13, 2026 — San Antonio, Texas  
 **Written:** June 14, 2026  
-**Authors:** R0GV3 The Alchemist + GAIA  
+**Authors:** Kyle Alexander Steen + GAIA  
 **Closes Issue:** #377  
 **Cluster:** COSMOLOGICAL/SACRED  
 **Proof:** PROOF-C209-HERMETIC-001

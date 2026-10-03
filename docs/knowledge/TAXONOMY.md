@@ -2,7 +2,7 @@
 
 **Status:** listed migration rules  
 **Issue:** #693  
-**Source plane:** `R0GV3TheAlchemist/GAIA` `docs/knowledge/the-subjects-of-knowledge-for-humans`  
+**Source plane:** `KyleAlexanderSteen/GAIA` `docs/knowledge/the-subjects-of-knowledge-for-humans`  
 **Counts in ancestor:** basic 40, intermediate 71, mastery 67, total 178
 
 ## Decision

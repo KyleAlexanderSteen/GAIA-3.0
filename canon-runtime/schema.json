@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/R0GV3TheAvatar/GAIA-2.0/canon-runtime/schema.json",
+  "$id": "https://github.com/KyleAlexanderSteen/GAIA-2.0/canon-runtime/schema.json",
   "title": "GAIA Tablet Runtime Object",
   "description": "Listed fields only. Presence in a manifest is not ACP enforcement, not a syscall, and not sentience. Parent #836 / schema #892.",
   "type": "object",

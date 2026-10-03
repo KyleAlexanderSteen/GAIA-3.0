@@ -1,9 +1,9 @@
 # EmbeddingModel — FM-2 trait contract and selection criteria
 
-Issue: [#945](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/945)
-Listed trait child: [#946](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/946) (`gaia-ukd`)
-Wiring child: [#947](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/947) (`gaia-ingest` / `gaia-aikd`)
-Parent: [#906](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/906)
+Issue: [#945](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/945)
+Listed trait child: [#946](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/946) (`gaia-ukd`)
+Wiring child: [#947](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/947) (`gaia-ingest` / `gaia-aikd`)
+Parent: [#906](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/906)
 
 This file is the listed contract. It does not download a model. It does not
 stand up a vector database. Offline sovereignty still applies.

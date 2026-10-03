@@ -2,7 +2,7 @@
   "schema_version": "0.1.0",
   "status": "compatibility-baseline",
   "source": {
-    "repository": "R0GV3TheAlchemist/GAIA",
+    "repository": "KyleAlexanderSteen/GAIA",
     "path": "docs/knowledge/the-subjects-of-knowledge-for-humans/relabel-map.json",
     "revision": "main@63dd2cf3d181eb0db51d6de1ad83d1f18d4b389a",
     "retrieved_for_issue": 696

@@ -2,7 +2,7 @@
 
 > Proof: PROOF-C77-ALCHEMICAL-ORIGIN-001
 >
-> Closes: [#1126](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/1126)
+> Closes: [#1126](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/1126)
 
 > It all started with alchemy, but it will not end with alchemy.
 

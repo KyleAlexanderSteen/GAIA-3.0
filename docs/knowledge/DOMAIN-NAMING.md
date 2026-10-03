@@ -134,7 +134,7 @@ Each migrated record SHOULD include:
 {
   "aliases": ["basic-biology", "intermediate-advanced-biology"],
   "legacy": {
-    "repository": "R0GV3TheAlchemist/GAIA",
+    "repository": "KyleAlexanderSteen/GAIA",
     "paths": [
       "docs/knowledge/the-subjects-of-knowledge-for-humans/basic-biology",
       "docs/knowledge/the-subjects-of-knowledge-for-humans/intermediate-advanced-biology"

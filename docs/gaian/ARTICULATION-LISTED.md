@@ -1,7 +1,7 @@
 # GAIAN listed articulation card
 
 **Status:** listed overlay. Not a dialogue runtime.  
-**Issue:** [#813](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/813) leftover of [#774](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/774)
+**Issue:** [#813](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/813) leftover of [#774](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/774)
 
 When a GAIAN dialogue surface exists, allowed sentences are:
 

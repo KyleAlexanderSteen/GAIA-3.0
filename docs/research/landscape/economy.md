@@ -1,7 +1,7 @@
 # Economic model — listed (#871)
 
 **Points at:** `governance/`, `gaia-acp`, `gaia-agents`.
-**Tracker:** [#907](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/907).
+**Tracker:** [#907](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/907).
 
 Human roles that stay human: judgment, ethics, consent, governance.
 

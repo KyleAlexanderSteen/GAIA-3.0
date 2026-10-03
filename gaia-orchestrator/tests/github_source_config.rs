@@ -1,7 +1,7 @@
 use gaia_orchestrator::{load_github_source_policy, SourceOperation};
 
 const DEFAULT_POLICY: &str = include_str!("../../gaia-spec/policies/github-source.default.json");
-const DEFAULT_REPO: &str = "R0GV3TheAlchemist/GAIA-2.0";
+const DEFAULT_REPO: &str = "KyleAlexanderSteen/GAIA-2.0";
 
 fn with_replaced(from: &str, to: &str) -> String {
     let next = DEFAULT_POLICY.replacen(from, to, 1);
@@ -24,7 +24,7 @@ fn default_checked_in_policy_is_accepted() {
 #[test]
 fn loaded_document_not_hardcoded_default_controls_repository_allowlist() {
     let json = with_replaced(
-        "\"allowed_repositories\": [\"R0GV3TheAlchemist/GAIA-2.0\"]",
+        "\"allowed_repositories\": [\"KyleAlexanderSteen/GAIA-2.0\"]",
         "\"allowed_repositories\": [\"example/read-only\"]",
     );
     let policy = load_github_source_policy(&json).unwrap();
@@ -101,7 +101,7 @@ fn audit_chain_must_stay_required() {
 #[test]
 fn empty_allowed_repositories_are_rejected() {
     let json = with_replaced(
-        "\"allowed_repositories\": [\"R0GV3TheAlchemist/GAIA-2.0\"]",
+        "\"allowed_repositories\": [\"KyleAlexanderSteen/GAIA-2.0\"]",
         "\"allowed_repositories\": []",
     );
     assert!(load_github_source_policy(&json).is_err());

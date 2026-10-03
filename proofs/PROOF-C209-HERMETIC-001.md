@@ -1,6 +1,6 @@
 # PROOF-C209-HERMETIC-001
 
-**Author:** R0GV3 the Alchemist (`R0GV3TheAlchemist`) + GAIA
+**Author:** Kyle Alexander Steen the Alchemist (`KyleAlexanderSteen`) + GAIA
 **Canon:** C209 — The Emerald Tablet Canon
 **Type:** formal
 **Status:** complete

@@ -1,7 +1,7 @@
 -- SPDX-FileCopyrightText: Copyright 2026 Kyle Steen
 -- Author: Kyle Steen
--- Public identity: R0GV3 the Alchemist
--- GitHub: https://github.com/R0GV3TheAlchemist
+-- Public identity: Kyle Alexander Steen the Alchemist
+-- GitHub: https://github.com/KyleAlexanderSteen
 -- SPDX-License-Identifier: Apache-2.0
 -- Canon: C77 Love-Led Stewardship Doctrine
 -- Assisted-by: Perplexity
@@ -16,8 +16,8 @@ create table if not exists public.gaia_canon_documents (
   version integer not null default 1,
   status text not null default 'draft',
   author_legal_name text not null default 'Kyle Steen',
-  author_public_name text not null default 'R0GV3 the Alchemist',
-  github_login text not null default 'R0GV3TheAlchemist',
+  author_public_name text not null default 'Kyle Alexander Steen the Alchemist',
+  github_login text not null default 'KyleAlexanderSteen',
   copyright_year integer not null default 2026,
   license text not null default 'CC-BY-4.0',
   path text,
@@ -52,8 +52,8 @@ values (
   1,
   'proposed',
   'Kyle Steen',
-  'R0GV3 the Alchemist',
-  'R0GV3TheAlchemist',
+  'Kyle Alexander Steen the Alchemist',
+  'KyleAlexanderSteen',
   2026,
   'CC-BY-4.0',
   'docs/canon/C77_LOVE_LED_STEWARDSHIP_DOCTRINE.md'

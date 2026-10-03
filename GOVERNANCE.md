@@ -21,7 +21,7 @@ GAIA Foundation (nonprofit — future)
 
 ## Interim (now)
 
-- **Owner:** `R0GV3TheAvatar` on this repository.
+- **Owner:** `KyleAlexanderSteen` on this repository.
 - **Interim TSC:** owner + anyone listed as a maintainer in a future `MAINTAINERS` file.
 - **Decision rules** (from the blueprint):
   - RFC for major changes

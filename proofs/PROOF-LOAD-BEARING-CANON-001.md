@@ -1,6 +1,6 @@
 # PROOF-LOAD-BEARING-CANON-001
 
-Author: Kyle Steen (R0GV3TheAlchemist)
+Author: Kyle Steen (KyleAlexanderSteen)
 Status: empirical
 Canon: C77, Issue 64, Issue 221
 

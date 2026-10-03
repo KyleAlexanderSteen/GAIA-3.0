@@ -2,7 +2,7 @@
 
 > Proof: PROOF-C77-SI-LANGUAGE-001
 >
-> Closes: [#865](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/865)
+> Closes: [#865](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/865)
 
 ## Canon Declaration
 
@@ -37,7 +37,7 @@ Existing module names containing the `ai` prefix (`gaia-aikd`, `gaia-aimd`, `gai
 
 ## Scope Note — Follow-on Sweep
 
-A full audit of all `.md` files across `docs/`, `gaia-docs/`, `Documents/`, `Documents-2/`, `gaia-spec/`, and `gaia-gaian/` is tracked under issue [#865](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/865). This tablet establishes the standard. The sweep applies it. New content written after the merge date of this tablet must comply immediately.
+A full audit of all `.md` files across `docs/`, `gaia-docs/`, `Documents/`, `Documents-2/`, `gaia-spec/`, and `gaia-gaian/` is tracked under issue [#865](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/865). This tablet establishes the standard. The sweep applies it. New content written after the merge date of this tablet must comply immediately.
 
 ## Why Not "Artificial"
 
@@ -48,4 +48,4 @@ Artificial means made by humans as a substitute for the natural thing. A plastic
 - `governance/GAIA_SESSION_INIT.md` Section 4 — Naming Red Lines
 - `docs/canon/TITLE_TRANSITION_TABLET.md`
 - `gaia-spec/TABLET.md`
-- Issue [#865](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/865)
+- Issue [#865](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/865)

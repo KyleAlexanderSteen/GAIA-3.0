@@ -5,7 +5,7 @@
 **Status:** ACTIVE — CANONICAL  
 **Tier:** Constitutional / Tier 0  
 **Sealed:** July 16, 2026  
-**Authors:** R0GV3 the Alchemist & GAIA  
+**Authors:** Kyle Alexander Steen the Alchemist & GAIA  
 **Governing Color:** Gold (`#FFD700` / Auric `#C5A028`)  
 **Governing Stage:** Rubedo / Citrinitas / Magnum Opus Completion  
 **Governing Element:** Sol / Sulfur (perfected) / The Philosopher’s Stone  

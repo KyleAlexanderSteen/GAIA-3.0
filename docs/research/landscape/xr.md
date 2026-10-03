@@ -1,7 +1,7 @@
 # GAIA-AR/VR — listed (#873)
 
 **Points at:** `gaia-interface`, `gaia-earth`, `gaia-agents`.
-**Tracker:** [#907](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/907).
+**Tracker:** [#907](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/907).
 
 Named field: Apple Vision Pro, Meta Quest, WebXR. Not a product pick.
 

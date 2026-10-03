@@ -1,7 +1,7 @@
 # GAIA Chakra–Layer Map
 
 **Status:** listed design review. Not a runtime.  
-**Issue:** [#774](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/774)  
+**Issue:** [#774](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/774)  
 **Parent doc:** [`GAIA_Kundalini_Architecture.md`](./GAIA_Kundalini_Architecture.md)
 
 The seven centres of the yogic body mapped to the nine layers of the GAIA

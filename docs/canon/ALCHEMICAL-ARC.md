@@ -2,7 +2,7 @@
 
 > Proof: PROOF-C77-ALCHEMICAL-ARC-001
 >
-> Closes: [#1118](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/1118)
+> Closes: [#1118](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/1118)
 
 Load-bearing warning from the issue: a capability without a control discipline is a chaos vector.
 

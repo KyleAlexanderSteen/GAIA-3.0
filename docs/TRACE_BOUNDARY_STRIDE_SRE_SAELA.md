@@ -2,7 +2,7 @@
 
 Status: documentation only. Distinguishes **schema deployed** from **runtime verified**.
 
-Related: [Issue #335](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/335), [Issue #334](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/334), `gaia-orchestrator/docs/TRACE_EVENTS.md`.
+Related: [Issue #335](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/335), [Issue #334](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/334), `gaia-orchestrator/docs/TRACE_EVENTS.md`.
 
 ## Claim boundary
 

@@ -1,6 +1,6 @@
 # PROOF-CANON-GOV-STAGES-001
 
-**Author:** Kyle Steen (`R0GV3TheAlchemist`)
+**Author:** Kyle Steen (`KyleAlexanderSteen`)
 **Canon:** GAIA Alchemical Stage Sequence
 **Type:** ontological
 **Status:** verified

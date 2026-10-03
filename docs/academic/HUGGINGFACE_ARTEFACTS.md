@@ -1,7 +1,7 @@
 # GAIA 2.0 Hugging Face Artefacts
 
 **Filed:** 2026-09-17  
-**Account:** [R0GV3TheAlchemist](https://huggingface.co/R0GV3TheAlchemist)  
+**Account:** [KyleAlexanderSteen](https://huggingface.co/KyleAlexanderSteen)  
 **Org:** none yet  
 **Published repos:** none  
 

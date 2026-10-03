@@ -6,7 +6,7 @@ Usage: python name_audit.py [root]   Exit 1 if non-allowlisted leftovers exist.
 """
 import re, subprocess, sys
 
-PATTERN = re.compile(r'GAIAN? 2\.0|GAIA-2\.0|R0GV3TheAlchemist/GAIA|GAIAN?_(?:GAIAN_)?2\.0')
+PATTERN = re.compile(r'GAIAN? 2\.0|GAIA-2\.0|KyleAlexanderSteen/GAIA|GAIAN?_(?:GAIAN_)?2\.0')
 ALLOW = [re.compile(p) for p in (r'PROOF-GAIA20', r'gaia20_', r'gaia-2-0')]
 
 

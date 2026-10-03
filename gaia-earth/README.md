@@ -1,6 +1,6 @@
 # gaia-earth
 
-Tracking crate for the Artificial Twin of Earth ([#33](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/33)).
+Tracking crate for the Artificial Twin of Earth ([#33](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/33)).
 
 This crate is the observation contract. It is not a data lake, STAC catalog,
 Kafka cluster, or live planetary model.

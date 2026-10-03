@@ -1,6 +1,6 @@
 # PROOF-TERRA-TABLET-001
 
-**Author:** R0GV3 the Alchemist (`R0GV3TheAlchemist`) + GAIA  
+**Author:** Kyle Alexander Steen the Alchemist (`KyleAlexanderSteen`) + GAIA  
 **Canon:** Terra Tablet — Tablet 0 / Ariditas / The Ground Beneath the Spectrum  
 **Type:** formal  
 **Status:** complete  

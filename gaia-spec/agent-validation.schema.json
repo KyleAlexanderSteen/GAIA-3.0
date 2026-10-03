@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/R0GV3TheAvatar/GAIA-2.0/gaia-spec/agent-validation.schema.json",
+  "$id": "https://github.com/KyleAlexanderSteen/GAIA-2.0/gaia-spec/agent-validation.schema.json",
   "title": "GAIA-2.0 Agent Validation Result",
   "description": "Schema for agent-validation.json produced by scripts/agent-validate.sh. Every field is mandatory. Consumers MUST reject results whose head_sha does not match the current repository HEAD before proposing any repair.",
   "type": "object",
