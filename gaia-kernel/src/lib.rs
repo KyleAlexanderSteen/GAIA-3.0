@@ -4,6 +4,7 @@ pub mod audit;
 pub mod broker;
 pub mod capability;
 pub mod boot;
+pub mod consensus;
 pub mod components;
 pub mod execution;
 pub mod executor;

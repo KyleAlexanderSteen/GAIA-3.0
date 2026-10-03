@@ -1,6 +1,6 @@
 pub mod bands;
-pub mod claims;
 pub mod boot;
+pub mod claims;
 pub mod check;
 pub mod chaos;
 pub mod collective;
@@ -24,6 +24,7 @@ pub mod intent;
 pub mod layers;
 pub mod memory;
 pub mod order;
+pub mod org;
 pub mod proc;
 pub mod orderband;
 pub mod model;
