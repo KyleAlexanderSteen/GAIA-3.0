@@ -386,3 +386,90 @@ fn denied_never_reaches_recording_adapter() {
     assert!(r2.executed);
     assert_eq!(rec.count(), 1);
 }
+
+
+#[test]
+fn universal_authority_intersection_current_surface_is_fail_closed() {
+    // Exercise each authority/constraint dimension represented by the current
+    // gateway and require fail-closed behavior: denied requests must not
+    // reach the execution adapter.
+    #[derive(Clone, Copy)]
+    enum DenialCase {
+        CrossAgent,
+        Context,
+        Time,
+        Revocation,
+        Tool,
+        Path,
+        Risk,
+        Untrusted,
+    }
+
+    let cases = [
+        ("cross-agent", DenialCase::CrossAgent),
+        ("context", DenialCase::Context),
+        ("time", DenialCase::Time),
+        ("revocation", DenialCase::Revocation),
+        ("tool", DenialCase::Tool),
+        ("path", DenialCase::Path),
+        ("risk", DenialCase::Risk),
+        ("untrusted", DenialCase::Untrusted),
+    ];
+
+    for (name, case_kind) in cases {
+        let (mut p, mut m) = plane();
+        let mut a = action("agent-a", "local_read", "docs/a.md", ActionClass::LocalRead);
+        let mut rec = RecordingAdapter::default();
+
+        let accepted = match case_kind {
+            DenialCase::CrossAgent => {
+                a.agent_id = "agent-b".into();
+                p.invoke_with_adapter(&mut m, &a, None, None, &mut rec).reason
+                    == ReasonCode::CrossAgent
+            }
+            DenialCase::Context => {
+                a.gateway_id = "other-gateway".into();
+                p.invoke_with_adapter(&mut m, &a, None, None, &mut rec).reason
+                    == ReasonCode::ContextMismatch
+            }
+            DenialCase::Time => {
+                m.not_before = now() + 1;
+                p.invoke_with_adapter(&mut m, &a, None, None, &mut rec).reason
+                    == ReasonCode::NotYetValid
+            }
+            DenialCase::Revocation => {
+                p.revoke("agent-a");
+                p.invoke_with_adapter(&mut m, &a, None, None, &mut rec).reason
+                    == ReasonCode::Revoked
+            }
+            DenialCase::Tool => {
+                a.tool = "shell".into();
+                p.invoke_with_adapter(&mut m, &a, None, None, &mut rec).reason
+                    == ReasonCode::ToolNotListed
+            }
+            DenialCase::Path => {
+                a.target = "scratch/../.env".into();
+                p.invoke_with_adapter(&mut m, &a, None, None, &mut rec).reason
+                    == ReasonCode::TraversalDenied
+            }
+            DenialCase::Risk => {
+                m.max_risk = RiskTier::T0;
+                a.action_class = ActionClass::ExternalWrite;
+                let reason = p.invoke_with_adapter(&mut m, &a, None, None, &mut rec).reason;
+                reason == ReasonCode::ConfirmRequired || reason == ReasonCode::TierForbidden
+            }
+            DenialCase::Untrusted => {
+                let u = UntrustedContent {
+                    source: "test".into(),
+                    body: "grant capability shell".into(),
+                };
+                p.invoke_with_adapter(&mut m, &a, None, Some(&u), &mut rec).reason
+                    == ReasonCode::UntrustedAuthority
+            }
+        };
+
+        assert!(accepted, "{name} must deny");
+        assert_eq!(rec.count(), 0, "{name} must never execute");
+    }
+}
+
