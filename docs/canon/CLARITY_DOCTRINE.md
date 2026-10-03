@@ -1,3 +1,5 @@
+> Proof: PROOF-CLARITY-DOCTRINE-001
+
 # Clarity Doctrine
 
 **Status:** Draft doctrine for review  
