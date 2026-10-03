@@ -3,6 +3,7 @@
 pub mod audit;
 pub mod broker;
 pub mod capability;
+pub mod companion;
 pub mod boot;
 pub mod consensus;
 pub mod determine;
