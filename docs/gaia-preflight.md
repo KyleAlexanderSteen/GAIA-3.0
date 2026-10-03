@@ -11,6 +11,7 @@ GAIA Preflight is a read-only gate for catching integration failures before a pu
 - Rust module declarations whose source files are missing.
 - `rustfmt` for changed Rust files.
 - Workspace `clippy` with warnings denied.
+- Deterministic verification simulations with seeded replay and failure injection.
 - Workspace tests, unless `--skip-tests` is supplied.
 
 ## Usage
@@ -21,7 +22,7 @@ scripts/gaia-preflight.sh --base main
 scripts/gaia-preflight.sh --skip-tests
 ```
 
-The script does not rebase, merge, edit files, push branches, change PRs, or alter CI configuration.
+The simulation gate is intentionally offline and non-authoritative: it does not rebase, merge, edit files, push branches, change PRs, or perform production actions. A simulation PASS is evidence for the declared scenarios only.
 
 ## Result semantics
 
@@ -34,4 +35,4 @@ The script does not rebase, merge, edit files, push branches, change PRs, or alt
 
 ## Relationship to the correction loop
 
-The existing `docs/agent-correction-loop.md` is the post-PR human-gated repair protocol. Preflight complements it by catching branch synchronization, registry contention, missing modules, formatting, Clippy, and test failures before another PR enters the correction loop.
+The existing `docs/agent-correction-loop.md` is the post-PR human-gated repair protocol. Preflight complements it by catching branch synchronization, registry contention, missing modules, formatting, deterministic simulation failures, Clippy, and test failures before another PR enters the correction loop.

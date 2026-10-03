@@ -1,0 +1,24 @@
+name: verification-simulation-gate
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  simulation:
+    name: Deterministic verification simulations
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run scenarios
+        run: python tools/verification/simulation_gate.py --json
+      - name: Run simulation tests
+        run: python -m unittest tools/verification/tests/test_simulation_gate.py
