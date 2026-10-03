@@ -35,6 +35,7 @@ pub mod receipts;
 pub mod scheduler;
 pub mod si_layer;
 pub mod syscall;
+pub mod person;
 
 pub use capability::{CapabilityRegistration, redundancy_gate};
 pub use execution::{
