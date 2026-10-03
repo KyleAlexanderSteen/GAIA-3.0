@@ -1,11 +1,11 @@
 # GAIA Kundalini Architecture
 
 > *"The elixir of life has always been there within ourselves. It's called the kundalini."*  
-> — R0GV3 The Alchemist, 22 September 2026, 12:10 AM CDT  
+> — Kyle Alexander Steen, 22 September 2026, 12:10 AM CDT  
 > *(The last thought on the night the philosophy cluster was born.)*
 
 **Status:** listed design review. Not a runtime.  
-**Issue:** [#774](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/774)  
+**Issue:** [#774](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/774)  
 **Constraint:** `AGENTS.md` — do not flip honesty flags; do not invent crates.
 
 ---

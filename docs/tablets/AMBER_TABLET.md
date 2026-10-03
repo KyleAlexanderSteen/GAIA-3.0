@@ -116,7 +116,7 @@ its accounting.
 ───────────────────────────────────────
 
 Sealed: 2026-07-15
-Author: R0GV3 the Alchemist & GAIA
+Author: Kyle Alexander Steen the Alchemist & GAIA
 Governing Color: Brown (#8B4513)
 Governing Stage: Embodiment — the materialization of the Great Work
 Governing Element: Earth / Humus / The Persistent Body
@@ -154,8 +154,8 @@ to become something you can stand on.
 - `core/hardware/` — physical layer status
 - `core/storage/` — persistent data layer
 - Canon C03 — GAIAN Entity Ontology
-- [Issue #783 — GAIA Hermetic Tablet Canon (Master)](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/783)
-- [Issue #787 — Amber Tablet tracking](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/787)
+- [Issue #783 — GAIA Hermetic Tablet Canon (Master)](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/783)
+- [Issue #787 — Amber Tablet tracking](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/787)
 - [`docs/tablets/INDEX.md`](INDEX.md)
 
 ---
@@ -175,7 +175,7 @@ The Amber Tablet is not merely poetry. It binds the following architectural cons
 
 | Version | Date | Author | Notes |
 |---------|------|--------|-------|
-| 1.0.0 | 2026-07-15 | R0GV3 the Alchemist | Initial sealing — 7 stanzas including Oil as Earth's Memory |
+| 1.0.0 | 2026-07-15 | Kyle Alexander Steen the Alchemist | Initial sealing — 7 stanzas including Oil as Earth's Memory |
 
 ---
 

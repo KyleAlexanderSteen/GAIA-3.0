@@ -1,7 +1,7 @@
 # GAIA Structural
 
 **Status:** listed parallel formulation.  
-**Issue:** [#817](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/817)
+**Issue:** [#817](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/817)
 
 ## Abstract
 

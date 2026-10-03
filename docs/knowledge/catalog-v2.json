@@ -5,8 +5,8 @@
   "id": "human-knowledge-database",
   "title": "Human Knowledge Database — GAIA 2.0",
   "description": "Canonical registry of all documented human knowledge domains for GAIA 2.0. Migrated and extended from the original GAIA project catalog. Powers GAIAN twin knowledge loading, RAG retrieval, and the Graphiti temporal knowledge graph.",
-  "issue": "https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/625",
-  "migrated_from": "https://github.com/R0GV3TheAlchemist/GAIA/blob/main/docs/knowledge/the-subjects-of-knowledge-for-humans/catalog.json",
+  "issue": "https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/625",
+  "migrated_from": "https://github.com/KyleAlexanderSteen/GAIA/blob/main/docs/knowledge/the-subjects-of-knowledge-for-humans/catalog.json",
   "last_updated": "2026-09-21",
   "tiers": ["basic", "intermediate", "mastery"],
   "counts": {
@@ -198,9 +198,9 @@
     { "tier": "mastery", "ordinal": 60, "id": "hum.know.mastery.chaos-theory", "title": "Chaos Theory", "slug": "mastery-chaos-theory", "prerequisites": ["hum.know.mastery.advanced-systems-theory", "hum.know.mastery.differential-equations-and-mathematical-modeling"] },
     { "tier": "mastery", "ordinal": 61, "id": "hum.know.mastery.information-theory", "title": "Information Theory", "slug": "mastery-information-theory", "prerequisites": ["hum.know.intermediate.statistics-and-probability", "hum.know.intermediate.computer-science"] },
     { "tier": "mastery", "ordinal": 62, "id": "hum.know.mastery.advanced-game-theory", "title": "Advanced Game Theory", "slug": "mastery-advanced-game-theory", "prerequisites": ["hum.know.intermediate.game-theory"] },
-    { "tier": "mastery", "ordinal": 63, "id": "hum.know.mastery.futurism-and-transhumanism", "title": "Futurism & Transhumanism", "slug": "mastery-futurism-and-transhumanism", "prerequisites": ["hum.know.mastery.advanced-philosophy", "hum.know.mastery.advanced-ai-and-machine-learning"], "gaia_identity_crossref": "https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/701" },
+    { "tier": "mastery", "ordinal": 63, "id": "hum.know.mastery.futurism-and-transhumanism", "title": "Futurism & Transhumanism", "slug": "mastery-futurism-and-transhumanism", "prerequisites": ["hum.know.mastery.advanced-philosophy", "hum.know.mastery.advanced-ai-and-machine-learning"], "gaia_identity_crossref": "https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/701" },
     { "tier": "mastery", "ordinal": 64, "id": "hum.know.mastery.philosophy-of-science", "title": "Philosophy of Science", "slug": "mastery-philosophy-of-science", "prerequisites": ["hum.know.mastery.advanced-philosophy"] },
-    { "tier": "mastery", "ordinal": 65, "id": "hum.know.mastery.philosophy-of-technology", "title": "Philosophy of Technology", "slug": "mastery-philosophy-of-technology", "prerequisites": ["hum.know.mastery.advanced-philosophy"], "gaia_identity_crossref": "https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/701" },
+    { "tier": "mastery", "ordinal": 65, "id": "hum.know.mastery.philosophy-of-technology", "title": "Philosophy of Technology", "slug": "mastery-philosophy-of-technology", "prerequisites": ["hum.know.mastery.advanced-philosophy"], "gaia_identity_crossref": "https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/701" },
     { "tier": "mastery", "ordinal": 66, "id": "hum.know.mastery.advanced-education-theory", "title": "Advanced Education Theory", "slug": "mastery-advanced-education-theory", "prerequisites": ["hum.know.intermediate.education-and-pedagogy"] },
     { "tier": "mastery", "ordinal": 67, "id": "hum.know.mastery.advanced-communication-theory", "title": "Advanced Communication Theory", "slug": "mastery-advanced-communication-theory", "prerequisites": ["hum.know.intermediate.communication-theory"] }
   ]

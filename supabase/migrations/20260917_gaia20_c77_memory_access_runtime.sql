@@ -1,5 +1,5 @@
 -- C77 runtime: consent-gated memory access.
--- Author: Kyle Steen (R0GV3TheAlchemist)
+-- Author: Kyle Steen (KyleAlexanderSteen)
 -- Applied to Supabase project gaia-2-0 as gaia20_c77_memory_access_runtime
 
 create or replace function public.grant_study_consent(

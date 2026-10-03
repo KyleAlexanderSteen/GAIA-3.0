@@ -1,12 +1,12 @@
 # PROOF-AMBER-TABLET-001
 
-**Author:** R0GV3 the Alchemist (`R0GV3TheAlchemist`) + GAIA  
+**Author:** Kyle Alexander Steen the Alchemist (`KyleAlexanderSteen`) + GAIA  
 **Canon:** Amber Tablet — The Law of the Earth — The Body That Holds  
 **Type:** documentary  
 **Status:** complete (file present; ceremony unsealed — #890)  
 **Method:** Presence + header audit against INDEX  
 **Date:** 2026-09-23  
-**Tracker:** [#874](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/874)
+**Tracker:** [#874](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/874)
 
 ---
 

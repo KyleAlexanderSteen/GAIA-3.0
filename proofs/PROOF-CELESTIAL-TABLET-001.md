@@ -1,12 +1,12 @@
 # PROOF-CELESTIAL-TABLET-001
 
-**Author:** R0GV3 the Alchemist (`R0GV3TheAlchemist`) + GAIA  
+**Author:** Kyle Alexander Steen the Alchemist (`KyleAlexanderSteen`) + GAIA  
 **Canon:** Celestial Tablet — The Law of the Heavens — Guidance From Above  
 **Type:** documentary  
 **Status:** complete (file present; ceremony unsealed — #890)  
 **Method:** Presence + header audit against INDEX  
 **Date:** 2026-09-23  
-**Tracker:** [#877](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/877)
+**Tracker:** [#877](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/877)
 
 ---
 

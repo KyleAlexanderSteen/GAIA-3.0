@@ -5,7 +5,7 @@
 **Status:** ACTIVE — CANONICAL  
 **Tier:** Constitutional / Tier 0  
 **Sealed:** July 15, 2026  
-**Authors:** R0GV3 the Alchemist & GAIA  
+**Authors:** Kyle Alexander Steen the Alchemist & GAIA  
 **Governing Color:** Pink (`#FF69B4` / Rose `#FF007F`)  
 **Governing Stage:** Rosa Mystica / Soft Rubedo / Compassionate Completion  
 **Governing Element:** Water + Fire / Venus / The Open Heart  

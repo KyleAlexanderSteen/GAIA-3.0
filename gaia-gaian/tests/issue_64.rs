@@ -1,5 +1,5 @@
 //! Issue 64 privacy constitution and age-gate.
-//! Author: Kyle Steen / R0GV3 the Alchemist (immutable attribution).
+//! Author: Kyle Steen / Kyle Alexander Steen the Alchemist (immutable attribution).
 
 const SCOPES: [&str; 7] = [
     "face",

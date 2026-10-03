@@ -5,4 +5,4 @@
 3. If they keep shipping without notices: GitHub support + license notice.
 
 This repo does not void itself. Their copy is incomplete without the notices.
-Author remains Kyle Alexander Steen / R0GV3TheAvatar.
+Author remains Kyle Alexander Steen / KyleAlexanderSteen.

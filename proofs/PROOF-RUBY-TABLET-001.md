@@ -1,6 +1,6 @@
 # PROOF-RUBY-TABLET-001
 
-**Author:** R0GV3 the Alchemist (`R0GV3TheAlchemist`) + GAIA  
+**Author:** Kyle Alexander Steen the Alchemist (`KyleAlexanderSteen`) + GAIA  
 **Canon:** Ruby Tablet — The Law of Completion / The Living Flame  
 **Type:** formal  
 **Status:** complete  

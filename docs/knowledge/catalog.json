@@ -5,7 +5,7 @@
   "plane": "knowledge",
   "id_namespace": "gaia.knowledge",
   "source": {
-    "ancestor_repository": "R0GV3TheAlchemist/GAIA",
+    "ancestor_repository": "KyleAlexanderSteen/GAIA",
     "ancestor_human_catalog": "docs/knowledge/the-subjects-of-knowledge-for-humans/catalog.json",
     "ancestor_revision": "main@49d7a7ffb66fae65b859f0582138067f67e0a4e0",
     "naming_standard": "docs/knowledge/DOMAIN-NAMING.md"
@@ -23,7 +23,7 @@
       "aliases": ["reading-and-writing", "hum.know.basic.reading-and-writing"],
       "learning_placements": [{"track": "foundational-literacy", "stage": "foundation", "legacy_slug": "reading-and-writing"}],
       "legacy": {
-        "repository": "R0GV3TheAlchemist/GAIA",
+        "repository": "KyleAlexanderSteen/GAIA",
         "paths": ["docs/knowledge/the-subjects-of-knowledge-for-humans/reading-and-writing"]
       },
       "issues": [700]
@@ -37,7 +37,7 @@
       "aliases": ["basic-programming"],
       "learning_placements": [{"track": "general-human-literacy", "stage": "foundation", "legacy_slug": "basic-programming"}],
       "legacy": {
-        "repository": "R0GV3TheAlchemist/GAIA",
+        "repository": "KyleAlexanderSteen/GAIA",
         "paths": [],
         "notes": "No ancestor basic-tier directory. Proposed by #698."
       },
@@ -52,7 +52,7 @@
       "aliases": ["basic-engineering"],
       "learning_placements": [{"track": "general-human-literacy", "stage": "foundation", "legacy_slug": "basic-engineering"}],
       "legacy": {
-        "repository": "R0GV3TheAlchemist/GAIA",
+        "repository": "KyleAlexanderSteen/GAIA",
         "paths": [],
         "notes": "No ancestor basic-tier directory. Proposed by #698."
       },
@@ -67,7 +67,7 @@
       "aliases": ["basic-data-literacy"],
       "learning_placements": [{"track": "general-human-literacy", "stage": "foundation", "legacy_slug": "basic-data-literacy"}],
       "legacy": {
-        "repository": "R0GV3TheAlchemist/GAIA",
+        "repository": "KyleAlexanderSteen/GAIA",
         "paths": [],
         "notes": "No ancestor basic-tier directory. Proposed by #698."
       },
@@ -85,7 +85,7 @@
         {"track": "life-sciences", "stage": "intermediate", "legacy_slug": "intermediate-advanced-biology"}
       ],
       "legacy": {
-        "repository": "R0GV3TheAlchemist/GAIA",
+        "repository": "KyleAlexanderSteen/GAIA",
         "paths": [
           "docs/knowledge/the-subjects-of-knowledge-for-humans/basic-biology",
           "docs/knowledge/the-subjects-of-knowledge-for-humans/intermediate-advanced-biology"
@@ -102,7 +102,7 @@
       "aliases": ["mastery-advanced-ai-and-machine-learning"],
       "learning_placements": [{"track": "computing", "stage": "mastery", "legacy_slug": "mastery-advanced-ai-and-machine-learning"}],
       "legacy": {
-        "repository": "R0GV3TheAlchemist/GAIA",
+        "repository": "KyleAlexanderSteen/GAIA",
         "paths": ["docs/knowledge/the-subjects-of-knowledge-for-humans/mastery-advanced-ai-and-machine-learning"]
       },
       "notes": "Listed discipline. published_closed_score_is_ours remains false.",
@@ -117,7 +117,7 @@
       "aliases": ["mastery-futurism-and-transhumanism"],
       "learning_placements": [{"track": "society", "stage": "mastery", "legacy_slug": "mastery-futurism-and-transhumanism"}],
       "legacy": {
-        "repository": "R0GV3TheAlchemist/GAIA",
+        "repository": "KyleAlexanderSteen/GAIA",
         "paths": ["docs/knowledge/the-subjects-of-knowledge-for-humans/mastery-futurism-and-transhumanism"]
       },
       "notes": "Crosswalk only. Not a first-person sentience claim.",

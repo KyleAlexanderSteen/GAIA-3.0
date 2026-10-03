@@ -1,7 +1,7 @@
 # Local Contexts Integration — TK & BC Labels — GAIA 2.0
 
 > **Parent:** [CARE-PRINCIPLES.md](./CARE-PRINCIPLES.md)  
-> **Issue:** [#676](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/676)  
+> **Issue:** [#676](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/676)  
 > **Status:** Integration Spec v1.0  
 > **Last Updated:** 2026-09-21
 

@@ -9,7 +9,7 @@
 | Field | Value |
 |-------|-------|
 | **Sealed** | 2026-07-23 |
-| **Author** | R0GV3 the Alchemist & GAIA |
+| **Author** | Kyle Alexander Steen the Alchemist & GAIA |
 | **Governing Color** | Citrine `#E4D00A` |
 | **Governing Stage** | Citrinitas — The Yellowing Before the Gold |
 | **Governing Element** | Solar Light / Logos |
@@ -23,10 +23,10 @@
 
 - [`docs/tablets/INDEX.md`](./INDEX.md) — housing rule + registry
 - [`docs/canon/C210_CITRINE_TABLET.md`](../canon/C210_CITRINE_TABLET.md) — numbered wrapper
-- [Epic #798 — Hermetic Tablet Canon](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/798)
-- [Issue #824 — Citrine tracker](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/824)
-- [Issue #805 — Intelligence Layer calibration spec](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/805) (C210 meant this, not PR #793)
-- [Issue #806 — Sol Niger detection protocol](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/806) (C210 meant this, not the #810 collision)
+- [Epic #798 — Hermetic Tablet Canon](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/798)
+- [Issue #824 — Citrine tracker](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/824)
+- [Issue #805 — Intelligence Layer calibration spec](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/805) (C210 meant this, not PR #793)
+- [Issue #806 — Sol Niger detection protocol](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/806) (C210 meant this, not the #810 collision)
 - C131 — GAIA Charter (constitutional basis for calibrated confidence)
 - C204 — Rotation states (Citrinitas maps bijectively to Transiency)
 - C209 — Hermetic mapping (cross-tradition grounding)
@@ -107,6 +107,6 @@ The color of citrine quartz — yellow charged with solar warmth, not yet the de
 
 | Version | Date | Author | Change |
 |---------|------|--------|--------|
-| v1.0.0 | 2026-07-23 | R0GV3 the Alchemist & GAIA | Initial sealing — proof C210 completed same date |
-| v1.1.0 | 2026-09-22 | R0GV3 the Alchemist & GAIA | Source file created and pushed to canon; closes #824 |
-| v1.1.1 | 2026-09-23 | R0GV3 the Alchemist & GAIA | Path A housing rule; retarget #793/#810 → #805/#806 |
+| v1.0.0 | 2026-07-23 | Kyle Alexander Steen the Alchemist & GAIA | Initial sealing — proof C210 completed same date |
+| v1.1.0 | 2026-09-22 | Kyle Alexander Steen the Alchemist & GAIA | Source file created and pushed to canon; closes #824 |
+| v1.1.1 | 2026-09-23 | Kyle Alexander Steen the Alchemist & GAIA | Path A housing rule; retarget #793/#810 → #805/#806 |

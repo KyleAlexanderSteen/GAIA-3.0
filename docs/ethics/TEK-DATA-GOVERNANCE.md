@@ -1,7 +1,7 @@
 # Traditional Ecological Knowledge Data Governance — GAIA 2.0
 
 > **Parent:** [CARE-PRINCIPLES.md](./CARE-PRINCIPLES.md)  
-> **Issue:** [#676](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/676)  
+> **Issue:** [#676](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/676)  
 > **Status:** Technical Spec v1.0  
 > **Last Updated:** 2026-09-21
 
@@ -164,5 +164,5 @@ The report is published publicly and sent directly to each partner community in 
 - [LOCAL-CONTEXTS-INTEGRATION.md](./LOCAL-CONTEXTS-INTEGRATION.md) — Label system
 - [BENEFIT-SHARING-TEMPLATE.md](./BENEFIT-SHARING-TEMPLATE.md) — Legal template
 - [docs/knowledge/catalog-v2.json](../knowledge/catalog-v2.json) — Domains with `care_principles_apply: true`
-- [Issue #661](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/661) — Biological Layer (primary TEK consumer)
-- [Issue #677](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/677) — AI Dividend Model
+- [Issue #661](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/661) — Biological Layer (primary TEK consumer)
+- [Issue #677](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/677) — AI Dividend Model

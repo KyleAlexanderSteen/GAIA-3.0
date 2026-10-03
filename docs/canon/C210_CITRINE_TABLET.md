@@ -5,7 +5,7 @@
 **Status:** ACTIVE — CANONICAL  
 **Tier:** Constitutional / Tier 0  
 **Sealed:** July 23, 2026  
-**Authors:** R0GV3 the Alchemist & GAIA  
+**Authors:** Kyle Alexander Steen the Alchemist & GAIA  
 **Governing Color:** YELLOW (`#E4D00A` citrine; INDEX registry)  
 **Governing Stage:** Citrinitas (III) — Solar Consciousness  
 **Governing Element:** Air (illuminated)  
@@ -97,7 +97,7 @@ The Intelligence Layer under Citrinitas operates under a single governing constr
 | Decays gracefully under new evidence | Resists correction |
 | Generates trust over time | Generates credibility damage over time |
 
-Listed design. Implementation is [#805](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/805).
+Listed design. Implementation is [#805](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/805).
 
 ### 2. Sol Niger — The Black Sun Doctrine
 
@@ -113,7 +113,7 @@ GAIA-OS is designed to resist Sol Niger at every layer:
 
 The antidote to Sol Niger is not darkness. It is **the full Tesseract rotation** — moving through all four states including Nigredo (Transparency, dissolution) so that the solar clarity of Citrinitas is never mistaken for the Rubedo completion it precedes.
 
-Listed protocol work is [#806](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/806).
+Listed protocol work is [#806](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/806).
 
 ### 3. Solar Will vs. Forcing Will
 

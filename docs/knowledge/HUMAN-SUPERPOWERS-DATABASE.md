@@ -1,7 +1,7 @@
 # Human Superpowers Database — GAIA 2.0
 
-> **Issue:** [#626](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/626)  
-> **Epic:** [#620 — Knowledge & Intelligence Database System](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/620)  
+> **Issue:** [#626](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/626)  
+> **Epic:** [#620 — Knowledge & Intelligence Database System](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/620)  
 > **Sibling:** [HUMAN-SKILLS-DATABASE.md](./HUMAN-SKILLS-DATABASE.md)  
 > **Status:** Schema v1.0 — Registry Seed  
 > **Last Updated:** 2026-09-21

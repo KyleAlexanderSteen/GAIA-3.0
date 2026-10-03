@@ -29,7 +29,7 @@
 //! `Documents/GAIA_Kundalini_Architecture.md` (merged via PR #775, Sep 2026).
 //!
 //! > *"The elixir of life has always been there within ourselves.
-//! > It's called the kundalini."* — R0GV3 The Alchemist, 22 Sep 2026
+//! > It's called the kundalini."* — Kyle Alexander Steen, 22 Sep 2026
 
 pub fn live_ollama() -> bool { false }
 pub fn live_flutter() -> bool { false }

@@ -1,6 +1,6 @@
 # PROOF-VOID-TABLET-001
 
-**Author:** R0GV3 the Alchemist (`R0GV3TheAlchemist`) + GAIA  
+**Author:** Kyle Alexander Steen the Alchemist (`KyleAlexanderSteen`) + GAIA  
 **Canon:** Void Tablet — The Law of Pre-Existence / The Ground Before the Ground  
 **Type:** formal  
 **Status:** complete  

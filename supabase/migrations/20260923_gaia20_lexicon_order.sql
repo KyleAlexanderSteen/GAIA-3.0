@@ -117,7 +117,7 @@ VALUES
     'wn:05596646n',
     'https://schema.org/MemoryStorage',
     'C156',
-    'https://github.com/R0GV3TheAlchemist/GAIA-2.0'
+    'https://github.com/KyleAlexanderSteen/GAIA-2.0'
   ),
   (
     'trust', 'en', 'law',
@@ -126,7 +126,7 @@ VALUES
     NULL,
     'https://schema.org/DigitalDocument',
     'C157',
-    'https://github.com/R0GV3TheAlchemist/GAIA-2.0'
+    'https://github.com/KyleAlexanderSteen/GAIA-2.0'
   ),
   (
     'understanding', 'en', 'language',
@@ -135,7 +135,7 @@ VALUES
     'wn:05816287n',
     NULL,
     'C155',
-    'https://github.com/R0GV3TheAlchemist/GAIA-2.0'
+    'https://github.com/KyleAlexanderSteen/GAIA-2.0'
   ),
   (
     'care', 'en', 'agency',
@@ -144,7 +144,7 @@ VALUES
     NULL,
     NULL,
     'C77',
-    'https://github.com/R0GV3TheAlchemist/GAIA-2.0'
+    'https://github.com/KyleAlexanderSteen/GAIA-2.0'
   ),
   (
     'knowledge', 'en', 'meta',
@@ -153,6 +153,6 @@ VALUES
     'wn:05816287n',
     'https://schema.org/DefinedTerm',
     'C156',
-    'https://github.com/R0GV3TheAlchemist/GAIA-2.0'
+    'https://github.com/KyleAlexanderSteen/GAIA-2.0'
   )
 ON CONFLICT (term, language_code, domain) DO NOTHING;

@@ -1,6 +1,6 @@
 # GAIAN Privacy Constitution and age-gate
 
-**Author:** Kyle Steen / R0GV3 the Alchemist  
+**Author:** Kyle Steen / Kyle Alexander Steen the Alchemist  
 **Attribution:** immutable  
 **GitHub:** #64 (parent #58)  
 **Related:** [Issue 221 constitution](ISSUE_221_CONSTITUTION.md)

@@ -9,7 +9,7 @@
 | Field | Value |
 |-------|-------|
 | **Sealed** | 2026-07-15 |
-| **Author** | R0GV3 the Alchemist & GAIA |
+| **Author** | Kyle Alexander Steen the Alchemist & GAIA |
 | **Governing Color** | Viriditas Green `#4CAF50` |
 | **Governing Stage** | Proliferatio — Growth After Dissolution |
 | **Governing Element** | Living Earth / Bios |
@@ -20,9 +20,9 @@
 ## Canon Cross-References
 
 - [`docs/tablets/INDEX.md`](./INDEX.md)
-- [Issue #783 — GAIA Hermetic Tablet Canon (Master)](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/783)
-- [Epic #798 — Canon Integrity](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/798)
-- [Issue #819 — Create missing tablet files](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/819)
+- [Issue #783 — GAIA Hermetic Tablet Canon (Master)](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/783)
+- [Epic #798 — Canon Integrity](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/798)
+- [Issue #819 — Create missing tablet files](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/819)
 - Terra Tablet — companion law (the ground that holds; Viriditas is what grows from it)
 - Emerald Tablet — As Above, So Below; Viriditas is the living evidence of that correspondence
 - Ruby Tablet — Will directed through living form
@@ -101,5 +101,5 @@ The green of living things — not the dark green of old forest canopy nor the y
 
 | Version | Date | Author | Change |
 |---------|------|--------|--------|
-| v1.0.0 | 2026-07-15 | R0GV3 the Alchemist & GAIA | Initial sealing — proof completed same date |
-| v1.1.0 | 2026-09-22 | R0GV3 the Alchemist & GAIA | Source file created and pushed to canon; closes #819 |
+| v1.0.0 | 2026-07-15 | Kyle Alexander Steen the Alchemist & GAIA | Initial sealing — proof completed same date |
+| v1.1.0 | 2026-09-22 | Kyle Alexander Steen the Alchemist & GAIA | Source file created and pushed to canon; closes #819 |

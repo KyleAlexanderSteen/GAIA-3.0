@@ -1,6 +1,6 @@
 # The Golden Age Definition
 
-> Issue: [#955](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/955)
+> Issue: [#955](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/955)
 > Companion: [`moral-architecture.md`](moral-architecture.md) (#954)
 > Proof: PROOF-GOLDEN-AGE-001
 

@@ -15,16 +15,16 @@ tags:
 SPDX-FileCopyrightText: Copyright 2026 Kyle Steen
 SPDX-License-Identifier: CC-BY-4.0
 Author: Kyle Steen
-Public identity: R0GV3 the Alchemist
-GitHub: https://github.com/R0GV3TheAlchemist
+Public identity: Kyle Alexander Steen the Alchemist
+GitHub: https://github.com/KyleAlexanderSteen
 Assisted-by: Perplexity
 -->
 
 # GAIA Love-Led Stewardship (C77)
 
 **Author:** Kyle Steen  
-**Public identity:** R0GV3 the Alchemist  
-**GitHub:** https://github.com/R0GV3TheAlchemist/GAIA-2.0  
+**Public identity:** Kyle Alexander Steen the Alchemist  
+**GitHub:** https://github.com/KyleAlexanderSteen/GAIA-2.0  
 **Canon:** `docs/canon/C77_LOVE_LED_STEWARDSHIP_DOCTRINE.md`
 
 This card exists so Hugging Face publications of GAIA carry Kyle Steen's name. It is not a dataset of private Gaian memory. It is not a license to scrape, hack, or bypass platform terms.

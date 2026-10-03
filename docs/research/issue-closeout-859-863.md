@@ -1,6 +1,6 @@
 # Closeout map for #859–#863
 
-Listed bind only. [#902](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/902) and [#904](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/904) stay open.
+Listed bind only. [#902](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/902) and [#904](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/904) stay open.
 
 | Issue | File |
 | --- | --- |

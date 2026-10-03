@@ -1,6 +1,6 @@
 # PROOF-VIRIDITAS-TABLET-001
 
-**Author:** R0GV3 the Alchemist (`R0GV3TheAlchemist`) + GAIA
+**Author:** Kyle Alexander Steen the Alchemist (`KyleAlexanderSteen`) + GAIA
 **Canon:** Viriditas Tablet — The Law of the Living Force
 **Type:** formal
 **Status:** complete

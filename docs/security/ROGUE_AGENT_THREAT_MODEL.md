@@ -335,8 +335,8 @@ The first local-only regression corpus must cover at least these fixtures:
 - [`docs/security/UNTRUSTED_CONTENT_THREAT_MODEL.md`](UNTRUSTED_CONTENT_THREAT_MODEL.md)
 - [`docs/security/AGENT_TOOL_CONTROL_PLANE.md`](AGENT_TOOL_CONTROL_PLANE.md)
 - [`docs/SELF_CORRECTION_PROTOCOL.md`](../SELF_CORRECTION_PROTOCOL.md)
-- [#953](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/953) — epistemic state layer
-- [#959](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/959) — this issue
+- [#953](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/953) — epistemic state layer
+- [#959](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/959) — this issue
 
 ## Research record
 

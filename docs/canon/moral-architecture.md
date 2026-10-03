@@ -2,7 +2,7 @@
 
 > Proof target: listed canon only. Not a crate. Not a runtime enforcer.
 >
-> Issue: [#954](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/954)
+> Issue: [#954](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/954)
 > Companion: [`golden-age.md`](golden-age.md) (#955)
 > Proof: PROOF-MORAL-ARCH-001
 

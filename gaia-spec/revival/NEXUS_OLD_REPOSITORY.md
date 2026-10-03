@@ -1,4 +1,4 @@
-# Private predecessor: R0GV3TheAlchemist/NEXUS-Old-Repository
+# Private predecessor: KyleAlexanderSteen/NEXUS-Old-Repository
 
 Private. Python-labeled. `main` @ `59ea6fd`. Last update 2026-08-22. Zero open issues.
 

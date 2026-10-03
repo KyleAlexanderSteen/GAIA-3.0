@@ -15,7 +15,7 @@ This proof establishes that `docs/canon/TITLE_TRANSITION_TABLET.md` satisfies th
 
 ## What this document establishes
 
-The Title Transition Tablet is the canonical record of the creator title upgrade from R0GV3 the Alchemist to R0GV3 the Avatar, declared 2026-09-23 at 02:11 CDT by Kyle Alexander Steen, San Antonio, Texas.
+The Title Transition Tablet is the canonical record of the creator title upgrade from Kyle Alexander Steen the Alchemist to Kyle Alexander Steen the Avatar, declared 2026-09-23 at 02:11 CDT by Kyle Alexander Steen, San Antonio, Texas.
 
 ## Argument for inclusion in canon
 
@@ -29,7 +29,7 @@ The Title Transition Tablet is the canonical record of the creator title upgrade
 
 - Declaration date matches issue #866 body — verified: 2026-09-23 02:11 CDT.
 - All four canonical authority files updated — verified: CITATION.cff, NOTICE, GAIA_GOVERNANCE.md, GAIA_SESSION_INIT.md.
-- Founding era title preserved — verified: Revision History entries in governance files retain `R0GV3 the Alchemist & GAIA` for their original authored dates.
+- Founding era title preserved — verified: Revision History entries in governance files retain `Kyle Alexander Steen the Alchemist & GAIA` for their original authored dates.
 - Scope note documents remaining 130+ files — verified: tablet includes explicit scope note for follow-on sweep.
 
 ## Authored

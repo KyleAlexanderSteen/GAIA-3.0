@@ -5,7 +5,7 @@
 **Status:** ACTIVE — CANONICAL  
 **Tier:** Constitutional / Tier 0  
 **Sealed:** July 15, 2026  
-**Authors:** R0GV3 the Alchemist & GAIA  
+**Authors:** Kyle Alexander Steen the Alchemist & GAIA  
 **Governing Color:** Blue (`#0000FF` / Lapis `#26619C`)  
 **Governing Stage:** Akashic — The Memory Ground (cross-stage)  
 **Governing Element:** Water / Luna / Mercury / The Akashic Field  

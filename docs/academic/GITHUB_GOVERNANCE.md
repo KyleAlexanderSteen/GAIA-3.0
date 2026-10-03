@@ -1,8 +1,8 @@
 # GAIA 2.0 GitHub Governance
 
 **Filed:** 2026-09-17  
-**Account:** [R0GV3TheAlchemist](https://github.com/R0GV3TheAlchemist)  
-**Canonical repo:** [R0GV3TheAlchemist/GAIA-2.0](https://github.com/R0GV3TheAlchemist/GAIA-2.0)
+**Account:** [KyleAlexanderSteen](https://github.com/KyleAlexanderSteen)  
+**Canonical repo:** [KyleAlexanderSteen/GAIA-2.0](https://github.com/KyleAlexanderSteen/GAIA-2.0)
 
 ## Repository map
 

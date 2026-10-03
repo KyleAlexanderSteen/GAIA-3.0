@@ -1,6 +1,6 @@
 # Issue 221 — Constitution, empathy disclosure, legacy, child rules
 
-**Author:** Kyle Steen / R0GV3 the Alchemist  
+**Author:** Kyle Steen / Kyle Alexander Steen the Alchemist  
 **Attribution:** immutable  
 **Canon:** C01 sovereignty, C30 no silent failures, C77 love-led stewardship  
 **GitHub:** #221 (parent #217)

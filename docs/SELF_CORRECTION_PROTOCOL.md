@@ -199,4 +199,4 @@ reading the actual PR metadata.
 - [`moral-architecture.md`](canon/moral-architecture.md) Principle 7
 - [`AMENDMENT_PROTOCOL.md`](canon/AMENDMENT_PROTOCOL.md)
 - [`TRACE_BOUNDARY_STRIDE_SRE_SAELA.md`](TRACE_BOUNDARY_STRIDE_SRE_SAELA.md)
-- [#953](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/953) epistemic state layer
+- [#953](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/953) epistemic state layer

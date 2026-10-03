@@ -2,7 +2,7 @@ use gaia_orchestrator::{
     FakeGitHubSourceProvider, GitHubSourcePolicy, SourceAuditInput, SourceCacheKey, SourceOperation,
 };
 
-const REPO: &str = "R0GV3TheAlchemist/GAIA-2.0";
+const REPO: &str = "KyleAlexanderSteen/GAIA-2.0";
 const COMMIT: &str = "0000000000000000000000000000000000000000";
 const HASH_A: &str = "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 const HASH_B: &str = "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb";

@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 license = "MIT"
 description = "GAIA 2.0 client (intent, context, invoke, observe, sign, verify, declare)"
-repository = "https://github.com/R0GV3TheAlchemist/GAIA-2.0"
+repository = "https://github.com/KyleAlexanderSteen/GAIA-2.0"
 
 [dependencies]
 ed25519-dalek = "=1.0.1"

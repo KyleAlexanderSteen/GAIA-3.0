@@ -1,6 +1,6 @@
 # Proof — Issue 221 Constitution Refusals
 
-**Author:** Kyle Steen / R0GV3 the Alchemist  
+**Author:** Kyle Steen / Kyle Alexander Steen the Alchemist  
 **Type:** formal + empirical (unit tests)  
 **Status:** in_progress  
 **Method:** constraint module + cargo test `issue_221` + SQL refuse functions  

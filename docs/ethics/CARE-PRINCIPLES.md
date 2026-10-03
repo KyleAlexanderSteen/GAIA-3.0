@@ -1,7 +1,7 @@
 # CARE Principles for Indigenous Data Sovereignty — GAIA 2.0
 
-> **Issue:** [#676](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/676)  
-> **Parent:** [#673 — Governance, Ethics, Funding & Open-Source Foundations](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/673)  
+> **Issue:** [#676](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/676)  
+> **Parent:** [#673 — Governance, Ethics, Funding & Open-Source Foundations](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/673)  
 > **Status:** Policy v1.0 — Ratification Pending (Council + Indigenous Seat Holders)  
 > **Last Updated:** 2026-09-21  
 > **Reference:** GAIA 2.0 + GAIAN 2.0 The CARE Principles.md (source document)
@@ -113,7 +113,7 @@ GAIA 2.0 is building formal relationships with the following organisations as pa
 
 ## Governance & Ratification
 
-This policy takes effect upon ratification by the GAIA 2.0 Multi-Stakeholder Council ([Issue #675](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/675)), which must include at minimum **two Indigenous seat holders** from distinct geographic regions before any TEK integration may begin.
+This policy takes effect upon ratification by the GAIA 2.0 Multi-Stakeholder Council ([Issue #675](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/675)), which must include at minimum **two Indigenous seat holders** from distinct geographic regions before any TEK integration may begin.
 
 Amendments to this policy require:
 1. Proposal from any Council member or partner community
@@ -132,5 +132,5 @@ Amendments to this policy require:
 | [BENEFIT-SHARING-TEMPLATE.md](./BENEFIT-SHARING-TEMPLATE.md) | Legal template for community benefit-sharing agreements |
 | [TEK-DATA-GOVERNANCE.md](./TEK-DATA-GOVERNANCE.md) | Technical TEK tagging, consent API, and sacred knowledge enforcement |
 | [docs/knowledge/catalog-v2.json](../knowledge/catalog-v2.json) | Domains with `care_principles_apply: true` |
-| [Issue #675](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/675) | Governance Framework — Multi-Stakeholder Council |
-| [Issue #677](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/677) | Funding Strategy & AI Dividend Model |
+| [Issue #675](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/675) | Governance Framework — Multi-Stakeholder Council |
+| [Issue #677](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/677) | Funding Strategy & AI Dividend Model |

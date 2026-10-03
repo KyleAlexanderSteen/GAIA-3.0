@@ -5,7 +5,7 @@
   "id": "human-skills-database",
   "title": "Human Skills Database — GAIA 2.0",
   "description": "Canonical registry of all human-learnable skills for GAIA 2.0. Structured taxonomy of 81 skills across 8 categories with proficiency levels, learning pathways, and AI augmentation mapping.",
-  "issue": "https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/626",
+  "issue": "https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/626",
   "last_updated": "2026-09-21",
   "categories": ["cognitive", "communication", "technical", "physical", "social", "metacognitive", "creative", "survival"],
   "counts": {

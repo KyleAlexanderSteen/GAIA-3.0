@@ -13,4 +13,4 @@ This directory holds `color-map.json`, the tablet connection map, and first-pass
 - Do not flip honesty flags
 
 First-pass T/C/O files: Black, Yellow, Green, Brown, White. Other hues stay `not filed` on the map.
-White-pole tablets Alabaster / Albedo are [#804](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/804).
+White-pole tablets Alabaster / Albedo are [#804](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/804).

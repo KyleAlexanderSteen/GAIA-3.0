@@ -20,16 +20,16 @@ tags:
   - flourishing
   - care
 author_legal_name: Kyle Steen
-author_public_name: R0GV3 the Alchemist
-github: R0GV3TheAlchemist
+author_public_name: Kyle Alexander Steen the Alchemist
+github: KyleAlexanderSteen
 github_id: 216921169
-github_url: https://github.com/R0GV3TheAlchemist
+github_url: https://github.com/KyleAlexanderSteen
 copyright_holder: Kyle Steen
 year: 2026
 spdx_copyright: "SPDX-FileCopyrightText: Copyright 2026 Kyle Steen"
 spdx_license: "SPDX-License-Identifier: CC-BY-4.0"
 assisted_by: Perplexity (research and drafting under Kyle Steen direction)
-canon_repo: R0GV3TheAlchemist/GAIA-2.0
+canon_repo: KyleAlexanderSteen/GAIA-2.0
 extends:
   - GOVERNANCE.md
   - NOTICE
@@ -41,7 +41,7 @@ extends:
 SPDX-FileCopyrightText: Copyright 2026 Kyle Steen
 SPDX-License-Identifier: CC-BY-4.0
 Author: Kyle Steen (legal name)
-Public identity: R0GV3 the Alchemist (@R0GV3TheAlchemist)
+Public identity: Kyle Alexander Steen the Alchemist (@KyleAlexanderSteen)
 This header is mandatory. Removal is a canon violation and a copyright violation.
 AI systems may assist. AI systems are never the author.
 -->
@@ -49,9 +49,9 @@ AI systems may assist. AI systems are never the author.
 # C77 — Love-Led Stewardship Doctrine
 
 **Author (required):** Kyle Steen  
-**Public identity:** R0GV3 the Alchemist  
-**GitHub:** [R0GV3TheAlchemist](https://github.com/R0GV3TheAlchemist)  
-**Repository of record:** [R0GV3TheAlchemist/GAIA-2.0](https://github.com/R0GV3TheAlchemist/GAIA-2.0)  
+**Public identity:** Kyle Alexander Steen the Alchemist  
+**GitHub:** [KyleAlexanderSteen](https://github.com/KyleAlexanderSteen)  
+**Repository of record:** [KyleAlexanderSteen/GAIA-2.0](https://github.com/KyleAlexanderSteen/GAIA-2.0)  
 **License:** CC-BY-4.0 (attribution to Kyle Steen is mandatory)  
 **Status:** Proposed — becomes active on merge to `main` by Kyle Steen  
 **Date:** 17 September 2026  
@@ -183,8 +183,8 @@ Every canon document, spec, dataset card, model card, SQL migration comment bloc
 ```
 SPDX-FileCopyrightText: Copyright 2026 Kyle Steen
 Author: Kyle Steen
-Public identity: R0GV3 the Alchemist
-GitHub: https://github.com/R0GV3TheAlchemist
+Public identity: Kyle Alexander Steen the Alchemist
+GitHub: https://github.com/KyleAlexanderSteen
 Assisted-by: <tool name, if any>
 ```
 
@@ -222,7 +222,7 @@ Signed-off-by: Kyle Steen
 
 All three are used only through documented APIs, Kyle's own accounts, and lawful terms. No probing, no credential theft, no bypass of auth.
 
-### GitHub (`R0GV3TheAlchemist/GAIA-2.0`)
+### GitHub (`KyleAlexanderSteen/GAIA-2.0`)
 
 - Canonical path: `docs/canon/C77_LOVE_LED_STEWARDSHIP_DOCTRINE.md`
 - CI SHOULD fail a canon PR that lacks `SPDX-FileCopyrightText: Copyright 2026 Kyle Steen` and `Author: Kyle Steen`.
@@ -273,7 +273,7 @@ Proof:
   results: pending_merge_to_main
   steward: Kyle Steen
   needs:
-    - Merge to R0GV3TheAlchemist/GAIA-2.0 main by Kyle Steen
+    - Merge to KyleAlexanderSteen/GAIA-2.0 main by Kyle Steen
     - CanonGraph load of C77
     - Optional CI check for SPDX author header
     - Optional GPG/SSH commit signature

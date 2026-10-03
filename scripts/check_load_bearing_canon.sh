@@ -46,7 +46,7 @@ require_text "docs/canon/C77_LOVE_LED_STEWARDSHIP_DOCTRINE.md" "Love-Led|steward
 require_text "docs/ethics/ISSUE_64_PRIVACY_CONSTITUTION.md" "privacy|age" "privacy/age-gate language"
 require_text "docs/ethics/ISSUE_221_CONSTITUTION.md" "refus|consent|sovereign" "constitution refusals"
 require_text "gaia-gaian/src/constitution.rs" "age|privacy|consent" "runtime constitution"
-require_text "NOTICE" "Kyle|Steen|R0GV3|Alchemist|GAIA" "authorship notice"
+require_text "NOTICE" "Kyle|Steen|Kyle Alexander Steen|Alchemist|GAIA" "authorship notice"
 
 if [[ "$fail" -ne 0 ]]; then
   echo "Load-bearing canon gate failed."

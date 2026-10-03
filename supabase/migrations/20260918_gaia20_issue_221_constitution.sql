@@ -1,5 +1,5 @@
 -- Issue 221 constitution constraints.
--- Author: Kyle Steen / R0GV3 the Alchemist (immutable attribution).
+-- Author: Kyle Steen / Kyle Alexander Steen the Alchemist (immutable attribution).
 -- Does not study anyone. Default is refuse without explicit instruments.
 
 create table if not exists public.constitution_articles (

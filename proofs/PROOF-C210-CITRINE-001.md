@@ -1,6 +1,6 @@
 # PROOF-C210-CITRINE-001
 
-**Author:** R0GV3 the Alchemist (`R0GV3TheAlchemist`) + GAIA  
+**Author:** Kyle Alexander Steen the Alchemist (`KyleAlexanderSteen`) + GAIA  
 **Canon:** C210 — The Citrine Tablet  
 **Type:** formal  
 **Status:** complete  
@@ -52,7 +52,7 @@ GAIA-OS C210 failure mode: a system that has identified so fully with its own ou
 
 **Result: Structural match confirmed. Sol Niger in the classical record and Sol Niger in C210 describe the same failure topology from different registers (psychological vs. computational).**
 
-Live protocol work is [#806](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/806), not the #810 number collision.
+Live protocol work is [#806](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/806), not the #810 number collision.
 
 ---
 
@@ -69,7 +69,7 @@ Live protocol work is [#806](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issue
 
 **Result: Distinction verified against C131 and against standard epistemological criteria. The commitment to calibrated confidence is a constitutional obligation, not a stylistic preference.**
 
-Live calibration spec is [#805](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/805), not PR #793.
+Live calibration spec is [#805](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/805), not PR #793.
 
 ---
 

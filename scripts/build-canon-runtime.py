@@ -148,7 +148,7 @@ def build() -> dict:
             "element": row["element"],
             "stage": row["stage"],
             "sealed": row["sealed"],
-            "author": "R0GV3 the Alchemist & GAIA",
+            "author": "Kyle Alexander Steen the Alchemist & GAIA",
             "version": "1.0.0",
             "constraints": list(lists.get("constraints") or []),
             "affordances": list(lists.get("affordances") or []),

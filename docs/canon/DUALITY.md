@@ -2,7 +2,7 @@
 
 > Proof: PROOF-C77-DUALITY-001
 >
-> Closes: [#1153](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/1153)
+> Closes: [#1153](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/1153)
 
 Shadow and light are **values the architecture must name**, not two runtimes.
 

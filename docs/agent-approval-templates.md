@@ -38,7 +38,7 @@ request.
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 APPROVAL REQUEST — CREATE_BRANCH
 ┃ Operation:    CREATE_BRANCH
-┃ Repository:   R0GV3TheAvatar/GAIA-2.0
+┃ Repository:   KyleAlexanderSteen/GAIA-2.0
 ┃ New branch:   <branch-name>
 ┃ From:         <base-branch> @ <base-SHA>
 ┃ Purpose:      <one-sentence description>
@@ -55,7 +55,7 @@ APPROVAL REQUEST — CREATE_BRANCH
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 APPROVAL REQUEST — PUSH_PATCH
 ┃ Operation:       PUSH_PATCH
-┃ Repository:      R0GV3TheAvatar/GAIA-2.0
+┃ Repository:      KyleAlexanderSteen/GAIA-2.0
 ┃ Branch:          <branch-name>
 ┃ Expected SHA:    <exact head SHA at time of this request>
 ┃ Target files:    <explicit list, one per line>
@@ -75,7 +75,7 @@ APPROVAL REQUEST — PUSH_PATCH
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 APPROVAL REQUEST — PUSH_CORRECTIVE_PATCH
 ┃ Operation:         PUSH_CORRECTIVE_PATCH
-┃ Repository:        R0GV3TheAvatar/GAIA-2.0
+┃ Repository:        KyleAlexanderSteen/GAIA-2.0
 ┃ Branch:            <branch-name>
 ┃ Expected SHA:      <exact head SHA at time of this request>
 ┃ Target files:      <explicit list — must not exceed previous approval>
@@ -97,7 +97,7 @@ APPROVAL REQUEST — PUSH_CORRECTIVE_PATCH
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 APPROVAL REQUEST — UPDATE_PR
 ┃ Operation:     UPDATE_PR
-┃ Repository:    R0GV3TheAvatar/GAIA-2.0
+┃ Repository:    KyleAlexanderSteen/GAIA-2.0
 ┃ PR number:     #<number>
 ┃ Branch:        <head-branch> → <base-branch>
 ┃ Expected SHA:  <exact head SHA at time of this request>
@@ -121,7 +121,7 @@ APPROVAL REQUEST — UPDATE_PR
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 APPROVAL REQUEST — MERGE
 ┃ Operation:       MERGE
-┃ Repository:      R0GV3TheAvatar/GAIA-2.0
+┃ Repository:      KyleAlexanderSteen/GAIA-2.0
 ┃ PR number:       #<number>
 ┃ Branch:          <head-branch> → <base-branch>
 ┃ Expected SHA:    <exact head SHA at time of this request>
@@ -137,5 +137,5 @@ APPROVAL REQUEST — MERGE
 
 *Part of Phase 3 of the human-gated correction loop.
 See [`docs/agent-correction-loop.md`](agent-correction-loop.md),
-issue [#986](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/986),
-and parent issue [#983](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/983).*
+issue [#986](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/986),
+and parent issue [#983](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/983).*

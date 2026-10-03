@@ -1,7 +1,7 @@
 # GAIA Equilibrium and Spin
 
 **Status:** listed design review. Not a runtime.  
-**Issue:** [#810](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/810) listed bind for [#768](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/768)  
+**Issue:** [#810](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/810) listed bind for [#768](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/768)  
 **Claim class:** vocabulary
 
 Angular momentum, far-from-equilibrium, and prana are metaphors for why living systems stay open.
@@ -12,6 +12,6 @@ Scale-layer refuse already on main still holds: R#20 prohibited; no DestinE, Gra
 ## Refuse
 
 - Spin is not a syscall.
-- No planetary-sentience layer. [#641](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/641) stays listed.
+- No planetary-sentience layer. [#641](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/641) stays listed.
 - No physics crate.
-- [#768](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/768) stays open.
+- [#768](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/768) stays open.

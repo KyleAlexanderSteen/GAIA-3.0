@@ -1,6 +1,6 @@
 # PROOF-CANON-GOV-README-001
 
-**Author:** Kyle Steen (`R0GV3TheAlchemist`)
+**Author:** Kyle Steen (`KyleAlexanderSteen`)
 **Canon:** Canon Governance Directory Index
 **Type:** structural
 **Status:** verified

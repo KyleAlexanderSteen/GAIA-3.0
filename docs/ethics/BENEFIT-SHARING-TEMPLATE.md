@@ -1,7 +1,7 @@
 # Benefit-Sharing Agreement Template — GAIA 2.0 × Indigenous Community
 
 > **Parent:** [CARE-PRINCIPLES.md](./CARE-PRINCIPLES.md)  
-> **Issue:** [#676](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/676)  
+> **Issue:** [#676](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/676)  
 > **Status:** Template v1.0 — Legal Review Pending  
 > **Last Updated:** 2026-09-21  
 > **Note:** This template must be reviewed by independent legal counsel representing both parties before execution. It is not a substitute for legal advice.
@@ -61,7 +61,7 @@ This Agreement covers the following categories of knowledge (check all that appl
 
 ## 4. Benefit-Sharing
 
-4.1 **AI Dividend:** The Community will receive an enhanced AI Dividend share from GAIA 2.0's revenue distribution model ([Issue #677](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/677)). The enhanced share is [X]% above the standard contributor rate, paid [quarterly / annually] to [Community bank account / designated entity].
+4.1 **AI Dividend:** The Community will receive an enhanced AI Dividend share from GAIA 2.0's revenue distribution model ([Issue #677](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/677)). The enhanced share is [X]% above the standard contributor rate, paid [quarterly / annually] to [Community bank account / designated entity].
 
 4.2 **Free GAIAN deployment:** GAIA will provide free, locally hosted, community-controlled GAIAN twin deployment for Community members for the duration of this Agreement and for a minimum of [3] years following any termination.
 

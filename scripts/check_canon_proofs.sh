@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Canon Proof Gate — Author: Kyle Steen (R0GV3TheAlchemist)
+# Canon Proof Gate — Author: Kyle Steen (KyleAlexanderSteen)
 # C77 / THE ORDER: no canon without a proof artefact.
 set -euo pipefail
 

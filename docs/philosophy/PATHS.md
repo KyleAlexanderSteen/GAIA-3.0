@@ -1,6 +1,6 @@
 # Philosophy path alignment
 
-**Issue:** [#812](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/812)
+**Issue:** [#812](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/812)
 
 Canonical underscore names (shelf + INDEX):
 

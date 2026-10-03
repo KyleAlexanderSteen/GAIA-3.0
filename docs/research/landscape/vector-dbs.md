@@ -9,7 +9,7 @@ Named field: Pinecone, Qdrant, Weaviate, Milvus, Chroma, pgvector.
 | What runs in-repo | `FileChunkStore` JSONL + hashing embedder |
 | Supabase pgvector | Repo has `supabase/` paths; not stood up here |
 | Hybrid retrieve | `gaia-aikd` BM25-lite + cosine RRF |
-| Qdrant / SFS | [#723](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/723) stays open |
+| Qdrant / SFS | [#723](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/723) stays open |
 
 ## Refuse
 

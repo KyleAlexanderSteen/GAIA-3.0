@@ -1,5 +1,5 @@
 //! Keyed digest provenance for MemCube writes. Not production HMAC.
-//! Author: Kyle Steen (R0GV3TheAlchemist)
+//! Author: Kyle Steen (KyleAlexanderSteen)
 
 use std::collections::HashMap;
 use std::time::{SystemTime, UNIX_EPOCH};

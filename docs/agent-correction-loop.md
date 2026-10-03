@@ -168,6 +168,6 @@ the current PR HEAD before acting on any result.
 ## Related
 
 - [`gaia-validate`](../gaia-validate/) — Rust crate that wraps this script
-- [Issue #983](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/983) — original design issue
+- [Issue #983](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/983) — original design issue
 - [`scripts/agent-validate.sh`](../scripts/agent-validate.sh) — the validator
 - [`.github/workflows/agent-correction-loop.yml`](../.github/workflows/agent-correction-loop.yml) — the workflow

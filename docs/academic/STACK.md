@@ -7,9 +7,9 @@
 
 | Plane | Resource | Status |
 |---|---|---|
-| GitHub | https://github.com/R0GV3TheAlchemist/GAIA-2.0 | public, this commit |
+| GitHub | https://github.com/KyleAlexanderSteen/GAIA-2.0 | public, this commit |
 | Supabase | org `GAIA 2.0`, project `gaia-2-0`, ref `yylqoiqobydrdsnnulip`, region `us-east-2` | ACTIVE_HEALTHY |
-| Hugging Face | https://huggingface.co/R0GV3TheAlchemist | authenticated; dataset card staged here until Hub create is available |
+| Hugging Face | https://huggingface.co/KyleAlexanderSteen | authenticated; dataset card staged here until Hub create is available |
 
 ## Supabase tables (RLS on)
 

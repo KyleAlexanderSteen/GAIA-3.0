@@ -1,7 +1,7 @@
 # External landscape — listed bind
 
 **Status:** listed review. Not a product adoption.  
-**META:** [#902](https://github.com/R0GV3TheAvatar/GAIA-2.0/issues/902)
+**META:** [#902](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/902)
 
 | Note | Issue |
 | --- | --- |

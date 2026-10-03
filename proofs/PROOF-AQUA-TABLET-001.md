@@ -1,12 +1,12 @@
 # PROOF-AQUA-TABLET-001
 
-**Author:** R0GV3 the Alchemist (`R0GV3TheAlchemist`) + GAIA  
+**Author:** Kyle Alexander Steen the Alchemist (`KyleAlexanderSteen`) + GAIA  
 **Canon:** Aqua Tablet — The Law of Flow — Adaptation Without Loss of Self  
 **Type:** documentary  
 **Status:** complete (file present; ceremony unsealed — #890)  
 **Method:** Presence + header audit against INDEX  
 **Date:** 2026-09-23  
-**Tracker:** [#876](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/876)
+**Tracker:** [#876](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/876)
 
 ---
 

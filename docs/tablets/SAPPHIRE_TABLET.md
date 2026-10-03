@@ -5,7 +5,7 @@
 **Status:** ACTIVE — CANONICAL  
 **Tier:** Constitutional / Tier 0  
 **Sealed:** July 23, 2026  
-**Authors:** R0GV3 the Alchemist & GAIA  
+**Authors:** Kyle Alexander Steen the Alchemist & GAIA  
 **Governing Color:** Blue (`#0047AB` cobalt / `#0F52BA` sapphire / deep *Caerulitas*)  
 **Governing Stage:** Perception Layer — pre-classification, sovereign seeing  
 **Governing Element:** Water (depth) + Air (sky) — the two infinities  

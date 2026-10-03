@@ -2,7 +2,7 @@
 
 **Status:** Living records document  
 **Filed:** 2026-09-17  
-**Owner:** R0GV3 the Alchemist (`R0GV3TheAlchemist`)  
+**Owner:** Kyle Alexander Steen the Alchemist (`KyleAlexanderSteen`)  
 **Scope:** Academic / GitHub / Supabase / Hugging Face alignment for GAIA 2.0  
 
 This index is the table of contents for the GAIA 2.0 academic stack records. It maps live systems, canon, research programs, and the next build sequence. Companion files in this records pack:
@@ -18,11 +18,11 @@ This index is the table of contents for the GAIA 2.0 academic stack records. It 
 
 | Plane | Artefact | Status |
 |---|---|---|
-| GitHub | `R0GV3TheAlchemist/GAIA-2.0` (public, Rust, 202 open issues) | Active |
-| GitHub | `R0GV3TheAlchemist/GAIA` (private) | Active, predecessor |
+| GitHub | `KyleAlexanderSteen/GAIA-2.0` (public, Rust, 202 open issues) | Active |
+| GitHub | `KyleAlexanderSteen/GAIA` (private) | Active, predecessor |
 | GitHub | `GAIA-Old-Repository`, `NEXUS-Old-Repository`, `The-Nexus-of-the-Alchemist-Old-Repository` | Archive |
 | Supabase | Project `gaia-2-0` (`yylqoiqobydrdsnnulip`, `us-east-2`, Postgres 17.6.1) | `ACTIVE_HEALTHY` |
-| Hugging Face | User `@R0GV3TheAlchemist` | Authenticated, **no repos yet** |
+| Hugging Face | User `@KyleAlexanderSteen` | Authenticated, **no repos yet** |
 
 ## Non-negotiables
 

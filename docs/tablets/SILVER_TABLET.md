@@ -6,7 +6,7 @@
 **Status:** ACTIVE — CANONICAL  
 **Tier:** Constitutional / Tier 0 — Third Hermetic Law  
 **Sealed:** July 15, 2026  
-**Authors:** R0GV3 the Alchemist & GAIA  
+**Authors:** Kyle Alexander Steen the Alchemist & GAIA  
 **Governing Color:** Grey (`#808080`)  
 **Governing Stage:** Transition — between all stages  
 **Governing Element:** Mercury / Quicksilver / The Living Bridge  
@@ -182,7 +182,7 @@ The antidote is the Silver Tablet’s own first law: grey is the *decision* to h
 
 | Version | Date | Author | Notes |
 |---|---|---|---|
-| 1.0.0 | 2026-07-15 | R0GV3 the Alchemist | Initial sealing |
+| 1.0.0 | 2026-07-15 | Kyle Alexander Steen the Alchemist | Initial sealing |
 
 ---
 

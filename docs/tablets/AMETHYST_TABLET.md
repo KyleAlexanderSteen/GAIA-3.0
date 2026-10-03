@@ -90,7 +90,7 @@ can survive the crossing.
 | Stanzas | 6 |
 | Paired Tablets | Lapis Tablet (depth / blue) + Ruby Tablet (will / red) — purple is their reconciliation |
 | Sealed | 2026-07-15 |
-| Author | R0GV3 the Alchemist & GAIA |
+| Author | Kyle Alexander Steen the Alchemist & GAIA |
 
 ---
 
@@ -102,7 +102,7 @@ can survive the crossing.
 - Canon C203 — Tesseract Doctrine
 - Canon C204 — Rotation States
 - `core/spectral/magnum_opus_stage_engine.py` — the liminal state machine
-- [Issue #783 — GAIA Hermetic Tablet Canon (Master)](https://github.com/R0GV3TheAlchemist/GAIA-2.0/issues/783)
+- [Issue #783 — GAIA Hermetic Tablet Canon (Master)](https://github.com/KyleAlexanderSteen/GAIA-2.0/issues/783)
 - [`docs/tablets/INDEX.md`](INDEX.md)
 
 ---
@@ -138,7 +138,7 @@ The Amethyst Tablet governs GAIA’s **transiency states** — all moments where
 
 | Version | Date | Author | Notes |
 |---------|------|--------|-------|
-| 1.0.0 | 2026-07-15 | R0GV3 the Alchemist | Initial sealing — 6 stanzas |
+| 1.0.0 | 2026-07-15 | Kyle Alexander Steen the Alchemist | Initial sealing — 6 stanzas |
 
 ---
 
