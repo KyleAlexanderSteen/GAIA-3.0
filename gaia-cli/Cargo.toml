@@ -17,6 +17,7 @@ name = "gaia_cli"
 path = "src/lib.rs"
 
 [dependencies]
+ureq = "2"
 sha2 = "0.10"
 gaia-kernel = { path = "../gaia-kernel" }
 gaia-skills = { path = "../gaia-skills" }

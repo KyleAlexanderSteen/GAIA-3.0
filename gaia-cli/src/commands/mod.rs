@@ -1,6 +1,7 @@
 pub mod bands;
 pub mod boot;
 pub mod claims;
+pub mod companion;
 pub mod check;
 pub mod chaos;
 pub mod collective;
