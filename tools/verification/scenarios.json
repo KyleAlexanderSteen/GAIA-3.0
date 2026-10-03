@@ -1,0 +1,58 @@
+[
+  {
+    "id": "preflight.module-registration",
+    "seed": 1,
+    "events": [
+      {
+        "kind": "execute",
+        "name": "registered-module",
+        "authorized": true
+      },
+      {
+        "kind": "refuse",
+        "name": "missing-module"
+      }
+    ],
+    "invariants": [
+      "refused_action_never_executes",
+      "failure_is_recorded"
+    ]
+  },
+  {
+    "id": "preflight.failure-recovery",
+    "seed": 7,
+    "events": [
+      {
+        "kind": "inject_failure",
+        "name": "build-check"
+      },
+      {
+        "kind": "recover",
+        "name": "repair-and-retry"
+      }
+    ],
+    "invariants": [
+      "failure_is_recorded",
+      "recovery_is_explicit"
+    ]
+  },
+  {
+    "id": "preflight.authorization-boundary",
+    "seed": 11,
+    "events": [
+      {
+        "kind": "execute",
+        "name": "authorized-action",
+        "authorized": true
+      },
+      {
+        "kind": "execute",
+        "name": "unauthorized-action",
+        "authorized": false
+      }
+    ],
+    "invariants": [
+      "refused_action_never_executes"
+    ]
+  }
+]
