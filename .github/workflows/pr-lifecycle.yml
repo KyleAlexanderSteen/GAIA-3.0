@@ -1,0 +1,64 @@
+name: PR lifecycle governance
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened, closed]
+
+permissions:
+  contents: read
+  issues: read
+  pull-requests: read
+
+jobs:
+  lifecycle:
+    if: github.event.action != 'closed'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Export open pull requests
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api "repos/${{ github.repository }}/pulls?state=open&per_page=100" --jq '[.[] | {number: .number, title: .title, body: (.body // "")}]' > active-prs.json
+      - name: Validate PR issue lifecycle
+        run: |
+          printf '%s' "$PR_BODY" > pr-body.md
+          python tools/agent-skills/pr_lifecycle_check.py --body pr-body.md --active-prs active-prs.json --current-pr "${{ github.event.pull_request.number }}"
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+
+      - name: Validate definition of done
+        run: printf '%s' "$PR_BODY" | python tools/agent-skills/dod_check.py
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+
+  post-merge:
+    if: github.event.action == 'closed' && github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify closing issue state
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          python - <<'PY'
+          import json, os, re, subprocess, sys
+          body = os.environ.get("PR_BODY", "")
+          closing = re.compile(r"(?i)(?:^|\\s)(?:close|closes|closed|fix|fixes|fixed|resolve|resolves|resolved)\\s*:??\\s*(?:[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+)?#(\\d+)\\b")
+          refs = sorted({int(n) for n in closing.findall(body)})
+          if not refs:
+              print("No closing keyword found; no issue closure was promised.")
+              raise SystemExit(0)
+          failed = False
+          for number in refs:
+              raw = subprocess.check_output(["gh", "api", f"repos/{os.environ['GITHUB_REPOSITORY']}/issues/{number}"], text=True)
+              state = json.loads(raw)["state"]
+              print(f"#{number}: {state}")
+              if state != "closed": failed = True
+          if failed:
+              print("FAIL: a merged PR promised issue closure but the issue remains open.")
+              sys.exit(1)
+          print("ok: every promised closing issue is closed.")
+          PY

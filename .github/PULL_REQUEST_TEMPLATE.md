@@ -2,9 +2,20 @@
 
 ## Issue
 
-Refs #
+**Relationship (required):**
 
-Use `Refs #` by default. Use `Closes #` only if OPERATIONAL is checked below. Do not use `Fixes`/`Resolves`: GitHub closes issues on those too, and the checker does not yet catch them.
+- [ ] `Refs #N` — partial/foundational work; issue remains open
+- [ ] `Closes #N` — this PR fully completes the issue and reaches OPERATIONAL
+- [ ] `Duplicate of #N` — duplicate tracked elsewhere; do not implement separately
+
+Use one or more explicit issue references. **Do not use `Closes`/`Fixes`/`Resolves` unless OPERATIONAL is checked and the issue's acceptance criteria are actually complete.** `Refs` is the default for partial work.
+
+Before opening this PR:
+
+- [ ] I searched open issues for overlapping scope.
+- [ ] I identified the canonical issue(s) this work belongs to.
+- [ ] I checked for an existing active PR implementing the same issue.
+- [ ] If this is intentionally split work, the split/relationship is documented above or in the PR body.
 
 ## Stage reached (definition of done, #1319)
 
@@ -17,9 +28,11 @@ Format matters: keep the heading starting `## Stage reached`, and mark stages as
 - [ ] TEST: a test exercises it and fails without the change (name the test)
 - [ ] INTEGRATION: it runs wired to the real neighbors, not mocks (link the test or CI run)
 - [ ] VERIFICATION: CI passes on a clean checkout (link the run)
-- [ ] OPERATIONAL: a user can run it end to end and it is recorded in an audit receipt (link the run)
+- [ ] OPERATIONAL: a user can run it end to end and the run is recorded in an audit receipt (link the run)
 
-Evidence:
+## Evidence
+
+- IMPLEMENTATION: <link or test name>
 
 An issue is only closed as complete when OPERATIONAL evidence is linked. If this PR does not reach OPERATIONAL, use `Refs #` instead of `Closes #`.
 
