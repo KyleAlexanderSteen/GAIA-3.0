@@ -48,6 +48,12 @@ for file in gaia-kernel/src/lib.rs gaia-cli/src/commands/mod.rs; do
   done < <(grep -E '^pub mod [A-Za-z0-9_]+;' "$file" | awk '{print $3}' | tr -d ';')
 done
 [[ "$MODULE_ERRORS" -eq 0 ]] && pass 'Declared kernel/CLI modules resolve to source files.'
+section 'DETERMINISTIC SIMULATION'
+if python3 tools/verification/simulation_gate.py >/tmp/gaia-preflight-simulation.out 2>&1; then
+  pass 'Deterministic verification simulations passed.'
+else
+  block 'Deterministic verification simulations failed; see /tmp/gaia-preflight-simulation.out.'
+fi
 section 'FORMAT / BUILD VALIDATION'
 mapfile -t FMT_FILES < <(git diff --name-only "$BASE...HEAD" -- '*.rs')
 if [[ ${#FMT_FILES[@]} -eq 0 ]]; then pass 'No changed Rust files; format check skipped.'
