@@ -3,6 +3,7 @@ pub mod claims;
 pub mod chaos;
 pub mod corpus;
 pub mod find;
+pub mod govern;
 pub mod loss;
 pub mod systems;
 pub mod map;
