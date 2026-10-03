@@ -1,0 +1,35 @@
+schema_version: "0.1"
+issue: 1641
+status: audit-draft
+canonical_model: docs/architecture/UNIVERSAL_GAIA_MODEL_v0.1.md
+
+sources:
+  - repository: KyleAlexanderSteen/GAIA
+    status: inventoried
+  - repository: KyleAlexanderSteen/GAIA-Old-Repository
+    status: inventoried
+  - repository: KyleAlexanderSteen/NEXUS-Old-Repository
+    status: inventoried
+  - repository: R0GV3TheAlchemist/GAIA-2.0
+    status: direct-access-unresolved
+    note: Historical GAIA 2.x material is available in the Library corpus; direct repository verification remains open.
+  - source: library
+    status: inventoried
+
+primitives:
+  ENTITY: [BodyMatrix, MemoryGraph, ProvenanceEntity]
+  IDENTITY: [gaia-core.identity, workload_identity, GAIAN_identity, portable_identity]
+  STATE: [BodyState, lifecycle_state, world_state, governance_state]
+  RELATION: [identity_lineage, provenance_relations, event_correlation, governance_relations]
+  CAPABILITY: [gaia-core.permissions, ActionGate scopes, capability declarations]
+  AUTHORITY: [governance, policy, authorizers, subject_grants]
+  AUTHORIZATION: [ActionGate, ConsentGuard, IntentAdmission]
+  ACTION: [guarded_tool_calls, event_fabric, intent_lifecycle]
+  EFFECT: [state_mutations, result_events, transition_records]
+  EVIDENCE: [audit_entries, provenance_records, signed_events, RTM]
+  VERIFICATION: [continuity_hash, event_provenance_verification, truth_seeking, gaia.verify]
+  TRANSITION_RECOVERY: [identity_migration, containment, restoration, lifecycle, recovery]
+
+classification:
+  no_new_universal_primitive_justified: true
+  implementation_gaps_require_conformance_testing: true
