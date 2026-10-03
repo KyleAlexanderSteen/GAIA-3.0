@@ -46,3 +46,28 @@ mod tests {
         assert_eq!(b.records.get("plant").map(String::as_str), Some("watered"));
     }
 }
+
+pub fn copy_over_localhost(note: &str) -> Result<String, String> {
+    use std::io::{Read, Write};
+    use std::net::TcpListener;
+    let listener = TcpListener::bind("127.0.0.1:0").map_err(|err| err.to_string())?;
+    let addr = listener.local_addr().map_err(|err| err.to_string())?;
+    let mut incoming = listener.incoming();
+    let mut client = std::net::TcpStream::connect(addr).map_err(|err| err.to_string())?;
+    client.write_all(note.as_bytes()).map_err(|err| err.to_string())?;
+    client.shutdown(std::net::Shutdown::Write).map_err(|err| err.to_string())?;
+    let mut server = incoming.next().ok_or("no connection")?.map_err(|err| err.to_string())?;
+    let mut received = String::new();
+    server.read_to_string(&mut received).map_err(|err| err.to_string())?;
+    Ok(received)
+}
+
+#[cfg(test)]
+mod localhost_tests {
+    use super::*;
+
+    #[test]
+    fn a_note_crosses_localhost() {
+        assert_eq!(copy_over_localhost("watered").unwrap(), "watered");
+    }
+}
