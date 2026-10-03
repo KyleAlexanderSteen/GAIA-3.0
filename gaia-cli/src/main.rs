@@ -65,6 +65,12 @@ enum Commands {
     Chaos(commands::chaos::ChaosArgs),
     /// Return matrix rows for one domain.
     Lookup(commands::lookup::LookupArgs),
+    /// Search local knowledge catalogs.
+    Search(commands::search::SearchArgs),
+    /// Print a chaos band: good, bad, or contain.
+    ChaosBand(commands::chaosband::ChaosBandArgs),
+    /// Print a harmony scale.
+    Harmony(commands::harmony::HarmonyArgs),
     /// Local companion memory and localhost model.
     Companion(commands::companion::CompanionArgs),
     /// Print the collective intelligence review.
@@ -129,6 +135,9 @@ async fn main() -> Result<()> {
         Commands::Check(args)  => commands::check::run(args).await,
         Commands::Chaos(args)  => commands::chaos::run(args).await,
         Commands::Lookup(args) => commands::lookup::run(args).await,
+        Commands::Search(args) => commands::search::run(args).await,
+        Commands::ChaosBand(args) => commands::chaosband::run(args).await,
+        Commands::Harmony(args) => commands::harmony::run(args).await,
         Commands::Companion(args) => commands::companion::run(args).await,
         Commands::Collective(args) => commands::collective::run(args).await,
         Commands::Corpus(args) => commands::corpus::run(args).await,

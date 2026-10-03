@@ -4,6 +4,7 @@ pub mod claims;
 pub mod companion;
 pub mod check;
 pub mod chaos;
+pub mod chaosband;
 pub mod collective;
 pub mod corpus;
 pub mod federate;
@@ -32,6 +33,7 @@ pub mod mcp;
 pub mod memory;
 pub mod order;
 pub mod org;
+pub mod search;
 pub mod proc;
 pub mod orderband;
 pub mod model;
@@ -39,6 +41,7 @@ pub mod audit;
 pub mod earth;
 pub mod reading;
 pub mod revoke;
+pub mod harmony;
 
 /// Rule (#1304): a command whose real behavior is not built must fail loudly.
 /// It prints nothing to stdout, writes a clear message to stderr, and exits

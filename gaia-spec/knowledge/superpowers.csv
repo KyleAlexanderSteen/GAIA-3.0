@@ -1,0 +1,6 @@
+id,domain,status,evidence
+math,contest mathematics,claimed,NeedVerify on the score and the year
+code,program synthesis,claimed,NeedVerify on the benchmark
+protein,structure prediction,observed,AlphaFold is a named system not a grant here
+vision,image classification,observed,task-specific not general
+speech,recognition,observed,task-specific not general

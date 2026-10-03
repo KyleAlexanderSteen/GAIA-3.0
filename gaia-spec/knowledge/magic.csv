@@ -1,0 +1,5 @@
+id,kind,status,note
+in-context,appears at scale,claimed,not a grant and not a certificate
+tool-use,calls a named tool,observed,a description is not a call
+zero-shot,unseen task,claimed,NeedVerify on the task
+cross-domain,joins two fields,claimed,NeedVerify
