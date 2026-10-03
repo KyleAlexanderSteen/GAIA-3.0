@@ -108,8 +108,8 @@ enum Commands {
     Map(commands::map::MapArgs),
     /// List workspace crates.
     Systems(commands::systems::SystemsArgs),
-    /// Check rising variance.
-    Tip(commands::tip::TipArgs),
+    /// Print a local person record.
+    Person(commands::person::PersonArgs),
 }
 
 #[tokio::main]
@@ -163,6 +163,6 @@ async fn main() -> Result<()> {
         Commands::Loss(args) => commands::loss::run(args).await,
         Commands::Map(args) => commands::map::run(args).await,
         Commands::Systems(args) => commands::systems::run(args).await,
-        Commands::Tip(args) => commands::tip::run(args).await,
+        Commands::Person(args) => commands::person::run(args).await,
     }
 }
