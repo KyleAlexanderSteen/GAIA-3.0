@@ -24,6 +24,8 @@ enum Commands {
     Start(commands::start::StartArgs),
     /// Manage agents
     Agent(commands::agent::AgentArgs),
+    /// Print the adaptive alignment model.
+    Adapt(commands::adapt::AdaptArgs),
     /// Send an intent to the orchestrator
     Intent(commands::intent::IntentArgs),
     /// Inspect or query memory
@@ -62,6 +64,7 @@ async fn main() -> Result<()> {
         Commands::Init(args)   => commands::init::run(args).await,
         Commands::Start(args)  => commands::start::run(args).await,
         Commands::Agent(args)  => commands::agent::run(args).await,
+        Commands::Adapt(args)  => commands::adapt::run(args).await,
         Commands::Intent(args) => commands::intent::run(args).await,
         Commands::Memory(args) => commands::memory::run(args).await,
         Commands::Audit(args)  => commands::audit::run(args).await,
