@@ -1,0 +1,224 @@
+schema_version: "1.0"
+status_vocabulary:
+  - implemented
+  - partial
+  - prototype
+  - designed_documented
+  - missing
+  - intentionally_excluded
+
+capability_record:
+  required_fields:
+    - id
+    - domain
+    - name
+    - purpose
+    - status
+  optional_fields:
+    - prerequisites
+    - gaia_surface
+    - implementation
+    - interface
+    - tests
+    - evidence
+    - issue
+    - stage
+    - rationale
+
+os_capabilities:
+  - id: os.boot_startup
+    name: boot and startup
+    purpose: Initialize the system and establish a controlled runtime state.
+  - id: os.hardware_abstraction
+    name: hardware abstraction and drivers
+    purpose: Provide controlled access to hardware resources through stable abstractions.
+  - id: os.process_task_lifecycle
+    name: process and task lifecycle
+    purpose: Create, execute, suspend, resume, and terminate units of work.
+  - id: os.scheduling
+    name: scheduling
+    purpose: Allocate execution time and priority across runnable work.
+  - id: os.memory_management
+    name: memory management
+    purpose: Allocate, isolate, protect, and reclaim memory resources.
+  - id: os.storage_filesystem
+    name: storage and filesystem
+    purpose: Persist, organize, retrieve, and protect system data.
+  - id: os.interprocess_communication
+    name: interprocess communication
+    purpose: Exchange data and synchronization signals between isolated execution contexts.
+  - id: os.networking
+    name: networking
+    purpose: Provide controlled communication over network transports.
+  - id: os.device_management
+    name: device management
+    purpose: Discover, configure, monitor, and control attached devices.
+  - id: os.resource_accounting
+    name: resource accounting and quotas
+    purpose: Measure and bound resource consumption.
+  - id: os.identity
+    name: users and identity
+    purpose: Establish and maintain identities associated with system actors.
+  - id: os.permissions_capabilities
+    name: permissions and capabilities
+    purpose: Restrict operations according to explicit authority.
+  - id: os.security_boundaries
+    name: security boundaries
+    purpose: Isolate principals, processes, data, and trust domains.
+  - id: os.cryptography_trust
+    name: cryptography and trust
+    purpose: Provide cryptographic primitives and mechanisms for establishing trust.
+  - id: os.package_update_rollback
+    name: installation, updates, and rollback
+    purpose: Change system software while preserving controlled recovery paths.
+  - id: os.services
+    name: services and daemons
+    purpose: Run persistent system functions with lifecycle control.
+  - id: os.observability
+    name: logging, telemetry, and observability
+    purpose: Produce inspectable evidence about system operation.
+  - id: os.recovery
+    name: crash recovery and fault handling
+    purpose: Detect and recover from failures without silently violating invariants.
+  - id: os.configuration
+    name: configuration
+    purpose: Manage explicit runtime and system configuration.
+  - id: os.system_interface
+    name: CLI, UI, and system interfaces
+    purpose: Expose controlled system operations to authorized users and software.
+  - id: os.sandboxing_virtualization
+    name: sandboxing and virtualization
+    purpose: Isolate workloads and constrain their effects.
+  - id: os.time
+    name: time and clock services
+    purpose: Provide consistent temporal primitives for system coordination and evidence.
+  - id: os.power_resource_management
+    name: power and resource management
+    purpose: Manage applicable power, thermal, and resource constraints.
+  - id: os.backup_recovery
+    name: backup and recovery
+    purpose: Preserve recoverable system state and restore it after failure.
+  - id: os.compatibility_api
+    name: compatibility and API surface
+    purpose: Provide stable contracts for supported software and integrations.
+
+ai_capabilities:
+  - id: ai.input_perception
+    name: input and perception
+    purpose: Acquire and interpret available input signals.
+  - id: ai.context_representation
+    name: context construction and representation
+    purpose: Construct representations usable by downstream reasoning and action.
+  - id: ai.attention_salience
+    name: attention and salience
+    purpose: Prioritize relevant information under bounded resources.
+  - id: ai.working_memory
+    name: working memory
+    purpose: Maintain task-relevant state over an active interaction.
+  - id: ai.long_term_memory
+    name: long-term memory
+    purpose: Persist information across sessions or tasks with defined lifecycle semantics.
+  - id: ai.retrieval_knowledge
+    name: retrieval and knowledge access
+    purpose: Locate relevant stored or external knowledge.
+  - id: ai.reasoning
+    name: reasoning
+    purpose: Transform premises, evidence, and constraints into conclusions or intermediate results.
+  - id: ai.planning
+    name: planning
+    purpose: Construct and revise action sequences toward explicit goals.
+  - id: ai.tool_use
+    name: tool use
+    purpose: Invoke external capabilities through controlled interfaces.
+  - id: ai.execution_agency
+    name: execution and bounded agency
+    purpose: Carry out authorized actions within explicit limits.
+  - id: ai.communication
+    name: communication
+    purpose: Exchange information with users, agents, and external systems.
+  - id: ai.multimodal
+    name: multimodal processing
+    purpose: Process and integrate multiple supported modalities.
+  - id: ai.prediction
+    name: prediction
+    purpose: Generate forecasts or expectations from available evidence.
+  - id: ai.learning_adaptation
+    name: learning and adaptation
+    purpose: Update behavior or representations using validated feedback.
+  - id: ai.evaluation
+    name: evaluation
+    purpose: Measure behavior against explicit criteria.
+  - id: ai.uncertainty
+    name: uncertainty handling
+    purpose: Represent and communicate uncertainty rather than silently converting it into certainty.
+  - id: ai.self_correction
+    name: self-correction
+    purpose: Detect and correct bounded errors using explicit evidence and safeguards.
+  - id: ai.metacognition
+    name: metacognition
+    purpose: Represent relevant information about the system's own reasoning or limitations without assuming subjective consciousness.
+  - id: ai.model_runtime_management
+    name: model and runtime management
+    purpose: Select, configure, monitor, and recover AI model/runtime components.
+  - id: ai.agent_orchestration
+    name: agent orchestration
+    purpose: Coordinate multiple bounded agents or agentic components.
+  - id: ai.multi_agent_trust
+    name: multi-agent trust
+    purpose: Establish authority, provenance, and trust relationships among agents.
+  - id: ai.provenance
+    name: provenance
+    purpose: Preserve lineage for inputs, outputs, decisions, and actions.
+  - id: ai.authorization
+    name: authorization
+    purpose: Require explicit authority before protected actions.
+  - id: ai.safety_refusal
+    name: safety and refusal boundaries
+    purpose: Refuse or constrain operations outside authorized or safe boundaries.
+  - id: ai.observability
+    name: AI observability
+    purpose: Produce inspectable evidence about model, agent, and decision behavior.
+  - id: ai.deterministic_replay
+    name: deterministic evaluation and replay
+    purpose: Reproduce bounded scenarios for verification and regression analysis.
+  - id: ai.human_oversight
+    name: human oversight
+    purpose: Preserve human review and intervention at defined decision boundaries.
+
+gaia_control_plane:
+  - id: gaia.intent_authorization_execution
+    name: intent to authorization to execution
+    purpose: Bind requested intent to authority and controlled execution.
+  - id: gaia.identity_continuity
+    name: identity continuity
+    purpose: Maintain attributable identity across operations and state transitions.
+  - id: gaia.capability_grants
+    name: capability grants
+    purpose: Represent bounded authority as explicit grants.
+  - id: gaia.audit_provenance
+    name: audit and provenance
+    purpose: Preserve attributable records of system activity and evidence.
+  - id: gaia.reversible_operations
+    name: reversible operations
+    purpose: Prefer recoverable state transitions where technically feasible.
+  - id: gaia.simulation_before_execution
+    name: simulation before execution
+    purpose: Exercise consequential behavior in a controlled environment before promotion or execution.
+  - id: gaia.failure_injection
+    name: failure injection
+    purpose: Deliberately exercise defined failure paths.
+  - id: gaia.invariant_checking
+    name: invariant checking
+    purpose: Detect violations of declared system properties.
+  - id: gaia.staged_promotion
+    name: staged promotion
+    purpose: Move changes through explicit development, preflight, simulation, verification, canary, and promotion stages.
+  - id: gaia.verification_evidence
+    name: verification evidence
+    purpose: Tie claims to executable tests and inspectable artifacts.
+  - id: gaia.bounded_resources
+    name: bounded recursion and resources
+    purpose: Prevent unbounded computation or resource consumption.
+  - id: gaia.governed_adaptation
+    name: governed adaptation
+    purpose: Permit system adaptation only under explicit validation and authorization rules.
