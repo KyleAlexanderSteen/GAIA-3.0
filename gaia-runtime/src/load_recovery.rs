@@ -169,7 +169,7 @@ pub fn assess(indicators: LoadIndicators, thresholds: LoadThresholds) -> LoadAss
         && primary_min <= thresholds.uncertainty_margin
         && uncertainty > thresholds.uncertainty_margin;
 
-    if materially_conflicting && score < thresholds.stop {
+    if materially_conflicting {
         return LoadAssessment {
             state: LoadState::Unknown,
             score: Some(score),
