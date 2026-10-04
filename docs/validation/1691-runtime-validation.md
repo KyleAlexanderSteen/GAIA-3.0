@@ -24,18 +24,27 @@ Rust's Instant is used for elapsed runtime measurement because it is intended fo
 | ConflictingEvidence | UNKNOWN | Preserve uncertainty rather than invent certainty |
 | ExplicitStop | STOP | Explicit stop dominates score |
 
-The first five state expectations are deterministic contract fixtures. The bounded workload test additionally measures actual elapsed execution time and feeds that measurement through the runtime telemetry adapter.
+The workload-state results are emitted as machine-readable FPFN records by the Rust test suite. The validation workflow captures those actual runtime results and evaluates them with the shared #1701 FP/FN conformance framework.
 
 ## FP/FN verification
 
-The representative threshold fixtures currently produce:
+The shared #1701 conformance contract is authoritative for the reported FP/FN classification.
+
+For this bounded reference set, state classification is mapped to the binary conformance outcome as follows:
+
+- STOP → POSITIVE
+- CONTINUE, SLOW, PAUSE → NEGATIVE
+- UNKNOWN → UNKNOWN
+
+The workflow requires explicit positive, negative, and unknown fixture coverage and evaluates the actual Rust runtime results with tools/validation/fpfn.py.
+
+Expected bounded results:
 
 - False positives: **0**
 - False negatives: **0**
+- UNKNOWN mismatches: **0**
 
 These counts are for the declared representative fixtures only. They are **not** a claim of universal threshold accuracy.
-
-The existing shared FP/FN conformance framework remains authoritative for binary conformance semantics.
 
 ## Recovery / continuity
 
@@ -53,9 +62,11 @@ An expanded scope requires an explicit authorization path outside this load/reco
 - Runtime telemetry can be normalized into the contract.
 - The actual runtime execution surface exposes measured elapsed time and resource high-water data through the integration API.
 - Representative workload fixtures exercise the state classifier.
+- Actual Rust classifier results are evaluated through the shared #1701 FP/FN conformance contract.
 - Conflicting evidence remains UNKNOWN.
+- Zero-operation telemetry remains UNKNOWN.
 - Recovery scope equality is explicitly testable.
-- Representative fixtures have zero FP/FN outcomes under the configured reference thresholds.
+- The bounded representative fixtures produce zero FP/FN and zero UNKNOWN-mismatch outcomes under the configured reference thresholds.
 
 ## What this evidence does not prove
 
