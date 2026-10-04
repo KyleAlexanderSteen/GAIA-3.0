@@ -41,7 +41,7 @@ def divergence(state: State) -> State:
 def insurgence(state: State, noise: float = 0.05) -> State:
     nodes = {}
     for key, node in state.nodes.items():
-        shifted = node.value + (noise if hash(key) % 2 else -noise)
+        shifted = node.value + (noise if key.endswith("_B") else -noise)
         coherence = max(0.0, node.coherence - abs(noise))
         nodes[key] = replace(node, value=shifted, coherence=coherence)
     return State(nodes, "INSURGENCE", state.step + 1)
