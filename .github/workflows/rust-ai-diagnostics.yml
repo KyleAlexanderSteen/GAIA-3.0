@@ -71,10 +71,16 @@ jobs:
       - name: Run cargo fmt check
         id: fmt
         run: |
-          cargo fmt --all --check 2>&1 | tee /tmp/fmt-raw.txt || true
+          set +e
+          cargo fmt --all --check 2>&1 | tee /tmp/fmt-raw.txt
+          fmt_status=${PIPESTATUS[0]}
+          printf '%s\n' "${fmt_status}" > /tmp/fmt-exit-code
+          exit 0
 
       - name: Build diagnostics report and agent-validation.json
         id: report
+        env:
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           python3 - <<'PYEOF'
           import json, os, datetime
@@ -126,11 +132,19 @@ jobs:
           all_warnings = check_warnings + clippy_warnings
 
           # \u2500\u2500 fmt status \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
-          fmt_ok = True
+          # Use cargo fmt's authoritative exit status; output text alone is
+          # not a reliable success/failure signal.
+          fmt_ok = False
+          fmt_exit_code = None
+          try:
+              with open("/tmp/fmt-exit-code") as f:
+                  fmt_exit_code = int(f.read().strip())
+              fmt_ok = fmt_exit_code == 0
+          except (FileNotFoundError, ValueError):
+              fmt_output = ""
           try:
               with open("/tmp/fmt-raw.txt") as f:
                   fmt_output = f.read().strip()
-              fmt_ok = len(fmt_output) == 0
           except FileNotFoundError:
               fmt_output = ""
 
@@ -230,7 +244,7 @@ jobs:
 
           result = {
               "schema_version": "1.0",
-              "head_sha":       sha,
+              "head_sha":       checked_sha,
               "timestamp":      datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
               "mode":           "changed",
               "status":         overall,
@@ -245,7 +259,8 @@ jobs:
 
           print(f"diag-report.md written ({len(report)} chars)")
           print(f"agent-validation.json written \u2014 status: {overall}, failed_stage: {failed_stage}")
-          print(f"  errors: {len(all_errors)}, warnings: {len(all_warnings)}, fmt_ok: {fmt_ok}")
+          print(f"  errors: {len(all_errors)}, warnings: {len(all_warnings)}, fmt_ok: {fmt_ok}, fmt_exit_code: {fmt_exit_code}")
+          print(f"  checked_sha: {checked_sha}, pr_head_sha: {pr_head_sha}")
           PYEOF
 
       - name: Validate agent-validation.json against schema
