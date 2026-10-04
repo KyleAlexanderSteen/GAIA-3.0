@@ -21,6 +21,8 @@ jobs:
       - run: python tools/agent-skills/tests/test_skills.py
       - run: python -m unittest tools/agent-skills/tests/test_preflight.py
       - run: python -m unittest tools/validation/tests/test_fpfn.py
+      - run: python -m unittest tools/validation/tests/test_load_recovery.py
+      - run: python -m unittest tools/validation/tests/test_energy_states.py
 
   stub-detector:
     name: No success-printing stubs (#1304)
