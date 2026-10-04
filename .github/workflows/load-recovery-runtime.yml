@@ -1,0 +1,23 @@
+name: load-recovery-runtime
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  gaia-runtime-load-recovery:
+    name: #1691 runtime load/recovery
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Test runtime load/recovery integration
+        run: cargo test -p gaia-runtime load_recovery -- --nocapture > /tmp/load-recovery-test-output.txt
+      - name: Validate #1691 FP/FN evidence with shared #1701 contract
+        working-directory: tools/validation
+        run: python 1691_fpfn.py < /tmp/load-recovery-test-output.txt
