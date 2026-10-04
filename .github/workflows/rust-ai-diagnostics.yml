@@ -83,6 +83,7 @@ jobs:
         id: report
         env:
           PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: |
           python3 - <<'PYEOF'
           import json, os, datetime
@@ -196,7 +197,18 @@ jobs:
                   lines.append("")
                   lines.append("### Format")
                   lines.append("")
-                  lines.append("> `cargo fmt --all --check` found unformatted files. Run `cargo fmt --all` locally.")
+                  lines.append(f"> `cargo fmt --all --check` exited {fmt_exit_code}; formatter output listed {len(fmt_files)} unformatted file(s).")
+                  if fmt_changed_files:
+                      lines.append("")
+                      lines.append(f"**PR-changed files reported by rustfmt ({len(fmt_changed_files)}):**")
+                      for path in fmt_changed_files:
+                          lines.append(f"- `{path}`")
+                  elif fmt_files and changed_files:
+                      lines.append("")
+                      lines.append("**PR-changed files reported by rustfmt:** 0")
+                      lines.append(f"**Unrelated/pre-existing formatter files reported:** {fmt_unrelated_count}")
+                      lines.append("")
+                      lines.append("> The formatter failure is outside this PR's changed-file set.")
 
           lines.append("")
           lines.append("---")
@@ -241,7 +253,7 @@ jobs:
                   "level":       "error",
                   "code":        "fmt",
                   "path":        "",
-                  "message":     "cargo fmt --all --check found unformatted files",
+                  "message":     f"cargo fmt --all --check found {len(fmt_files)} unformatted file(s); {len(fmt_changed_files)} overlap the PR diff",
                   "fingerprint": "fmt:unformatted"
               })
 
@@ -264,6 +276,7 @@ jobs:
           print(f"agent-validation.json written \u2014 status: {overall}, failed_stage: {failed_stage}")
           print(f"  errors: {len(all_errors)}, warnings: {len(all_warnings)}, fmt_ok: {fmt_ok}, fmt_exit_code: {fmt_exit_code}")
           print(f"  checked_sha: {checked_sha}, pr_head_sha: {pr_head_sha}")
+          print(f"  formatter_files: {len(fmt_files)}, pr_changed_formatter_files: {len(fmt_changed_files)}, unrelated_formatter_files: {fmt_unrelated_count}")
           PYEOF
 
       - name: Validate agent-validation.json against schema
