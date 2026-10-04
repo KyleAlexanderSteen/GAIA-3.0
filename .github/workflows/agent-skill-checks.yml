@@ -20,6 +20,7 @@ jobs:
           python-version: '3.12'
       - run: python tools/agent-skills/tests/test_skills.py
       - run: python -m unittest tools/agent-skills/tests/test_preflight.py
+      - run: python -m unittest tools/validation/tests/test_fpfn.py
 
   stub-detector:
     name: No success-printing stubs (#1304)
