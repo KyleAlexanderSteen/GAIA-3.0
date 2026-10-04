@@ -139,17 +139,34 @@ pub fn assess(indicators: LoadIndicators, thresholds: LoadThresholds) -> LoadAss
         };
     }
 
-    let score = values.iter().sum::<f64>() / values.len() as f64;
-    let min = values.iter().copied().fold(f64::INFINITY, f64::min);
-    let max = values.iter().copied().fold(f64::NEG_INFINITY, f64::max);
-    let uncertainty = max - min;
+    // Load classification is driven by the strongest observed load signal,
+    // not an average diluted by healthy zero-valued outcome counters. A single
+    // materially high duration, latency, resource-pressure, error, contradiction,
+    // or interruption signal must remain visible to the state mapping.
+    let score = values.iter().copied().fold(f64::NEG_INFINITY, f64::max);
 
-    // A spread by itself is not conflicting evidence: zero error or
-    // interruption rates are healthy observations, not disagreement with
-    // duration/resource pressure. Preserve UNKNOWN only when a material
-    // high-load signal is directly opposed by a low-load signal.
-    let materially_conflicting = max >= thresholds.pause
-        && min <= thresholds.uncertainty_margin
+    // Healthy zero-valued outcome counters are not contradictory evidence.
+    // For uncertainty, compare the independent primary load dimensions
+    // (duration, latency, resource pressure). Preserve UNKNOWN only when those
+    // dimensions materially disagree, such as high duration with no resource
+    // pressure in the explicit conflicting-evidence fixture.
+    let primary_signals = [
+        indicators.duration,
+        indicators.latency_ratio,
+        indicators.resource_pressure,
+    ];
+    let primary_min = primary_signals
+        .iter()
+        .copied()
+        .fold(f64::INFINITY, f64::min);
+    let primary_max = primary_signals
+        .iter()
+        .copied()
+        .fold(f64::NEG_INFINITY, f64::max);
+    let uncertainty = primary_max - primary_min;
+
+    let materially_conflicting = primary_max >= thresholds.pause
+        && primary_min <= thresholds.uncertainty_margin
         && uncertainty > thresholds.uncertainty_margin;
 
     if materially_conflicting && score < thresholds.stop {
