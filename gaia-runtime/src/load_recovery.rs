@@ -82,7 +82,10 @@ impl RuntimeLoadTelemetry {
                 (numerator as f64 / denominator as f64).clamp(0.0, 1.0)
             }
         };
-        let duration = ratio(self.elapsed.as_millis() as u64, self.duration_budget.as_millis() as u64);
+        let duration = ratio(
+            self.elapsed.as_millis() as u64,
+            self.duration_budget.as_millis() as u64,
+        );
         let latency_ratio = duration;
         let error_rate = ratio(self.failures, self.operations);
         let contradiction_rate = ratio(self.contradictions, self.operations);
@@ -168,13 +171,31 @@ pub fn assess(indicators: LoadIndicators, thresholds: LoadThresholds) -> LoadAss
 
 pub fn transition(current: LoadState, requested: LoadState) -> Result<LoadState, &'static str> {
     let legal = match current {
-        LoadState::Continue => matches!(requested, LoadState::Slow | LoadState::Pause | LoadState::Stop | LoadState::Unknown),
-        LoadState::Slow => matches!(requested, LoadState::Continue | LoadState::Pause | LoadState::Stop | LoadState::Unknown),
-        LoadState::Pause => matches!(requested, LoadState::Recover | LoadState::Stop | LoadState::Unknown),
+        LoadState::Continue => matches!(
+            requested,
+            LoadState::Slow | LoadState::Pause | LoadState::Stop | LoadState::Unknown
+        ),
+        LoadState::Slow => matches!(
+            requested,
+            LoadState::Continue | LoadState::Pause | LoadState::Stop | LoadState::Unknown
+        ),
+        LoadState::Pause => matches!(
+            requested,
+            LoadState::Recover | LoadState::Stop | LoadState::Unknown
+        ),
         LoadState::Stop => matches!(requested, LoadState::Recover | LoadState::Unknown),
-        LoadState::Recover => matches!(requested, LoadState::Resume | LoadState::Stop | LoadState::Unknown),
-        LoadState::Resume => matches!(requested, LoadState::Continue | LoadState::Slow | LoadState::Pause | LoadState::Unknown),
-        LoadState::Unknown => matches!(requested, LoadState::Slow | LoadState::Pause | LoadState::Stop | LoadState::Recover),
+        LoadState::Recover => matches!(
+            requested,
+            LoadState::Resume | LoadState::Stop | LoadState::Unknown
+        ),
+        LoadState::Resume => matches!(
+            requested,
+            LoadState::Continue | LoadState::Slow | LoadState::Pause | LoadState::Unknown
+        ),
+        LoadState::Unknown => matches!(
+            requested,
+            LoadState::Slow | LoadState::Pause | LoadState::Stop | LoadState::Recover
+        ),
     };
 
     if legal {
@@ -296,7 +317,10 @@ mod tests {
             interruptions: 0,
             explicit_stop: false,
         };
-        assert_eq!(telemetry.assess(LoadThresholds::default()).state, LoadState::Unknown);
+        assert_eq!(
+            telemetry.assess(LoadThresholds::default()).state,
+            LoadState::Unknown
+        );
     }
 
     #[test]
@@ -397,7 +421,13 @@ mod tests {
             stop: 0.70,
             uncertainty_margin: 0.05,
         };
-        assert_eq!(workload.assess(conservative).state, LoadState::Pause);
-        assert_eq!(workload.assess(LoadThresholds::default()).state, LoadState::Slow);
+        assert_eq!(
+            workload.assess(conservative).state,
+            LoadState::Pause
+        );
+        assert_eq!(
+            workload.assess(LoadThresholds::default()).state,
+            LoadState::Slow
+        );
     }
 }
