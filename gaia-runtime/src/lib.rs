@@ -10,6 +10,7 @@ pub mod dormancy;
 pub mod faithfulness;
 pub mod grounding;
 pub mod guest;
+pub mod load_recovery;
 pub mod quotas;
 pub mod sandbox;
 
@@ -19,6 +20,11 @@ pub use dormancy::{DormancyGuard, DormancyMode, DormantSystem};
 pub use faithfulness::{score_faithfulness, FaithfulnessScore};
 pub use grounding::{
     enforce_grounding, ChunkId, GenerationMode, GroundedResponse, GroundingError,
+};
+pub use load_recovery::{
+    assess as assess_load, continuity_scope_preserved, transition as transition_load,
+    LoadAssessment, LoadIndicators, LoadState, LoadThresholds, RepresentativeWorkload,
+    RuntimeLoadTelemetry,
 };
 pub use quotas::{AgentQuota, RateLimitExceeded, RuntimeAnomaly};
 pub use sandbox::{
