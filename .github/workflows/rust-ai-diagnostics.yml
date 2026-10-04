@@ -294,6 +294,32 @@ jobs:
           path: /tmp/agent-validation.json
           retention-days: 7
 
+      - name: Enforce diagnostics result
+        if: always()
+        run: |
+          python3 - <<'PYEOF'
+          import json, sys
+
+          with open("/tmp/agent-validation.json") as f:
+              result = json.load(f)
+
+          status = result.get("status")
+          failed_stage = result.get("failed_stage")
+          head_sha = result.get("head_sha")
+
+          print(f"agent-validation status: {status}")
+          print(f"failed_stage: {failed_stage}")
+          print(f"head_sha: {head_sha}")
+
+          if status != "passed":
+              print(
+                  f"Rust AI Diagnostics failed at {failed_stage or 'unknown stage'}; "
+                  "failing the workflow so CI status matches the validation result.",
+                  file=sys.stderr,
+              )
+              sys.exit(1)
+          PYEOF
+
       - name: Post diagnostics comment
         uses: actions/github-script@v7
         with:
