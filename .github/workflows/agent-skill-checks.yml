@@ -19,6 +19,7 @@ jobs:
         with:
           python-version: '3.12'
       - run: python tools/agent-skills/tests/test_skills.py
+      - run: python -m unittest tools/agent-skills/tests/test_preflight.py
 
   stub-detector:
     name: No success-printing stubs (#1304)
@@ -31,7 +32,7 @@ jobs:
       - run: python tools/agent-skills/stub_detector.py .
 
   definition-of-done:
-    name: PR states its stage (#1319)
+    name: PR preflight validation (#1700)
     if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
     runs-on: ubuntu-latest
     steps:
@@ -39,7 +40,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Check PR body
+      - name: Pre-PR validation
         env:
           PR_BODY: ${{ github.event.pull_request.body }}
-        run: printf '%s' "$PR_BODY" | python tools/agent-skills/dod_check.py
+        run: |
+          printf '%s' "$PR_BODY" > pr-body.md
+          python tools/agent-skills/preflight.py --body pr-body.md --repo-root .
