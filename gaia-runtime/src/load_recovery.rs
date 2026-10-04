@@ -222,9 +222,9 @@ impl RepresentativeWorkload {
             Self::ConflictingEvidence => RuntimeLoadTelemetry {
                 elapsed: Duration::from_millis(100),
                 duration_budget: Duration::from_millis(100),
-                cpu_millis_used: 100,
+                cpu_millis_used: 0,
                 cpu_millis_budget: 100,
-                memory_bytes_used: 100,
+                memory_bytes_used: 0,
                 memory_bytes_budget: 100,
                 operations: 100,
                 failures: 0,
