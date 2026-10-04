@@ -109,6 +109,13 @@ impl RuntimeLoadTelemetry {
     }
 
     pub fn assess(self, thresholds: LoadThresholds) -> LoadAssessment {
+        if self.operations == 0 {
+            return LoadAssessment {
+                state: LoadState::Unknown,
+                score: None,
+                uncertainty: 1.0,
+            };
+        }
         assess(self.indicators(), thresholds)
     }
 }
@@ -363,7 +370,10 @@ mod tests {
             interruptions: 0,
             explicit_stop: false,
         };
-        assert_ne!(telemetry.assess(LoadThresholds::default()).state, LoadState::Continue);
+        assert_eq!(
+            telemetry.assess(LoadThresholds::default()).state,
+            LoadState::Unknown
+        );
     }
 
     #[test]
