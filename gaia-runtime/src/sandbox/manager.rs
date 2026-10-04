@@ -26,11 +26,7 @@ use wasmtime::{
     },
     Config, Engine, Store,
 };
-use wasmtime_wasi::{
-    DirPerms, FilePerms,
-    WasiCtx, WasiCtxBuilder, WasiCtxView,
-    WasiView,
-};
+use wasmtime_wasi::{DirPerms, FilePerms, WasiCtx, WasiCtxBuilder, WasiCtxView, WasiView};
 
 use crate::load_recovery::{LoadAssessment, LoadThresholds, RuntimeLoadTelemetry};
 
@@ -44,8 +40,8 @@ use crate::sandbox::{
 
 /// Data stored inside every Wasmtime `Store` created by this manager.
 pub struct StoreData {
-    pub wasi:    WasiCtx,
-    pub table:   ResourceTable,
+    pub wasi: WasiCtx,
+    pub table: ResourceTable,
     pub limiter: GaiaResourceLimiter,
 }
 
@@ -176,11 +172,19 @@ impl SandboxManager {
         let memory_used = store.data().limiter.mem_used();
         let elapsed = started.elapsed();
         let failed = result.is_err();
-        let interruptions = if matches!(&result, Err(SandboxError::Timeout)) { 1 } else { 0 };
+        let interruptions = if matches!(&result, Err(SandboxError::Timeout)) {
+            1
+        } else {
+            0
+        };
         let telemetry = RuntimeLoadTelemetry {
             elapsed,
             duration_budget,
-            cpu_millis_used: if failed { cpu_millis_budget } else { elapsed.as_millis() as u64 },
+            cpu_millis_used: if failed {
+                cpu_millis_budget
+            } else {
+                elapsed.as_millis() as u64
+            },
             cpu_millis_budget,
             memory_bytes_used: memory_used,
             memory_bytes_budget: memory_budget,
@@ -193,19 +197,20 @@ impl SandboxManager {
         (result, telemetry)
     }
 
-    pub fn assess_load(&self, telemetry: RuntimeLoadTelemetry, thresholds: LoadThresholds) -> LoadAssessment {
+    pub fn assess_load(
+        &self,
+        telemetry: RuntimeLoadTelemetry,
+        thresholds: LoadThresholds,
+    ) -> LoadAssessment {
         telemetry.assess(thresholds)
     }
 
-    pub async fn execute_component(
-        &self,
-        component: &Component,
-    ) -> Result<(), SandboxError> {
+    pub async fn execute_component(&self, component: &Component) -> Result<(), SandboxError> {
         let wasi = self.build_wasi_ctx()?;
 
         let store_data = StoreData {
             wasi,
-            table:   ResourceTable::new(),
+            table: ResourceTable::new(),
             limiter: GaiaResourceLimiter::new(self.profile.quota),
         };
         let mut store = Store::new(&self.engine, store_data);
