@@ -356,6 +356,39 @@ mod tests {
     }
 
     #[test]
+    fn bounded_runtime_workload_produces_measured_telemetry() {
+        use std::hint::black_box;
+        use std::time::Instant;
+
+        let started = Instant::now();
+        let mut bytes = Vec::with_capacity(4096);
+        for value in 0u8..=255 {
+            bytes.push(value);
+        }
+        black_box(&bytes);
+        let elapsed = started.elapsed();
+
+        let telemetry = RuntimeLoadTelemetry {
+            elapsed,
+            duration_budget: Duration::from_secs(1),
+            cpu_millis_used: elapsed.as_millis() as u64,
+            cpu_millis_budget: 1_000,
+            memory_bytes_used: bytes.len(),
+            memory_bytes_budget: 64 * 1024,
+            operations: 256,
+            failures: 0,
+            contradictions: 0,
+            interruptions: 0,
+            explicit_stop: false,
+        };
+
+        let assessment = telemetry.assess(LoadThresholds::default());
+        assert!(elapsed <= Duration::from_secs(1));
+        assert_eq!(assessment.state, LoadState::Continue);
+        assert!(assessment.score.is_some());
+    }
+
+    #[test]
     fn thresholds_are_configuration_not_global_truth() {
         let workload = RepresentativeWorkload::RisingLoad.telemetry();
         let conservative = LoadThresholds {
