@@ -176,7 +176,7 @@ impl SandboxManager {
         let memory_used = store.data().limiter.mem_used();
         let elapsed = started.elapsed();
         let failed = result.is_err();
-        let interruptions = u64::from(matches!(&result, Err(SandboxError::Timeout)));
+        let interruptions = if matches!(&result, Err(SandboxError::Timeout)) { 1 } else { 0 };
         let telemetry = RuntimeLoadTelemetry {
             elapsed,
             duration_budget,
@@ -185,7 +185,7 @@ impl SandboxManager {
             memory_bytes_used: memory_used,
             memory_bytes_budget: memory_budget,
             operations: 1,
-            failures: u64::from(failed),
+            failures: if failed { 1 } else { 0 },
             contradictions: 0,
             interruptions,
             explicit_stop: false,
