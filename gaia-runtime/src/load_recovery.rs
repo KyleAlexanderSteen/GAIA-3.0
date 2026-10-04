@@ -1,4 +1,5 @@
 //! Runtime load/recovery integration for #1691.
+
 //!
 //! This module adapts measured runtime/resource telemetry into the #1691
 //! workload-load contract. It is deliberately a reference integration:
@@ -146,17 +147,8 @@ pub fn assess(indicators: LoadIndicators, thresholds: LoadThresholds) -> LoadAss
         };
     }
 
-    // Load classification is driven by the strongest observed load signal,
-    // not an average diluted by healthy zero-valued outcome counters. A single
-    // materially high duration, latency, resource-pressure, error, contradiction,
-    // or interruption signal must remain visible to the state mapping.
     let score = values.iter().copied().fold(f64::NEG_INFINITY, f64::max);
 
-    // Healthy zero-valued outcome counters are not contradictory evidence.
-    // For uncertainty, compare the independent primary load dimensions
-    // (duration, latency, resource pressure). Preserve UNKNOWN only when those
-    // dimensions materially disagree, such as high duration with no resource
-    // pressure in the explicit conflicting-evidence fixture.
     let primary_signals = [
         indicators.duration,
         indicators.latency_ratio,
@@ -456,13 +448,29 @@ mod tests {
             stop: 0.70,
             uncertainty_margin: 0.05,
         };
-        assert_eq!(
-            workload.assess(conservative).state,
-            LoadState::Pause
-        );
+        assert_eq!(workload.assess(conservative).state, LoadState::Pause);
         assert_eq!(
             workload.assess(LoadThresholds::default()).state,
             LoadState::Slow
         );
+    }
+
+    #[test]
+    fn fp_fn_conformance_evidence_is_machine_readable() {
+        for workload in [
+            RepresentativeWorkload::Stable,
+            RepresentativeWorkload::RisingLoad,
+            RepresentativeWorkload::SustainedDegradation,
+            RepresentativeWorkload::HighLoad,
+            RepresentativeWorkload::ConflictingEvidence,
+            RepresentativeWorkload::ExplicitStop,
+        ] {
+            println!(
+                "FPFN|{}|{}|{}",
+                format!("{:?}", workload),
+                format!("{:?}", workload.expected_state()),
+                format!("{:?}", evaluate(workload).state)
+            );
+        }
     }
 }
