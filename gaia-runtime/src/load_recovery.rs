@@ -144,7 +144,15 @@ pub fn assess(indicators: LoadIndicators, thresholds: LoadThresholds) -> LoadAss
     let max = values.iter().copied().fold(f64::NEG_INFINITY, f64::max);
     let uncertainty = max - min;
 
-    if uncertainty > thresholds.uncertainty_margin && score < thresholds.stop {
+    // A spread by itself is not conflicting evidence: zero error or
+    // interruption rates are healthy observations, not disagreement with
+    // duration/resource pressure. Preserve UNKNOWN only when a material
+    // high-load signal is directly opposed by a low-load signal.
+    let materially_conflicting = max >= thresholds.pause
+        && min <= thresholds.uncertainty_margin
+        && uncertainty > thresholds.uncertainty_margin;
+
+    if materially_conflicting && score < thresholds.stop {
         return LoadAssessment {
             state: LoadState::Unknown,
             score: Some(score),
