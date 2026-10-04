@@ -17,4 +17,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
       - name: Test runtime load/recovery integration
-        run: cargo test -p gaia-runtime load_recovery
+        run: cargo test -p gaia-runtime load_recovery -- --nocapture > /tmp/load-recovery-test-output.txt
+      - name: Validate #1691 FP/FN evidence with shared #1701 contract
+        working-directory: tools/validation
+        run: python 1691_fpfn.py < /tmp/load-recovery-test-output.txt
