@@ -198,8 +198,9 @@ jobs:
 
           lines.append("")
           lines.append("---")
-          sha = os.environ.get("GITHUB_SHA", "unknown")
-          lines.append(f"*Commit: `{sha}`  \u00b7  Workflow: `rust-ai-diagnostics`*")
+          checked_sha = os.popen("git rev-parse HEAD").read().strip() or "unknown"
+          pr_head_sha = os.environ.get("PR_HEAD_SHA", "unknown")
+          lines.append(f"*Checked commit: `{checked_sha}` · PR head: `{pr_head_sha}` · Workflow: `rust-ai-diagnostics`*")
 
           report = "\n".join(lines)
           with open("/tmp/diag-report.md", "w", encoding="utf-8") as fh:
