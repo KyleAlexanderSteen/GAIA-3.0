@@ -151,6 +151,38 @@ jobs:
           except FileNotFoundError:
               fmt_output = ""
 
+          # \u2500\u2500 formatter ownership classification \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+          fmt_files = []
+          for raw in fmt_output.splitlines():
+              if raw.startswith("Diff in "):
+                  path = raw[len("Diff in "):].rstrip(":").strip()
+                  if path:
+                      fmt_files.append(path)
+          fmt_files = sorted(set(fmt_files))
+
+          changed_files = []
+          try:
+              base_sha = os.environ.get("BASE_SHA", "")
+              if base_sha:
+                  import subprocess
+                  changed = subprocess.run(
+                      ["git", "diff", "--name-only", f"{base_sha}...HEAD"],
+                      check=True,
+                      capture_output=True,
+                      text=True,
+                  )
+                  changed_files = [p.strip() for p in changed.stdout.splitlines() if p.strip()]
+          except Exception as exc:
+              print(f"WARNING: unable to classify formatter ownership: {exc}")
+
+          normalized_changed = {p.replace("\\", "/").lstrip("./"): p for p in changed_files}
+          fmt_changed_files = sorted({
+              normalized_changed[p.replace("\\", "/").lstrip("./")]
+              for p in fmt_files
+              if p.replace("\\", "/").lstrip("./") in normalized_changed
+          })
+          fmt_unrelated_count = max(0, len(fmt_files) - len(fmt_changed_files))
+
           # \u2500\u2500 markdown report (existing behaviour, unchanged) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
           lines = []
           lines.append("## Rust AI Diagnostics Report")
