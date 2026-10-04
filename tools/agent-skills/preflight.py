@@ -35,9 +35,11 @@ def check(body: str, repo_root: Path | None = None) -> list[str]:
     root = repo_root.resolve()
     for raw in _evidence_values(body, stage):
         value = raw.strip().strip(chr(96)).rstrip(".,;")
-        if not _looks_like_path(value): continue
         path = Path(value)
-        if path.is_absolute(): problems.append(f"evidence path must be repository-relative: {raw}"); continue
+        if path.is_absolute():
+            problems.append(f"evidence path must be repository-relative: {raw}")
+            continue
+        if not _looks_like_path(value): continue
         resolved = (root / path).resolve()
         try: resolved.relative_to(root)
         except ValueError: problems.append(f"evidence path escapes repository: {raw}"); continue
