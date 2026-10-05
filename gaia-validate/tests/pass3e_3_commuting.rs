@@ -91,6 +91,10 @@ fn authorization_preserved(before: State, after: State) -> bool {
     before.authorization == after.authorization
 }
 
+fn authority_leakage(before: State, after: State, authorization_event_present: bool) -> bool {
+    before.authorization != after.authorization && !authorization_event_present
+}
+
 #[test]
 fn elementary_transition_commutes() {
     let a = Q5::new(0b00000).unwrap();
@@ -181,12 +185,29 @@ fn authorization_is_not_derived_from_geometry() {
         provenance: 1,
         authorization: false,
     };
-    let after = State {
+
+    let geometry_only = State {
         q5: Q5::new(1).unwrap(),
         ..before
     };
-    assert!(!authorization_preserved(before, after));
-    assert!(!after.authorization);
+    assert!(authorization_preserved(before, geometry_only));
+    assert!(!authority_leakage(before, geometry_only, false));
+
+    let authorized_transition = State {
+        q5: Q5::new(1).unwrap(),
+        authorization: true,
+        ..before
+    };
+    assert!(!authorization_preserved(before, authorized_transition));
+    assert!(!authority_leakage(before, authorized_transition, true));
+
+    let leaked_transition = State {
+        q5: Q5::new(1).unwrap(),
+        authorization: true,
+        ..before
+    };
+    assert!(!authorization_preserved(before, leaked_transition));
+    assert!(authority_leakage(before, leaked_transition, false));
 }
 
 #[test]
