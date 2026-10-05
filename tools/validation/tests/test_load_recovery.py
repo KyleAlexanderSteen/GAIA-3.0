@@ -23,6 +23,46 @@ class LoadRecovery(unittest.TestCase):
     def test_recovery_preserves_scope(self):
         self.assertTrue(continuity_scope("user:default","user:default"))
         self.assertFalse(continuity_scope("user:default","user:expanded"))
+
+    def test_stop_requires_explicit_recovery_before_resume(self):
+        self.assertEqual(transition(LoadState.STOP, LoadState.RECOVER), LoadState.RECOVER)
+        with self.assertRaises(ValueError):
+            transition(LoadState.STOP, LoadState.RESUME)
+        self.assertEqual(transition(LoadState.RECOVER, LoadState.RESUME), LoadState.RESUME)
+
+    def test_unknown_cannot_be_promoted_directly_to_resume(self):
+        with self.assertRaises(ValueError):
+            transition(LoadState.UNKNOWN, LoadState.RESUME)
+
+    def test_unknown_recovery_remains_explicit_until_transitioned(self):
+        assessment = assess(
+            LoadIndicators(error_rate=2),
+        )
+        self.assertEqual(assessment.state, LoadState.UNKNOWN)
+        self.assertEqual(assessment.reason, "indicator_out_of_range")
+        self.assertEqual(transition(LoadState.UNKNOWN, LoadState.RECOVER), LoadState.RECOVER)
+
+    def test_recovery_path_requires_verified_scope_continuity(self):
+        self.assertTrue(continuity_scope("user:default", "user:default"))
+        self.assertFalse(continuity_scope("user:default", "user:expanded"))
+    def test_recovery_unknown_has_explicit_fp_fn_classification(self):
+        fixture = Fixture(
+            "recovery-uncertain",
+            ExpectedOutcome.UNKNOWN,
+            ExpectedOutcome.UNKNOWN,
+            category="unknown",
+        )
+        self.assertEqual(fixture.evaluate(), ConformanceResult.UNKNOWN_CORRECT)
+
+    def test_unknown_recovery_misclassified_as_negative_is_rejected(self):
+        fixture = Fixture(
+            "recovery-unknown-forced-negative",
+            ExpectedOutcome.UNKNOWN,
+            ExpectedOutcome.NEGATIVE,
+            category="unknown",
+        )
+        self.assertEqual(fixture.evaluate(), ConformanceResult.UNKNOWN_MISMATCH)
+
     def test_fp_fn_both_directions(self):
         cases=[
           ("tp",ExpectedOutcome.POSITIVE,ExpectedOutcome.POSITIVE,ConformanceResult.TRUE_POSITIVE),
