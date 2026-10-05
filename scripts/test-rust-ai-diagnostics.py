@@ -6,7 +6,13 @@ import tempfile
 import sys
 
 sys.path.insert(0, os.path.dirname(__file__))
-from rust_ai_diagnostics_policy import PASS, PRE_EXISTING, PR_FAILURE, UNKNOWN, classify_pr_enforcement
+from rust_ai_diagnostics_policy import (
+    PASS,
+    PRE_EXISTING,
+    PR_FAILURE,
+    UNKNOWN,
+    classify_pr_enforcement,
+)
 
 
 def read_fmt_status(path):
@@ -59,22 +65,6 @@ def test_failed_diagnostics_do_not_suppress_report_publication():
     )
 
 
-if __name__ == "__main__":
-    tests = [
-        test_fmt_status_is_exit_code_driven,
-        test_empty_output_does_not_imply_success,
-        test_checked_sha_is_authoritative,
-        test_failed_diagnostics_do_not_suppress_report_publication,
-        test_enforcement_all_out_of_scope_is_non_blocking,
-        test_enforcement_pr_overlap_is_blocking,
-        test_enforcement_unknown_ownership_is_blocking,
-        test_enforcement_clean_repository_passes,
-    ]
-    for test in tests:
-        test()
-        print(f"PASS: {test.__name__}")
-    print("Rust AI Diagnostics regression tests: PASS")
-
 def test_enforcement_all_out_of_scope_is_non_blocking():
     status, reason = classify_pr_enforcement(
         blocking_diagnostics=False,
@@ -118,3 +108,20 @@ def test_enforcement_clean_repository_passes():
         ownership_classification_ok=True,
     )
     assert status == PASS
+
+
+if __name__ == "__main__":
+    tests = [
+        test_fmt_status_is_exit_code_driven,
+        test_empty_output_does_not_imply_success,
+        test_checked_sha_is_authoritative,
+        test_failed_diagnostics_do_not_suppress_report_publication,
+        test_enforcement_all_out_of_scope_is_non_blocking,
+        test_enforcement_pr_overlap_is_blocking,
+        test_enforcement_unknown_ownership_is_blocking,
+        test_enforcement_clean_repository_passes,
+    ]
+    for test in tests:
+        test()
+        print(f"PASS: {test.__name__}")
+    print("Rust AI Diagnostics regression tests: PASS")
