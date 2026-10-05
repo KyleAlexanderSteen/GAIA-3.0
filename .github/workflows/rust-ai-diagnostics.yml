@@ -190,6 +190,18 @@ jobs:
           fmt_unrelated_count = max(0, len(fmt_files) - len(fmt_changed_files))
 
           # \u2500\u2500 markdown report (existing behaviour, unchanged) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+          # PR-specific enforcement: repository health and PR attribution are separate.
+          import sys
+          sys.path.insert(0, "scripts")
+          from rust_ai_diagnostics_policy import classify_pr_enforcement
+
+          pr_enforcement_status, pr_enforcement_reason = classify_pr_enforcement(
+              blocking_diagnostics=bool(all_errors),
+              fmt_failed=not fmt_ok,
+              fmt_files=len(fmt_files),
+              fmt_changed_files=len(fmt_changed_files),
+              ownership_classification_ok=ownership_classification_ok,
+          )
           lines = []
           lines.append("## Rust AI Diagnostics Report")
           lines.append("")
