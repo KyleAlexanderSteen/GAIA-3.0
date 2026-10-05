@@ -59,6 +59,9 @@ jobs:
           key: ${{ runner.os }}-cargo-diag-${{ hashFiles('**/Cargo.lock') }}
           restore-keys: ${{ runner.os }}-cargo-diag-
 
+      - name: Run diagnostics regression tests
+        run: python3 scripts/test-rust-ai-diagnostics.py
+
       - name: Run cargo check (JSON)
         id: check
         run: |
