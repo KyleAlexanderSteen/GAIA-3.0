@@ -65,6 +65,10 @@ if __name__ == "__main__":
         test_empty_output_does_not_imply_success,
         test_checked_sha_is_authoritative,
         test_failed_diagnostics_do_not_suppress_report_publication,
+        test_enforcement_all_out_of_scope_is_non_blocking,
+        test_enforcement_pr_overlap_is_blocking,
+        test_enforcement_unknown_ownership_is_blocking,
+        test_enforcement_clean_repository_passes,
     ]
     for test in tests:
         test()
