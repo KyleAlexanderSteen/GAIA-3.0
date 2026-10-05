@@ -337,7 +337,7 @@ jobs:
         run: |
           python3 -m pip install jsonschema --quiet
           python3 - <<'PYEOF'
-          import json, subprocess, sys, jsonschema
+          import json, sys, jsonschema
 
           with open("/tmp/agent-validation.json") as f:
               instance = json.load(f)
