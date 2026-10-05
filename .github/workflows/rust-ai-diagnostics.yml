@@ -28,6 +28,8 @@ on:
       - '**/Cargo.toml'
       - '**/Cargo.lock'
       - '.github/workflows/rust-ai-diagnostics.yml'
+      - 'scripts/rust_ai_diagnostics_policy.py'
+      - 'scripts/test-rust-ai-diagnostics.py'
 
 permissions:
   contents: read
@@ -40,6 +42,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
 
       - name: Install stable toolchain
         uses: dtolnay/rust-toolchain@stable
@@ -56,6 +61,9 @@ jobs:
           key: ${{ runner.os }}-cargo-diag-${{ hashFiles('**/Cargo.lock') }}
           restore-keys: ${{ runner.os }}-cargo-diag-
 
+      - name: Run diagnostics regression tests
+        run: python3 scripts/test-rust-ai-diagnostics.py
+
       - name: Run cargo check (JSON)
         id: check
         run: |
@@ -71,10 +79,17 @@ jobs:
       - name: Run cargo fmt check
         id: fmt
         run: |
-          cargo fmt --all --check 2>&1 | tee /tmp/fmt-raw.txt || true
+          set +e
+          cargo fmt --all --check 2>&1 | tee /tmp/fmt-raw.txt
+          fmt_status=${PIPESTATUS[0]}
+          printf '%s\n' "${fmt_status}" > /tmp/fmt-exit-code
+          exit 0
 
       - name: Build diagnostics report and agent-validation.json
         id: report
+        env:
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: |
           python3 - <<'PYEOF'
           import json, os, datetime
@@ -126,19 +141,77 @@ jobs:
           all_warnings = check_warnings + clippy_warnings
 
           # \u2500\u2500 fmt status \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
-          fmt_ok = True
+          # Use cargo fmt's authoritative exit status; output text alone is
+          # not a reliable success/failure signal.
+          fmt_ok = False
+          fmt_exit_code = None
+          try:
+              with open("/tmp/fmt-exit-code") as f:
+                  fmt_exit_code = int(f.read().strip())
+              fmt_ok = fmt_exit_code == 0
+          except (FileNotFoundError, ValueError):
+              fmt_output = ""
           try:
               with open("/tmp/fmt-raw.txt") as f:
                   fmt_output = f.read().strip()
-              fmt_ok = len(fmt_output) == 0
           except FileNotFoundError:
               fmt_output = ""
 
+          # \u2500\u2500 formatter ownership classification \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+          fmt_files = []
+          for raw in fmt_output.splitlines():
+              if raw.startswith("Diff in "):
+                  path = raw[len("Diff in "):].rstrip(":").strip()
+                  if path:
+                      fmt_files.append(path)
+          fmt_files = sorted(set(fmt_files))
+
+          changed_files = []
+          ownership_classification_ok = False
+          try:
+              base_sha = os.environ.get("BASE_SHA", "")
+              if base_sha:
+                  import subprocess
+                  changed = subprocess.run(
+                      ["git", "diff", "--name-only", f"{base_sha}...HEAD"],
+                      check=True,
+                      capture_output=True,
+                      text=True,
+                  )
+                  changed_files = [p.strip() for p in changed.stdout.splitlines() if p.strip()]
+                  ownership_classification_ok = True
+          except Exception as exc:
+              print(f"WARNING: unable to classify formatter ownership: {exc}")
+
+          normalized_changed = {p.replace("\\", "/").lstrip("./"): p for p in changed_files}
+          fmt_changed_files = sorted({
+              normalized_changed[p.replace("\\", "/").lstrip("./")]
+              for p in fmt_files
+              if p.replace("\\", "/").lstrip("./") in normalized_changed
+          })
+          fmt_unrelated_count = max(0, len(fmt_files) - len(fmt_changed_files))
+
           # \u2500\u2500 markdown report (existing behaviour, unchanged) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+          # PR-specific enforcement: repository health and PR attribution are separate.
+          import sys
+          sys.path.insert(0, "scripts")
+          from rust_ai_diagnostics_policy import classify_pr_enforcement
+
+          pr_enforcement_status, pr_enforcement_reason = classify_pr_enforcement(
+              blocking_diagnostics=bool(all_errors),
+              fmt_failed=not fmt_ok,
+              fmt_files=len(fmt_files),
+              fmt_changed_files=len(fmt_changed_files),
+              ownership_classification_ok=ownership_classification_ok,
+          )
           lines = []
           lines.append("## Rust AI Diagnostics Report")
           lines.append("")
           lines.append("> Auto-generated \u2014 paste this comment to your AI assistant for triage.")
+          lines.append("")
+          repo_diagnostic_status = "PASS" if not all_errors and fmt_ok else "FAIL"
+          lines.append(f"**Repository diagnostic status:** `{repo_diagnostic_status}`")
+          lines.append(f"**PR enforcement status:** `{pr_enforcement_status}` — {pr_enforcement_reason}")
           lines.append("")
 
           if not all_errors and not all_warnings and fmt_ok:
@@ -180,12 +253,24 @@ jobs:
                   lines.append("")
                   lines.append("### Format")
                   lines.append("")
-                  lines.append("> `cargo fmt --all --check` found unformatted files. Run `cargo fmt --all` locally.")
+                  lines.append(f"> `cargo fmt --all --check` exited {fmt_exit_code}; formatter output listed {len(fmt_files)} unformatted file(s).")
+                  if fmt_changed_files:
+                      lines.append("")
+                      lines.append(f"**PR-changed files reported by rustfmt ({len(fmt_changed_files)}):**")
+                      for path in fmt_changed_files:
+                          lines.append(f"- `{path}`")
+                  elif fmt_files and changed_files:
+                      lines.append("")
+                      lines.append("**PR-changed files reported by rustfmt:** 0")
+                      lines.append(f"**Unrelated/pre-existing formatter files reported:** {fmt_unrelated_count}")
+                      lines.append("")
+                      lines.append("> The formatter failure is outside this PR's changed-file set.")
 
           lines.append("")
           lines.append("---")
-          sha = os.environ.get("GITHUB_SHA", "unknown")
-          lines.append(f"*Commit: `{sha}`  \u00b7  Workflow: `rust-ai-diagnostics`*")
+          checked_sha = os.popen("git rev-parse HEAD").read().strip() or "unknown"
+          pr_head_sha = os.environ.get("PR_HEAD_SHA", "unknown")
+          lines.append(f"*Checked commit: `{checked_sha}` · PR head: `{pr_head_sha}` · Workflow: `rust-ai-diagnostics`*")
 
           report = "\n".join(lines)
           with open("/tmp/diag-report.md", "w", encoding="utf-8") as fh:
@@ -224,13 +309,13 @@ jobs:
                   "level":       "error",
                   "code":        "fmt",
                   "path":        "",
-                  "message":     "cargo fmt --all --check found unformatted files",
+                  "message":     f"cargo fmt --all --check found {len(fmt_files)} unformatted file(s); {len(fmt_changed_files)} overlap the PR diff",
                   "fingerprint": "fmt:unformatted"
               })
 
           result = {
               "schema_version": "1.0",
-              "head_sha":       sha,
+              "head_sha":       checked_sha,
               "timestamp":      datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
               "mode":           "changed",
               "status":         overall,
@@ -245,7 +330,9 @@ jobs:
 
           print(f"diag-report.md written ({len(report)} chars)")
           print(f"agent-validation.json written \u2014 status: {overall}, failed_stage: {failed_stage}")
-          print(f"  errors: {len(all_errors)}, warnings: {len(all_warnings)}, fmt_ok: {fmt_ok}")
+          print(f"  errors: {len(all_errors)}, warnings: {len(all_warnings)}, fmt_ok: {fmt_ok}, fmt_exit_code: {fmt_exit_code}")
+          print(f"  checked_sha: {checked_sha}, pr_head_sha: {pr_head_sha}")
+          print(f"  formatter_files: {len(fmt_files)}, pr_changed_formatter_files: {len(fmt_changed_files)}, unrelated_formatter_files: {fmt_unrelated_count}")
           PYEOF
 
       - name: Validate agent-validation.json against schema
@@ -276,7 +363,94 @@ jobs:
           path: /tmp/agent-validation.json
           retention-days: 7
 
+      - name: Enforce diagnostics result
+        if: always()
+        run: |
+          python3 - <<'PYEOF'
+          import json
+          import subprocess
+          import sys
+
+          sys.path.insert(0, "scripts")
+          from rust_ai_diagnostics_policy import classify_pr_enforcement
+          with open("/tmp/agent-validation.json") as f:
+              result = json.load(f)
+
+          status = result.get("status")
+          failed_stage = result.get("failed_stage")
+          head_sha = result.get("head_sha")
+
+          print(f"agent-validation status: {status}")
+          print(f"failed_stage: {failed_stage}")
+          print(f"head_sha: {head_sha}")
+
+          fmt_failed = failed_stage == "cargo-fmt"
+          fmt_output = ""
+          try:
+              with open("/tmp/fmt-raw.txt", encoding="utf-8") as f:
+                  fmt_output = f.read()
+          except FileNotFoundError:
+              pass
+
+          fmt_files = [
+              line[len("Diff in "):].rstrip(":").strip()
+              for line in fmt_output.splitlines()
+              if line.startswith("Diff in ")
+          ]
+
+          ownership_ok = False
+          changed_files = set()
+          try:
+              merge_base = subprocess.run(
+                  ["git", "merge-base", "HEAD", "origin/main"],
+                  check=True,
+                  capture_output=True,
+                  text=True,
+              ).stdout.strip()
+              changed = subprocess.run(
+                  ["git", "diff", "--name-only", f"{merge_base}...HEAD"],
+                  check=True,
+                  capture_output=True,
+                  text=True,
+              )
+              changed_files = {
+                  p.strip().replace("\\", "/").lstrip("./")
+                  for p in changed.stdout.splitlines()
+                  if p.strip()
+              }
+              ownership_ok = True
+          except Exception as exc:
+              print(f"Ownership re-check failed: {exc}", file=sys.stderr)
+
+          fmt_changed_files = [
+              p for p in fmt_files
+              if p.replace("\\", "/").lstrip("./") in changed_files
+          ]
+
+          pr_status, pr_reason = classify_pr_enforcement(
+              blocking_diagnostics=bool(status == "failed" and failed_stage not in (None, "cargo-fmt")),
+              fmt_failed=fmt_failed,
+              fmt_files=len(fmt_files),
+              fmt_changed_files=len(fmt_changed_files),
+              ownership_classification_ok=ownership_ok,
+          )
+
+          print(f"repository diagnostic status: {status}")
+          print(f"failed_stage: {failed_stage}")
+          print(f"head_sha: {head_sha}")
+          print(f"PR enforcement status: {pr_status}")
+          print(f"PR enforcement reason: {pr_reason}")
+
+          if pr_status in {"PR_FAILURE", "UNKNOWN"}:
+              print(
+                  f"Rust AI Diagnostics PR gate is {pr_status}: {pr_reason}",
+                  file=sys.stderr,
+              )
+              sys.exit(1)
+          PYEOF
+
       - name: Post diagnostics comment
+        if: always() && steps.report.outcome == 'success'
         uses: actions/github-script@v7
         with:
           script: |
