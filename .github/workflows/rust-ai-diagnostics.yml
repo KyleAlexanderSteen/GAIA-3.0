@@ -165,6 +165,7 @@ jobs:
           fmt_files = sorted(set(fmt_files))
 
           changed_files = []
+          ownership_classification_ok = False
           try:
               base_sha = os.environ.get("BASE_SHA", "")
               if base_sha:
@@ -176,6 +177,7 @@ jobs:
                       text=True,
                   )
                   changed_files = [p.strip() for p in changed.stdout.splitlines() if p.strip()]
+                  ownership_classification_ok = True
           except Exception as exc:
               print(f"WARNING: unable to classify formatter ownership: {exc}")
 
