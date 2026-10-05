@@ -207,6 +207,10 @@ jobs:
           lines.append("")
           lines.append("> Auto-generated \u2014 paste this comment to your AI assistant for triage.")
           lines.append("")
+          repo_diagnostic_status = "PASS" if not all_errors and fmt_ok else "FAIL"
+          lines.append(f"**Repository diagnostic status:** `{repo_diagnostic_status}`")
+          lines.append(f"**PR enforcement status:** `{pr_enforcement_status}` — {pr_enforcement_reason}")
+          lines.append("")          lines.append("")
 
           if not all_errors and not all_warnings and fmt_ok:
               lines.append("**No errors or warnings detected.** Workspace is clean.")
