@@ -337,7 +337,7 @@ jobs:
         run: |
           python3 -m pip install jsonschema --quiet
           python3 - <<'PYEOF'
-          import json, sys, jsonschema
+          import json, subprocess, sys, jsonschema
 
           with open("/tmp/agent-validation.json") as f:
               instance = json.load(f)
@@ -378,10 +378,66 @@ jobs:
           print(f"failed_stage: {failed_stage}")
           print(f"head_sha: {head_sha}")
 
-          if status != "passed":
+          fmt_failed = failed_stage == "cargo-fmt"
+          fmt_output = ""
+          try:
+              with open("/tmp/fmt-raw.txt", encoding="utf-8") as f:
+                  fmt_output = f.read()
+          except FileNotFoundError:
+              pass
+
+          fmt_files = [
+              line[len("Diff in "):].rstrip(":").strip()
+              for line in fmt_output.splitlines()
+              if line.startswith("Diff in ")
+          ]
+
+          ownership_ok = False
+          changed_files = set()
+          try:
+              merge_base = subprocess.run(
+                  ["git", "merge-base", "HEAD", "origin/main"],
+                  check=True,
+                  capture_output=True,
+                  text=True,
+              ).stdout.strip()
+              changed = subprocess.run(
+                  ["git", "diff", "--name-only", f"{merge_base}...HEAD"],
+                  check=True,
+                  capture_output=True,
+                  text=True,
+              )
+              changed_files = {
+                  p.strip().replace("\\", "/").lstrip("./")
+                  for p in changed.stdout.splitlines()
+                  if p.strip()
+              }
+              ownership_ok = True
+          except Exception as exc:
+              print(f"Ownership re-check failed: {exc}", file=sys.stderr)
+
+          fmt_changed_files = [
+              p for p in fmt_files
+              if p.replace("\\", "/").lstrip("./") in changed_files
+          ]
+
+          pr_status, pr_reason = classify_pr_enforcement(
+              blocking_diagnostics=bool(status == "failed" and failed_stage not in (None, "cargo-fmt")),
+              fmt_failed=fmt_failed,
+              fmt_files=len(fmt_files),
+              fmt_changed_files=len(fmt_changed_files),
+              ownership_classification_ok=ownership_ok,
+          )
+
+          print(f"repository diagnostic status: {status}")
+          print(f"failed_stage: {failed_stage}")
+          print(f"head_sha: {head_sha}")
+          print(f"PR enforcement status: {pr_status}")
+          print(f"PR enforcement reason: {pr_reason}")
+
+          if pr_status in {"PR_FAILURE", "UNKNOWN"}:
               print(
-                  f"Rust AI Diagnostics failed at {failed_stage or 'unknown stage'}; "
-                  "failing the workflow so CI status matches the validation result.",
+                  f"Rust AI Diagnostics PR gate is {pr_status}: {pr_reason}",
                   file=sys.stderr,
               )
               sys.exit(1)
