@@ -278,4 +278,168 @@ mod tests {
             }
         );
     }
+    #[test]
+    fn authorization_branches_have_exact_deny_codes() {
+        let mut e = CapabilityEnforcer::new();
+
+        assert_eq!(
+            e.authorize("missing", "did:agent-a", "memcube:project/notes", "memory.read"),
+            AuthzDecision::Deny { code: DenyCode::TokenNotFound }
+        );
+
+        let mut expired = make_token("expired", "did:agent-a", &["memory.read"], "memcube:project/*");
+        expired.expires_at = unix_now().saturating_sub(1);
+        e.register(expired);
+        assert_eq!(
+            e.authorize("expired", "did:agent-a", "memcube:project/notes", "memory.read"),
+            AuthzDecision::Deny { code: DenyCode::TokenExpired }
+        );
+
+        e.register(make_token("subject", "did:agent-a", &["memory.read"], "memcube:project/*"));
+        assert_eq!(
+            e.authorize("subject", "did:agent-b", "memcube:project/notes", "memory.read"),
+            AuthzDecision::Deny { code: DenyCode::SubjectMismatch }
+        );
+
+        e.register(make_token("operation", "did:agent-a", &["memory.read"], "memcube:project/*"));
+        assert_eq!(
+            e.authorize("operation", "did:agent-a", "memcube:project/notes", "memory.write"),
+            AuthzDecision::Deny { code: DenyCode::OperationNotAllowed }
+        );
+
+        e.register(make_token("resource", "did:agent-a", &["memory.read"], "memcube:project/*"));
+        assert_eq!(
+            e.authorize("resource", "did:agent-a", "memcube:other/notes", "memory.read"),
+            AuthzDecision::Deny { code: DenyCode::ResourceNotAllowed }
+        );
+    }
+
+    #[test]
+    fn resource_matching_covers_selector_boundaries() {
+        assert!(resource_matches("*", "anything"));
+        assert!(resource_matches("memcube:project/*", "memcube:project"));
+        assert!(resource_matches("memcube:project/*", "memcube:project/notes"));
+        assert!(resource_matches("memcube:project/*", "memcube:project/notes/today"));
+        assert!(resource_matches("memcube:project", "memcube:project"));
+        assert!(!resource_matches("memcube:project/*", "memcube:projects/notes"));
+        assert!(!resource_matches("memcube:project/*", "memcube:project-other"));
+        assert!(!resource_matches("memcube:project", "memcube:project/notes"));
+    }
+
+    #[test]
+    fn returned_decision_matches_audit_event_exactly() {
+        let mut e = CapabilityEnforcer::new();
+        e.register(make_token(
+            "grant-audit",
+            "did:agent-a",
+            &["memory.read"],
+            "memcube:project/*",
+        ));
+
+        let decision = e.authorize(
+            "grant-audit",
+            "did:agent-a",
+            "memcube:project/notes",
+            "memory.read",
+        );
+
+        assert_eq!(decision, AuthzDecision::Allow);
+        let event = e.audit_log().last().expect("authorization must be audited");
+        assert_eq!(event.event_id, 1);
+        assert_eq!(event.token_id, "grant-audit");
+        assert_eq!(event.subject, "did:agent-a");
+        assert_eq!(event.resource, "memcube:project/notes");
+        assert_eq!(event.operation, "memory.read");
+        assert_eq!(event.decision, decision);
+        assert_eq!(event.epoch, 1);
+    }
+
+    #[test]
+    fn revoked_and_ancestor_revoked_decisions_match_audit() {
+        let mut e = CapabilityEnforcer::new();
+        e.register(make_token(
+            "revoked",
+            "did:agent-a",
+            &["memory.read"],
+            "memcube:project/*",
+        ));
+        assert!(e.revoke("revoked", "user-requested", "did:human"));
+        let revoked_decision = e.authorize(
+            "revoked",
+            "did:agent-a",
+            "memcube:project/notes",
+            "memory.read",
+        );
+        assert_eq!(
+            revoked_decision,
+            AuthzDecision::Deny { code: DenyCode::TokenRevoked }
+        );
+        assert_eq!(e.audit_log().last().unwrap().decision, revoked_decision);
+
+        e.register(make_token(
+            "parent-audit",
+            "did:agent-a",
+            &["memory.read"],
+            "memcube:project/*",
+        ));
+        let mut child = make_token(
+            "child-audit",
+            "did:agent-b",
+            &["memory.read"],
+            "memcube:project/notes",
+        );
+        child.parent_token_id = Some("parent-audit".into());
+        e.register(child);
+        assert!(e.revoke("parent-audit", "security-incident", "did:issuer"));
+
+        let ancestor_decision = e.authorize(
+            "child-audit",
+            "did:agent-b",
+            "memcube:project/notes",
+            "memory.read",
+        );
+        assert_eq!(
+            ancestor_decision,
+            AuthzDecision::Deny { code: DenyCode::AncestorRevoked }
+        );
+        assert_eq!(e.audit_log().last().unwrap().decision, ancestor_decision);
+    }
+
+    #[test]
+    fn audit_event_order_and_epoch_are_deterministic() {
+        let mut e = CapabilityEnforcer::new();
+        e.register(make_token(
+            "grant-order",
+            "did:agent-a",
+            &["memory.read"],
+            "memcube:project/*",
+        ));
+
+        let first = e.authorize(
+            "grant-order",
+            "did:agent-a",
+            "memcube:project/notes",
+            "memory.read",
+        );
+        let second = e.authorize(
+            "grant-order",
+            "did:agent-a",
+            "memcube:project/notes",
+            "memory.write",
+        );
+
+        assert_eq!(first, AuthzDecision::Allow);
+        assert_eq!(
+            second,
+            AuthzDecision::Deny { code: DenyCode::OperationNotAllowed }
+        );
+        assert_eq!(e.audit_log().len(), 2);
+        assert_eq!(e.audit_log()[0].event_id, 1);
+        assert_eq!(e.audit_log()[0].epoch, 1);
+        assert_eq!(e.audit_log()[0].decision, first);
+        assert_eq!(e.audit_log()[1].event_id, 2);
+        assert_eq!(e.audit_log()[1].epoch, 2);
+        assert_eq!(e.audit_log()[1].decision, second);
+    }
+
 }
