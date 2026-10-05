@@ -3,6 +3,10 @@
 
 import os
 import tempfile
+import sys
+
+sys.path.insert(0, os.path.dirname(__file__))
+from rust_ai_diagnostics_policy import PASS, PRE_EXISTING, PR_FAILURE, UNKNOWN, classify_pr_enforcement
 
 
 def read_fmt_status(path):
@@ -66,3 +70,47 @@ if __name__ == "__main__":
         test()
         print(f"PASS: {test.__name__}")
     print("Rust AI Diagnostics regression tests: PASS")
+
+def test_enforcement_all_out_of_scope_is_non_blocking():
+    status, reason = classify_pr_enforcement(
+        blocking_diagnostics=False,
+        fmt_failed=True,
+        fmt_files=704,
+        fmt_changed_files=0,
+        ownership_classification_ok=True,
+    )
+    assert status == PRE_EXISTING
+    assert "outside" in reason
+
+
+def test_enforcement_pr_overlap_is_blocking():
+    status, _ = classify_pr_enforcement(
+        blocking_diagnostics=False,
+        fmt_failed=True,
+        fmt_files=704,
+        fmt_changed_files=1,
+        ownership_classification_ok=True,
+    )
+    assert status == PR_FAILURE
+
+
+def test_enforcement_unknown_ownership_is_blocking():
+    status, _ = classify_pr_enforcement(
+        blocking_diagnostics=False,
+        fmt_failed=True,
+        fmt_files=704,
+        fmt_changed_files=0,
+        ownership_classification_ok=False,
+    )
+    assert status == UNKNOWN
+
+
+def test_enforcement_clean_repository_passes():
+    status, _ = classify_pr_enforcement(
+        blocking_diagnostics=False,
+        fmt_failed=False,
+        fmt_files=0,
+        fmt_changed_files=0,
+        ownership_classification_ok=True,
+    )
+    assert status == PASS
