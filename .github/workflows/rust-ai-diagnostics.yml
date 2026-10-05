@@ -210,7 +210,7 @@ jobs:
           repo_diagnostic_status = "PASS" if not all_errors and fmt_ok else "FAIL"
           lines.append(f"**Repository diagnostic status:** `{repo_diagnostic_status}`")
           lines.append(f"**PR enforcement status:** `{pr_enforcement_status}` — {pr_enforcement_reason}")
-          lines.append("")          lines.append("")
+          lines.append("")
 
           if not all_errors and not all_warnings and fmt_ok:
               lines.append("**No errors or warnings detected.** Workspace is clean.")
@@ -365,8 +365,12 @@ jobs:
         if: always()
         run: |
           python3 - <<'PYEOF'
-          import json, sys
+          import json
+          import subprocess
+          import sys
 
+          sys.path.insert(0, "scripts")
+          from rust_ai_diagnostics_policy import classify_pr_enforcement
           with open("/tmp/agent-validation.json") as f:
               result = json.load(f)
 
