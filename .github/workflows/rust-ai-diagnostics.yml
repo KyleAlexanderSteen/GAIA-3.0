@@ -28,6 +28,8 @@ on:
       - '**/Cargo.toml'
       - '**/Cargo.lock'
       - '.github/workflows/rust-ai-diagnostics.yml'
+      - 'scripts/rust_ai_diagnostics_policy.py'
+      - 'scripts/test-rust-ai-diagnostics.py'
 
 permissions:
   contents: read
