@@ -277,3 +277,98 @@ The interview exists to make the human reasoning connecting those layers inspect
 **Certification claim:** None  
 **Professional seniority claim:** None  
 **Last reviewed:** 2026-10-05
+
+## 19. Repository-Linked Engineering Evidence
+
+The following recent repository events provide concrete examples of the validation and engineering-judgment principles described above.
+
+### PR #1803 — Validator Contract Discovery
+
+A repository-linked technical interview artifact initially failed an automated agent-skill check because the document did not contain the required `## Stage reached` section. After adding that section, the validator reported that no canonical stage was checked.
+
+The next step was not to guess at the expected format. The validator implementation was inspected directly, revealing the canonical stages:
+
+`SPECIFICATION → IMPLEMENTATION → TEST → INTEGRATION → VERIFICATION → OPERATIONAL`
+
+The final PR body explicitly marked `SPECIFICATION` and linked the interview document as its evidence. The resulting checks passed.
+
+**Engineering lesson:** when automation rejects an artifact, inspect the validator's contract before changing the artifact again.
+
+**Evidence:** PR #1803, `docs/learning/TECHNICAL-INTERVIEW.md`
+
+### PR #1797 — Failure Classification
+
+A Rust diagnostic on the original Pass 3E-3 pull request reported a repository-wide formatter failure. The diagnostic contained zero compiler errors, reported 704 unformatted files, and identified zero PR-changed files as affected by the formatter failure. It therefore classified the formatter failure as `PRE_EXISTING`.
+
+This is a concrete example of separating the observation of failure from attribution of cause.
+
+**Engineering lesson:**
+
+**A failure occurred ≠ the PR caused the failure.**
+
+A diagnostic result must be classified against the relevant changed-file set and repository state before being used as evidence against a proposed change.
+
+**Evidence:** PR #1797 diagnostic report and its changed-file analysis.
+
+### PR #1804 — Adversarial Authorization Invariant
+
+While reviewing the Pass 3E-3 test fixture, the original authorization-preservation helper compared the `authorization` fields before and after a geometry change. Both fixture states contained `authorization: false`, while the test asserted that authorization had changed. The fixture therefore did not demonstrate the intended invariant.
+
+The corrected test explicitly distinguishes:
+
+1. geometry changes while authorization remains unchanged;
+2. authorization changes when an explicit authorization event is present; and
+3. authorization changes without an authorization event, classified as authority leakage and rejected.
+
+This turns the security principle into an executable adversarial distinction rather than relying only on documentation.
+
+**Engineering lesson:**
+
+**A test exists ≠ the test correctly tests the intended invariant.**
+
+The test must demonstrate the state transition it claims to evaluate.
+
+**Evidence:** PR #1804, `gaia-validate/tests/pass3e_3_commuting.rs`
+
+### PR #1805 — Multi-Model AI-Assisted Provenance
+
+GAIA 3.0 development includes assistance from multiple AI systems for research, explanation, brainstorming, critique, comparative analysis, implementation, debugging, testing, and documentation. The provenance model distinguishes those forms of assistance from human-originated goals, synthesis, architectural decisions, acceptance/rejection decisions, repository stewardship, and verification.
+
+The repository should not invent line-level provenance when the historical evidence does not support that precision.
+
+**Engineering lesson:**
+
+**AI assistance ≠ AI authorship.**
+
+The useful provenance chain is:
+
+**Source → Contribution → Transformation → Human Decision → Artifact → Evidence → Verification**
+
+**Evidence:** PR #1805 and `docs/provenance/AI-ASSISTED-PROVENANCE.md`
+
+### Interview Principle: Explain the Failure, Not Just the Fix
+
+These examples are intended to support technical discussion of the reasoning process behind GAIA 3.0.
+
+A reviewer should be able to ask:
+
+- What failed?
+- What did the system actually report?
+- What did the validator require?
+- What evidence distinguished a pre-existing failure from a PR-caused failure?
+- What assumption in the original test was wrong?
+- How was the invariant rewritten?
+- What remains unproven?
+- What was AI-assisted?
+- What was decided, reviewed, tested, or maintained by the human author?
+
+The goal is not to present every automated result as success. The goal is to make **failure detection, classification, correction, provenance, and remaining uncertainty inspectable**.
+
+## Document Status
+
+**Classification:** Technical self-assessment / interview record  
+**Repository role:** Documentation and evidence index  
+**Implementation claim:** None beyond references to inspectable repository state  
+**Certification claim:** None  
+**Professional seniority claim:** None  
+**Last reviewed:** 2026-10-05
