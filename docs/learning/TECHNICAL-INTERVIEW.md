@@ -269,15 +269,6 @@ The interview exists to make the human reasoning connecting those layers inspect
 - [Governance](../governance/)
 - [Security](../security/)
 
-## Document Status
-
-**Classification:** Technical self-assessment / interview record  
-**Repository role:** Documentation and evidence index  
-**Implementation claim:** None beyond references to inspectable repository state  
-**Certification claim:** None  
-**Professional seniority claim:** None  
-**Last reviewed:** 2026-10-05
-
 ## 19. Repository-Linked Engineering Evidence
 
 The following recent repository events provide concrete examples of the validation and engineering-judgment principles described above.
