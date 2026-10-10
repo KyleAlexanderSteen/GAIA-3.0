@@ -70,17 +70,21 @@ fn projected_hamming(a: Matrix3x4, b: Matrix3x4) -> u32 {
         .count() as u32
 }
 
+fn classify_projection(source_distance: u32, projected_distance: u32) -> TransitionResult {
+    if source_distance == projected_distance {
+        TransitionResult::Commuted
+    } else {
+        TransitionResult::DestructiveLoss
+    }
+}
+
 fn commute(a: Q5, b: Q5) -> TransitionResult {
     if !permitted(a, b) {
         return TransitionResult::Invalid;
     }
     let source_distance = hamming(a, b);
     let projected_distance = projected_hamming(candidate_t(a), candidate_t(b));
-    if source_distance == projected_distance {
-        TransitionResult::Commuted
-    } else {
-        TransitionResult::DestructiveLoss
-    }
+    classify_projection(source_distance, projected_distance)
 }
 
 fn identity_preserved(before: State, after: State) -> bool {
@@ -151,11 +155,10 @@ fn projection_loss_is_not_a_pass() {
     projected_a.0[0][0] = projected_b.0[0][0];
     assert_ne!(hamming(a, b), projected_hamming(projected_a, projected_b));
     assert_eq!(
-        if hamming(a, b) == projected_hamming(projected_a, projected_b) {
-            TransitionResult::Commuted
-        } else {
-            TransitionResult::DestructiveLoss
-        },
+        classify_projection(
+            hamming(a, b),
+            projected_hamming(projected_a, projected_b)
+        ),
         TransitionResult::DestructiveLoss
     );
 }
@@ -175,6 +178,27 @@ fn identity_and_provenance_survive_transition() {
     assert!(identity_preserved(before, after));
     assert_eq!(before.q5, Q5::new(0).unwrap());
     assert_eq!(after.q5, Q5::new(1).unwrap());
+}
+
+
+#[test]
+fn equal_geometry_does_not_imply_equal_identity() {
+    let first = State {
+        q5: Q5::new(0b00101).unwrap(),
+        identity: 1,
+        provenance: 10,
+        authorization: false,
+    };
+    let second = State {
+        q5: Q5::new(0b00101).unwrap(),
+        identity: 2,
+        provenance: 10,
+        authorization: false,
+    };
+
+    assert_eq!(candidate_t(first.q5), candidate_t(second.q5));
+    assert_ne!(first.identity, second.identity);
+    assert!(!identity_preserved(first, second));
 }
 
 #[test]
