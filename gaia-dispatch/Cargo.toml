@@ -12,3 +12,4 @@ gaia-runtime = { path = "../gaia-runtime" }
 
 [dev-dependencies]
 tokio = { version = "1", features = ["macros", "rt"] }
+wat = "1"
