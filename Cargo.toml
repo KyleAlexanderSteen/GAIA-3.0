@@ -28,6 +28,7 @@ members = [
   "gaia-inference",
   "gaia-cli",
   "gaia-gateway",
+  "gaia-dispatch",
   "gaia-hal",
   "gaia-boot",
   "gaia-validate",
