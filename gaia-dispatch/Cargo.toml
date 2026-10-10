@@ -1,0 +1,9 @@
+[package]
+name = "gaia-dispatch"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Shared intent dispatch path used by GAIA CLI and gateway"
+
+[dependencies]
+gaia-kernel = { path = "../gaia-kernel" }
