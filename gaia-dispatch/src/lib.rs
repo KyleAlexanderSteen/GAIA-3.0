@@ -61,30 +61,36 @@ pub fn dispatch_intent(id: &str, payload: &str) -> IntentReceipt {
     executor.run_intent(id, payload)
 }
 
+/// Trusted policy inputs for guarded component dispatch.
+///
+/// The caller is responsible for sourcing these values from trusted control-plane
+/// state; conversational text is not an approval mechanism.
+pub struct ComponentDispatchContext<'a> {
+    pub now: u64,
+    pub intent: &'a SignedIntent,
+    pub manifest: &'a CapabilityManifest,
+    pub action: &'a ProposedAction,
+    pub approval: Option<&'a HumanApprovalReceipt>,
+    pub revoked: &'a RevocationList,
+    pub consumed_approvals: &'a [String],
+    pub emergency_stop: bool,
+}
+
 /// Execute a WASM component only after ACP capability/policy checks and, when
 /// required by the action class, a valid human approval receipt.
-/// The caller must supply the manifest and action from trusted control-plane
-/// state; conversational text is not an approval mechanism.
 pub async fn dispatch_component(
     component_bytes: &[u8],
-    now: u64,
-    intent: &SignedIntent,
-    manifest: &CapabilityManifest,
-    action: &ProposedAction,
-    approval: Option<&HumanApprovalReceipt>,
-    revoked: &RevocationList,
-    consumed_approvals: &[String],
-    emergency_stop: bool,
+    context: ComponentDispatchContext<'_>,
 ) -> Result<(), String> {
     let decision = PolicyEngine::evaluate(PolicyEvaluationContext {
-        now,
-        intent,
-        manifest,
-        action,
-        approval,
-        revoked,
-        emergency_stop,
-        consumed_approvals,
+        now: context.now,
+        intent: context.intent,
+        manifest: context.manifest,
+        action: context.action,
+        approval: context.approval,
+        revoked: context.revoked,
+        emergency_stop: context.emergency_stop,
+        consumed_approvals: context.consumed_approvals,
         untrusted: None,
     });
     match decision {
@@ -102,11 +108,7 @@ pub async fn dispatch_component(
         .compile(component_bytes)
         .map_err(|e| format!("sandbox-compile-failed: {e}"))?;
     sandbox
-        .execute_component_with_load(
-            &component,
-            Duration::from_secs(5),
-            5_000,
-        )
+        .execute_component_with_load(&component, Duration::from_secs(5), 5_000)
         .await
         .0
         .map_err(|e| format!("sandbox-execution-failed: {e}"))
