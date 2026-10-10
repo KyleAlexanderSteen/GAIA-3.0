@@ -18,6 +18,10 @@ async fn health_returns_json_report() {
         .unwrap();
     let resp = app.oneshot(req).await.unwrap();
     assert_eq!(resp.status(), StatusCode::OK);
+    assert_eq!(
+        resp.headers().get(axum::http::header::CONTENT_TYPE).unwrap(),
+        "application/json"
+    );
 
     let body = resp.into_body().collect().await.unwrap().to_bytes();
     let report: serde_json::Value = serde_json::from_slice(&body).unwrap();
