@@ -1,9 +1,6 @@
 use anyhow::{anyhow, Result};
 use clap::Args;
-use gaia_kernel::broker::{Broker, Capabilities};
-use gaia_kernel::executor::Executor;
-use gaia_kernel::{Principal, PrincipalKind};
-use std::sync::Arc;
+use gaia_dispatch::dispatch_intent;
 use std::time::{SystemTime, UNIX_EPOCH};
 
 #[derive(Args)]
@@ -21,25 +18,23 @@ pub struct IntentArgs {
 }
 
 pub async fn run(args: IntentArgs) -> Result<()> {
-    if args.stream || args.gateway.is_some() {
-        return Err(super::not_implemented("intent --stream/--gateway", "#1299"));
+    if args.stream {
+        return Err(super::not_implemented("intent --stream", "#1299"));
     }
-    let broker = Arc::new(Broker::new());
-    let principal = Principal::generate(PrincipalKind::Node);
-    let exec = Executor::new(&principal, Capabilities::default(), broker);
+    if args.gateway.is_some() {
+        return Err(super::not_implemented("intent --gateway transport", "#1299"));
+    }
+
     let millis = SystemTime::now()
         .duration_since(UNIX_EPOCH)
         .map(|d| d.as_millis())
         .unwrap_or(0);
     let id = format!("local-{millis}");
-    let receipt = exec.run_intent(&id, &args.text);
+    let receipt = dispatch_intent(&id, &args.text);
     match receipt.status {
         "recorded" => {
             crate::ledger::append_recorded(&receipt.id, &receipt.detail)?;
-            println!(
-                "recorded id={} detail={}",
-                receipt.id, receipt.detail
-            );
+            println!("recorded id={} detail={}", receipt.id, receipt.detail);
             Ok(())
         }
         other => Err(anyhow!("{other} {}", receipt.detail)),
