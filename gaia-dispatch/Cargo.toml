@@ -7,3 +7,5 @@ description = "Shared intent dispatch path used by GAIA CLI and gateway"
 
 [dependencies]
 gaia-kernel = { path = "../gaia-kernel" }
+gaia-acp = { path = "../gaia-acp" }
+gaia-runtime = { path = "../gaia-runtime" }
