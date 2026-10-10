@@ -18,6 +18,7 @@ tokio         = { version = "1", features = ["rt", "time"], optional = true }
 
 [dev-dependencies]
 tokio = { version = "1", features = ["rt", "macros"] }
+wat = "1"
 
 [features]
 default  = ["tokio-rt"]
