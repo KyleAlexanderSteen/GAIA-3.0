@@ -5,12 +5,9 @@ use axum::{
     response::IntoResponse,
 };
 use serde::{Deserialize, Serialize};
-use std::sync::Arc;
 
 use crate::state::AppState;
-use gaia_kernel::broker::{Broker, Capabilities};
-use gaia_kernel::executor::Executor;
-use gaia_kernel::{Principal, PrincipalKind};
+use gaia_dispatch::dispatch_intent;
 
 #[derive(Deserialize)]
 pub struct IntentRequest {
@@ -25,17 +22,14 @@ pub struct IntentResponse {
     pub detail: String,
 }
 
-/// POST /intent — admits `echo:` only. Does not queue.
+/// POST /intent — uses the same shared dispatch implementation as the CLI.
 pub async fn submit_intent(
     State(_state): State<AppState>,
     Json(req): Json<IntentRequest>,
 ) -> impl IntoResponse {
     let _ = req.profile;
     let id = uuid::Uuid::new_v4().to_string();
-    let broker = Arc::new(Broker::new());
-    let principal = Principal::generate(PrincipalKind::Node);
-    let exec = Executor::new(&principal, Capabilities::default(), broker);
-    let receipt = exec.run_intent(&id, &req.text);
+    let receipt = dispatch_intent(&id, &req.text);
     let mut detail = receipt.detail;
     if receipt.status == "recorded" {
         if let Err(err) = gaia_kernel::receipts::append_from("gateway", &receipt.id, &detail) {
