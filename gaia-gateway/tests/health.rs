@@ -28,5 +28,7 @@ async fn health_returns_json_report() {
     assert_eq!(report["network"], "UNKNOWN");
     assert_eq!(report["subsystems"][0]["name"], "gateway");
     assert_eq!(report["subsystems"][0]["state"], "READY");
-    assert!(report["subsystems"].as_array().unwrap().len() >= 1);
+    let subsystems = report["subsystems"].as_array().unwrap();
+    assert!(!subsystems.is_empty());
+    assert!(subsystems.iter().skip(1).all(|s| s["state"] != "READY"));
 }
