@@ -28,7 +28,7 @@ The entries below are literature baselines, not results from the proposed appara
 
 | # | Material | Literature-supported baseline | Experimental role | Evidence state |
 |---|---|---|---|---|
-| 1 | Ametrine | Quartz variety with purple/yellow-orange color zones; quartz reference RI values are approximately ω=1.544 and ε=1.553 [1] | Measure polarization/phase response; do not assume the sample acts as a beam splitter | LITERATURE BASELINE; specimen unmeasured |
+| 1 | Ametrine | Quartz variety with purple/yellow-orange color zones [1, 11]; quartz reference RI values are approximately ω=1.544 and ε=1.553 [1] | Measure polarization/phase response; do not assume the sample acts as a beam splitter | LITERATURE BASELINE; specimen unmeasured |
 | 2 | Amphibole Quartz | Quartz host with amphibole inclusions; inclusion identity, distribution, and optical effect must be verified per specimen [1] | Characterize inclusions and measure scattering/transmission | LITERATURE BASELINE; specimen unmeasured |
 | 3 | Anandalite | “Iris quartz” reports describe interference associated with thin parallel twin planes and/or depositional layers; name and specimen identification require care [2] | Verify identity and measure ordinary optical interference | REPORTED LITERATURE EFFECT; specimen unverified |
 | 4 | Ajoite-bearing Quartz | Ajoite inclusions have been documented in quartz; inclusion distribution and optical response vary by specimen [3] | Verify mineral identification; measure transmission and absorption spectra | LITERATURE BASELINE; specimen unmeasured |
@@ -191,6 +191,7 @@ These references support general mineralogical or gemological descriptions only.
 8. Mineralogical Society of America / Mineral Data Publishing, *Handbook of Mineralogy: Baryte*: https://www.handbookofmineralogy.org/pdfs/baryte.pdf
 9. Mineralogical Society of America / Mineral Data Publishing, *Handbook of Mineralogy: Kyanite*: https://www.handbookofmineralogy.org/pdfs/kyanite.pdf
 10. Mineralogical Society of America / Mineral Data Publishing, *Handbook of Mineralogy: Astrophyllite*: https://www.handbookofmineralogy.org/pdfs/astrophyllite.pdf
+11. Mindat, “Ametrine” (variety of quartz and color zoning): https://www.mindat.org/show.php?id=7606
 
 ## Specimen-Level Evidence Record (Required Before Experimental PASS)
 
