@@ -24,19 +24,21 @@ Aragonite | Brookite | Baryte | Black Kyanite | Astrophyllite
 
 ## Physical Baseline
 
-| # | Material | Physical baseline | Experimental role | State |
+The entries below are literature baselines, not results from the proposed apparatus. A reference value is not a measurement of the particular specimen. Specimen-level PASS requires an identified sample, provenance, method, calibration, raw data, uncertainty, and reproducible result. The word PASS elsewhere in this document is restricted to the explicitly named scope or verification gate; it must not be read as evidence that a mineral sample or Option B mechanism has passed an experiment.
+
+| # | Material | Literature-supported baseline | Experimental role | Evidence state |
 |---|---|---|---|---|
-| 1 | Ametrine | Quartz; trigonal; RI about 1.544-1.553; birefringence about 0.009 | Birefringent optical element | PASS/HOLD |
-| 2 | Amphibole Quartz | Quartz with amphibole inclusions; heterogeneous scattering/absorption/multipath effects | Heterogeneous optical element | HOLD |
-| 3 | Anandalite | Iris quartz; thin parallel twin/depositional structures produce interference | Thin-structure interference element | PASS/HOLD |
-| 4 | Ajoite-bearing Quartz | Copper-bearing inclusions; specimen-dependent absorption/scattering | Spectral characterization element | HOLD |
-| 5 | Ammolite | Layered aragonite platelet structure; angle/wavelength-dependent interference | Multilayer optical element | PASS |
-| Core | Obsidian | Volcanic glass; transmission/reflection/scattering are specimen-dependent | Optical interaction zone | HOLD |
-| 6 | Aragonite | Orthorhombic CaCO3; very strong birefringence, about 0.155 | Strong anisotropy reference | PASS |
-| 7 | Brookite | Orthorhombic TiO2; high RI and substantial birefringence | High-index anisotropic element | PASS |
-| 8 | Baryte | Orthorhombic BaSO4; SG about 4.3-4.5; optical anisotropy | Dense material/mechanical control | PASS |
-| 9 | Black Kyanite | Strong directional mechanical/optical anisotropy | Orientation-dependent control | PASS/HOLD |
-| 10 | Astrophyllite | Complex Fe/Mn/Ti silicate; strong pleochroism/optical anisotropy | Absorption/scattering control | PASS/HOLD |
+| 1 | Ametrine | Quartz variety with purple/yellow-orange color zones; quartz reference RI values are approximately ω=1.544 and ε=1.553 [1] | Measure polarization/phase response; do not assume the sample acts as a beam splitter | LITERATURE BASELINE; specimen unmeasured |
+| 2 | Amphibole Quartz | Quartz host with amphibole inclusions; inclusion identity, distribution, and optical effect must be verified per specimen [1] | Characterize inclusions and measure scattering/transmission | LITERATURE BASELINE; specimen unmeasured |
+| 3 | Anandalite | “Iris quartz” reports describe interference associated with thin parallel twin planes and/or depositional layers; name and specimen identification require care [2] | Verify identity and measure ordinary optical interference | REPORTED LITERATURE EFFECT; specimen unverified |
+| 4 | Ajoite-bearing Quartz | Ajoite inclusions have been documented in quartz; inclusion distribution and optical response vary by specimen [3] | Verify mineral identification; measure transmission and absorption spectra | LITERATURE BASELINE; specimen unmeasured |
+| 5 | Ammolite | Iridescence in ammolite is associated with light interference from stacked aragonite platelets; fossilization and specimen structure vary [4] | Characterize layer structure and angle/wavelength response | ESTABLISHED GENERAL EFFECT; specimen unmeasured |
+| Core | Obsidian | Naturally occurring volcanic glass, commonly rhyolitic; composition and specimen condition affect optical behavior [5] | Measure each plate's composition, surface, transmission, reflection, and scattering | GENERAL GEOLOGICAL BASELINE; specimen unmeasured |
+| 6 | Aragonite | Orthorhombic CaCO₃; birefringent, with reference optical constants listed in the mineralogical literature [6] | Measure orientation-dependent polarization/phase response | LITERATURE BASELINE; specimen unmeasured |
+| 7 | Brookite | Orthorhombic TiO₂ polymorph with published optical constants; sample quality and orientation affect response [7] | Measure refractive/anisotropic response before assigning an optical role | LITERATURE BASELINE; specimen unmeasured |
+| 8 | Baryte | Orthorhombic BaSO₄; mineral references report high specific gravity and optical anisotropy [8] | Measure sample mass/dimensions and optical/mechanical properties | LITERATURE BASELINE; specimen unmeasured |
+| 9 | Black Kyanite | Kyanite has directional hardness and biaxial optical properties; pleochroism and measured properties depend on orientation/thickness [9] | Identify sample and measure orientation-dependent response | LITERATURE BASELINE; specimen unmeasured |
+| 10 | Astrophyllite | Mineralogical references describe biaxial optical behavior and strong pleochroism; exact chemistry and optical response require specimen characterization [10] | Verify identity/composition and measure polarization-dependent absorption/scattering | LITERATURE BASELINE; specimen unmeasured |
 
 ### Guardrails
 
@@ -153,8 +155,8 @@ The representation must not manufacture evidence for the hypothesis it evaluates
 
 ## Current Classification
 
-- Ten-mineral matrix as an experimental design: PASS
-- Individual physical properties: PASS where independently characterized
+- Ten-mineral matrix as an experimental design: DESIGN PASS (scope completeness only; not experimental validation)
+- Individual physical properties: LITERATURE BASELINES CITED; no specimen-level measurements are supplied by this document
 - Proposed optical roles: HOLD pending specimen-level measurement
 - Environmental damping: HOLD
 - Field focusing: UNKNOWN
@@ -174,3 +176,22 @@ Observation -> Interpretation -> Claim -> Evidence -> Verification -> Classifica
 Preserve raw data, provenance, controls, residuals, alternative explanations and UNKNOWN states.
 
 The apparatus may test the hypothesis. It must never assume the hypothesis.
+
+## References — General Material Baselines
+
+These references support general mineralogical or gemological descriptions only. They do not certify the identity, purity, dimensions, optical constants, or behavior of any specimen selected for this apparatus.
+
+1. Mineralogical Society of America / Mineral Data Publishing, *Handbook of Mineralogy: Quartz* (crystal data and optical properties): https://www.handbookofmineralogy.org/pdfs/quartz.pdf
+2. Alfredo Petrov and Yuko Tanaka, “Iris Quartz” (reported thin-structure interference; terminology/specimen caveats): https://www.mindat.org/article.php/1335/Iris%2BQuartz
+3. Mindat, “Ajoite” and documented ajoite-in-quartz specimens (mineral identification and inclusion examples): https://www.mindat.org/a/best_ajoite and https://www.mindat.org/photo-1741982.html
+4. Mychaluk, Levinson, and Hall, “Ammolite: Iridescent Fossilized Ammonite from Southern Alberta, Canada,” *Gems & Gemology*, GIA (2001): https://www.gia.edu/gems-gemology/wn13-ammolite-organic-jewel-cole
+5. U.S. Geological Survey, “Volcano Watch — Obsidian, a scarce commodity in Hawaiʻi” (obsidian as volcanic glass and compositional context): https://www.usgs.gov/news/volcano-watch-obsidian-a-scarce-commodity-hawaii
+6. Mineralogical Society of America / Mineral Data Publishing, *Handbook of Mineralogy: Aragonite*: https://www.handbookofmineralogy.org/pdfs/aragonite.pdf
+7. Mineralogical Society of America / Mineral Data Publishing, *Handbook of Mineralogy: Brookite*: https://www.handbookofmineralogy.org/pdfs/brookite.pdf
+8. Mineralogical Society of America / Mineral Data Publishing, *Handbook of Mineralogy: Baryte*: https://www.handbookofmineralogy.org/pdfs/baryte.pdf
+9. Mineralogical Society of America / Mineral Data Publishing, *Handbook of Mineralogy: Kyanite*: https://www.handbookofmineralogy.org/pdfs/kyanite.pdf
+10. Mineralogical Society of America / Mineral Data Publishing, *Handbook of Mineralogy: Astrophyllite*: https://www.handbookofmineralogy.org/pdfs/astrophyllite.pdf
+
+## Specimen-Level Evidence Record (Required Before Experimental PASS)
+
+For every specimen, record a unique specimen ID; supplier/locality and provenance; mineral identification method and confidence; dimensions, mass, cut/orientation, surface finish, inclusions and treatment; instrument make/model and calibration record; wavelength, polarization, geometry, temperature and environmental conditions; raw files and hashes; analysis code/version; uncertainty; controls; preregistration reference; and independent replication status. If an item is not available, mark it UNKNOWN or HOLD rather than inferring it from the literature baseline.
