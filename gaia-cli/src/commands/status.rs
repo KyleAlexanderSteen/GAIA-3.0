@@ -46,3 +46,34 @@ pub async fn run(args: StatusArgs) -> Result<()> {
     println!("{:<14} {:<18}", "network", report.network);
     Ok(())
 }
+
+
+#[cfg(test)]
+mod tests {
+    use super::HealthReport;
+
+    #[test]
+    fn parses_complete_health_contract() {
+        let json = r#"{
+            "subsystems": [
+                {"name": "gateway", "state": "READY", "reason": "health handler is responding"},
+                {"name": "MemOS", "state": "NOT_IMPLEMENTED", "reason": "persistence is not wired"}
+            ],
+            "network": "UNKNOWN"
+        }"#;
+
+        let report: HealthReport = serde_json::from_str(json).expect("valid health contract");
+        assert_eq!(report.subsystems.len(), 2);
+        assert_eq!(report.subsystems[0].name, "gateway");
+        assert_eq!(report.subsystems[0].state, "READY");
+        assert_eq!(report.subsystems[1].name, "MemOS");
+        assert_eq!(report.subsystems[1].state, "NOT_IMPLEMENTED");
+        assert_eq!(report.network, "UNKNOWN");
+    }
+
+    #[test]
+    fn rejects_incomplete_health_contract() {
+        let json = r#"{"subsystems": [{"name": "gateway", "state": "READY"}]}"#;
+        assert!(serde_json::from_str::<HealthReport>(json).is_err());
+    }
+}
