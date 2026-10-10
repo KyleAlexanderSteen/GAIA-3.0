@@ -24,6 +24,7 @@ pub mod init;
 pub mod lookup;
 pub mod inventory;
 pub mod start;
+pub mod status;
 pub mod terms;
 pub mod tool;
 pub mod tip;

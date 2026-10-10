@@ -109,12 +109,25 @@ fn unbuilt_commands_fail_loudly() {
     assert_fails_loudly(&["init", "--profile", "sovereign"]);
     assert_fails_loudly(&["start"]);
     assert_fails_loudly(&["intent", "hello", "--stream"]);
-    assert_fails_loudly(&["intent", "hello", "--gateway", "http://127.0.0.1:9"]);
     assert_fails_loudly(&["agent", "create", "--name", "a"]);
     assert_fails_loudly(&["agent", "deploy", "--name", "a"]);
     assert_fails_loudly(&["memory", "list"]);
     assert_fails_loudly(&["memory", "search", "q"]);
     assert_fails_loudly(&["audit", "--follow"]);
+}
+
+
+#[test]
+fn unreachable_gateway_fails_with_transport_error_not_success() {
+    let out = gaia()
+        .args(["intent", "echo: unreachable", "--gateway", "http://127.0.0.1:9"])
+        .output()
+        .expect("run gaia-cli");
+    let stdout = String::from_utf8_lossy(&out.stdout);
+    let stderr = String::from_utf8_lossy(&out.stderr);
+    assert!(!out.status.success(), "unreachable gateway must fail");
+    assert!(stderr.contains("gateway intent request failed"), "{stderr}");
+    assert!(!stdout.contains("recorded"), "failed transport must not report success: {stdout}");
 }
 
 #[test]

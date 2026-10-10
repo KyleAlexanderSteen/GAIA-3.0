@@ -50,7 +50,7 @@ enum Commands {
     Mcp(commands::mcp::McpArgs),
     /// View the audit log
     Audit(commands::audit::AuditArgs),
-    /// Print the Earth interaction map.
+    /// Earth commands
     Earth(commands::earth::EarthArgs),
     /// Revoke (stop) a running agent
     Reading(commands::reading::ReadingArgs),
@@ -110,6 +110,8 @@ enum Commands {
     Systems(commands::systems::SystemsArgs),
     /// Print a local person record.
     Person(commands::person::PersonArgs),
+    /// Query real gateway and subsystem health.
+    Status(commands::status::StatusArgs),
 }
 
 #[tokio::main]
@@ -164,5 +166,6 @@ async fn main() -> Result<()> {
         Commands::Map(args) => commands::map::run(args).await,
         Commands::Systems(args) => commands::systems::run(args).await,
         Commands::Person(args) => commands::person::run(args).await,
+        Commands::Status(args) => commands::status::run(args).await,
     }
 }
