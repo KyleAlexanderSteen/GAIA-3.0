@@ -22,8 +22,12 @@ struct HealthReport {
     network: String,
 }
 
+fn health_url(gateway: &str) -> String {
+    format!("{}/health", gateway.trim_end_matches('/'))
+}
+
 pub async fn run(args: StatusArgs) -> Result<()> {
-    let url = format!("{}/health", args.gateway.trim_end_matches('/'));
+    let url = health_url(&args.gateway);
     let response = reqwest::Client::new()
         .get(&url)
         .send()
@@ -69,6 +73,11 @@ mod tests {
         assert_eq!(report.subsystems[1].name, "MemOS");
         assert_eq!(report.subsystems[1].state, "NOT_IMPLEMENTED");
         assert_eq!(report.network, "UNKNOWN");
+    }
+
+    #[test]
+    fn health_url_handles_trailing_slashes() {
+        assert_eq!(super::health_url("http://127.0.0.1:7700///"), "http://127.0.0.1:7700/health");
     }
 
     #[test]
