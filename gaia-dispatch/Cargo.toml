@@ -9,3 +9,6 @@ description = "Shared intent dispatch path used by GAIA CLI and gateway"
 gaia-kernel = { path = "../gaia-kernel" }
 gaia-acp = { path = "../gaia-acp" }
 gaia-runtime = { path = "../gaia-runtime" }
+
+[dev-dependencies]
+tokio = { version = "1", features = ["macros", "rt"] }
