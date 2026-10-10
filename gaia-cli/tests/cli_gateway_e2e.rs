@@ -32,10 +32,22 @@ async fn cli_intent_reaches_gateway_and_returns_dispatch_result() {
 
     let stdout = String::from_utf8_lossy(&output.stdout);
     let stderr = String::from_utf8_lossy(&output.stderr);
-    assert!(output.status.success(), "CLI failed. stdout={stdout}; stderr={stderr}");
-    assert!(stdout.contains("recorded"), "expected a recorded gateway receipt: {stdout}");
-    assert!(stdout.contains("cli gateway e2e"), "expected gateway dispatch detail: {stdout}");
-    assert!(!stdout.contains("not implemented"), "CLI fell back to a stub: {stdout}");
+    assert!(
+        output.status.success(),
+        "CLI failed. stdout={stdout}; stderr={stderr}"
+    );
+    assert!(
+        stdout.contains("recorded"),
+        "expected a recorded gateway receipt: {stdout}"
+    );
+    assert!(
+        stdout.contains("cli gateway e2e"),
+        "expected gateway dispatch detail: {stdout}"
+    );
+    assert!(
+        !stdout.contains("not implemented"),
+        "CLI fell back to a stub: {stdout}"
+    );
 }
 
 #[tokio::test]
@@ -44,7 +56,12 @@ async fn cli_surfaces_gateway_denial_as_failure() {
 
     let output = Command::cargo_bin("gaia-cli")
         .expect("gaia-cli binary should be built")
-        .args(["intent", "perform an unsupported action", "--gateway", &gateway])
+        .args([
+            "intent",
+            "perform an unsupported action",
+            "--gateway",
+            &gateway,
+        ])
         .output()
         .expect("run CLI against live test gateway");
 
@@ -52,7 +69,16 @@ async fn cli_surfaces_gateway_denial_as_failure() {
 
     let stdout = String::from_utf8_lossy(&output.stdout);
     let stderr = String::from_utf8_lossy(&output.stderr);
-    assert!(!output.status.success(), "denied intent must fail. stdout={stdout}; stderr={stderr}");
-    assert!(stderr.contains("gateway intent failed"), "expected explicit gateway failure: {stderr}");
-    assert!(!stdout.contains("recorded"), "denied intent must not print success: {stdout}");
+    assert!(
+        !output.status.success(),
+        "denied intent must fail. stdout={stdout}; stderr={stderr}"
+    );
+    assert!(
+        stderr.contains("gateway intent failed"),
+        "expected explicit gateway failure: {stderr}"
+    );
+    assert!(
+        !stdout.contains("recorded"),
+        "denied intent must not print success: {stdout}"
+    );
 }
