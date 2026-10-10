@@ -144,11 +144,11 @@ mod tests {
     }
 
     #[test]
-    fn dangerous_action_requires_a_matching_human_approval() {
+    fn elevated_action_without_approval_is_denied() {
         let now = unix_now();
         let mut manifest = CapabilityManifest::local_reader("gaia-local", now);
-        manifest.allowed_tools.push("dangerous_action".into());
-        manifest.max_risk = gaia_acp::RiskTier::T5;
+        manifest.allowed_tools.push("external_write".into());
+        manifest.max_risk = gaia_acp::RiskTier::T3;
         let intent = SignedIntent {
             intent_id: "approval-test".into(),
             goal_class: "dangerous".into(),
@@ -157,10 +157,10 @@ mod tests {
         };
         let action = ProposedAction {
             agent_id: manifest.agent_id.clone(),
-            tool: "dangerous_action".into(),
-            method: "EXECUTE".into(),
-            target: "scratch/item".into(),
-            action_class: ActionClass::Destructive,
+            tool: "external_write".into(),
+            method: "WRITE".into(),
+            target: "https://example.com/resource".into(),
+            action_class: ActionClass::ExternalWrite,
             payload: "test".into(),
             nonce: manifest.nonce.clone(),
             gateway_id: manifest.gateway_id.clone(),
@@ -181,6 +181,6 @@ mod tests {
             untrusted: None,
         });
         assert!(!decision.is_allow());
-        assert_eq!(decision.reason(), gaia_acp::ReasonCode::TierForbidden);
+        assert_eq!(decision.reason(), gaia_acp::ReasonCode::ApprovalMissing);
     }
 }
